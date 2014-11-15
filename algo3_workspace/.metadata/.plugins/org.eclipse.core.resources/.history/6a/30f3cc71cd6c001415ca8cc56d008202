@@ -1,0 +1,14 @@
+package algo3.algocity.modelo;
+
+import 
+
+public class EstacionDeBomberosTest {
+
+	@Test
+	public void CrearUnaEstacionDeBomberos(){
+		
+		EstacionDeBomberos e = new EstacionDeBomberos();
+		
+		
+	}
+}
