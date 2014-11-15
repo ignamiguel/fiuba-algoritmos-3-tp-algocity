@@ -1,0 +1,9 @@
+package algo3.algocity.modelo;
+
+public class EstacionDeBomberosTest {
+
+	public void CrearUnaEstacionDeBomberos(){
+		
+		
+	}
+}
