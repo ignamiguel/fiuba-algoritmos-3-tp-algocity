@@ -15,14 +15,29 @@ public abstract class CentralElectrica extends Construccion {
 	protected int radioDeCovertura;
 	protected boolean conectadaARedDeAgua;
 
+
 	
 	
 	//metodos publicos
 	
 	public abstract int darEnergia();
-	public abstract int obtenerRadioDeCovertura();
-	public abstract int obtenerCapacidadDeAbastecimiento();
 	
+	public int obtenerRadioDeCovertura() {
+		
+	return radioDeCovertura;
+	}
+	
+	public int obtenerCapacidadDeAbastecimiento() {
+		
+	return capacidadDeAbastecimiento;
+	}
+
+	public boolean estaConectada() {
+		
+	return conectadaARedDeAgua;
+	}
+	
+
 	//metodos privados
 	
 	
