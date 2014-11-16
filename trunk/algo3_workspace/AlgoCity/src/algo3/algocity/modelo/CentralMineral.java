@@ -33,25 +33,4 @@ public class CentralMineral extends CentralElectrica {
 	}
 
 
-
-	public int obtenerRadioDeCovertura() {
-
-	return radioDeCovertura;
-	}
-
-
-
-
-	public int obtenerCapacidadDeAbastecimiento() {
-
-	return capacidadDeAbastecimiento;
-	}
-
-
-
-	public boolean estaConectada() {
-		
-	return conectadaARedDeAgua;
-	}
-
 }

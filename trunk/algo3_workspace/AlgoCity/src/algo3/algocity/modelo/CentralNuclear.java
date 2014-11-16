@@ -29,20 +29,4 @@ public class CentralNuclear extends CentralElectrica {
 	return true;
 	}
 
-	public int obtenerRadioDeCovertura() {
-	
-	return radioDeCovertura;
-	}
-
-
-	public int obtenerCapacidadDeAbastecimiento() {
-
-	return capacidadDeAbastecimiento;
-	}
-
-	public boolean estaConectada() {
-		
-	return conectadaARedDeAgua;
-	}
-
 }
