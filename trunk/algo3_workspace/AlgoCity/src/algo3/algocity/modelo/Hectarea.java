@@ -1,5 +1,5 @@
 package algo3.algocity.modelo;
 
-public class Hectarea {
-
+public abstract class Hectarea {
+	public abstract String obtenerNombre();
 }
