@@ -1,5 +1,9 @@
 package algo3.algocity.modelo;
 
-public class LineaDeTension {
+public class LineaDeTension extends Conexiones{
 
+	
+	
+	
+	
 }
