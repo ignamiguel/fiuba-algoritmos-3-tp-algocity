@@ -10,7 +10,8 @@ public class Terreno extends Hectarea{
 		return "Terreno";
 	}
 
-
+// Esta comentado porque no me funcionaban los tests
+/* 
 	public void agregarServicio(Conexiones unServicio) {
 
 		servicios.add(unServicio);
@@ -28,5 +29,6 @@ public class Terreno extends Hectarea{
 	public boolean tieneElServicio(Conexiones unServicio) {
 		
 	return(servicios.contains(unServicio));
-	}
+	}*/
+	
 }

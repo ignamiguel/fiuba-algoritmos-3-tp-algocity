@@ -8,6 +8,7 @@ public class Residencia extends Edificios{
 		cargarConsumoElectrico(1);
 		cargarCapacidad(100);
 		cargarCosto(5);
+		cargarSalud(100);
 	}
 
 	private void cargarCapacidad(int capacidad) {
@@ -17,5 +18,17 @@ public class Residencia extends Edificios{
 	public int obtenerCapacidad() {
 		return capacidad;
 	}
+
+	public void afectarseCon(Godzilla godzilla) {
+		this.salud -= 100;
+		if(this.salud < 0){
+			this.salud = 0;
+		}
+	}
+	
+	
+	
+
+	
 	
 }
