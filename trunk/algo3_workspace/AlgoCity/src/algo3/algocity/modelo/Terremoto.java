@@ -7,6 +7,7 @@ public class Terremoto {
 	public Terremoto(){
 	
 		this.danio = 100;
+		
 	}
 	
 	//Solo para Tests previos a la propagacion del terremoto
