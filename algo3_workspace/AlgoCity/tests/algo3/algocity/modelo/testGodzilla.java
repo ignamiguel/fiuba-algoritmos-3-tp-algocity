@@ -12,5 +12,12 @@ public class testGodzilla {
 		assertNotNull(godzilla);
 	}
 	
+	@Test
+	public void testGodzillaSeCreaEnLaCoordenada0_0(){
+		Godzilla godzilla = new Godzilla();
+		assertEquals( (godzilla.obtenerCoordenada()).obtenerX() , 0 );
+		assertEquals( (godzilla.obtenerCoordenada()).obtenerY() , 0 );
+	}
+	
 	
 }
