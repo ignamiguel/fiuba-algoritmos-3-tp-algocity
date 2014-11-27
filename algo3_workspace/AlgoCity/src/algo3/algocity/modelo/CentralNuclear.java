@@ -3,11 +3,11 @@ package algo3.algocity.modelo;
 public class CentralNuclear extends CentralElectrica {
 
 	public CentralNuclear(){
-		this.conectadaARedDeAgua=false;
-		this.capacidadDeAbastecimiento=1000;
-		this.radioDeCovertura=25;	
+		this.conectadaARedDeAgua = false;
+		this.capacidadDeAbastecimiento = 1000;
+		this.radioDeCovertura = 25;	
 		this.cargarCosto(10000);
-		
+		this.cargarSalud(100);		
 		
 	}
 	
@@ -27,6 +27,12 @@ public class CentralNuclear extends CentralElectrica {
 	public boolean puedoEn(Terreno terreno) {
 
 	return true;
-	}
+	}	
+
+	@Override
+	public void afectarCon(Terremoto unTerremoto) {
+		// TODO Auto-generated method stub
+		
+	}	
 
 }

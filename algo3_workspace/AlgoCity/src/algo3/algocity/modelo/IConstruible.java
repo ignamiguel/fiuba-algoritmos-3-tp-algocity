@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public interface Construible {
+public interface IConstruible {
 	
 	public int obtenerCosto(); 
 	public boolean puedoEn(Agua agua);

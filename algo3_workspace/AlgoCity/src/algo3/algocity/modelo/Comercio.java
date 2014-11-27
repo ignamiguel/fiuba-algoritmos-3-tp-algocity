@@ -9,11 +9,13 @@ public class Comercio extends Edificios{
 		cargarSalud(100);
 	}
 
-	public void afectarseCon(Godzilla godzilla) {
+	public void afectarCon(Godzilla godzilla) {
+		
 		this.salud -= 75;
+		
 		if (this.salud < 0 ){
 			this.salud = 0;
 		}
 		
-	}
+	}	
 }

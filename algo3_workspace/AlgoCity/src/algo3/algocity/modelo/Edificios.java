@@ -1,26 +1,16 @@
 package algo3.algocity.modelo;
 
-public abstract class Edificios extends Construccion implements Afectable{
+public abstract class Edificios extends Construccion implements IAfectable{
 	
-	private int consumoElectrico;
-	protected int salud;
+	private int consumoElectrico;	
 	
 	public int obtenerConsumoElectrico(){
 		return consumoElectrico;
 	}
 	
 	public void cargarConsumoElectrico(int consumoElectrico){
-		this.consumoElectrico = consumoElectrico;
-		
-	}
-	
-	public void cargarSalud(int salud){
-		this.salud = salud;
-	}
-	
-	public int obtenerSalud(){
-		return this.salud;
-	}
+		this.consumoElectrico = consumoElectrico;		
+	}	
 	
 	public boolean puedoEn(Terreno terreno){
 		return true;
@@ -30,7 +20,7 @@ public abstract class Edificios extends Construccion implements Afectable{
 		return false;
 	}
 	
-	public void afectarseCon(Terremoto terremoto) {
+	public void afectarCon(Terremoto terremoto) {
 		this.salud -= terremoto.obtenerDanio();
 		if(this.salud < 0){
 			this.salud = 0;
