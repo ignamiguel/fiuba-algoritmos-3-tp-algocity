@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public abstract class CentralElectrica extends Construccion {
+public abstract class CentralElectrica extends Construccion implements IAfectable{
 	
 	
 	public CentralElectrica(){
@@ -8,14 +8,11 @@ public abstract class CentralElectrica extends Construccion {
 	}
 	
 	
-	
 	//atributos de clase
 	
 	protected int capacidadDeAbastecimiento;
 	protected int radioDeCovertura;
 	protected boolean conectadaARedDeAgua;
-
-
 	
 	
 	//metodos publicos
@@ -35,6 +32,16 @@ public abstract class CentralElectrica extends Construccion {
 	public boolean estaConectada() {
 		
 	return conectadaARedDeAgua;
+	}
+	
+	@Override
+	public void afectarCon(Godzilla unGodzilla) {
+		this.salud -= 35;
+		
+		if(this.salud < 0){
+			this.salud = 0;
+		}
+		
 	}
 	
 

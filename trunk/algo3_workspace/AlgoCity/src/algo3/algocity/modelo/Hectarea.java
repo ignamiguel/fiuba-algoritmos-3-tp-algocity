@@ -1,8 +1,7 @@
 package algo3.algocity.modelo;
 
 
-public abstract class Hectarea {
-	
+public abstract class Hectarea {	
 	
 	public abstract void agregarServicio(Conexiones unServicio);
 	

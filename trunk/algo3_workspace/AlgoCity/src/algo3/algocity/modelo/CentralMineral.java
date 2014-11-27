@@ -4,12 +4,11 @@ public class CentralMineral extends CentralElectrica {
 
 	
 	public CentralMineral(){
-		this.conectadaARedDeAgua=false;
-		this.capacidadDeAbastecimiento=400;
-		this.radioDeCovertura=10;
+		this.conectadaARedDeAgua = false;
+		this.capacidadDeAbastecimiento = 400;
+		this.radioDeCovertura = 10;
 		this.cargarCosto(3000);
-				
-		
+		this.cargarSalud(100);		
 	}
 	
 	
@@ -30,6 +29,12 @@ public class CentralMineral extends CentralElectrica {
 	public boolean puedoEn(Terreno terreno) {
 	
 	return true;
+	}
+
+	@Override
+	public void afectarCon(Terremoto unTerremoto) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

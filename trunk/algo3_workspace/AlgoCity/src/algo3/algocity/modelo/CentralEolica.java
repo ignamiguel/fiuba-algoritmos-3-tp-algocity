@@ -8,6 +8,7 @@ public class CentralEolica extends CentralElectrica {
 		this.capacidadDeAbastecimiento=100;
 		this.radioDeCovertura=4;
 		this.cargarCosto(1000);
+		this.cargarSalud(100);
 		
 	}
 	
@@ -29,5 +30,12 @@ public class CentralEolica extends CentralElectrica {
 	
 	return true;
 	}
+
+
+	@Override
+	public void afectarCon(Terremoto unTerremoto) {
+		// TODO Auto-generated method stub
+		
+	}	
 
 }

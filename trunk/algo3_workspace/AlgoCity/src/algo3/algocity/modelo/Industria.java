@@ -19,13 +19,13 @@ public class Industria extends Edificios{
 		return this.puestosDeTrabajo;
 	}
 
-	public void afectarseCon(Godzilla godzilla) {
+	public void afectarCon(Godzilla godzilla) {
 		
 		this.salud -= 40;
 		if (this.salud < 0){
 			this.salud = 0;
 		}
 		
-	}
+	}	
 
 }

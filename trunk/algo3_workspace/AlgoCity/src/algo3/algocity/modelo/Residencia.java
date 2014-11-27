@@ -19,16 +19,9 @@ public class Residencia extends Edificios{
 		return capacidad;
 	}
 
-	public void afectarseCon(Godzilla godzilla) {
-		this.salud -= 100;
-		if(this.salud < 0){
-			this.salud = 0;
-		}
+	public void afectarCon(Godzilla godzilla) {
+		this.salud = 0;		
 	}
-	
-	
-	
-
 	
 	
 }
