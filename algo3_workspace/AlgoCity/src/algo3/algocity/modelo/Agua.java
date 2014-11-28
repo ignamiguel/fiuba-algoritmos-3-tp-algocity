@@ -5,6 +5,12 @@ import java.util.ArrayList;
 public class Agua extends Hectarea{
 
 	private ArrayList servicios;
+	
+	public Agua(){
+		
+		servicios = new ArrayList();
+		
+	}
 		
 	public String obtenerNombre() {
 		

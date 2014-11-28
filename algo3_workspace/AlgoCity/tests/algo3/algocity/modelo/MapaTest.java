@@ -60,4 +60,21 @@ public class MapaTest {
 		assertEquals(hectarea.obtenerNombre(), "Terreno");
 
 	}
+	@Test
+	public void testMapaCreaLineaDeTensionVerticalmente(){
+		
+		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
+		
+		Mapa unMapa = new Mapa(unGenerador);
+		
+		LineaDeTension unaLinea = new LineaDeTension();
+		
+		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(1,2),new Coordenada(4,2));
+		//proximo a modificar, Pablo
+		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(3,2)))).tieneLuz()),true);
+		
+		
+		
+		
+	}
 }
