@@ -1,5 +1,7 @@
 package algo3.algocity.modelo;
 
+import java.util.ArrayList;
+
 
 public abstract class Hectarea {	
 	
@@ -10,5 +12,8 @@ public abstract class Hectarea {
 	public abstract boolean tieneElServicio(Conexiones unServicio);
 	
 	public abstract String obtenerNombre();
+	
+	
+	
 	
 }
