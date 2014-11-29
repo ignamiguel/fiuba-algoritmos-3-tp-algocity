@@ -31,17 +31,15 @@ public class ConstruccionDeTuberiasTest {
 	
 	@Test	
 	public void testEsPosibleConstruirTuberiaAlLadoDePozoDeAgua(){
-	Mapa mapa = new Mapa(new MapaConPlaya());
-	Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0,20));
-	PozoDeAgua unPozo = new PozoDeAgua();
-	Coordenada coordAux = new Coordenada (0,21);
-	Tuberia tuberia = new Tuberia();
-	hectarea.construir(unPozo);
-	mapa.crearTuberia(coordAux);
-	Hectarea hectareaContinua= mapa.obtenerHectarea(coordAux);
-	assertEquals(hectareaContinua.tieneElServicio( tuberia),true);
-	
-	
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0,20));
+		PozoDeAgua unPozo = new PozoDeAgua();
+		Coordenada coordAux = new Coordenada (0,21);
+		Tuberia tuberia = new Tuberia();
+		hectarea.construir(unPozo);
+		mapa.crearTuberia(coordAux);
+		Hectarea hectareaContinua= mapa.obtenerHectarea(coordAux);
+		assertEquals(hectareaContinua.tieneElServicio( tuberia),true);	
 	
 	}
 }

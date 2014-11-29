@@ -14,6 +14,7 @@ public class CentrealesTest {
 		assertEquals(unaCentral.obtenerCosto(),1000);
 
 	}
+	
 	@Test
 	public void testCostoNuevaCentralNuclear(){
 		

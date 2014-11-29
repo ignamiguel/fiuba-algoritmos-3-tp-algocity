@@ -1,9 +1,9 @@
 package algo3.algocity.modelo;
 
-public class PozoDeAgua {
+public class Juego {
 
 	public String obtenerNombre(){
-		return "Pozo de Agua";
+		return "Juego";
 	}
 	
 }

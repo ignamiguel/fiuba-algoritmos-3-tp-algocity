@@ -3,7 +3,6 @@ package algo3.algocity.modelo;
 import java.util.ArrayList;
 
 public class Agua extends Hectarea{
-
 	
 	private ArrayList<Conexiones> servicios;
 	private Construccion construccion;
@@ -31,31 +30,31 @@ public class Agua extends Hectarea{
 
 
 	public boolean tieneElServicio(Conexiones unServicio) {
-      return(servicios.contains(unServicio));
+		return(servicios.contains(unServicio));
 	}
-
-	public void construir(Construccion unaConstruccion){
-        if (this.puedoConstruirEdificio())
-        {
-            if(unaConstruccion.puedoEn(this))
-                {   construccion= unaConstruccion;
-                    unaConstruccion.brindarServicio(this);
-                }
-        }
-
-
-	}
-
-	@Override
-	public boolean puedoConstruirEdificio() {
-		// TODO Auto-generated method stub
-	return (construccion==null);
-	}
-
-	@Override
-	public Construccion obtenerSuConstruccion() {
 	
-	return this.construccion;
+
+	@Override
+	public Construccion obtenerSuConstruccion() {	
+		return this.construccion;
+	}
+	
+	public boolean construir(Construccion unaConstruccion){
+        
+		if( !this.permite(unaConstruccion) ){
+            return false;
+        }
+		
+		if( !(this.construccion == null) ){
+			return false;
+		}
+			
+		this.construccion = unaConstruccion;
+		return true;
+	}
+		
+	public boolean permite(Construccion c){
+		return c.puedoEn(this);
 	}
 	
 }

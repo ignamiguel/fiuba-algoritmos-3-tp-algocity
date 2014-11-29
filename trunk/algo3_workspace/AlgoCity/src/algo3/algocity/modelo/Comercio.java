@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class Comercio extends Edificios{
+public class Comercio extends Edificio{
 	
 	public Comercio(){
 		cargarConsumoElectrico(2);

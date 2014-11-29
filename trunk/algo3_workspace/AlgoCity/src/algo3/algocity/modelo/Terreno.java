@@ -24,7 +24,6 @@ public class Terreno extends Hectarea{
             servicios.add(unServicio);
 		
 	}
-
 	
 	public void quitarServicio(Conexiones unServicio) {
 
@@ -32,7 +31,6 @@ public class Terreno extends Hectarea{
             servicios.remove(unServicio);
 		
 	}
-
 	
 	public boolean tieneElServicio(Conexiones unServicio) {	
 		return(servicios.contains(unServicio));
@@ -50,30 +48,30 @@ public class Terreno extends Hectarea{
 			}
 			
 		}
-	return false;
-	}
-
-	public void construir(Construccion unaConstruccion){
-        if (this.puedoConstruirEdificio())
-        {
-            if(unaConstruccion.puedoEn(this))
-                {   construccion= unaConstruccion;
-                    unaConstruccion.brindarServicio(this);
-                }
-        }
-
-
-	}
+		return false;
+	}	
 
 	@Override
-	public boolean puedoConstruirEdificio() {
-
-	 return (construccion==null);
-	}
-
-	@Override
-	public Construccion obtenerSuConstruccion() {
-		// TODO Auto-generated method stub
+	public Construccion obtenerSuConstruccion() {		
 		return this.construccion;
 	}
+
+	public boolean construir(Construccion unaConstruccion){
+        
+		if( !this.permite(unaConstruccion) ){
+            return false;
+        }
+		
+		if( !(this.construccion == null)){
+			return false;
+		}
+			
+		this.construccion = unaConstruccion;
+		return true;
+	}
+		
+	public boolean permite(Construccion c){
+		return c.puedoEn(this);
+	}
+
 }
