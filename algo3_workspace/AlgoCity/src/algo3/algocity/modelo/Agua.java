@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Agua extends Hectarea{
 
+	
+	private ArrayList<Conexiones> servicios;
+	private Construccion construccion;
+	
 	public Agua(){
 		servicios = new ArrayList<Conexiones>();
 		construccion=null;
@@ -40,6 +44,18 @@ public class Agua extends Hectarea{
         }
 
 
+	}
+
+	@Override
+	public boolean puedoConstruirEdificio() {
+		// TODO Auto-generated method stub
+	return (construccion==null);
+	}
+
+	@Override
+	public Construccion obtenerSuConstruccion() {
+	
+	return this.construccion;
 	}
 	
 }
