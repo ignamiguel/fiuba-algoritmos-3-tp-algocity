@@ -1,6 +1,5 @@
 package algo3.algocity.modelo;
 
-	
 public class Comercio extends Edificios{
 	
 	public Comercio(){
@@ -16,6 +15,23 @@ public class Comercio extends Edificios{
 		if (this.salud < 0 ){
 			this.salud = 0;
 		}
+		
+	}
+
+	public boolean puedoEn(Hectarea hectarea) {
+		return true;
+	}
+
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+	
+	public boolean puedoEn(Agua agua) {
+		return false;
+	}
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// No brinda servicios 
 		
 	}	
 }

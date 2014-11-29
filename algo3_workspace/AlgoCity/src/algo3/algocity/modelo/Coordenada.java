@@ -12,8 +12,27 @@ public class Coordenada {
 	public int obtenerX() {
 		return this.x;
 	}
-	
+
 	public int obtenerY() {
 		return this.y;
 	}
+
+	public void aumentarX(int a){
+        this.x = (this.x + a);
+	}
+
+	public void aumentarY(int b){
+        this.y= (this.y + b);
+	}
+
+	public void disminuirX(int a){
+        this.x= (this.x - a);
+	}
+
+	public void disminuirY(int b){
+        this.y= (this.y -b);
+	}
+
 }
+
+

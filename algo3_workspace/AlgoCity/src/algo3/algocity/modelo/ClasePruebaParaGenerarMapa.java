@@ -1,5 +1,6 @@
 package algo3.algocity.modelo;
-// la uso para testear la creacion de lineas de tension en mapa, provisoria ,Pablo
+
+//la uso para testear la creacion de lineas de tension en mapa, provisoria ,Pablo
 public class ClasePruebaParaGenerarMapa implements IGeneradorDeMapa {
 
 	private int tamanio;

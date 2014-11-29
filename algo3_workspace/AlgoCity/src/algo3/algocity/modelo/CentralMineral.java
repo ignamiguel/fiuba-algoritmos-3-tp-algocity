@@ -38,4 +38,13 @@ public class CentralMineral extends CentralElectrica {
 	}
 
 
+
+
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

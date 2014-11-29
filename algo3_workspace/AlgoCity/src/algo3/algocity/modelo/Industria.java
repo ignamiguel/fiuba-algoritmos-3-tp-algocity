@@ -26,6 +26,25 @@ public class Industria extends Edificios{
 			this.salud = 0;
 		}
 		
+	}
+
+	public boolean puedoEn(Hectarea hectarea) {
+		return true;
+	}
+	
+	public boolean puedoEn(Agua agua) {
+		return false;
+	}
+	
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+	
+	
+
+	public void brindarServicio(Hectarea hectarea) {
+		// No brinda servicios
+		
 	}	
 
 }
