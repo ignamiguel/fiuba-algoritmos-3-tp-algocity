@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public abstract class Edificios extends Construccion implements IAfectable{
+public abstract class Edificio extends Construccion implements IAfectable{
 	
 	private int consumoElectrico;	
 	

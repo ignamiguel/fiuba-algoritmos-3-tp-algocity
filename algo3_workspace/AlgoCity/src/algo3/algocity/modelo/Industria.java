@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class Industria extends Edificios{
+public class Industria extends Edificio{
 	
 	private int puestosDeTrabajo;
 	

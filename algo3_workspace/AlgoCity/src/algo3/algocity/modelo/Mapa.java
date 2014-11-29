@@ -68,9 +68,10 @@ public class Mapa {
 
 	}
 
-    public void construir(Construccion unaConstruccion, Coordenada coordenada){
-        Hectarea hectarea = this.obtenerHectarea(coordenada);
-        hectarea.construir(unaConstruccion);
+    public boolean construir(Construccion construccion, Coordenada coordenada){
+        
+    	return (this.obtenerHectarea(coordenada)).construir(construccion);
+       
     }
 
 

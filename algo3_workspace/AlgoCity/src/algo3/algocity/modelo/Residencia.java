@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class Residencia extends Edificios{
+public class Residencia extends Edificio{
 	
 	private int capacidad;
 	
@@ -25,15 +25,10 @@ public class Residencia extends Edificios{
 
 	public boolean puedoEn(Terreno terreno) {
 		return true;
-	}
-
-	public boolean puedoEn(Agua agua) {
-		return false;		
-	}
+	}	
 
 	@Override
-	public boolean puedoEn(Hectarea hectarea) {
-
+	public boolean puedoEn(Agua agua) {
 		return false;
 	}
 
