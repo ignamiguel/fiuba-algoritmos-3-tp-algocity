@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 public class Terreno extends Hectarea{
 	
+	private ArrayList<Conexiones> servicios;
+	private Construccion construccion;
 	
 	public Terreno(){
 		
@@ -61,5 +63,17 @@ public class Terreno extends Hectarea{
         }
 
 
+	}
+
+	@Override
+	public boolean puedoConstruirEdificio() {
+
+	 return (construccion==null);
+	}
+
+	@Override
+	public Construccion obtenerSuConstruccion() {
+		// TODO Auto-generated method stub
+		return this.construccion;
 	}
 }

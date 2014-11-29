@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class Tuberia extends Conexiones{
+public class Tuberia extends Conexiones implements IServicio{
 
 	public Tuberia(){
 		
@@ -26,6 +26,18 @@ public class Tuberia extends Conexiones{
 	public void reparar(int salud) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean estaActivo() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String obtenerServicio() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
