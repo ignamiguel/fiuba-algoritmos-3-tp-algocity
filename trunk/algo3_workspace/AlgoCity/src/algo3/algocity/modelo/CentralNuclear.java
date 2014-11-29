@@ -33,6 +33,16 @@ public class CentralNuclear extends CentralElectrica {
 	public void afectarCon(Terremoto unTerremoto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean puedoEn(Hectarea hectarea) {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+
+	public void brindarServicio(Hectarea hectarea) {
+		// no brinda servicios
+		
 	}	
 
 }

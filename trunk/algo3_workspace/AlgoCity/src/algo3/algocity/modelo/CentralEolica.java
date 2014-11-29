@@ -36,6 +36,13 @@ public class CentralEolica extends CentralElectrica {
 	public void afectarCon(Terremoto unTerremoto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// no brinda servicio
+		
 	}	
 
 }

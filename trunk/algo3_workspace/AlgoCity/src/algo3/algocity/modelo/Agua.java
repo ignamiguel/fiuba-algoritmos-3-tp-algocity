@@ -1,41 +1,45 @@
 package algo3.algocity.modelo;
-
+	
 import java.util.ArrayList;
 
 public class Agua extends Hectarea{
 
-	private ArrayList servicios;
-	
 	public Agua(){
-		
-		servicios = new ArrayList();
-		
+		servicios = new ArrayList<Conexiones>();
+		construccion=null;
 	}
-		
+	
 	public String obtenerNombre() {
-		
-		return "Agua";
+			return "Agua";
 	}
 
 
 	public void agregarServicio(Conexiones unServicio) {
-		
-		servicios.add(unServicio);
-		
+			if(!(this.tieneElServicio(unServicio)))
+	            servicios.add(unServicio);
+
 	}
 
-	
 	public void quitarServicio(Conexiones unServicio) {
-		
-		servicios.remove(unServicio);
-		
+		if(this.tieneElServicio(unServicio))
+	          servicios.remove(unServicio);
 	}
 
-	
+
 	public boolean tieneElServicio(Conexiones unServicio) {
+      return(servicios.contains(unServicio));
+	}
 
-	return(servicios.contains(unServicio));
+	public void construir(Construccion unaConstruccion){
+        if (this.puedoConstruirEdificio())
+        {
+            if(unaConstruccion.puedoEn(this))
+                {   construccion= unaConstruccion;
+                    unaConstruccion.brindarServicio(this);
+                }
+        }
+
+
 	}
 	
-
 }

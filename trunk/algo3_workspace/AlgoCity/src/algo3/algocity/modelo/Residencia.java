@@ -22,6 +22,26 @@ public class Residencia extends Edificios{
 	public void afectarCon(Godzilla godzilla) {
 		this.salud = 0;		
 	}
+
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+
+	public boolean puedoEn(Agua agua) {
+		return false;		
+	}
+
+	@Override
+	public boolean puedoEn(Hectarea hectarea) {
+
+		return false;
+	}
+
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// No hace nada porque no tiene servicios para brindar
+		
+	}
 	
 	
 }

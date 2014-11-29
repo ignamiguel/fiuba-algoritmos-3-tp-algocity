@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class EstacionDeBomberos {
+public class EstacionDeBomberos extends Construccion {
 
 	public String obtenerNombre(){
 		return "Estacion de Bomberos";
@@ -30,4 +30,17 @@ public class EstacionDeBomberos {
 		cNuclear.reparar(3);		
 	}
 	
+	public boolean puedoEn(Agua agua){
+		return false;
+	}
+	
+	public boolean puedoEn(Terreno terreno){
+		return true;
+	}
+
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// Falta ver que poner en esta parte
+		
+	}
 }

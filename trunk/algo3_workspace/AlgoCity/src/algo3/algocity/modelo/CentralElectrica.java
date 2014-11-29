@@ -13,6 +13,7 @@ public abstract class CentralElectrica extends Construccion implements IAfectabl
 	protected int capacidadDeAbastecimiento;
 	protected int radioDeCovertura;
 	protected boolean conectadaARedDeAgua;
+	//private Coordenada miUbicacion;
 	
 	
 	//metodos publicos
