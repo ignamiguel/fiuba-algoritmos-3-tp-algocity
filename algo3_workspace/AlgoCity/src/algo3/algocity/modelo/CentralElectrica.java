@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public abstract class CentralElectrica extends Construccion implements IAfectable{
+public abstract class CentralElectrica extends Construccion{
 	
 	
 	public CentralElectrica(){
@@ -37,13 +37,17 @@ public abstract class CentralElectrica extends Construccion implements IAfectabl
 	return conectadaARedDeAgua;
 	}
 	
-	@Override
 	public void afectarCon(Godzilla unGodzilla) {
 		this.salud -= 35;
 		
 		if(this.salud < 0){
 			this.salud = 0;
 		}
+		
+	}
+	
+	public void afectarCon(Terremoto unTerremoto) {
+		// TODO Auto-generated method stub
 		
 	}
 	

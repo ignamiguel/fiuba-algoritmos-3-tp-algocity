@@ -1,6 +1,7 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Hectarea {
 
@@ -42,4 +43,19 @@ public abstract class Hectarea {
 		return this.construccion;
 	}
 
+	public void afectarCon(Godzilla godzilla) {
+    	
+		if(construccion != null){
+		((IConstruible) this.construccion).afectarCon(godzilla);
+    	}
+		
+		if(servicios != null){
+			Iterator<Conexiones> i = servicios.iterator();
+		      while(i.hasNext()) {
+		         ((IServicio) i.next()).afectarCon(godzilla);
+		}
+		
+	}
+}
+	
 }

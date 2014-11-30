@@ -63,4 +63,6 @@ public class Terreno extends Hectarea {
 	public boolean permite(Construccion construccion){
 		return construccion.puedoEn(this); 
 	}
+    
+  
 }

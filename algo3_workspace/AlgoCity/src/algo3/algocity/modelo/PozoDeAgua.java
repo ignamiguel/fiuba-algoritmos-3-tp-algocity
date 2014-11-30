@@ -18,4 +18,16 @@ public class PozoDeAgua extends Construccion{
 		return false;
 	}
 
+	@Override
+	public void afectarCon(Godzilla unGodzilla) {
+		//No es un edificio que sea daniable
+		
+	}
+
+	@Override
+	public void afectarCon(Terremoto unTerremoto) {
+		//No es un edificio que sea daniable
+		
+	}
+
 }

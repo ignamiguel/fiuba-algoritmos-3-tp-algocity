@@ -44,6 +44,8 @@ public class Agua extends Hectarea {
 	public boolean permite(Construccion construccion){
 		return construccion.puedoEn(this); 
 	}
+
+	
 	
 
 }

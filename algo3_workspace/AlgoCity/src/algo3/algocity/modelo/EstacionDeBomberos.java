@@ -43,4 +43,16 @@ public class EstacionDeBomberos extends Construccion {
 		// Falta ver que poner en esta parte
 		
 	}
+
+	@Override
+	public void afectarCon(Godzilla unGodzilla) {
+		//No es un edificio que sea daniable
+		
+	}
+
+	@Override
+	public void afectarCon(Terremoto unTerremoto) {
+		//No es un edificio que sea daniable
+		
+	}
 }

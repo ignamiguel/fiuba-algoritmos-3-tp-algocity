@@ -21,12 +21,6 @@ public class CentralMineral extends CentralElectrica {
 
 
 
-	@Override
-	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 

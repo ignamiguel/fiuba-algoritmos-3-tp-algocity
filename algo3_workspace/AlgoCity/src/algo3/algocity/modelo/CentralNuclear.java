@@ -18,11 +18,6 @@ public class CentralNuclear extends CentralElectrica {
 	}
 
 
-	@Override
-	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	public void brindarServicio(Hectarea hectarea) {
