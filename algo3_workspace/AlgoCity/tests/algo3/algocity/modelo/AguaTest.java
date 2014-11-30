@@ -1,6 +1,7 @@
 package algo3.algocity.modelo;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -13,9 +14,9 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		boolean resultado = agua.construir(pda);
+		agua.construir(pda);
 		
-		assertEquals(true, resultado);
+		assertEquals(agua.obtenerSuConstruccion(), pda );
 	}
 	
 	@Test	
@@ -27,9 +28,9 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		boolean resultado = agua.construir(ce);
+		agua.construir(ce);
 		
-		assertEquals(false, resultado);
+		assertEquals(agua.obtenerSuConstruccion(), null);
 	}
 	
 	@Test	
@@ -39,9 +40,9 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		boolean resultado = agua.construir(edb);
+		agua.construir(edb);
 		
-		assertEquals(false, resultado);
+		assertEquals(agua.obtenerSuConstruccion(), null);
 	}
 	
 	@Test	
@@ -51,9 +52,9 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		boolean resultado = agua.construir(e);
+		agua.construir(e);
 		
-		assertEquals(false, resultado);
+		assertEquals(agua.obtenerSuConstruccion(), null);
 	}
 	
 	@Test	
@@ -63,15 +64,15 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		boolean resultado = agua.construir(pda);
-		
-		assertEquals(true, resultado);
+		agua.construir(pda);
 		
 		PozoDeAgua otroPda = new PozoDeAgua();
 		
-		resultado = agua.construir(otroPda);
+		agua.construir(otroPda);
 		
-		assertEquals(false, resultado);
+		assertEquals(agua.obtenerSuConstruccion(), pda);
+		
+		Assert.assertNotSame(agua.obtenerSuConstruccion(),otroPda);
 		
 	}	
 	

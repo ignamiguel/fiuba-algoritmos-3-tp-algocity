@@ -1,12 +1,10 @@
 package algo3.algocity.modelo;
 	
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Agua extends Hectarea{
-	
-	private ArrayList<Conexiones> servicios;
-	private Construccion construccion;
-	
+
 	public Agua(){
 		servicios = new ArrayList<Conexiones>();
 		construccion=null;
@@ -30,31 +28,30 @@ public class Agua extends Hectarea{
 
 
 	public boolean tieneElServicio(Conexiones unServicio) {
-		return(servicios.contains(unServicio));
+      boolean tieneServicio = false;
+      String servicioABuscar = unServicio.obtenerServicio();
+	  Iterator<Conexiones> iterador = servicios.iterator();
+      while(iterador.hasNext()){
+    	  Conexiones conexion = iterador.next();
+    	  String servicio = conexion.obtenerServicio();
+    	  if (servicio.equals(servicioABuscar))
+    		  tieneServicio=true;
+    	  
+      }
+      return tieneServicio;
+		//return(servicios.contains(unServicio));
 	}
-	
 
-	@Override
-	public Construccion obtenerSuConstruccion() {	
-		return this.construccion;
-	}
-	
-	public boolean construir(Construccion unaConstruccion){
-        
-		if( !this.permite(unaConstruccion) ){
-            return false;
+	public void construir(Construccion unaConstruccion){
+        if (this.puedoConstruirEdificio())
+        {
+            if(unaConstruccion.puedoEn(this))
+                {   construccion= unaConstruccion;
+                    unaConstruccion.brindarServicio(this);
+                }
         }
-		
-		if( !(this.construccion == null) ){
-			return false;
-		}
-			
-		this.construccion = unaConstruccion;
-		return true;
-	}
-		
-	public boolean permite(Construccion c){
-		return c.puedoEn(this);
+
+
 	}
 	
 }

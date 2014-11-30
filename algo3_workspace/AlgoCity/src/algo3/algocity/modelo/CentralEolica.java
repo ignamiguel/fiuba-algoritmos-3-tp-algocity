@@ -20,16 +20,6 @@ public class CentralEolica extends CentralElectrica {
 	}
 
 
-	public boolean puedoEn(Agua agua) {
-		
-	return false;
-	}
-
-
-	public boolean puedoEn(Terreno terreno) {
-	
-	return true;
-	}
 
 
 	@Override

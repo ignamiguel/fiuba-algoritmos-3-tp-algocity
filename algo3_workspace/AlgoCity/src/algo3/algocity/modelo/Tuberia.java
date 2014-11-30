@@ -1,43 +1,37 @@
 package algo3.algocity.modelo;
 
-public class Tuberia extends Conexiones implements IServicio{
+public class Tuberia extends Conexiones{
 
 	public Tuberia(){
 		
 	}
 	
-	public String obtenerNombre(){
+	public String obtenerServicio(){
 		return "Tuberia";
 	}
 
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {
-		// TODO Auto-generated method stub
+		// Nunca es afectada por Godzilla (por el momento)
 		
 	}
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
+		// Nunca es afectada por el Terremoto (por el momento)
 		
 	}
 
 	@Override
 	public void reparar(int salud) {
-		// TODO Auto-generated method stub
+		// No es reparable porque no se afecta
 		
 	}
 
 	@Override
 	public boolean estaActivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public String obtenerServicio() {
-		// TODO Auto-generated method stub
-		return null;
+		// Siempre esta activa. 
+		return true;
 	}
 
 }

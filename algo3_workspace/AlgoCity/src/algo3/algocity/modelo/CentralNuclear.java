@@ -14,20 +14,9 @@ public class CentralNuclear extends CentralElectrica {
 	//metodos publicos
 	public int darEnergia() {
 		
-	return 0;
+		return 0;
 	}
 
-
-	public boolean puedoEn(Agua agua) {
-
-	return false;
-	}
-
-
-	public boolean puedoEn(Terreno terreno) {
-
-	return true;
-	}	
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
@@ -35,13 +24,9 @@ public class CentralNuclear extends CentralElectrica {
 		
 	}
 
-	public boolean puedoEn(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-		return true ;
-	}
 
 	public void brindarServicio(Hectarea hectarea) {
-		// no brinda servicios
+		// TODO Auto-generated method stub
 		
 	}	
 
