@@ -5,8 +5,6 @@ import java.util.Iterator;
 
 public class Terreno extends Hectarea{
 	
-	private ArrayList<Conexiones> servicios;
-	private Construccion construccion;
 	
 	public Terreno(){
 		
@@ -24,6 +22,7 @@ public class Terreno extends Hectarea{
             servicios.add(unServicio);
 		
 	}
+
 	
 	public void quitarServicio(Conexiones unServicio) {
 
@@ -31,9 +30,21 @@ public class Terreno extends Hectarea{
             servicios.remove(unServicio);
 		
 	}
+
 	
-	public boolean tieneElServicio(Conexiones unServicio) {	
-		return(servicios.contains(unServicio));
+	public boolean tieneElServicio(Conexiones unServicio) {
+	      boolean tieneServicio = false;
+	      String servicioABuscar = unServicio.obtenerServicio();
+		  Iterator<Conexiones> iterador = servicios.iterator();
+	      while(iterador.hasNext()){
+	    	  Conexiones conexion = iterador.next();
+	    	  String servicio = conexion.obtenerServicio();
+	    	  if (servicio.equals(servicioABuscar))
+	    		  tieneServicio=true;
+	    	  
+	      }
+	      return tieneServicio;
+			//return(servicios.contains(unServicio));
 	}
 
 	public boolean tieneLuz(){
@@ -48,30 +59,18 @@ public class Terreno extends Hectarea{
 			}
 			
 		}
-		return false;
-	}	
-
-	@Override
-	public Construccion obtenerSuConstruccion() {		
-		return this.construccion;
+	return false;
 	}
 
-	public boolean construir(Construccion unaConstruccion){
-        
-		if( !this.permite(unaConstruccion) ){
-            return false;
+	public void construir(Construccion unaConstruccion){
+        if (this.puedoConstruirEdificio())
+        {
+            if(unaConstruccion.puedoEn(this))
+                {   construccion= unaConstruccion;
+                    unaConstruccion.brindarServicio(this);
+                }
         }
-		
-		if( !(this.construccion == null)){
-			return false;
-		}
-			
-		this.construccion = unaConstruccion;
-		return true;
-	}
-		
-	public boolean permite(Construccion c){
-		return c.puedoEn(this);
-	}
 
+
+	}
 }

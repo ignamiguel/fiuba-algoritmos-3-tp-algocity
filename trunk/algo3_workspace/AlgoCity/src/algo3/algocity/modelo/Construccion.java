@@ -24,6 +24,9 @@ public abstract class Construccion implements IConstruible{
 	public void reparar(int salud) {
 		this.salud += salud;
 		
-	}	
+	}
 	
+	public boolean puedoEn(Hectarea hectarea){
+		return false;
+	}
 }

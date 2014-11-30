@@ -50,28 +50,27 @@ public class Mapa {
         Tuberia tuberia= new Tuberia();
         Hectarea hectarea = this.obtenerHectarea(coordenada);
         if (!(hectarea.tieneElServicio(tuberia)))
-        {   Coordenada coordenadaAux= coordenada;
+        {   Coordenada coordenadaAux= new Coordenada(coordenada.obtenerX(),coordenada.obtenerY());
             coordenadaAux.aumentarX(1);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) & (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
-                hectarea.agregarServicio(tuberia);
+            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
+                	hectarea.agregarServicio(tuberia);
             coordenadaAux.disminuirX(2);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) & (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
-                hectarea.agregarServicio(tuberia);
+            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
+            	hectarea.agregarServicio(tuberia);
             coordenadaAux.aumentarX(1);
             coordenadaAux.aumentarY(1);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) & (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
+            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
                 hectarea.agregarServicio(tuberia);
             coordenadaAux.disminuirY(2);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) & (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
+            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
                 hectarea.agregarServicio(tuberia);
         }
 
 	}
 
-    public boolean construir(Construccion construccion, Coordenada coordenada){
-        
-    	return (this.obtenerHectarea(coordenada)).construir(construccion);
-       
+    public void construir(Construccion unaConstruccion, Coordenada coordenada){
+        Hectarea hectarea = this.obtenerHectarea(coordenada);
+        hectarea.construir(unaConstruccion);
     }
 
 

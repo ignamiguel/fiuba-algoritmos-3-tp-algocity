@@ -45,14 +45,17 @@ public abstract class CentralElectrica extends Construccion implements IAfectabl
 		
 	}
 	
-	public boolean puedoEn(Terreno terreno){
-		return true;
-	}
 	
-	public boolean puedoEn(Agua agua){
+	public boolean puedoEn(Agua agua) {
 		return false;
 	}
 
+
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+
+	//metodos privados
 	
 	
 }

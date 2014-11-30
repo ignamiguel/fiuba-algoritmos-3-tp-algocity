@@ -2,6 +2,7 @@ package algo3.algocity.modelo;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TerrenoTest {
@@ -13,9 +14,9 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();
 		
-		boolean resultado = terreno.construir(pda);
+		terreno.construir(pda);
 		
-		assertEquals(false, resultado);
+		assertEquals(terreno.obtenerSuConstruccion(), null);
 	}
 	
 	@Test	
@@ -27,9 +28,9 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();		
 		
-		boolean resultado = terreno.construir(ce);
+		terreno.construir(ce);
 		
-		assertEquals(true, resultado);
+		assertEquals(terreno.obtenerSuConstruccion(), ce);
 	}
 	
 	@Test	
@@ -39,9 +40,9 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();
 		
-		boolean resultado = terreno.construir(edb);
+		terreno.construir(edb);
 		
-		assertEquals(true, resultado);
+		assertEquals(terreno.obtenerSuConstruccion(), edb);
 	}
 	
 	@Test	
@@ -51,9 +52,9 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();
 		
-		boolean resultado = terreno.construir(e);
+	    terreno.construir(e);
 		
-		assertEquals(true, resultado);
+		assertEquals(terreno.obtenerSuConstruccion(), e);
 	}
 	
 	@Test	
@@ -65,15 +66,15 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();
 		
-		boolean resultado = terreno.construir(edificio);
+		terreno.construir(edificio);
 		
-		assertEquals(true, resultado);
+		assertEquals(terreno.obtenerSuConstruccion(), edificio);
 		
 		Edificio otroEdificio = new Residencia();
 		
-		resultado = terreno.construir(otroEdificio);
+		terreno.construir(otroEdificio);
 		
-		assertEquals(false, resultado);
+		Assert.assertNotSame(terreno.obtenerSuConstruccion(),otroEdificio);
 		
 	}
 	

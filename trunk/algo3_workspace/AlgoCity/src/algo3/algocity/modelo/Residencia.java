@@ -23,14 +23,7 @@ public class Residencia extends Edificio{
 		this.salud = 0;		
 	}
 
-	public boolean puedoEn(Terreno terreno) {
-		return true;
-	}	
-
-	@Override
-	public boolean puedoEn(Agua agua) {
-		return false;
-	}
+	
 
 	@Override
 	public void brindarServicio(Hectarea hectarea) {

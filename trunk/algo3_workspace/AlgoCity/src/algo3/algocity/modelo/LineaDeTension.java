@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class LineaDeTension extends Conexiones implements IServicio{
+public class LineaDeTension extends Conexiones{
 	
 	private boolean daniada;
 	
@@ -36,8 +36,7 @@ public class LineaDeTension extends Conexiones implements IServicio{
 	}
 
 
-	public void afectarCon(Terremoto unTerremoto) {
-	
+	public void afectarCon(Terremoto unTerremoto) {	
 		this.daniar();
 	}
 
