@@ -13,6 +13,13 @@ public class MapaTest {
 	}
 	
 	@Test
+	public void obtenerUnaCoordenadaFueraDelMapaArrojaExcepcion(){
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		
+	}
+	
+	@Test
 	public void testMapaContieneTerrenoEn0_0ConMapaLlano(){
 		Mapa mapa = new Mapa(new MapaLlano());
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0,0));
