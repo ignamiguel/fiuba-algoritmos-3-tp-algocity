@@ -4,40 +4,42 @@ import java.util.ArrayList;
 
 public abstract class Hectarea {
 
-    //atributos de la clase
-    protected ArrayList<Conexiones> servicios;
-    protected Construccion construccion;
-
+	// atributos de la clase
+	protected ArrayList<Conexiones> servicios;
+	protected Construccion construccion;
 
 	public abstract void agregarServicio(Conexiones unServicio);
 
 	public abstract void quitarServicio(Conexiones unServicio);
 
-	public abstract boolean tieneElServicio(Conexiones unServicio);
+	public abstract boolean tieneServicio(Conexiones unServicio);
 
 	public abstract String obtenerNombre();
 
-	public boolean puedoConstruirEdificio(){
-        return (construccion==null);
+	public boolean estaVacia() {
+		return (construccion == null);
 
 	}
 
-	public void construir(Construccion unaConstruccion){
-        if (this.puedoConstruirEdificio())
-        {
-            if(unaConstruccion.puedoEn(this))
-                {   construccion= unaConstruccion;
-                    unaConstruccion.brindarServicio(this);
-                }
-        }
-
+	public boolean construir(Construccion construccion) {
+		if (!this.estaVacia()) {
+			return false;
+		}
+			
+		if (!this.permite(construccion)) {
+			return false;
+		}
+		
+		this.construccion = construccion;
+		construccion.brindarServicio(this);
+		return true;		
 
 	}
 	
-	public Construccion obtenerSuConstruccion(){
-		return this.construccion;	
+	public abstract boolean permite(Construccion construccion); 
+
+	public Construccion obtenerConstruccion() {
+		return this.construccion;
 	}
-	
-	
+
 }
-

@@ -34,8 +34,7 @@ public class MapaTest {
 		assertEquals(hectarea.obtenerNombre(), "Terreno");
 
 	}
-	
-	
+		
 	@Test
 	public void testMapaContieneAguaEn0_20ConMapaConPlaya(){
 		Mapa mapa = new Mapa(new MapaConPlaya());
@@ -60,7 +59,8 @@ public class MapaTest {
 		assertEquals(hectarea.obtenerNombre(), "Terreno");
 
 	}
-	@Test
+	
+	@Test	
 	public void testMapaCreaLineaDeTensionVerticalmente(){
 		
 		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
@@ -72,9 +72,63 @@ public class MapaTest {
 		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(1,2),new Coordenada(4,2));
 		//proximo a modificar, Pablo
 		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(3,2)))).tieneLuz()),true);
+				
+	}
+	
+	@Test
+	public void construirUnEdificioEnTerrenoVacioDevuelveVerdadero(){
 		
+		Mapa mapa = new Mapa(new MapaConPlaya());
 		
+		Edificio e = new Residencia();
 		
+		boolean resultado = mapa.construir(e, new Coordenada(1,1));
 		
+		assertEquals(true, resultado);		
+	}
+	
+	@Test
+	public void construirUnEdificioEnTerrenoConstruidoDevuelveFalso(){
+		
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		Edificio e = new Residencia();
+		
+		mapa.construir(e, new Coordenada(1,1));		
+		
+		Edificio otroEdificio = new Residencia();
+		
+		boolean resultado = mapa.construir(otroEdificio, new Coordenada(1,1));
+		
+		assertEquals(false, resultado);		
+	}
+	
+	@Test
+	public void construirUnPozoDeAguaEnAguaVaciaDevuelveVerdadero(){
+		
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		PozoDeAgua pda = new PozoDeAgua();
+		
+		boolean resultado = mapa.construir(pda, new Coordenada(1,20));
+		
+		assertEquals(true, resultado);		
+		
+	}
+	
+	@Test
+	public void construirUnPozoDeAguaEnAguaConstruidaDevuelveFalso(){
+		
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		PozoDeAgua pda = new PozoDeAgua();
+		
+		mapa.construir(pda, new Coordenada(1,20));		
+		
+		PozoDeAgua otroPda = new PozoDeAgua();
+		
+		boolean resultado = mapa.construir(otroPda, new Coordenada(1,20));
+		
+		assertEquals(false, resultado);		
 	}
 }
