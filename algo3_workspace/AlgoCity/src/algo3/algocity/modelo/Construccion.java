@@ -28,5 +28,6 @@ public abstract class Construccion implements IConstruible{
 	
 	public boolean puedoEn(Hectarea hectarea){
 		return false;
+		
 	}
 }

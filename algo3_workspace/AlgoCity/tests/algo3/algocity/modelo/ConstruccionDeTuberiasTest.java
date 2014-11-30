@@ -13,7 +13,7 @@ public class ConstruccionDeTuberiasTest {
 		Tuberia unaTuberia = new Tuberia();
 		Terreno unTerreno = new Terreno();
 		unTerreno.agregarServicio(unaTuberia);
-		assertEquals(unTerreno.tieneElServicio(unaTuberia),true);
+		assertEquals(unTerreno.tieneServicio(unaTuberia),true);
 
 	}
 	
@@ -23,7 +23,7 @@ public class ConstruccionDeTuberiasTest {
 		Tuberia unaTuberia = new Tuberia();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.agregarServicio(unaTuberia);
-		assertEquals(unaHectareaAgua.tieneElServicio(unaTuberia),true);
+		assertEquals(unaHectareaAgua.tieneServicio(unaTuberia),true);
 
 	}
 
@@ -38,7 +38,7 @@ public class ConstruccionDeTuberiasTest {
 		hectarea.construir(unPozo);
 		mapa.crearTuberia(coordAux);
 		Hectarea hectareaContinua= mapa.obtenerHectarea(coordAux);
-		assertEquals(hectareaContinua.tieneElServicio( tuberia),true);
+		assertEquals(hectareaContinua.tieneServicio( tuberia),true);
 	
 	}
 	
@@ -48,7 +48,7 @@ public class ConstruccionDeTuberiasTest {
 		Coordenada coordAux = new Coordenada (0,21);
 		mapa.crearTuberia(coordAux);
 		Hectarea hectarea= mapa.obtenerHectarea(coordAux);
-		assertEquals(hectarea.tieneElServicio(new Tuberia()),false);
+		assertEquals(hectarea.tieneServicio(new Tuberia()),false);
 	
 	}
 	
@@ -62,7 +62,7 @@ public class ConstruccionDeTuberiasTest {
 		mapa.crearTuberia(coordAux);
 		mapa.crearTuberia(new Coordenada(0,22));
 		Hectarea hectareaContinua= mapa.obtenerHectarea(new Coordenada (0,22));
-		assertEquals(hectareaContinua.tieneElServicio( new Tuberia()),true);
+		assertEquals(hectareaContinua.tieneServicio( new Tuberia()),true);
 	
 	}
 	
@@ -76,7 +76,7 @@ public class ConstruccionDeTuberiasTest {
 		mapa.crearTuberia(coordAux);
 		mapa.crearTuberia(new Coordenada(1,21));
 		Hectarea hectareaContinua= mapa.obtenerHectarea(new Coordenada (1,21));
-		assertEquals(hectareaContinua.tieneElServicio( new Tuberia()),true);
+		assertEquals(hectareaContinua.tieneServicio( new Tuberia()),true);
 	
 	}
 	
@@ -90,7 +90,7 @@ public class ConstruccionDeTuberiasTest {
 		mapa.crearTuberia(coordAux);
 		mapa.crearTuberia(new Coordenada(22,24));
 		Hectarea hectareaContinua= mapa.obtenerHectarea(new Coordenada (22,24));
-		assertEquals(hectareaContinua.tieneElServicio( new Tuberia()),true);
+		assertEquals(hectareaContinua.tieneServicio( new Tuberia()),true);
 	
 	}
 	
@@ -104,7 +104,7 @@ public class ConstruccionDeTuberiasTest {
 		mapa.crearTuberia(coordAux);
 		mapa.crearTuberia(new Coordenada(23,23));
 		Hectarea hectareaContinua= mapa.obtenerHectarea(new Coordenada (23,23));
-		assertEquals(hectareaContinua.tieneElServicio( new Tuberia()),true);
+		assertEquals(hectareaContinua.tieneServicio( new Tuberia()),true);
 	
 	}
 	

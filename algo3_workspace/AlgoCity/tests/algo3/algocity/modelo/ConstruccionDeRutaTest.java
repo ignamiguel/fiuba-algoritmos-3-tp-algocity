@@ -13,7 +13,7 @@ public class ConstruccionDeRutaTest {
 		RutaPavimentada unaRuta = new RutaPavimentada();
 		Terreno unTerreno = new Terreno();
 		unTerreno.agregarServicio(unaRuta);
-		assertEquals(unTerreno.tieneElServicio(unaRuta),true);
+		assertEquals(unTerreno.tieneServicio(unaRuta),true);
 
 	}
 	
@@ -23,7 +23,7 @@ public class ConstruccionDeRutaTest {
 		RutaPavimentada unaRuta = new RutaPavimentada();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.agregarServicio(unaRuta);
-		assertEquals(unaHectareaAgua.tieneElServicio(unaRuta),true);
+		assertEquals(unaHectareaAgua.tieneServicio(unaRuta),true);
 
 	}
 	
