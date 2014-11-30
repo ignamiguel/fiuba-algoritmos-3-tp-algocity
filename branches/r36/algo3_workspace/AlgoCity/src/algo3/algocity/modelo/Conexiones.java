@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public abstract class Conexiones implements IAfectable, IServicio {
+public abstract class Conexiones implements IServicio {
 
 	
 	public abstract void afectarCon(Godzilla unGodzilla);
