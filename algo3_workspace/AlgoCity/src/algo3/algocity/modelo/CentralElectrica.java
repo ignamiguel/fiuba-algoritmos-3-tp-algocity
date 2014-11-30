@@ -13,7 +13,9 @@ public abstract class CentralElectrica extends Construccion implements IAfectabl
 	protected int capacidadDeAbastecimiento;
 	protected int radioDeCovertura;
 	protected boolean conectadaARedDeAgua;
+	//En la creacion de una centralElectrica necesito guardarme estos datos para despues propagar energia
 	//private Coordenada miUbicacion;
+	//private Mapa elMapa
 	
 	
 	//metodos publicos
@@ -55,6 +57,70 @@ public abstract class CentralElectrica extends Construccion implements IAfectabl
 		return true;
 	}
 
+	 /*public void brindarServicios(Hectarea hectarea){
+		this.propagarEnergiaEnRadio();
+		
+	}
+	
+	//Necesito saber mi ubicacion guardandome esa variable al instanciar un objeto de esta clase
+	// o tambien podria tener un metodo de hectarea que devuelva su ubicacion, igualmente hectarea tendria que
+	// guardar de alguna manera su ubicacion 
+	//El radio minimo es de 1
+	 
+	public void propagarEnergiaEnRadio(){
+		int numSalto=0;
+		for (int radioAux=1; radioAux<= radioDeCovertura ; radioAux++){
+			Coordenada coorAux = new Coordenada (miUbicacion.obtenerX(),miUbicacion.obtenerY());
+			coorAux.aumentarY(radioAux);
+			if (elMapa.estaEnElMapaCoordenada(coorAux))
+				elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+			for (int saltos=0; saltos< numSalto ; saltos++)
+				{	coorAux.disminuirX(1);
+					coorAux.disminuirY(1);
+					if (elMapa.estaEnElMapaCoordenada(coorAux))
+						elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+				}
+			coorAux.disminuirX(1);
+			coorAux.disminuirY(1);
+			if (elMapa.estaEnElMapaCoordenada(coorAux))
+				elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+			for (int saltos=0; saltos< numSalto ; saltos++)
+				{	coorAux.disminuirY(1);
+					coorAux.aumentarX(1);
+					if (elMapa.estaEnElMapaCoordenada(coorAux))
+						elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+				}
+			coorAux.disminuirY(1);
+			coorAux.aumentarX(1);
+			if (elMapa.estaEnElMapaCoordenada(coorAux))
+				elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+			for (int saltos=0; saltos< numSalto ; saltos++)
+				{	coorAux.aumentarY(1);
+					coorAux.aumentarX(1);
+					if (elMapa.estaEnElMapaCoordenada(coorAux))
+						elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+				}
+			coorAux.aumentarY(1);
+			coorAux.aumentarX(1);
+			if (elMapa.estaEnElMapaCoordenada(coorAux))
+				elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+			for (int saltos=0; saltos< numSalto ; saltos++)
+				{	coorAux.aumentarY(1);
+					coorAux.disminuirX(1);
+					if (elMapa.estaEnElMapaCoordenada(coorAux))
+						elMapa.obtenerHectarea(coorAux).agregarServicio(Electricidad);
+				}
+			numSalto= numSalto + 1;
+			
+			
+		}
+		
+		
+		
+		
+		
+	}*/
+	
 	//metodos privados
 	
 	
