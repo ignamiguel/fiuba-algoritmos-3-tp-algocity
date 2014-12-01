@@ -56,7 +56,7 @@ public class GodzillaTest {
 	public void testGodzillaAtacaUnTerrenoConUnaRutaYLaRutaQuedaDaniada() {
 
 		Godzilla godzilla = new Godzilla();
-		RutaPavimentada unaRuta = new RutaPavimentada();
+		Ruta unaRuta = new Ruta();
 		Terreno unTerreno = new Terreno();
 		unTerreno.agregarServicio(unaRuta);
 
@@ -102,7 +102,7 @@ public class GodzillaTest {
 
 		Terreno unTerreno = new Terreno();
 		LineaDeTension unaLinea = new LineaDeTension();
-		RutaPavimentada unaRuta = new RutaPavimentada();
+		Ruta unaRuta = new Ruta();
 		Tuberia unaTuberia = new Tuberia();
 
 		unTerreno.agregarServicio(unaRuta);

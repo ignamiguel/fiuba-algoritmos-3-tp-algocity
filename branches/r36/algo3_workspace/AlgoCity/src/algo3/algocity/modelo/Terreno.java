@@ -57,7 +57,22 @@ public class Terreno extends Hectarea {
 
 		}
 		return false;
-	}   
+	}  
+	
+	public boolean tieneAccesoAlTransito(){
+		
+		Iterator<Conexiones> item = servicios.iterator();
+		while (item.hasNext()) {
+
+			IServicio unServicio = (IServicio) item.next();
+			if (unServicio.obtenerServicio() == "transito") {
+
+				return (unServicio.estaActivo());
+			}
+
+		}
+		return false;
+	}
     
     @Override
 	public boolean permite(Construccion construccion){

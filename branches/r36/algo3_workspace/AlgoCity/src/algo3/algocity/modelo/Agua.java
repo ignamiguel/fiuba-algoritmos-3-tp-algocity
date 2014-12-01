@@ -15,8 +15,11 @@ public class Agua extends Hectarea {
 	}
 
 	public void agregarServicio(Conexiones unServicio) {
-		if (!(this.tieneServicio(unServicio)))
-			servicios.add(unServicio);
+		if (!(this.tieneServicio(unServicio))){
+			if(unServicio.puedoEn(this)){
+				servicios.add(unServicio);
+			}
+		}
 
 	}
 
@@ -43,6 +46,11 @@ public class Agua extends Hectarea {
 	@Override
 	public boolean permite(Construccion construccion){
 		return construccion.puedoEn(this); 
+	}
+
+	@Override
+	public boolean tieneAccesoAlTransito() {
+		return false;
 	}
 
 	

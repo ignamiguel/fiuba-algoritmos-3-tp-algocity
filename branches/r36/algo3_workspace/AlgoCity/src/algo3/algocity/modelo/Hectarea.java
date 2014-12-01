@@ -7,14 +7,25 @@ public abstract class Hectarea {
 
 	// atributos de la clase
 	protected ArrayList<Conexiones> servicios;
+	protected ArrayList<String> serviciosActivos;
 	protected Construccion construccion;
 
 	public abstract void agregarServicio(Conexiones unServicio);
 
 	public abstract void quitarServicio(Conexiones unServicio);
 
+	public void activarServicio(Conexiones unServicio){
+		serviciosActivos.add(unServicio.obtenerServicio());
+	}
+
+	public void desactivarServicios(){
+		serviciosActivos.clear();
+	}
+	
 	public abstract boolean tieneServicio(Conexiones unServicio);
 
+	public abstract boolean tieneAccesoAlTransito();
+	
 	public abstract String obtenerNombre();
 
 	public boolean estaVacia() {
