@@ -5,10 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-
-
-public class EdificiosTest {
-	
+public class EdificiosTest {	
 	
 	@Test
 	public void testConusmoDeResidenciaEs1(){

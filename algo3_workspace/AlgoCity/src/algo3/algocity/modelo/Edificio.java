@@ -2,7 +2,7 @@ package algo3.algocity.modelo;
 
 public abstract class Edificio extends Construccion{
 	
-	private int consumoElectrico;	
+	protected int consumoElectrico;	
 	
 	public int obtenerConsumoElectrico(){
 		return consumoElectrico;

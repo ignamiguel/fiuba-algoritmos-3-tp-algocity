@@ -2,32 +2,36 @@ package algo3.algocity.modelo;
 
 public class EstacionDeBomberos extends Construccion {
 
+	public EstacionDeBomberos(){
+		this.costo = Configuracion.COSTO_ESTACION_DE_BOMBEROS;
+	}
+
 	public String obtenerNombre(){
 		return "Estacion de Bomberos";
 	}
 
 	public void reparar(Residencia residencia) {		
-		residencia.reparar(10);		
+		residencia.reparar(Configuracion.REPARACION_RESIDENCIA);		
 	}
 
 	public void reparar(Comercio comercio) {
-		comercio.reparar(7);		
+		comercio.reparar(Configuracion.REPARACION_COMERCIO);		
 	}
 
 	public void reparar(Industria industria) {
-		industria.reparar(3);		
+		industria.reparar(Configuracion.REPARACION_INDUSTRIA);		
 	}
 
 	public void reparar(CentralEolica cEolica) {
-		cEolica.reparar(15);		
+		cEolica.reparar(Configuracion.REPARACION_CENTRAl_EOLICA);		
 	}
 
 	public void reparar(CentralMineral cMinera) {
-		cMinera.reparar(10);		
+		cMinera.reparar(Configuracion.REPACACION_CENTRAL_MINERAL);		
 	}
 
 	public void reparar(CentralNuclear cNuclear) {
-		cNuclear.reparar(3);		
+		cNuclear.reparar(Configuracion.REPACACION_CENTRAL_NUCELAR);		
 	}
 	
 	public boolean puedoEn(Agua agua){
