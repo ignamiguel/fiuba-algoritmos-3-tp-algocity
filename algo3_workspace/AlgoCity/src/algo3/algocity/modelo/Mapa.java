@@ -97,4 +97,20 @@ public class Mapa {
 		return this.tamanio;
 	}
 
+	public void conectar(Ruta ruta, Coordenada desde, Coordenada hasta) {
+		
+		while(desde.obtenerX() <= hasta.obtenerX()){
+			(this.obtenerHectarea(desde)).agregarServicio(new Ruta());
+			desde.aumentarX( 1 );
+		}
+		
+		desde.disminuirX(1);
+		
+		while(desde.obtenerY() <= hasta.obtenerY()){
+			(this.obtenerHectarea(desde)).agregarServicio(new Ruta());
+			desde.aumentarY( 1 );
+		}
+		
+	}
+
 }

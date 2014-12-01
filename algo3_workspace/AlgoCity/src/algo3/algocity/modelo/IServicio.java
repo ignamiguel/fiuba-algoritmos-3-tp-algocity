@@ -8,5 +8,8 @@ public interface IServicio {
 	public void afectarCon(Godzilla unGodzilla);
 	public void afectarCon(Terremoto unTerremoto);
 	public void reparar(int salud);
+	
+	public boolean puedoEn(Agua agua);
+	public boolean puedoEn(Terreno terreno);
 
 }

@@ -19,7 +19,8 @@ public class ClasePruebaParaGenerarMapa implements IGeneradorDeMapa {
 					area[i][j] = new Terreno();
 			}
 		}
-
+	
+	area[0][tamanio / 2] = new EntradaALaCiudad();
 				
 		
 		

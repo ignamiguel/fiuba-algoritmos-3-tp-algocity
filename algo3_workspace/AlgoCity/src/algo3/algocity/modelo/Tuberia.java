@@ -34,4 +34,14 @@ public class Tuberia extends Conexiones{
 		return true;
 	}
 
+	@Override
+	public boolean puedoEn(Agua agua) {
+		return true;
+	}
+
+	@Override
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+
 }
