@@ -16,7 +16,6 @@ public class MapaTest {
 	public void obtenerUnaCoordenadaFueraDelMapaArrojaExcepcion(){
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		
-		
 	}
 	
 	@Test
