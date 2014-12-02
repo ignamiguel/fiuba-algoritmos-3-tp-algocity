@@ -50,8 +50,6 @@ public class Agua extends Hectarea{
                     unaConstruccion.brindarServicio(this);
                 }
         }
-
-
 	}
 	
 }
