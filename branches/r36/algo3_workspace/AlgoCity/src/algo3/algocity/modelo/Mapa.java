@@ -65,24 +65,49 @@ public class Mapa {
 		Hectarea hectarea = this.obtenerHectarea(coordenada);
 		return hectarea.construir(construccion);
 	}
-
-	public void crearLineaDeTensionDesdeHasta(Coordenada coordenada,
-			Coordenada coordenada2) {
-
+	
+/*	public void crearLineaDeTension(Coordenada coordenada,
+			Coordenada coordenada2){
+		
+		// chequear los que la coordenad de partida y fin cumplan con lo pedido,Pablo 
 		LineaDeTension unaLinea = new LineaDeTension();
+		this.construir(coordenada, coordenada2, unaLinea);
+	}
+*/
+	public void crearLineaDeTensionDesdeHasta(Coordenada coordenada,//<-- se va a llamar construir y sera privada,Pablo
+			Coordenada coordenada2/*,LineaDeTension unaLinea*/) {
 
-		this.lineasDelMapa.add(unaLinea);
+		
+		
+		if((coordenada.obtenerX()<coordenada2.obtenerX())||(coordenada.obtenerY()<coordenada2.obtenerY())){
+			
+			LineaDeTension unaLinea = new LineaDeTension();
+			
+			for(int x = (coordenada.obtenerX()); x<= (coordenada2.obtenerX()); x++ ){
 
-		for (int x = (coordenada.obtenerX()); x <= (coordenada2.obtenerX()); x++) {
+				for(int y = (coordenada.obtenerY()); y<= (coordenada2.obtenerY()); y++ ){
 
-			for (int y = (coordenada.obtenerY()); y <= (coordenada2.obtenerY()); y++) {
+					(area[x][y]).agregarServicio(unaLinea);
 
-				(area[x][y]).agregarServicio(unaLinea);
-
+				}
 			}
 		}
+		else if((coordenada.obtenerX()>coordenada2.obtenerX())||(coordenada.obtenerY()>coordenada2.obtenerY())){
+			
+			LineaDeTension unaLinea = new LineaDeTension();
+			
+			for(int x = (coordenada.obtenerX()); x>= (coordenada2.obtenerX()); x-- ){
 
+				for(int y = (coordenada.obtenerY()); y>= (coordenada2.obtenerY()); y-- ){
+
+					(area[x][y]).agregarServicio(unaLinea);
+
+				}			
+			
+			}	
+		}
 	}
+	
 
 	public boolean estaEnElMapaCoordenada(Coordenada coord) {
 		int coorX = coord.obtenerX();

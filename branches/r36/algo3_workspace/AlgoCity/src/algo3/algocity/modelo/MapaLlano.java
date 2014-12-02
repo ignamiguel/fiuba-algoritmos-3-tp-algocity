@@ -11,7 +11,9 @@ public class MapaLlano implements IGeneradorDeMapa{
 		
 		for (int i=0; i < tamanio; i++){
 			for (int j=0; j < tamanio; j++){
-					area[i][j] = new Terreno();
+				Terreno unTerreno = new Terreno();
+				unTerreno.guardarUbicacion(new Coordenada(i,j));
+				area[i][j] = unTerreno;
 			}
 		}
 	}

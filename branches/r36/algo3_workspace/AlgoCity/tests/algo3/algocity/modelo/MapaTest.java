@@ -137,4 +137,68 @@ public class MapaTest {
 		
 		assertEquals(false, resultado);		
 	}
+	@Test
+	public void testMapaObtenerCordenadaDeHectarea(){
+		
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		Coordenada unaCoordenada = new Coordenada(19,19);
+		
+		assertEquals((mapa.obtenerHectarea(unaCoordenada).obtenerUbicacion().obtenerX()), unaCoordenada.obtenerX());
+		assertEquals((mapa.obtenerHectarea(unaCoordenada).obtenerUbicacion().obtenerY()), unaCoordenada.obtenerY());
+	}
+	@Test
+	public void testMapaCreaLineaDeTensionVerticalmenteDeArribaAAbajo(){
+		
+		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
+		
+		Mapa unMapa = new Mapa(unGenerador);
+		
+		
+		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(0,2),new Coordenada(3,2));
+		
+		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(2,2)))).tieneLuz()),true);
+			
+		
+	}
+	@Test
+	public void testMapaCreaLineaDeTensionVerticalmenteDeAbajoAArriba(){
+		
+		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
+		
+		Mapa unMapa = new Mapa(unGenerador);
+		
+		
+		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(3,2),new Coordenada(1,2));
+		
+		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(2,2)))).tieneLuz()),true);
+	
+	}
+	@Test
+	public void testMapaCreaLineaDeTensionHorizontalmenteDeIzquierdaADerecha(){
+		
+		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
+		
+		Mapa unMapa = new Mapa(unGenerador);
+		
+		
+		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(1,0),new Coordenada(1,4));
+		
+		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(1,2)))).tieneLuz()),true);
+			
+		
+	}
+	@Test
+	public void testMapaCreaLineaDeTensionHorizontalmenteDeDerechaAIzquierda(){
+		
+		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
+		
+		Mapa unMapa = new Mapa(unGenerador);
+		
+		
+		unMapa.crearLineaDeTensionDesdeHasta(new Coordenada(3,3),new Coordenada(3,0));
+		
+		assertEquals((((Terreno) (unMapa.obtenerHectarea(new Coordenada(3,1)))).tieneLuz()),true);
+
+		
+	}
 }
