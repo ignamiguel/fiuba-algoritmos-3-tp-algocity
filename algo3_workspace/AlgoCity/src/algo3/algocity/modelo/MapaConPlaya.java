@@ -14,10 +14,14 @@ public class MapaConPlaya implements IGeneradorDeMapa {
 		for (int i=0; i < tamanio; i++){
 			for (int j=0; j < tamanio; j++){
 				if( j < 20){
-					area[i][j] = new Terreno();
+					Terreno unTerreno = new Terreno();
+					unTerreno.guardarUbicacion(new Coordenada(i,j));
+					area[i][j] = unTerreno;
 				}
 				else{
-					area[i][j] = new Agua();
+					Agua unAgua = new Agua();
+					unAgua.guardarUbicacion(new Coordenada(i,j));
+					area[i][j] = unAgua;
 				}
 			}
 		}

@@ -9,6 +9,7 @@ public abstract class Hectarea {
 	protected ArrayList<Conexiones> servicios;
 	protected ArrayList<String> serviciosActivos;
 	protected Construccion construccion;
+    protected Coordenada ubicacion;
 
 	public abstract void agregarServicio(Conexiones unServicio);
 
@@ -64,9 +65,17 @@ public abstract class Hectarea {
 			Iterator<Conexiones> i = servicios.iterator();
 		      while(i.hasNext()) {
 		         ((IServicio) i.next()).afectarCon(godzilla);
-		}
+		      }
 		
+		}
+
 	}
-}
-	
+	public void guardarUbicacion(Coordenada unaCoordenada){
+		
+		this.ubicacion = unaCoordenada;
+	}
+	public Coordenada obtenerUbicacion(){
+		
+	return this.ubicacion;
+	}
 }
