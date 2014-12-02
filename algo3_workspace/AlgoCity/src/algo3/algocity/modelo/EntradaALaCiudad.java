@@ -1,5 +1,11 @@
 package algo3.algocity.modelo;
 
+
+/*
+ * Hay que definir como funcionaria la entrada
+La idea es que sea una "fuente" de transito 
+y funcione como un pozo de agua pero con el transito
+*/
 public class EntradaALaCiudad extends Hectarea {
 		
 	@Override

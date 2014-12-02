@@ -13,12 +13,6 @@ public class MapaTest {
 	}
 
 	@Test
-	public void obtenerUnaCoordenadaFueraDelMapaArrojaExcepcion() {
-		Mapa mapa = new Mapa(new MapaConPlaya());
-
-	}
-
-	@Test
 	public void testMapaContieneTerrenoEn0_0ConMapaLlano() {
 		Mapa mapa = new Mapa(new MapaLlano());
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0, 0));
@@ -66,7 +60,8 @@ public class MapaTest {
 
 	}
 
-	@Test
+	//Test obsoleto 
+	/*@Test
 	public void testMapaCreaLineaDeTensionVerticalmente() {
 
 		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
@@ -83,7 +78,7 @@ public class MapaTest {
 						.tieneLuz()),
 				true);
 
-	}
+	}*/
 
 	@Test
 	public void construirUnEdificioEnTerrenoVacioDevuelveVerdadero() {
@@ -158,7 +153,7 @@ public class MapaTest {
 				unaCoordenada.obtenerY());
 	}
 
-	@Test
+	/*@Test
 	public void testMapaCreaLineaDeTensionVerticalmenteDeArribaAAbajo() {
 
 		IGeneradorDeMapa unGenerador = new ClasePruebaParaGenerarMapa();
@@ -224,5 +219,5 @@ public class MapaTest {
 						.tieneLuz()),
 				true);
 
-	}
+	}*/
 }

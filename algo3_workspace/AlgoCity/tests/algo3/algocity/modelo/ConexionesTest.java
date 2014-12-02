@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class ConexionesTest {
 
+	//Construccion de ruta
 	@Test
 	public void construirRutaEnTerrenoAgregaLaConexionRuta() {
 
@@ -18,6 +19,48 @@ public class ConexionesTest {
 	}
 	
 	@Test
+	public void testConstruirUnaRutaEnUnMapaTestEn3_1() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new Ruta(), new Coordenada(3, 1));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(3, 1)).tieneConexion(TipoDeConexion.Ruta));
+	}
+
+	@Test
+	public void testConstruirUnaRutaEnUnMapaTest4_4() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new Ruta(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Ruta));
+	}
+
+	@Test
+	public void testNoSePuedeConstruirUnaRutaEnEnAguaUnMapaConPlaya23_23() {
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		assertEquals(false ,mapa.conectar(new Ruta(), new Coordenada(23, 23)));
+	}
+	
+	@Test
+	public void testNoSePuedeConstruirUnaRutaEnEnAguaNiTampocoTieneLaConexionUnMapaConPlaya23_23() {
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		assertEquals(false ,mapa.conectar(new Ruta(), new Coordenada(23, 23)));
+		assertEquals(false ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Ruta));
+		
+	}
+	
+	@Test
+	public void testNoSePuedeConstruirUnaRutaSobreUnaHectareaQueYaTeniaUnaRutaEnUnMapaTest() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		
+		mapa.conectar(new Ruta(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Ruta));
+		
+		assertEquals(false ,mapa.conectar(new Ruta(), new Coordenada(4, 4)));
+	}
+	
+	
+	//Construccion de tuberia
+	@Test
 	public void construirTuberiaEnTerrenoAgregaLaConexionTuberia() {
 
 		Tuberia tuberia = new Tuberia();
@@ -28,16 +71,6 @@ public class ConexionesTest {
 	}
 	
 	@Test
-	public void construirLineaDeTensionEnTerrenoAgregaLaConexionLineasDeTension() {
-
-		LineaDeTension ldt = new LineaDeTension();
-		Terreno terreno = new Terreno();		
-		assertEquals(false, terreno.tieneConexion(TipoDeConexion.LineaDeTension));		
-		terreno.conectar(ldt);		
-		assertEquals(true, terreno.tieneConexion(TipoDeConexion.LineaDeTension));
-	}
-
-	@Test
 	public void construirTuberiaEnAguaAgregaLaConexionTuberia() {
 
 		Tuberia tuberia = new Tuberia();
@@ -47,41 +80,99 @@ public class ConexionesTest {
 		assertEquals(true, agua.tieneConexion(TipoDeConexion.Tuberia));	
 
 	}
+	
+	@Test
+	public void testConstruirUnaTuberiaEnUnMapaTestEn3_1() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new Tuberia(), new Coordenada(3, 1));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(3, 1)).tieneConexion(TipoDeConexion.Tuberia));
+	}
+	
+	@Test
+	public void testConstruirUnaTuberiaEnUnMapaTest4_4() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new Tuberia(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Tuberia));
+	}
+	
+	@Test
+	public void testSePuedeConstruirUnaTuberiaEnAguaEnUnMapaConPlaya23_23() {
+		Mapa mapa = new Mapa(new MapaConPlaya());
 		
-	
-	/* Revisar los test de abajo con la nueva implementacion de conexiones y servicios */
+		assertEquals(true ,mapa.conectar(new Tuberia(), new Coordenada(23, 23)));
+	}
 	
 	@Test
-	public void testConstruirUnaRutaEnUnMapaTestEn3_1y3_2() {
+	public void testNoSePuedeConstruirUnaTuberiaSobreUnaHectareaQueYaTeniaUnaTuberiaEnUnMapaTest() {
 		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
-		mapa.conectar(new Ruta(), new Coordenada(3, 1), new Coordenada(3, 2));
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 1)).estaConectada(
-						new Ruta()), true);
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 2)).estaConectada(
-						new Ruta()), true);
+		
+		mapa.conectar(new Tuberia(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Tuberia));
+		
+		assertEquals(false ,mapa.conectar(new Tuberia(), new Coordenada(4, 4)));
+	}
+	
+	//Construccion de lineas de tension
+	@Test
+	public void construirLineaDeTensionEnTerrenoAgregaLaConexionLineasDeTension() {
+
+		LineaDeTension ldt = new LineaDeTension();
+		Terreno terreno = new Terreno();		
+		assertEquals(false, terreno.tieneConexion(TipoDeConexion.LineaDeTension));		
+		terreno.conectar(ldt);		
+		assertEquals(true, terreno.tieneConexion(TipoDeConexion.LineaDeTension));
+	}
+	
+	@Test
+	public void testConstruirUnaLineaDeTensioEnUnMapaTestEn3_1() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new LineaDeTension(), new Coordenada(3, 1));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(3, 1)).tieneConexion(TipoDeConexion.LineaDeTension));
+	}
+	
+	@Test
+	public void testConstruirUnaLineaDeTensionEnUnMapaTest4_4() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		mapa.conectar(new LineaDeTension(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.LineaDeTension));
+	}
+	
+	@Test
+	public void testNoSePuedeConstruirUnaLineaDeTensionEnAguaEnUnMapaConPlaya23_23() {
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		assertEquals(false ,mapa.conectar(new LineaDeTension(), new Coordenada(23, 23)));
+	}
+	
+	@Test
+	public void testNoSePuedeConstruirUnaLineaDeTensionSobreUnaHectareaQueYaTeniaUnaLineaDeTensionEnUnMapaTest() {
+		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
+		
+		mapa.conectar(new LineaDeTension(), new Coordenada(4, 4));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.LineaDeTension));
+		
+		assertEquals(false ,mapa.conectar(new LineaDeTension(), new Coordenada(4, 4)));
 	}
 
+	//Contruccion de las tres conexiones
+	
 	@Test
-	public void testConstruirUnaRutaEnUnMapaTestDesde3_1Hasta3_4() {
+	public void testSePuedenConstruirLas3ConexionesEnUnaMismaHectareaEnUnMapa(){
 		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
-		mapa.conectar(new Ruta(), new Coordenada(3, 1), new Coordenada(3, 4));
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 1)).estaConectada(
-						new Ruta()), true);
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 2)).estaConectada(
-						new Ruta()), true);
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 3)).estaConectada(
-						new Ruta()), true);
-		assertEquals(
-				mapa.obtenerHectarea(new Coordenada(3, 4)).estaConectada(
-						new Ruta()), true);
+		
+		mapa.conectar(new Ruta(), new Coordenada(4, 4));
+		mapa.conectar(new Tuberia(), new Coordenada(4, 4));
+		mapa.conectar(new LineaDeTension(), new Coordenada(4, 4));
+		
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Tuberia));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true ,mapa.obtenerHectarea(new Coordenada(4, 4)).tieneConexion(TipoDeConexion.LineaDeTension));
+	
 	}
+	
 
-	@Test
+	
+	/*@Test
 	public void testConstruirUnaRutaEnUnMapaTestDesde0_3Hasta4_3() {
 		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
 		mapa.conectar(new Ruta(), new Coordenada(0, 3), new Coordenada(4, 3));
@@ -235,7 +326,7 @@ public class ConexionesTest {
 		assertEquals(hectarea1.tieneAccesoAlTransito(), true);
 		assertEquals(hectarea2.tieneAccesoAlTransito(), true);
 
-	}
+	}*/
 
 	// Falta implementaciones de construir ruta al lado de punto de entrada de
 	// gente.

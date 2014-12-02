@@ -1,8 +1,9 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public abstract class Hectarea {
+public abstract class Hectarea implements IAfectable{
 
 	// Atributos de la clase
 	protected ArrayList<IConectable> conexiones;
@@ -30,9 +31,25 @@ public abstract class Hectarea {
 		return true;
 
 	}
+	
+	public boolean conectar(Conexion conexion) {
+		if (this.tieneConexion(conexion.obtenerTipo())) {
+			return false;
+		}
+
+		if (!this.permite(conexion)) {
+			return false;
+		}
+
+		this.conexiones.add(conexion);
+		return true;
+
+	}
 
 	public abstract boolean permite(Construccion construccion);
-
+	
+	public abstract boolean permite(Conexion conexion);
+	
 	public Construccion obtenerConstruccion() {
 		return this.construccion;
 	}
@@ -54,4 +71,38 @@ public abstract class Hectarea {
 		}
 		return false;
 	}
+
+	
+	
+	public void afectarCon(Godzilla godzilla) {
+		// Defino que Godzilla dana las conexiones, no lo servicios.
+		// Hay que definir con que nivel de salud de la conexion, 
+		// el servicio se considera activo.
+		
+		if (!this.estaVacia()) {
+			this.construccion.afectarCon(godzilla);
+		}
+
+		Iterator<IConectable> i = conexiones.iterator();
+		while (i.hasNext()) {
+			i.next().afectarCon(godzilla);
+		}
+
+	}
+
+	public void afectarCon(Terremoto unTerremoto) {
+		
+		if (!this.estaVacia()) {
+			this.construccion.afectarCon(unTerremoto);
+		}
+
+		Iterator<IConectable> i = conexiones.iterator();
+		while (i.hasNext()) {
+			i.next().afectarCon(unTerremoto);
+		}
+
+		
+	}
+
+
 }

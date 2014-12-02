@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class LineasDeTensionTest{
 
+	//Quedaron obsoletos con la nueva implementacion
+	/*
 	@Test
 	public void testEstadoNuevaLineaDeTension(){
 		
@@ -55,6 +57,6 @@ public class LineasDeTensionTest{
 	}
 	
 
-	
+	*/
 	
 }
