@@ -1,58 +1,73 @@
 package algo3.algocity.modelo;
 
-public class Ruta extends Conexiones implements IServicio {
+public class Ruta extends Conexion {
 
-	private boolean daniada;
-	private boolean accesoTransito;
-	
-	public Ruta(){	
-		this.daniada = false;
-		this.accesoTransito = false;
+	public Ruta() {
+		this.salud = Configuracion.SALUD_INICIAL;
+		this.costo = Configuracion.COSTO_RUTA;
 	}
-	
-	public boolean puedoEn(Terreno terreno){
+
+	public boolean puedoEn(Terreno terreno) {
 		return true;
 	}
-	
-	public boolean puedoEn(Agua agua){
+
+	public boolean puedoEn(Agua agua) {
 		return false;
 	}
-	
+
 	public void afectarCon(Godzilla unGodzilla) {
-		this.daniar();
-		
+		if (this.salud == 0) {
+			return;
+		}
+
+		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_RUTA * this.salud) / 100;
+		this.salud -= averia;
+
+		if (this.salud < 0) {
+			this.salud = 0;
+		}
+
 	}
 
 	public void afectarCon(Terremoto unTerremoto) {
-		this.daniar();		
+		// TODO: implementar
 	}
 
 	public void reparar(int salud) {
-		//La reparacion es completa. Por lo tanto al primer llamado de reparacion ya deja de estar daniada
-		daniada=true;
-		
+		// Asumimos que la reparacion es completa.
+		this.salud = salud;
 	}
 
 	@Override
-	public boolean estaActivo() {
-		if(this.daniada || !this.accesoTransito){
-			return false;
-		}
+	public boolean estaActiva() {
+
 		return true;
 	}
 
 	public String obtenerServicio() {
-		if(this.estaActivo()) 
+		if (this.estaActiva())
 			return "transito";
 		return "Sin transito";
 	}
-	
-	public boolean estaDaniada(){	
-		return daniada;
+
+	public boolean estaDaniada() {
+		return (this.salud < Configuracion.SALUD_INICIAL);
 	}
 
-	private void daniar(){
-		daniada = true;	
+	@Override
+	public TipoDeConexion obtenerTipo() {
+		return TipoDeConexion.Ruta;
+	}
+
+	@Override
+	public int obtenerCosto() {
+		return this.costo;
+	}
+
+	@Override
+	public void brindarServicio(Hectarea hectarea) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

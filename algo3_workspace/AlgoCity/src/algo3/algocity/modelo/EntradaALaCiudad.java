@@ -1,24 +1,7 @@
 package algo3.algocity.modelo;
 
-public class EntradaALaCiudad extends Hectarea{
-
-	@Override
-	public void agregarServicio(Conexiones unServicio) {
-		// Deberia devolver una excepcion
+public class EntradaALaCiudad extends Hectarea {
 		
-	}
-
-	@Override
-	public void quitarServicio(Conexiones unServicio) {
-		// Deberia devolver una excepcion
-		
-	}
-
-	@Override
-	public boolean tieneServicio(Conexiones unServicio) {
-		return false;
-	}
-
 	@Override
 	public String obtenerNombre() {
 		return "Entrada a la ciudad";
@@ -29,17 +12,12 @@ public class EntradaALaCiudad extends Hectarea{
 		return false;
 	}
 
-	@Override
 	public boolean tieneAccesoAlTransito() {
 		return true;
 	}
-	
-	public void propagarTransito(){
-		if(!this.tieneAccesoAlTransito()){
-			if(this.tieneServicio(new Ruta())){
-				
-			}
-		}
+
+	public void propagarTransito() {
+		// TODO: implementar
 	}
-	
+
 }

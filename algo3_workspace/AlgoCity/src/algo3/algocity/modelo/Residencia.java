@@ -16,7 +16,16 @@ public class Residencia extends Edificio {
 	}
 
 	public void afectarCon(Godzilla godzilla) {
-		this.salud = 0;
+		if(this.salud == 0){
+			return;
+		}
+		
+		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_RESIDENCIA * this.salud)/100;		
+		this.salud -= averia;
+		
+		if(this.salud < 0){
+			this.salud = 0;
+		}
 	}
 
 	@Override

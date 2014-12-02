@@ -40,13 +40,22 @@ public class Configuracion {
 	// Empleos
 	static final int EMPLEOS_INDUSTRIA = 25;
 	
-	// Averias
+	// Averias de Godzilla
+	static final int AVERIA_DE_GODZILLA_A_RESIDENCIA = 100;
+	static final int AVERIA_DE_GODZILLA_A_COMERCIO = 80;
+	static final int AVERIA_DE_GODZILLA_A_INDUSTRIA = 40;
+	static final int AVERIA_DE_GODZILLA_A_CENTRAL_ELECTRICA = 35;
+	static final int AVERIA_DE_GODZILLA_A_LINEA_DE_TENSION = 100;
+	static final int AVERIA_DE_GODZILLA_A_RUTA = 80;	
+	static final int AVERIA_DE_GODZILLA_A_TUBERIA = 0;
 	
-	// Velocidad de reparacion de bomberos
-	static final int REPARACION_RESIDENCIA = 10;
-	static final int REPARACION_COMERCIO = 7;
-	static final int REPARACION_INDUSTRIA = 3;
-	static final int REPARACION_CENTRAl_EOLICA = 15;
-	static final int REPACACION_CENTRAL_MINERAL = 10;
-	static final int REPACACION_CENTRAL_NUCELAR = 3;
+	// Capacidad de reparacion de bomberos
+	static final int REPARACION_A_RESIDENCIA = 10;
+	static final int REPARACION_A_COMERCIO = 7;
+	static final int REPARACION_A_INDUSTRIA = 3;
+	static final int REPARACION_A_CENTRAl_EOLICA = 15;
+	static final int REPACACION_A_CENTRAL_MINERAL = 10;
+	static final int REPACACION_A_CENTRAL_NUCELAR = 3;
+	static final int REPACACION_A_RUTA = 100;
+	static final int REPACACION_A_LINEA_DE_TENSION = 100;
 }
