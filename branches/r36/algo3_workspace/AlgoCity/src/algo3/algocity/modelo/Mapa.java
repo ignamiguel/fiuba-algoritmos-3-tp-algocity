@@ -1,6 +1,7 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
+//import java.util.Iterator;
 
 public class Mapa {
 
@@ -8,7 +9,8 @@ public class Mapa {
 	private int tamanio;
 	// para hacer el refresh de cada turno recorre la lista y le dice a cada
 	// linea actualizate,Pablo
-	private ArrayList<LineaDeTension> lineasDelMapa;
+	//La linea de tension ahora esta en las hectareas en la lista de conecciones
+		//private ArrayList<LineaDeTension> lineasDelMapa;
 
 	public Mapa(IGeneradorDeMapa generadorDeMapa) {
 
@@ -16,7 +18,7 @@ public class Mapa {
 		area = new Hectarea[tamanio][tamanio];
 		generadorDeMapa.generarArea(this.area);
 
-		lineasDelMapa = new ArrayList<LineaDeTension>();
+		//lineasDelMapa = new ArrayList<LineaDeTension>();
 
 	}
 
@@ -29,7 +31,8 @@ public class Mapa {
 		return area[coorX][coorY];
 	}
 
-	public void crearTuberia(Coordenada coordenada) {
+	//Con la nueva implementacion esto no iria
+	/*public void crearTuberia(Coordenada coordenada) {
 		Tuberia tuberia = new Tuberia();
 		Hectarea hectarea = this.obtenerHectarea(coordenada);
 		if (!(hectarea.estaConectada(tuberia))) {
@@ -58,7 +61,7 @@ public class Mapa {
 				hectarea.agregarServicio(tuberia);
 		}
 
-	}
+	}*/
 
 	public boolean construir(Construccion construccion, Coordenada coordenada) {
 		Hectarea hectarea = this.obtenerHectarea(coordenada);
@@ -73,12 +76,14 @@ public class Mapa {
 	 * pedido,Pablo LineaDeTension unaLinea = new LineaDeTension();
 	 * this.construir(coordenada, coordenada2, unaLinea); }
 	 */
-	public void crearLineaDeTensionDesdeHasta(Coordenada coordenada,// <-- se va
+	
+	//Esto tampoco iria con la nueva implementacion
+	/*public void crearLineaDeTensionDesdeHasta(Coordenada coordenada,// <-- se va
 																	// a llamar
 																	// construir
 																	// y sera
 																	// privada,Pablo
-			Coordenada coordenada2/* ,LineaDeTension unaLinea */) {
+			Coordenada coordenada2/* ,LineaDeTension unaLinea ) {
 
 		if ((coordenada.obtenerX() < coordenada2.obtenerX())
 				|| (coordenada.obtenerY() < coordenada2.obtenerY())) {
@@ -110,7 +115,7 @@ public class Mapa {
 
 			}
 		}
-	}
+	}*/
 
 	public boolean estaEnElMapaCoordenada(Coordenada coord) {
 		int coorX = coord.obtenerX();
@@ -123,26 +128,11 @@ public class Mapa {
 
 	public int obtenerTamanio() {
 		return this.tamanio;
-	}
+	} 
 
-	public void conectar(Ruta ruta, Coordenada desde, Coordenada hasta) {
-
-		// TODO: Agregar un metodo que convierte el desde y hasta
-		// en una coleccion de hectareas
-		// Luego otro metodo se encarga de agregar la conexion o el servicio
-		// en esas hectareas.
-
-		// while(desde.obtenerX() <= hasta.obtenerX()){
-		// (this.obtenerHectarea(desde)).agregarServicio(new Ruta());
-		// desde.aumentarX( 1 );
-		// }
-		//
-		// desde.disminuirX(1);
-		//
-		// while(desde.obtenerY() <= hasta.obtenerY()){
-		// (this.obtenerHectarea(desde)).agregarServicio(new Ruta());
-		// desde.aumentarY( 1 );
-		// }
+	public boolean conectar(Conexion conexion, Coordenada ubicacion) {
+		Hectarea hectarea = this.obtenerHectarea(ubicacion);
+		return hectarea.conectar(conexion);
 
 	}
 

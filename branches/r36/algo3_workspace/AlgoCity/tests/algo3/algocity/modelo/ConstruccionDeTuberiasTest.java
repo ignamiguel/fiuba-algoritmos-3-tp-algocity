@@ -6,8 +6,10 @@ import org.junit.Test;
 
 
 public class ConstruccionDeTuberiasTest {
-
-	@Test	
+	
+	//Estos tests quedaron obsoletos con la nueva implementacion
+	
+	/*@Test	
 	public void testConstruirTuberiaEnTerreno(){
 		
 		Tuberia unaTuberia = new Tuberia();
@@ -107,7 +109,7 @@ public class ConstruccionDeTuberiasTest {
 		assertEquals(hectareaContinua.estaConectada( new Tuberia()),true);
 	
 	}
-	
+	*/
 	
 	
 }

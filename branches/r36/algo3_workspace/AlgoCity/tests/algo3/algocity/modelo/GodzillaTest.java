@@ -52,6 +52,7 @@ public class GodzillaTest {
 		assertEquals(pozo.obtenerSalud(), 0);
 	}
 
+	/*
 	@Test
 	public void testGodzillaAtacaUnTerrenoConUnaRutaYLaRutaQuedaDaniada() {
 
@@ -123,6 +124,8 @@ public class GodzillaTest {
 		assertEquals(unaTuberia.estaActiva(), true);
 	}
 
+	*/
+	
 	@Test
 	public void testGodzillaAtacaAUnMapaLLanoYComienzaEnLaCoordenada3_0YTerminaEnLa3_25() {
 		Godzilla godzilla = new Godzilla();

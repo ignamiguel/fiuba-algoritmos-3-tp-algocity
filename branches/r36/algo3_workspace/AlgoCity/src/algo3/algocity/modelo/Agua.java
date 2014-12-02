@@ -21,6 +21,10 @@ public class Agua extends Hectarea {
 	public void conectar(Tuberia tuberia) {
 		this.conexiones.add(tuberia);
 	}
+	
+	public boolean permite(Conexion conexion) {
+		return conexion.puedoEn(this);
+	}
 
 
 }
