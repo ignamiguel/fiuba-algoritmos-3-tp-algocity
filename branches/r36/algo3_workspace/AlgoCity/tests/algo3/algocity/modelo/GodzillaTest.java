@@ -60,7 +60,7 @@ public class GodzillaTest {
 		Terreno unTerreno = new Terreno();
 		unTerreno.agregarServicio(unaRuta);
 
-		assertEquals(unTerreno.tieneServicio(unaRuta), true);
+		assertEquals(unTerreno.estaConectada(unaRuta), true);
 		assertEquals(unaRuta.estaDaniada(), false);
 
 		unTerreno.afectarCon(godzilla);
@@ -75,7 +75,7 @@ public class GodzillaTest {
 		LineaDeTension unaLinea = new LineaDeTension();
 
 		unTerreno.agregarServicio(unaLinea);
-		assertEquals(unTerreno.tieneServicio(unaLinea), true);
+		assertEquals(unTerreno.estaConectada(unaLinea), true);
 		assertEquals(unaLinea.estaDaniada(), false);
 
 		unTerreno.afectarCon(new Godzilla());
@@ -90,11 +90,11 @@ public class GodzillaTest {
 		Tuberia unaTuberia = new Tuberia();
 
 		unTerreno.agregarServicio(unaTuberia);
-		assertEquals(unTerreno.tieneServicio(unaTuberia), true);
+		assertEquals(unTerreno.estaConectada(unaTuberia), true);
 
 		unTerreno.afectarCon(new Godzilla());
 
-		assertEquals(unTerreno.tieneServicio(unaTuberia), true);
+		assertEquals(unTerreno.estaConectada(unaTuberia), true);
 	}
 
 	@Test
@@ -109,9 +109,9 @@ public class GodzillaTest {
 		unTerreno.agregarServicio(unaLinea);
 		unTerreno.agregarServicio(unaTuberia);
 
-		assertEquals(unTerreno.tieneServicio(unaTuberia), true);
-		assertEquals(unTerreno.tieneServicio(unaLinea), true);
-		assertEquals(unTerreno.tieneServicio(unaRuta), true);
+		assertEquals(unTerreno.estaConectada(unaTuberia), true);
+		assertEquals(unTerreno.estaConectada(unaLinea), true);
+		assertEquals(unTerreno.estaConectada(unaRuta), true);
 
 		assertEquals(unaLinea.estaDaniada(), false);
 		assertEquals(unaRuta.estaDaniada(), false);
@@ -120,7 +120,7 @@ public class GodzillaTest {
 
 		assertEquals(unaLinea.estaDaniada(), true);
 		assertEquals(unaRuta.estaDaniada(), true);
-		assertEquals(unaTuberia.estaActivo(), true);
+		assertEquals(unaTuberia.estaActiva(), true);
 	}
 
 	@Test

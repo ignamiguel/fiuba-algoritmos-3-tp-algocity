@@ -1,32 +1,14 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class Hectarea {
 
-	// atributos de la clase
-	protected ArrayList<Conexiones> servicios;
-	protected ArrayList<String> serviciosActivos;
+	// Atributos de la clase
+	protected ArrayList<IConectable> conexiones;
 	protected Construccion construccion;
-    protected Coordenada ubicacion;
+	protected Coordenada ubicacion;
 
-	public abstract void agregarServicio(Conexiones unServicio);
-
-	public abstract void quitarServicio(Conexiones unServicio);
-
-	public void activarServicio(Conexiones unServicio){
-		serviciosActivos.add(unServicio.obtenerServicio());
-	}
-
-	public void desactivarServicios(){
-		serviciosActivos.clear();
-	}
-	
-	public abstract boolean tieneServicio(Conexiones unServicio);
-
-	public abstract boolean tieneAccesoAlTransito();
-	
 	public abstract String obtenerNombre();
 
 	public boolean estaVacia() {
@@ -38,44 +20,38 @@ public abstract class Hectarea {
 		if (!this.estaVacia()) {
 			return false;
 		}
-			
+
 		if (!this.permite(construccion)) {
 			return false;
 		}
-		
+
 		this.construccion = construccion;
 		construccion.brindarServicio(this);
-		return true;		
+		return true;
 
 	}
-	
-	public abstract boolean permite(Construccion construccion); 
+
+	public abstract boolean permite(Construccion construccion);
 
 	public Construccion obtenerConstruccion() {
 		return this.construccion;
 	}
 
-	public void afectarCon(Godzilla godzilla) {
-    	
-		if(construccion != null){
-		((IConstruible) this.construccion).afectarCon(godzilla);
-    	}
-		
-		if(servicios != null){
-			Iterator<Conexiones> i = servicios.iterator();
-		      while(i.hasNext()) {
-		         ((IServicio) i.next()).afectarCon(godzilla);
-		      }
-		
-		}
+	public void guardarUbicacion(Coordenada unaCoordenada) {
 
-	}
-	public void guardarUbicacion(Coordenada unaCoordenada){
-		
 		this.ubicacion = unaCoordenada;
 	}
-	public Coordenada obtenerUbicacion(){
-		
-	return this.ubicacion;
+
+	public Coordenada obtenerUbicacion() {
+		return this.ubicacion;
+	}
+
+	public boolean tieneConexion(TipoDeConexion servicio) {
+		for (int i = 0; i < this.conexiones.size(); i++) {
+			if (this.conexiones.get(i).obtenerTipo() == servicio) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

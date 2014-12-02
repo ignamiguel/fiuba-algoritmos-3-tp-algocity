@@ -5,79 +5,67 @@ import java.util.Iterator;
 
 public class Terreno extends Hectarea {
 
-	public Terreno() {
+	protected ArrayList<TipoDeServicio> servicios;
 
-		servicios = new ArrayList<Conexiones>();
-		construccion = null;
+	public Terreno() {
+		this.conexiones = new ArrayList<IConectable>();
+		this.servicios = new ArrayList<TipoDeServicio>();
+		this.construccion = null;
 	}
 
 	public String obtenerNombre() {
 		return "Terreno";
 	}
 
-	public void agregarServicio(Conexiones unServicio) {
+	@Override
+	public boolean permite(Construccion construccion) {
+		return construccion.puedoEn(this);
+	}
 
-		if (!(this.tieneServicio(unServicio)))
-			servicios.add(unServicio);
+	public void conectar(Ruta ruta) {
+		this.conexiones.add(ruta);
+	}
+
+	public void conectar(Tuberia tuberia) {
+		this.conexiones.add(tuberia);
+	}
+
+	public void conectar(LineaDeTension linea) {
+		this.conexiones.add(linea);
 
 	}
 
-	public void quitarServicio(Conexiones unServicio) {
-
-		if (this.tieneServicio(unServicio))
-			servicios.remove(unServicio);
-
-	}
-
-	public boolean tieneServicio(Conexiones unServicio) {
-		boolean tieneServicio = false;
-		String servicioABuscar = unServicio.obtenerServicio();
-		Iterator<Conexiones> iterador = servicios.iterator();
-		while (iterador.hasNext()) {
-			Conexiones conexion = iterador.next();
-			String servicio = conexion.obtenerServicio();
-			if (servicio.equals(servicioABuscar))
-				tieneServicio = true;
-
-		}
-		return tieneServicio;
-		// return(servicios.contains(unServicio));
-	}
-
-	public boolean tieneLuz() {
-
-		Iterator<Conexiones> item = servicios.iterator();
-		while (item.hasNext()) {
-
-			IServicio unServicio = (IServicio) item.next();
-			if (unServicio.obtenerServicio() == "luz") {
-
-				return (unServicio.estaActivo());
+	public boolean estaActivo(TipoDeServicio servicio) {
+		for (int i = 0; i < this.servicios.size(); i++) {
+			if (this.servicios.get(i) == servicio) {
+				return true;
 			}
-
 		}
 		return false;
-	}  
-	
-	public boolean tieneAccesoAlTransito(){
+	}
+
+	public void activar(TipoDeServicio servicio) {
+		this.servicios.add(servicio);
+	}
+
+	public void desactivar(TipoDeServicio servicio) {
+		this.servicios.remove(servicio);
+	}
+
+	public void afectarCon(Godzilla godzilla) {
+		// Defino que Godzilla dana las conexiones, no lo servicios.
+		// Hay que definir con que nivel de salud de la conexion, 
+		// el servicio se considera activo.
 		
-		Iterator<Conexiones> item = servicios.iterator();
-		while (item.hasNext()) {
-
-			IServicio unServicio = (IServicio) item.next();
-			if (unServicio.obtenerServicio() == "transito") {
-
-				return (unServicio.estaActivo());
-			}
-
+		if (!this.estaVacia()) {
+			this.construccion.afectarCon(godzilla);
 		}
-		return false;
+
+		Iterator<IConectable> i = conexiones.iterator();
+		while (i.hasNext()) {
+			i.next().afectarCon(godzilla);
+		}
+
 	}
-    
-    @Override
-	public boolean permite(Construccion construccion){
-		return construccion.puedoEn(this); 
-	}
-    
-  
+
 }

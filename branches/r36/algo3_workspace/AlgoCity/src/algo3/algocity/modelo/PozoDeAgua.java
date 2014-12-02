@@ -7,7 +7,10 @@ public class PozoDeAgua extends Construccion{
 	}
 
 	public void brindarServicio(Hectarea hectarea){
-        hectarea.agregarServicio(new Tuberia());
+        // TODO: re implementar 
+		// utilizando la nueva forma de conexiones y servicios
+		
+		// hectarea.agregarServicio(new Tuberia());
 	}
 
 	public boolean puedoEn(Agua agua) {

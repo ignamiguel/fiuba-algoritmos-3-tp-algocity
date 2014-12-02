@@ -1,8 +1,9 @@
 package algo3.algocity.modelo;
 
-public abstract class Conexiones implements IConectable {
-
+public abstract class Conexion implements IConectable {
+	
 	protected int salud;
 	protected int costo;
+	
 
 }
