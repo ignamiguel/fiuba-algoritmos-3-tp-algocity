@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Terreno extends Hectarea {
 
-	
-
 	public Terreno() {
 		this.conexiones = new ArrayList<IConectable>();
 		this.servicios = new ArrayList<TipoDeServicio>();
@@ -21,31 +19,29 @@ public class Terreno extends Hectarea {
 	}
 
 	public boolean conectar(Ruta ruta) {
-		if(ruta.puedoEn(this)){
-		this.conexiones.add(ruta);
-		return true;
+		if (ruta.puedoEn(this)) {
+			this.conexiones.add(ruta);
+			return true;
 		}
 		return false;
 	}
 
 	public boolean conectar(Tuberia tuberia) {
-		if(tuberia.puedoEn(this)){
+		if (tuberia.puedoEn(this)) {
 			this.conexiones.add(tuberia);
 			return true;
-			}
-			return false;
+		}
+		return false;
 	}
 
 	public boolean conectar(LineaDeTension linea) {
-		if(linea.puedoEn(this)){
+		if (linea.puedoEn(this)) {
 			this.conexiones.add(linea);
 			return true;
-			}
-			return false;
+		}
+		return false;
 
 	}
-	
-
 
 	public void desactivar(TipoDeServicio servicio) {
 		this.servicios.remove(servicio);

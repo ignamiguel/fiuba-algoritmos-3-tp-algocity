@@ -18,18 +18,17 @@ public class PozoDeAguaTest {
 		Mapa mapa = new Mapa( new MapaConPlaya() );
 		PozoDeAgua pozo = new PozoDeAgua();
 		
-		assertEquals(true,mapa.construir(pozo, new Coordenada(22,22)));
+		assertEquals(true, mapa.construir(pozo, new Coordenada(22,22)));
 		
 		Tuberia tuberia = new Tuberia();
 		
-		assertEquals(true,mapa.conectar(tuberia, new Coordenada(21,22)));
+		assertEquals(true, mapa.conectar(tuberia, new Coordenada(21,22)));
 		
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22,22));
 		
 		hectarea.propagar(pozo, mapa);
 		
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicio()));
-		
+		assertEquals(true, (mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicioPropagable()));		
 	}
 	
 	@Test
@@ -50,8 +49,8 @@ public class PozoDeAguaTest {
 		hectareaConPozo.propagar(pozo, mapa);
 		
 
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(20,22))).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(20,22))).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -71,7 +70,7 @@ public class PozoDeAguaTest {
 		
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22,23));
 		
-		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicioPropagable()));
 		
 	}
 	
@@ -93,8 +92,8 @@ public class PozoDeAguaTest {
 		hectareaConPozo.propagar(pozo, mapa);
 		
 
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,23))).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,22))).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,23))).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -114,7 +113,7 @@ public class PozoDeAguaTest {
 		
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(23,22));
 		
-		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicioPropagable()));
 		
 	}
 	
@@ -136,8 +135,8 @@ public class PozoDeAguaTest {
 		hectareaConPozo.propagar(pozo, mapa);
 		
 
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(22,21))).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(23,21))).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(22,21))).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(23,21))).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -157,7 +156,7 @@ public class PozoDeAguaTest {
 		
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22,21));
 		
-		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,hectarea.estaActivo(pozo.obtenerServicioPropagable()));
 		
 	}
 	
@@ -178,8 +177,8 @@ public class PozoDeAguaTest {
 		
 		hectareaConPozo.propagar(pozo, mapa);
 
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,20))).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,19))).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,20))).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(21,19))).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -204,10 +203,10 @@ public class PozoDeAguaTest {
 		
 		hectareaConPozo.propagar(pozo, mapa);
 		
-		assertEquals(true,mapa.obtenerHectarea(norte).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(este).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(sur).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(oeste).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,mapa.obtenerHectarea(norte).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(este).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(sur).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(oeste).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -242,15 +241,15 @@ public class PozoDeAguaTest {
 		
 		hectareaConPozo.propagar(pozo, mapa);
 		
-		assertEquals(true,mapa.obtenerHectarea(norte).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(este).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(sur).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(oeste).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,mapa.obtenerHectarea(norte).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(este).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(sur).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(oeste).estaActivo(pozo.obtenerServicioPropagable()));
 		
-		assertEquals(true,mapa.obtenerHectarea(esquina1).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(esquina2).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(esquina3).estaActivo(pozo.obtenerServicio()));
-		assertEquals(true,mapa.obtenerHectarea(esquina4).estaActivo(pozo.obtenerServicio()));
+		assertEquals(true,mapa.obtenerHectarea(esquina1).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(esquina2).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(esquina3).estaActivo(pozo.obtenerServicioPropagable()));
+		assertEquals(true,mapa.obtenerHectarea(esquina4).estaActivo(pozo.obtenerServicioPropagable()));
 	}
 	
 	@Test
@@ -269,8 +268,8 @@ public class PozoDeAguaTest {
 		hectareaConPozo.propagar(pozo, mapa);
 		
 		for(int i=0; i<23;i++){
-			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexion()));
-			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicio()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicioPropagable()));
 		}
 	}
 }
