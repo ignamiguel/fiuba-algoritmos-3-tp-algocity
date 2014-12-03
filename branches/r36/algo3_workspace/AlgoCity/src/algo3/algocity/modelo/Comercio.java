@@ -13,7 +13,7 @@ public class Comercio extends Edificio {
 			return;
 		}
 
-		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO * this.salud) / 100;
+		int averia = Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO;
 		this.salud -= averia;
 
 		if (this.salud < 0) {

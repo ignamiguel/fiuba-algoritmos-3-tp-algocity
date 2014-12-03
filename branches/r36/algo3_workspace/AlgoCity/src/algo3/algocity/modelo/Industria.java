@@ -20,7 +20,7 @@ public class Industria extends Edificio {
 			return;
 		}
 
-		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_INDUSTRIA * this.salud) / 100;
+		int averia = Configuracion.AVERIA_DE_GODZILLA_A_INDUSTRIA;
 		this.salud -= averia;
 
 		if (this.salud < 0) {

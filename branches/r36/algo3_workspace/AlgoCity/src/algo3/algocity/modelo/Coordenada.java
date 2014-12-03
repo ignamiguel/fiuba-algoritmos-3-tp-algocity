@@ -41,4 +41,10 @@ public class Coordenada {
 		this.y = (this.y - b);
 	}
 
+	public boolean validarCoordenada(Mapa mapa) {
+		if(this.x <= 0 || this.y <= 0) return false;
+		if(this.x > mapa.obtenerTamanio() || this.y > mapa.obtenerTamanio()) return false;
+		return true;
+	}
+
 }

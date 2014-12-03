@@ -42,7 +42,7 @@ public class Configuracion {
 	
 	// Averias de Godzilla
 	static final int AVERIA_DE_GODZILLA_A_RESIDENCIA = 100;
-	static final int AVERIA_DE_GODZILLA_A_COMERCIO = 80;
+	static final int AVERIA_DE_GODZILLA_A_COMERCIO = 75;
 	static final int AVERIA_DE_GODZILLA_A_INDUSTRIA = 40;
 	static final int AVERIA_DE_GODZILLA_A_CENTRAL_ELECTRICA = 35;
 	static final int AVERIA_DE_GODZILLA_A_LINEA_DE_TENSION = 100;

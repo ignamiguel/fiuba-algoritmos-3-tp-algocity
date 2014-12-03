@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public class PozoDeAgua extends Construccion{
+public class PozoDeAgua extends Construccion implements IPropagable{
 
 	public String obtenerNombre(){
 		return "Pozo de Agua";
@@ -31,6 +31,16 @@ public class PozoDeAgua extends Construccion{
 	public void afectarCon(Terremoto unTerremoto) {
 		//No es un edificio que sea daniable
 		
+	}
+
+	@Override
+	public TipoDeServicio obtenerServicio() {
+		return TipoDeServicio.Cloacas;
+	}
+
+	@Override
+	public TipoDeConexion obtenerConexion() {
+		return TipoDeConexion.Tuberia;
 	}
 
 }
