@@ -23,4 +23,6 @@ public class CentralEolica extends CentralElectrica {
 
 	}
 
+	
+
 }

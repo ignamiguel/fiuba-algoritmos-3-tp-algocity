@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-public abstract class CentralElectrica extends Construccion {
+public abstract class CentralElectrica extends Construccion implements IPropagable{
 
 	public CentralElectrica() {
 
@@ -48,6 +48,7 @@ public abstract class CentralElectrica extends Construccion {
 			this.salud = 0;
 		}
 	}
+	
 
 	public void afectarCon(Terremoto unTerremoto) {
 		// TODO Auto-generated method stub
@@ -60,6 +61,28 @@ public abstract class CentralElectrica extends Construccion {
 
 	public boolean puedoEn(Terreno terreno) {
 		return true;
+	}
+	
+	@Override
+	public TipoDeServicio obtenerServicioPropagable() {
+		return TipoDeServicio.Electrico;
+	}
+
+	@Override
+	public TipoDeConexion obtenerConexionNecesaria() {
+		return TipoDeConexion.LineaDeTension;
+	}
+
+	public boolean consumirse(Hectarea hectarea) {
+		if(this.capacidadDeAbastecimiento >= hectarea.obtenerConsumo()){
+			this.capacidadDeAbastecimiento -= hectarea.obtenerConsumo();
+			return true;
+		}
+		return false;
+	}
+	
+	public int obtenerConsumoElectrico(){
+		return 0;
 	}
 
 	/*

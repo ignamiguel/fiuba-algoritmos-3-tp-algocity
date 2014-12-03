@@ -67,4 +67,9 @@ public class EstacionDeBomberos extends Construccion {
 		// No es un edificio que sea daniable
 
 	}
+	
+	public int obtenerConsumoElectrico(){
+		return 0;
+	}
+
 }

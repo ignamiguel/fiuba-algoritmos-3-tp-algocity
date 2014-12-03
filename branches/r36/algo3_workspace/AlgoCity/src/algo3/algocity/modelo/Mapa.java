@@ -11,6 +11,8 @@ public class Mapa {
 
 	private Hectarea area[][];
 	private int tamanio;
+	private Coordenada entradaAlaCiudad;
+	
 
 	ArrayList<Coordenada> pozos;
 
@@ -24,14 +26,19 @@ public class Mapa {
 
 		this.tamanio = generadorDeMapa.obtenerTamanio();
 		this.area = new Hectarea[tamanio][tamanio];
+		this.entradaAlaCiudad = generadorDeMapa.obtenerEntradaALaCiudad();
+		
 		this.pozos = new ArrayList<Coordenada>();
-
+		
 		generadorDeMapa.generarArea(this.area);
+		
+		this.construir(new EntradaAlaCiudad(), this.entradaAlaCiudad);
+		this.conectar(new Ruta(), this.entradaAlaCiudad);
 
 	}
 
 	public Hectarea obtenerHectarea(Coordenada coordenada) {
-		if (!this.esValida(coordenada)) {
+		if (!this.estaEnElMapaCoordenada(coordenada)) {
 			throw new CoordenadaInvalidaExcepcion();
 		}
 		return area[coordenada.obtenerX()][coordenada.obtenerY()];
@@ -61,13 +68,13 @@ public class Mapa {
 
 	}
 
-	public boolean construir(PozoDeAgua pozo, Coordenada coordenada) {
+	/*public boolean construir(PozoDeAgua pozo, Coordenada coordenada) {
 		if (!this.construir(pozo, coordenada)) {
 			return false;
 		}
 		this.pozos.add(coordenada);
 		return true;
-	}
+	}*/
 
 	public void propagarAgua() {
 		
@@ -94,7 +101,7 @@ public class Mapa {
 		
 		ArrayList<Hectarea> superficie = new ArrayList<Hectarea>();		
 
-		if (this.esValida(posicion.moverArriba())) {
+		if (this.estaEnElMapaCoordenada(posicion.moverArriba())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
@@ -107,7 +114,7 @@ public class Mapa {
 		}
 		posicion.moverAbajo();
 
-		if (this.esValida(posicion.moverAbajo())) {
+		if (this.estaEnElMapaCoordenada(posicion.moverAbajo())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
@@ -120,7 +127,7 @@ public class Mapa {
 		}
 		posicion.moverArriba();
 
-		if (this.esValida(posicion.moverDerecha())) {
+		if (this.estaEnElMapaCoordenada(posicion.moverDerecha())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
@@ -133,7 +140,7 @@ public class Mapa {
 		}
 		posicion.moverIzquierda();
 
-		if (this.esValida(posicion.moverIzquierda())) {
+		if (this.estaEnElMapaCoordenada(posicion.moverIzquierda())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
@@ -149,12 +156,8 @@ public class Mapa {
 		return superficie;
 	}
 
-	public boolean esValida(Coordenada coordenada) {
-		if (coordenada.x < 0 || coordenada.y < 0)
-			return false;
-		if (coordenada.x >= this.tamanio || coordenada.y >= this.tamanio)
-			return false;
-		return true;
+	public Coordenada obtenerEntradaALaCiudad() {
+		return this.entradaAlaCiudad;
 	}
 
 }

@@ -4,6 +4,6 @@ public interface IPropagable {
 
 	public TipoDeServicio obtenerServicioPropagable();
 	public TipoDeConexion obtenerConexionNecesaria();	
-	//public void propagar();
+	public boolean consumirse(Hectarea hectarea);
 
 }

@@ -108,57 +108,52 @@ public abstract class Hectarea implements IAfectable {
 
 		Coordenada coordAux = new Coordenada(ubicacion.obtenerX(),
 				ubicacion.obtenerY());
-
-		if (coordAux.validarCoordenada(mapa)) {
-
+		
 			coordAux.disminuirX(1);
-			Hectarea hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
-
-				if (hectarea.tieneConexion(propagable
-						.obtenerConexionNecesaria())) {
-					hectarea.activar(propagable.obtenerServicioPropagable());
-					hectarea.propagar(propagable, mapa);
-				}
+			if ((mapa).estaEnElMapaCoordenada(coordAux)){
+				Hectarea hectareaNorte = mapa.obtenerHectarea(coordAux);
+				hectareaNorte.activarServicioYPropagar(propagable, mapa);
 			}
 
 			coordAux.aumentarX(1);
 			coordAux.aumentarY(1);
-			hectarea = mapa.obtenerHectarea(coordAux);
-
-			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
-				if (hectarea.tieneConexion(propagable
-						.obtenerConexionNecesaria())) {
-					hectarea.activar(propagable.obtenerServicioPropagable());
-					hectarea.propagar(propagable, mapa);
-				}
+			
+			if ((mapa).estaEnElMapaCoordenada(coordAux)){
+				Hectarea hectareaEste = mapa.obtenerHectarea(coordAux);
+				hectareaEste.activarServicioYPropagar(propagable, mapa);
 			}
 
 			coordAux.disminuirY(1);
 			coordAux.aumentarX(1);
-			hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
-				if (hectarea.tieneConexion(propagable
-						.obtenerConexionNecesaria())) {
-					hectarea.activar(propagable.obtenerServicioPropagable());
-					hectarea.propagar(propagable, mapa);
-				}
+			
+			if ((mapa).estaEnElMapaCoordenada(coordAux)){
+				Hectarea hectareaSur = mapa.obtenerHectarea(coordAux);
+				hectareaSur.activarServicioYPropagar(propagable, mapa);
 			}
 
 			coordAux.disminuirX(1);
 			coordAux.disminuirY(1);
-			hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
-				if (hectarea.tieneConexion(propagable
-						.obtenerConexionNecesaria())) {
-					hectarea.activar(propagable.obtenerServicioPropagable());
-					hectarea.propagar(propagable, mapa);
+			
+			if ((mapa).estaEnElMapaCoordenada(coordAux)){
+				Hectarea hectareaOeste = mapa.obtenerHectarea(coordAux);
+				hectareaOeste.activarServicioYPropagar(propagable, mapa);
+			}
+		}
+	
+	private void activarServicioYPropagar(IPropagable propagable, Mapa mapa) {
+		
+		if (!this.estaActivo(propagable.obtenerServicioPropagable())) {
+
+			if (this.tieneConexion(propagable.obtenerConexionNecesaria())) {
+				if(propagable.consumirse(this)){
+					this.activar(propagable.obtenerServicioPropagable());
+					this.propagar(propagable, mapa);
 				}
 			}
 		}
 	}
+	
 
-		
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
 
@@ -173,4 +168,12 @@ public abstract class Hectarea implements IAfectable {
 		return false;
 	}
 
+	public int obtenerConsumo() {
+		if(this.construccion != null){
+			return (this.construccion).obtenerConsumoElectrico();
+		}
+		return 0;
+	}	
+
 }
+

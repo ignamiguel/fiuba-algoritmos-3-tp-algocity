@@ -128,7 +128,9 @@ public class PozoDeAguaTest {
 		
 		assertEquals(true,mapa.conectar(tuberia, new Coordenada(22,21)));
 		
-		assertEquals(true,mapa.conectar(tuberia, new Coordenada(23,21)));
+		Tuberia tuberia2 = new Tuberia();
+		
+		assertEquals(true,mapa.conectar(tuberia2, new Coordenada(23,21)));
 		
 		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21,21));
 		
@@ -271,5 +273,135 @@ public class PozoDeAguaTest {
 			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
 			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicioPropagable()));
 		}
+	}
+	
+	@Test
+	public void testPozoDeAguaPropagaAguaDesdeCoordenada5_23hasta5_0YTambienLasHectareasDesde0_3Hasta24_3(){
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		PozoDeAgua pozo = new PozoDeAgua();
+		
+		for(int i=0; i<24;i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(5,i)));
+		}
+		
+		for(int i=0; i<5;i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(i,3)));
+		}
+		
+		for(int i=6; i<24;i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(i,3)));
+		}
+		
+		mapa.construir(pozo,new Coordenada(5,23));
+		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5,23));
+		
+		hectareaConPozo.propagar(pozo, mapa);
+		
+		for(int i=0; i<23;i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+		
+		for(int i=0; i<24;i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(i,3))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(i,3))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+	}
+	
+	@Test
+	public void testPozoDeAguaPropagaAguaDesdeCoordenadaATodoElMapa(){
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		PozoDeAgua pozo = new PozoDeAgua();
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			for(int j=0; j<mapa.obtenerTamanio(); j++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(i,j)));
+			}
+		}
+		
+		mapa.construir(pozo,new Coordenada(5,23));
+		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5,23));
+		
+		hectareaConPozo.propagar(pozo, mapa);
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			for(int j=0; j<mapa.obtenerTamanio(); j++){
+				assertEquals(true,(mapa.obtenerHectarea(new Coordenada(i,j))).tieneConexion(pozo.obtenerConexionNecesaria()));
+				assertEquals(true,(mapa.obtenerHectarea(new Coordenada(i,j))).estaActivo(pozo.obtenerServicioPropagable()));
+			}
+		}
+	}
+	
+	@Test
+	public void testPozoDeAguaPropagaAguaATodaHectareasConectadasAlPozoPeroNoAlasQueTieneTuberiaPeroNoEstanConectadas(){
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		PozoDeAgua pozo = new PozoDeAgua();
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(5,i)));
+		}
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(7,i)));
+		}
+		
+		mapa.construir(pozo,new Coordenada(5,23));
+		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5,23));
+		
+		hectareaConPozo.propagar(pozo, mapa);
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(7,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(false,(mapa.obtenerHectarea(new Coordenada(7,i))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+	}
+	
+	@Test
+	public void testPozoDeAguaPropagaAguaATodaHectareasConectadasEnLaFilaDelPozoYAOtraFilaConTuberiasUnidasPorUnaTuberia(){
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		PozoDeAgua pozo = new PozoDeAgua();
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(5,i)));
+		}
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			Tuberia tuberia = new Tuberia();
+			assertEquals(true,mapa.conectar(tuberia, new Coordenada(7,i)));
+		}
+		
+		Tuberia tuberia = new Tuberia();
+		assertEquals(true,mapa.conectar(tuberia, new Coordenada(6,5)));
+		
+		mapa.construir(pozo,new Coordenada(5,23));
+		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5,23));
+		
+		hectareaConPozo.propagar(pozo, mapa);
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(5,i))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+		
+		for(int i=0; i<mapa.obtenerTamanio();i++){
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(7,i))).tieneConexion(pozo.obtenerConexionNecesaria()));
+			assertEquals(true,(mapa.obtenerHectarea(new Coordenada(7,i))).estaActivo(pozo.obtenerServicioPropagable()));
+		}
+		
+		assertEquals(true,(mapa.obtenerHectarea(new Coordenada(6,5))).estaActivo(pozo.obtenerServicioPropagable()));
+		
+		
 	}
 }
