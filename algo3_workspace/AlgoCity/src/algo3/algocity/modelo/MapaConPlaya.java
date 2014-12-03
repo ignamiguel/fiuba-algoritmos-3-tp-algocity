@@ -25,9 +25,6 @@ public class MapaConPlaya implements IGeneradorDeMapa {
 				}
 			}
 		}
-		
-		area[0][tamanio / 2] = new EntradaALaCiudad();
-
 	}
 
 	

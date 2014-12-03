@@ -6,6 +6,7 @@ public class Agua extends Hectarea {
 
 	public Agua() {
 		this.conexiones = new ArrayList<IConectable>();
+		this.servicios = new ArrayList<TipoDeServicio>();
 		this.construccion = null;
 	}
 
