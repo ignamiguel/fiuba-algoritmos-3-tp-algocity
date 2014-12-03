@@ -34,12 +34,12 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 	}
 
 	@Override
-	public TipoDeServicio obtenerServicio() {
+	public TipoDeServicio obtenerServicioPropagable() {
 		return TipoDeServicio.Cloacas;
 	}
 
 	@Override
-	public TipoDeConexion obtenerConexion() {
+	public TipoDeConexion obtenerConexionNecesaria() {
 		return TipoDeConexion.Tuberia;
 	}
 

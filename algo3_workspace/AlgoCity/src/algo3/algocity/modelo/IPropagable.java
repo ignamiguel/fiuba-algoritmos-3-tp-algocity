@@ -2,7 +2,8 @@ package algo3.algocity.modelo;
 
 public interface IPropagable {
 
-	public TipoDeServicio obtenerServicio();
-	public TipoDeConexion obtenerConexion();
+	public TipoDeServicio obtenerServicioPropagable();
+	public TipoDeConexion obtenerConexionNecesaria();	
+	//public void propagar();
 
 }

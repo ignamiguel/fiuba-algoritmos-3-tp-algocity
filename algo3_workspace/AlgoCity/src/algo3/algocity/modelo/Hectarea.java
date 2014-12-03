@@ -1,7 +1,9 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
+
 
 public abstract class Hectarea implements IAfectable {
 
@@ -111,10 +113,11 @@ public abstract class Hectarea implements IAfectable {
 
 			coordAux.disminuirX(1);
 			Hectarea hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicio())) {
+			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
 
-				if (hectarea.tieneConexion(propagable.obtenerConexion())) {
-					hectarea.activar(propagable.obtenerServicio());
+				if (hectarea.tieneConexion(propagable
+						.obtenerConexionNecesaria())) {
+					hectarea.activar(propagable.obtenerServicioPropagable());
 					hectarea.propagar(propagable, mapa);
 				}
 			}
@@ -123,9 +126,10 @@ public abstract class Hectarea implements IAfectable {
 			coordAux.aumentarY(1);
 			hectarea = mapa.obtenerHectarea(coordAux);
 
-			if (!hectarea.estaActivo(propagable.obtenerServicio())) {
-				if (hectarea.tieneConexion(propagable.obtenerConexion())) {
-					hectarea.activar(propagable.obtenerServicio());
+			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
+				if (hectarea.tieneConexion(propagable
+						.obtenerConexionNecesaria())) {
+					hectarea.activar(propagable.obtenerServicioPropagable());
 					hectarea.propagar(propagable, mapa);
 				}
 			}
@@ -133,9 +137,10 @@ public abstract class Hectarea implements IAfectable {
 			coordAux.disminuirY(1);
 			coordAux.aumentarX(1);
 			hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicio())) {
-				if (hectarea.tieneConexion(propagable.obtenerConexion())) {
-					hectarea.activar(propagable.obtenerServicio());
+			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
+				if (hectarea.tieneConexion(propagable
+						.obtenerConexionNecesaria())) {
+					hectarea.activar(propagable.obtenerServicioPropagable());
 					hectarea.propagar(propagable, mapa);
 				}
 			}
@@ -143,15 +148,17 @@ public abstract class Hectarea implements IAfectable {
 			coordAux.disminuirX(1);
 			coordAux.disminuirY(1);
 			hectarea = mapa.obtenerHectarea(coordAux);
-			if (!hectarea.estaActivo(propagable.obtenerServicio())) {
-				if (hectarea.tieneConexion(propagable.obtenerConexion())) {
-					hectarea.activar(propagable.obtenerServicio());
+			if (!hectarea.estaActivo(propagable.obtenerServicioPropagable())) {
+				if (hectarea.tieneConexion(propagable
+						.obtenerConexionNecesaria())) {
+					hectarea.activar(propagable.obtenerServicioPropagable());
 					hectarea.propagar(propagable, mapa);
 				}
 			}
 		}
 	}
 
+		
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
 
