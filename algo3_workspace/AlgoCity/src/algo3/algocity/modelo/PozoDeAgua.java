@@ -43,4 +43,12 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 		return TipoDeConexion.Tuberia;
 	}
 
+	@Override
+	public boolean consumirse(Hectarea hectarea) {
+		return true;
+	}
+
+	public int obtenerConsumoElectrico(){
+		return 0;
+	}
 }

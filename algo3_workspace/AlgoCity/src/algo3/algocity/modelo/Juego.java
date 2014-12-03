@@ -12,6 +12,8 @@ public class Juego {
 
 	private ArrayList<PozoDeAgua> pozos;
 	
+	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
+	
 	private int dinero; 
 
 	public Juego() {

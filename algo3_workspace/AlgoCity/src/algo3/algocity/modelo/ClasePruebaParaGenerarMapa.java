@@ -4,10 +4,11 @@ package algo3.algocity.modelo;
 public class ClasePruebaParaGenerarMapa implements IGeneradorDeMapa {
 
 	private int tamanio;
+	private Coordenada entradaALaCiudad;
 
 	public ClasePruebaParaGenerarMapa() {
-
 		tamanio = 5;
+		entradaALaCiudad = new Coordenada(0,2);
 	}
 
 	public void generarArea(Hectarea[][] area) {
@@ -24,6 +25,11 @@ public class ClasePruebaParaGenerarMapa implements IGeneradorDeMapa {
 	public int obtenerTamanio() {
 
 		return tamanio;
+	}
+
+	@Override
+	public Coordenada obtenerEntradaALaCiudad() {
+		return entradaALaCiudad;
 	}
 
 }

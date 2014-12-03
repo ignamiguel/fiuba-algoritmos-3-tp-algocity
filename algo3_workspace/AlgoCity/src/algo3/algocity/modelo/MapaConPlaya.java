@@ -3,10 +3,11 @@ package algo3.algocity.modelo;
 public class MapaConPlaya implements IGeneradorDeMapa {
 	
 	private int tamanio;
-	
+	private Coordenada entradaALaCiudad;
 	
 	public MapaConPlaya(){
 		this.tamanio = 25;
+		this.entradaALaCiudad = new Coordenada(0,12);
 	}
 	
 	public void generarArea(Hectarea[][] area) {
@@ -30,6 +31,12 @@ public class MapaConPlaya implements IGeneradorDeMapa {
 	
 	public int obtenerTamanio() {
 		return tamanio;
+	}
+
+
+	@Override
+	public Coordenada obtenerEntradaALaCiudad() {
+		return entradaALaCiudad;
 	}
 
 }
