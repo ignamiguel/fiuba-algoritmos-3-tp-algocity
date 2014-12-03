@@ -2,39 +2,24 @@ package algo3.algocity.modelo;
 
 public class CentralMineral extends CentralElectrica {
 
-	
-	public CentralMineral(){
+	public CentralMineral() {
 		this.conectadaARedDeAgua = false;
-		this.capacidadDeAbastecimiento = 400;
-		this.radioDeCovertura = 10;
-		this.cargarCosto(3000);
-		this.cargarSalud(100);		
+		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_MINERAL;
+		this.radioDeCovertura = Configuracion.RADIO_COVERT_CENTRAL_MINERAL;
+		this.costo = Configuracion.COSTO_CENTRAl_MINERAL;
+		this.salud = Configuracion.SALUD_INICIAL;
 	}
-	
-	
-	
-	//metodos publicos
+
+	// metodos publicos
 	public int darEnergia() {
-		
-	return 0;
+
+		return 0;
 	}
-
-
-
-	@Override
-	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
 
 	@Override
 	public void brindarServicio(Hectarea hectarea) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

@@ -13,7 +13,7 @@ public class ConstruccionDeEdificiosTest {
 		Residencia unaResidencia = new Residencia();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaResidencia);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaResidencia);
+		assertEquals(unTerreno.obtenerConstruccion(),unaResidencia);
 
 	}
 	
@@ -23,8 +23,8 @@ public class ConstruccionDeEdificiosTest {
 		Residencia unaResidencia = new Residencia();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaResidencia);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaResidencia);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaResidencia);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -33,7 +33,7 @@ public class ConstruccionDeEdificiosTest {
 		Comercio unComercio = new Comercio();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unComercio);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unComercio);
+		assertEquals(unTerreno.obtenerConstruccion(),unComercio);
 
 	}
 	
@@ -43,8 +43,8 @@ public class ConstruccionDeEdificiosTest {
 		Comercio unComercio = new Comercio();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unComercio);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unComercio);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unComercio);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -53,7 +53,7 @@ public class ConstruccionDeEdificiosTest {
 		Industria unaIndustria = new Industria();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaIndustria);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaIndustria);
+		assertEquals(unTerreno.obtenerConstruccion(),unaIndustria);
 
 	}
 	
@@ -63,8 +63,8 @@ public class ConstruccionDeEdificiosTest {
 		Industria unaIndustria = new Industria();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaIndustria);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaIndustria);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaIndustria);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -73,7 +73,7 @@ public class ConstruccionDeEdificiosTest {
 		CentralEolica unaCentralEolica = new CentralEolica();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaCentralEolica);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaCentralEolica);
+		assertEquals(unTerreno.obtenerConstruccion(),unaCentralEolica);
 
 	}
 	
@@ -83,8 +83,8 @@ public class ConstruccionDeEdificiosTest {
 		CentralEolica unaCentralEolica = new CentralEolica();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaCentralEolica);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaCentralEolica);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaCentralEolica);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -93,7 +93,7 @@ public class ConstruccionDeEdificiosTest {
 		CentralMineral unaCentralMineral = new CentralMineral();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaCentralMineral);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaCentralMineral);
+		assertEquals(unTerreno.obtenerConstruccion(),unaCentralMineral);
 
 	}
 	
@@ -103,8 +103,8 @@ public class ConstruccionDeEdificiosTest {
 		CentralMineral unaCentralMineral = new CentralMineral();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaCentralMineral);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaCentralMineral);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaCentralMineral);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -113,7 +113,7 @@ public class ConstruccionDeEdificiosTest {
 		CentralNuclear unaCentralNuclear = new CentralNuclear();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaCentralNuclear);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaCentralNuclear);
+		assertEquals(unTerreno.obtenerConstruccion(),unaCentralNuclear);
 
 	}
 	
@@ -123,8 +123,8 @@ public class ConstruccionDeEdificiosTest {
 		CentralNuclear unaCentralNuclear = new CentralNuclear();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaCentralNuclear);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaCentralNuclear);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaCentralNuclear);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -133,7 +133,7 @@ public class ConstruccionDeEdificiosTest {
 		PozoDeAgua unPozoDeAgua = new PozoDeAgua();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unPozoDeAgua);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),unPozoDeAgua);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),unPozoDeAgua);
 
 	}
 	
@@ -143,8 +143,8 @@ public class ConstruccionDeEdificiosTest {
 		PozoDeAgua unPozoDeAgua = new PozoDeAgua();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unPozoDeAgua);
-		Assert.assertNotSame(unTerreno.obtenerSuConstruccion(), unPozoDeAgua);
-		assertEquals(unTerreno.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unTerreno.obtenerConstruccion(), unPozoDeAgua);
+		assertEquals(unTerreno.obtenerConstruccion(),null);
 	}
 	
 	@Test	
@@ -153,7 +153,7 @@ public class ConstruccionDeEdificiosTest {
 		EstacionDeBomberos unaEstacionDeBomberos = new EstacionDeBomberos();
 		Terreno unTerreno = new Terreno();
 		unTerreno.construir(unaEstacionDeBomberos);
-		assertEquals(unTerreno.obtenerSuConstruccion(),unaEstacionDeBomberos);
+		assertEquals(unTerreno.obtenerConstruccion(),unaEstacionDeBomberos);
 
 	}
 	
@@ -163,7 +163,7 @@ public class ConstruccionDeEdificiosTest {
 		EstacionDeBomberos unaEstacionDeBomberos = new EstacionDeBomberos();
 		Agua unaHectareaAgua = new Agua();
 		unaHectareaAgua.construir(unaEstacionDeBomberos);
-		Assert.assertNotSame(unaHectareaAgua.obtenerSuConstruccion(), unaEstacionDeBomberos);
-		assertEquals(unaHectareaAgua.obtenerSuConstruccion(),null);
+		Assert.assertNotSame(unaHectareaAgua.obtenerConstruccion(), unaEstacionDeBomberos);
+		assertEquals(unaHectareaAgua.obtenerConstruccion(),null);
 	}
 }

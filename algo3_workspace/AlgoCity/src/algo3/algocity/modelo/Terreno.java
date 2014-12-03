@@ -1,76 +1,59 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Terreno extends Hectarea{
+public class Terreno extends Hectarea {
+
 	
-	
-	public Terreno(){
-		
-		servicios = new ArrayList<Conexiones>();
-		construccion=null;
+
+	public Terreno() {
+		this.conexiones = new ArrayList<IConectable>();
+		this.servicios = new ArrayList<TipoDeServicio>();
+		this.construccion = null;
 	}
-	
-	public String obtenerNombre(){
+
+	public String obtenerNombre() {
 		return "Terreno";
 	}
- 
-	public void agregarServicio(Conexiones unServicio) {
 
-		if (!(this.tieneElServicio(unServicio)))
-            servicios.add(unServicio);
-		
+	public boolean permite(Construccion construccion) {
+		return construccion.puedoEn(this);
 	}
 
-	
-	public void quitarServicio(Conexiones unServicio) {
-
-		if(this.tieneElServicio(unServicio))
-            servicios.remove(unServicio);
-		
-	}
-
-	
-	public boolean tieneElServicio(Conexiones unServicio) {
-	      boolean tieneServicio = false;
-	      String servicioABuscar = unServicio.obtenerServicio();
-		  Iterator<Conexiones> iterador = servicios.iterator();
-	      while(iterador.hasNext()){
-	    	  Conexiones conexion = iterador.next();
-	    	  String servicio = conexion.obtenerServicio();
-	    	  if (servicio.equals(servicioABuscar))
-	    		  tieneServicio=true;
-	    	  
-	      }
-	      return tieneServicio;
-			//return(servicios.contains(unServicio));
-	}
-
-	public boolean tieneLuz(){
-		
-		Iterator<Conexiones> item = servicios.iterator();
-		while(item.hasNext()){
-			
-			IServicio unServicio = (IServicio)item.next();
-			if(unServicio.obtenerServicio()=="luz"){
-				
-				return (unServicio.estaActivo());
-			}
-			
+	public boolean conectar(Ruta ruta) {
+		if(ruta.puedoEn(this)){
+		this.conexiones.add(ruta);
+		return true;
 		}
-	return false;
+		return false;
 	}
 
-	public void construir(Construccion unaConstruccion){
-        if (this.puedoConstruirEdificio())
-        {
-            if(unaConstruccion.puedoEn(this))
-                {   construccion= unaConstruccion;
-                    unaConstruccion.brindarServicio(this);
-                }
-        }
+	public boolean conectar(Tuberia tuberia) {
+		if(tuberia.puedoEn(this)){
+			this.conexiones.add(tuberia);
+			return true;
+			}
+			return false;
+	}
 
+	public boolean conectar(LineaDeTension linea) {
+		if(linea.puedoEn(this)){
+			this.conexiones.add(linea);
+			return true;
+			}
+			return false;
 
 	}
+	
+
+
+	public void desactivar(TipoDeServicio servicio) {
+		this.servicios.remove(servicio);
+	}
+
+	@Override
+	public boolean permite(Conexion conexion) {
+		return conexion.puedoEn(this);
+	}
+
 }
