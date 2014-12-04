@@ -1,26 +1,28 @@
 package algo3.algocity.modelo;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
+
 
 import org.junit.Test;
 
 public class AguaTest {
 
 	@Test	
-	public void ConstruirUnPozoDeAguaEnAgua(){
+	public void ConstruirUnPozoDeAguaEnAguaVacia(){
 		
 		PozoDeAgua pda = new PozoDeAgua();
 		
 		Agua agua = new Agua();
 		
-		agua.construir(pda);
+		boolean resultado = agua.construir(pda);
 		
-		assertEquals(agua.obtenerSuConstruccion(), pda );
+		assertEquals(true, resultado);
+		
+		assertEquals(agua.obtenerConstruccion(), pda );
 	}
 	
 	@Test	
-	public void ConstruirUnaCentralElectricaEnAgua(){
+	public void ConstruirUnaCentralElectricaEnAguaVacia(){
 		
 		// Declaro una varibale CentralElectria
 		// para tratarlas de forma generica		
@@ -28,9 +30,11 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		agua.construir(ce);
+		boolean resultado = agua.construir(ce);		
 		
-		assertEquals(agua.obtenerSuConstruccion(), null);
+		assertEquals(false, resultado);
+		
+		assertEquals(agua.obtenerConstruccion(), null);
 	}
 	
 	@Test	
@@ -40,21 +44,26 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		agua.construir(edb);
+		boolean resultado = agua.construir(edb);
 		
-		assertEquals(agua.obtenerSuConstruccion(), null);
+		assertEquals(false, resultado);
+		
+		assertEquals(agua.obtenerConstruccion(), null);
 	}
 	
 	@Test	
 	public void ConstruirUnEdificioEnAgua(){		
 			
+		// Creo un edificio para trataro de forma generica
 		Edificio e = new Residencia();
 		
 		Agua agua = new Agua();
 		
-		agua.construir(e);
+		boolean resultado = agua.construir(e);
 		
-		assertEquals(agua.obtenerSuConstruccion(), null);
+		assertEquals(false, resultado);
+		
+		assertEquals(agua.obtenerConstruccion(), null);
 	}
 	
 	@Test	
@@ -64,15 +73,17 @@ public class AguaTest {
 		
 		Agua agua = new Agua();
 		
-		agua.construir(pda);
+		boolean resultado = agua.construir(pda);
+		
+		assertEquals(true, resultado);
 		
 		PozoDeAgua otroPda = new PozoDeAgua();
 		
-		agua.construir(otroPda);
+		resultado = agua.construir(otroPda);
 		
-		assertEquals(agua.obtenerSuConstruccion(), pda);
+		assertEquals(false, resultado);
 		
-		Assert.assertNotSame(agua.obtenerSuConstruccion(),otroPda);
+		assertEquals(agua.obtenerConstruccion(), pda);	
 		
 	}	
 	
