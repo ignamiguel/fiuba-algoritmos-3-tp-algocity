@@ -16,22 +16,17 @@ public class Residencia extends Edificio {
 	}
 
 	public void afectarCon(Godzilla godzilla) {
-		if(this.salud == 0){
+		if (this.salud == 0) {
 			return;
 		}
-		
-		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_RESIDENCIA * this.salud)/100;		
+
+		int averia = Configuracion.AVERIA_DE_GODZILLA_A_RESIDENCIA;
 		this.salud -= averia;
-		
-		if(this.salud < 0){
+
+		if (this.salud < 0) {
 			this.salud = 0;
 		}
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// No hace nada porque no tiene servicios para brindar
-
-	}
 
 }

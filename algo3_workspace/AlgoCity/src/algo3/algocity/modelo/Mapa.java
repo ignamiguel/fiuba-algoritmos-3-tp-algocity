@@ -12,7 +12,6 @@ public class Mapa {
 	private Hectarea area[][];
 	private int tamanio;
 	private Coordenada entradaAlaCiudad;
-	
 
 	ArrayList<Coordenada> pozos;
 
@@ -27,11 +26,11 @@ public class Mapa {
 		this.tamanio = generadorDeMapa.obtenerTamanio();
 		this.area = new Hectarea[tamanio][tamanio];
 		this.entradaAlaCiudad = generadorDeMapa.obtenerEntradaALaCiudad();
-		
+
 		this.pozos = new ArrayList<Coordenada>();
-		
+
 		generadorDeMapa.generarArea(this.area);
-		
+
 		this.construir(new EntradaAlaCiudad(), this.entradaAlaCiudad);
 		this.conectar(new Ruta(), this.entradaAlaCiudad);
 
@@ -68,44 +67,50 @@ public class Mapa {
 
 	}
 
+	public Coordenada obtenerEntradaALaCiudad() {
+		return this.entradaAlaCiudad;
+	}
+	
+	/*----- PROTOTIPO DE PROPAGAR DESDE MAPA ------*/
+
 	/*public boolean construir(PozoDeAgua pozo, Coordenada coordenada) {
-		if (!this.construir(pozo, coordenada)) {
-			return false;
-		}
-		this.pozos.add(coordenada);
-		return true;
+	if (!this.construir(pozo, coordenada)) {
+		return false;
+	}
+	this.pozos.add(coordenada);
+	return true;
 	}*/
 
 	public void propagarAgua() {
-		
-		ArrayList<Hectarea> superficie = this.obtenerSuperficiePropagable(pozos.get(0), new PozoDeAgua());
+	
+	ArrayList<Hectarea> superficie = this.obtenerSuperficiePropagable(pozos.get(0), new PozoDeAgua());
 
-		for (Hectarea hectarea : superficie) {
-			//hectarea.propagar();
-		}
-		
+	for (Hectarea hectarea : superficie) {
+		//hectarea.propagar();
 	}
+	
+}
 
 	private ArrayList<Hectarea> obtenerSuperficiePropagable(Coordenada origen,
-			IPropagable servicio) {
+		IPropagable servicio) {
 
-		Set<Hectarea> visitadas = new HashSet<Hectarea>();
-		visitadas.add(this.obtenerHectarea(origen));
-		Coordenada posicion = origen.copiar();
-		return this.buscarHectareas(posicion, servicio, visitadas);
+	Set<Hectarea> visitadas = new HashSet<Hectarea>();
+	visitadas.add(this.obtenerHectarea(origen));
+	Coordenada posicion = origen.copiar();
+	return this.buscarHectareas(posicion, servicio, visitadas);
 
-	}
+}
 
 	private ArrayList<Hectarea> buscarHectareas(Coordenada posicion,
-			IPropagable servicio, Set<Hectarea> visitadas) {
-		
+		IPropagable servicio, Set<Hectarea> visitadas) {
+	
 		ArrayList<Hectarea> superficie = new ArrayList<Hectarea>();		
-
+	
 		if (this.estaEnElMapaCoordenada(posicion.moverArriba())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
-
+	
 				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
 					superficie.add(h);
 					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
@@ -113,12 +118,12 @@ public class Mapa {
 			}
 		}
 		posicion.moverAbajo();
-
+	
 		if (this.estaEnElMapaCoordenada(posicion.moverAbajo())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
-
+	
 				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
 					superficie.add(h);
 					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
@@ -126,12 +131,12 @@ public class Mapa {
 			}
 		}
 		posicion.moverArriba();
-
+	
 		if (this.estaEnElMapaCoordenada(posicion.moverDerecha())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
-
+	
 				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
 					superficie.add(h);
 					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
@@ -139,12 +144,12 @@ public class Mapa {
 			}
 		}
 		posicion.moverIzquierda();
-
+	
 		if (this.estaEnElMapaCoordenada(posicion.moverIzquierda())) {
 			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
-
+	
 				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
 					superficie.add(h);
 					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
@@ -152,12 +157,8 @@ public class Mapa {
 			}
 		}
 		posicion.moverDerecha();
-
+	
 		return superficie;
 	}
-
-	public Coordenada obtenerEntradaALaCiudad() {
-		return this.entradaAlaCiudad;
-	}
-
+	
 }

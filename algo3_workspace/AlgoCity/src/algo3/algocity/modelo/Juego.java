@@ -12,7 +12,7 @@ public class Juego {
 
 	private ArrayList<PozoDeAgua> pozos;
 	
-	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
+	private ArrayList<EstacionDeBomberos> bomberos;
 	
 	private int dinero; 
 

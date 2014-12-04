@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import java.util.Iterator;
 
-
 public abstract class Hectarea implements IAfectable {
 
 	// Atributos de la clase
@@ -30,7 +29,6 @@ public abstract class Hectarea implements IAfectable {
 		}
 
 		this.construccion = construccion;
-		construccion.brindarServicio(this);
 		return true;
 
 	}
@@ -106,53 +104,56 @@ public abstract class Hectarea implements IAfectable {
 
 	public void propagar(IPropagable propagable, Mapa mapa) {
 
-		Coordenada coordAux = new Coordenada(ubicacion.obtenerX(),
-				ubicacion.obtenerY());
-		
-			coordAux.disminuirX(1);
-			if ((mapa).estaEnElMapaCoordenada(coordAux)){
-				Hectarea hectareaNorte = mapa.obtenerHectarea(coordAux);
-				hectareaNorte.activarServicioYPropagar(propagable, mapa);
-			}
+		Coordenada coordVecina = this.ubicacion.copiar();
 
-			coordAux.aumentarX(1);
-			coordAux.aumentarY(1);
-			
-			if ((mapa).estaEnElMapaCoordenada(coordAux)){
-				Hectarea hectareaEste = mapa.obtenerHectarea(coordAux);
-				hectareaEste.activarServicioYPropagar(propagable, mapa);
-			}
-
-			coordAux.disminuirY(1);
-			coordAux.aumentarX(1);
-			
-			if ((mapa).estaEnElMapaCoordenada(coordAux)){
-				Hectarea hectareaSur = mapa.obtenerHectarea(coordAux);
-				hectareaSur.activarServicioYPropagar(propagable, mapa);
-			}
-
-			coordAux.disminuirX(1);
-			coordAux.disminuirY(1);
-			
-			if ((mapa).estaEnElMapaCoordenada(coordAux)){
-				Hectarea hectareaOeste = mapa.obtenerHectarea(coordAux);
-				hectareaOeste.activarServicioYPropagar(propagable, mapa);
-			}
+		coordVecina.moverIzquierda();
+		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+			Hectarea hectareaNorte = mapa.obtenerHectarea(coordVecina);
+			hectareaNorte.activarServicioYPropagar(propagable, mapa);
 		}
-	
-	private void activarServicioYPropagar(IPropagable propagable, Mapa mapa) {
-		
-		if (!this.estaActivo(propagable.obtenerServicioPropagable())) {
 
-			if (this.tieneConexion(propagable.obtenerConexionNecesaria())) {
-				if(propagable.consumirse(this)){
-					this.activar(propagable.obtenerServicioPropagable());
-					this.propagar(propagable, mapa);
-				}
-			}
+		coordVecina.moverDerecha();
+		coordVecina.moverArriba();
+
+		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+			Hectarea hectareaEste = mapa.obtenerHectarea(coordVecina);
+			hectareaEste.activarServicioYPropagar(propagable, mapa);
+		}
+
+		coordVecina.moverAbajo();
+		coordVecina.moverDerecha();
+
+		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+			Hectarea hectareaSur = mapa.obtenerHectarea(coordVecina);
+			hectareaSur.activarServicioYPropagar(propagable, mapa);
+		}
+
+		coordVecina.moverIzquierda();
+		coordVecina.moverAbajo();
+
+		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+			Hectarea hectareaOeste = mapa.obtenerHectarea(coordVecina);
+			hectareaOeste.activarServicioYPropagar(propagable, mapa);
 		}
 	}
-	
+
+	private void activarServicioYPropagar(IPropagable servicio, Mapa mapa) {
+
+		if (this.estaActivo(servicio.obtenerServicioPropagable())) {
+			return;
+		}
+
+		if (!this.tieneConexion(servicio.obtenerConexionNecesaria())) {
+			return;
+		}
+
+		if (!servicio.puedoBrindarleElServicio(this)) {
+			return;
+		}
+
+		this.activar(servicio.obtenerServicioPropagable());
+		this.propagar(servicio, mapa);
+	}
 
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
@@ -169,11 +170,10 @@ public abstract class Hectarea implements IAfectable {
 	}
 
 	public int obtenerConsumo() {
-		if(this.construccion != null){
+		if (this.construccion != null) {
 			return (this.construccion).obtenerConsumoElectrico();
 		}
 		return 0;
-	}	
+	}
 
 }
-

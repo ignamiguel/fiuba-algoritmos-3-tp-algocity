@@ -12,14 +12,8 @@ public class CentralMineral extends CentralElectrica {
 
 	// metodos publicos
 	public int darEnergia() {
-
 		return 0;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

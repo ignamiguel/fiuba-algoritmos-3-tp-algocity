@@ -16,7 +16,7 @@ public class Tuberia extends Conexion {
 			return;
 		}
 
-		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_TUBERIA * this.salud) / 100;
+		int averia = Configuracion.AVERIA_DE_GODZILLA_A_TUBERIA;
 		this.salud -= averia;
 
 		if (this.salud < 0) {
@@ -63,10 +63,5 @@ public class Tuberia extends Conexion {
 		return 0;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
