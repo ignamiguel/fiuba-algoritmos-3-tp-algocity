@@ -1,46 +1,50 @@
 package algo3.algocity.modelo;
 
-public class PozoDeAgua extends Construccion implements IPropagable{
+public class EntradaAlaCiudad extends Construccion implements IPropagable{
 
-	public String obtenerNombre(){
-		return "Pozo de Agua";
+	public EntradaAlaCiudad(){
+		this.costo = 0;
+		this.salud = 100;
 	}
 	
+	@Override
 	public boolean puedoEn(Agua agua) {
-		return true;
-	}
-
-	public boolean puedoEn(Terreno terreno) {
 		return false;
 	}
 
 	@Override
+	public boolean puedoEn(Terreno terreno) {
+		return true;
+	}
+
+
+	@Override
 	public void afectarCon(Godzilla unGodzilla) {
-		//No es un edificio que sea daniable
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
-		//No es un edificio que sea daniable
-		
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public TipoDeServicio obtenerServicioPropagable() {
-		return TipoDeServicio.Cloacas;
+		return TipoDeServicio.AccesoAlTransito;
 	}
 
 	@Override
 	public TipoDeConexion obtenerConexionNecesaria() {
-		return TipoDeConexion.Tuberia;
+		return TipoDeConexion.Ruta;
 	}
 
 	@Override
 	public boolean puedoBrindarleElServicio(Hectarea hectarea) {
 		return true;
 	}
-
+	
 	public int obtenerConsumoElectrico(){
 		return 0;
 	}

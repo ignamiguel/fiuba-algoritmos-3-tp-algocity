@@ -1,26 +1,27 @@
 package algo3.algocity.modelo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class TerrenoTest {
 
 	@Test	
-	public void ConstruirUnPozoDeAguaEnTerreno(){
+	public void ConstruirUnPozoDeAguaEnTerrenoVacio(){
 		
 		PozoDeAgua pda = new PozoDeAgua();
 		
 		Terreno terreno = new Terreno();
 		
-		terreno.construir(pda);
+		boolean resultado = terreno.construir(pda);
 		
-		assertEquals(terreno.obtenerSuConstruccion(), null);
+		assertEquals(false, resultado);
+		
+		assertEquals(terreno.obtenerConstruccion(), null);
 	}
 	
 	@Test	
-	public void ConstruirUnaCentralElectricaEnTerreno(){
+	public void ConstruirUnaCentralElectricaEnTerrenoVacio(){
 		
 		// Declaro una varibale CentralElectria
 		// para tratarlas de forma generica		
@@ -28,33 +29,39 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();		
 		
-		terreno.construir(ce);
+		boolean resultado = terreno.construir(ce);
 		
-		assertEquals(terreno.obtenerSuConstruccion(), ce);
+		assertEquals(true, resultado);
+		
+		assertEquals(terreno.obtenerConstruccion(), ce);
 	}
 	
 	@Test	
-	public void ConstruirUnaEstacionDeBomberosEnTerreno(){		
+	public void ConstruirUnaEstacionDeBomberosEnTerrenoVacio(){		
 			
 		EstacionDeBomberos edb = new EstacionDeBomberos();
 		
 		Terreno terreno = new Terreno();
 		
-		terreno.construir(edb);
+		boolean resultado = terreno.construir(edb);
 		
-		assertEquals(terreno.obtenerSuConstruccion(), edb);
+		assertEquals(true, resultado);
+		
+		assertEquals(terreno.obtenerConstruccion(), edb);
 	}
 	
 	@Test	
-	public void ConstruirUnEdificioEnTerreno(){		
+	public void ConstruirUnEdificioEnTerrenoVacio(){		
 			
 		Edificio e = new Residencia();
 		
 		Terreno terreno = new Terreno();
 		
-	    terreno.construir(e);
+	    boolean resultado = terreno.construir(e);
 		
-		assertEquals(terreno.obtenerSuConstruccion(), e);
+	    assertEquals(true, resultado);
+	    
+		assertEquals(terreno.obtenerConstruccion(), e);
 	}
 	
 	@Test	
@@ -66,15 +73,17 @@ public class TerrenoTest {
 		
 		Terreno terreno = new Terreno();
 		
-		terreno.construir(edificio);
+		boolean resultado = terreno.construir(edificio);
 		
-		assertEquals(terreno.obtenerSuConstruccion(), edificio);
+		assertEquals(true, resultado);		
 		
 		Edificio otroEdificio = new Residencia();
 		
-		terreno.construir(otroEdificio);
+		resultado = terreno.construir(otroEdificio);
 		
-		Assert.assertNotSame(terreno.obtenerSuConstruccion(),otroEdificio);
+		assertEquals(false, resultado);
+		
+		assertEquals(terreno.obtenerConstruccion(), edificio);
 		
 	}
 	

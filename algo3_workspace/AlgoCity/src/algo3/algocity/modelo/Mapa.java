@@ -1,105 +1,164 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+//import java.util.ArrayList;
+//import java.util.Iterator;
 
 public class Mapa {
 
 	private Hectarea area[][];
-	private int tamanio;	
-	// para hacer el refresh de cada turno recorre la lista y le dice a cada linea actualizate,Pablo	
-	private ArrayList<LineaDeTension> lineasDelMapa;
-	
+	private int tamanio;
+	private Coordenada entradaAlaCiudad;
 
-	public Mapa(IGeneradorDeMapa generadorDeMapa){
+	ArrayList<Coordenada> pozos;
 
+	// para hacer el refresh de cada turno recorre la lista y le dice a cada
+	// linea actualizate,Pablo
+	// La linea de tension ahora esta en las hectareas en la lista de
+	// conecciones
+	// private ArrayList<LineaDeTension> lineasDelMapa;
 
-		//Modifique la creacion para que tenga agua depues de la columna 20
-		this.area = new Hectarea[25][25];
-
-		for (int i=0; i < area.length; i++){
-			for (int j=0; j < area[i].length; j++){
-				if(j<20){
-					area[i][j] = new Terreno();
-				}
-				else{
-					area[i][j] = new Agua();
-				}
-			}
-		}
+	public Mapa(IGeneradorDeMapa generadorDeMapa) {
 
 		this.tamanio = generadorDeMapa.obtenerTamanio();
-		area = new Hectarea[tamanio][tamanio];
+		this.area = new Hectarea[tamanio][tamanio];
+		this.entradaAlaCiudad = generadorDeMapa.obtenerEntradaALaCiudad();
+
+		this.pozos = new ArrayList<Coordenada>();
+
 		generadorDeMapa.generarArea(this.area);
 
-		lineasDelMapa = new ArrayList<LineaDeTension>();
+		this.construir(new EntradaAlaCiudad(), this.entradaAlaCiudad);
+		this.conectar(new Ruta(), this.entradaAlaCiudad);
 
 	}
 
 	public Hectarea obtenerHectarea(Coordenada coordenada) {
-
+		if (!this.estaEnElMapaCoordenada(coordenada)) {
+			throw new CoordenadaInvalidaExcepcion();
+		}
 		return area[coordenada.obtenerX()][coordenada.obtenerY()];
 	}
 
-
-	public Hectarea obtenerHectarea(int coorX,int coorY){
-        return area[coorX][coorY];
+	public boolean construir(Construccion construccion, Coordenada coordenada) {
+		Hectarea hectarea = this.obtenerHectarea(coordenada);
+		return hectarea.construir(construccion);
 	}
 
-
-	public void crearTuberia(Coordenada coordenada){
-        Tuberia tuberia= new Tuberia();
-        Hectarea hectarea = this.obtenerHectarea(coordenada);
-        if (!(hectarea.tieneElServicio(tuberia)))
-        {   Coordenada coordenadaAux= new Coordenada(coordenada.obtenerX(),coordenada.obtenerY());
-            coordenadaAux.aumentarX(1);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
-                	hectarea.agregarServicio(tuberia);
-            coordenadaAux.disminuirX(2);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
-            	hectarea.agregarServicio(tuberia);
-            coordenadaAux.aumentarX(1);
-            coordenadaAux.aumentarY(1);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)))
-                hectarea.agregarServicio(tuberia);
-            coordenadaAux.disminuirY(2);
-            if ( (this.estaEnElMapaCoordenada(coordenadaAux)) && (this.obtenerHectarea(coordenadaAux).tieneElServicio(tuberia)) )
-                hectarea.agregarServicio(tuberia);
-        }
-
-	}
-
-    public void construir(Construccion unaConstruccion, Coordenada coordenada){
-        Hectarea hectarea = this.obtenerHectarea(coordenada);
-        hectarea.construir(unaConstruccion);
-    }
-
-
-	public void crearLineaDeTensionDesdeHasta(Coordenada coordenada,
-			Coordenada coordenada2) {
-
-		LineaDeTension unaLinea = new LineaDeTension();
-
-		this.lineasDelMapa.add(unaLinea);
-
-		for(int x = (coordenada.obtenerX()); x<= (coordenada2.obtenerX()); x++ ){
-
-			for(int y = (coordenada.obtenerY()); y<= (coordenada2.obtenerY()); y++ ){
-
-				(area[x][y]).agregarServicio(unaLinea);
-
-			}
-		}
-
-	}
-	
-	
-	public boolean estaEnElMapaCoordenada(Coordenada coord){
+	public boolean estaEnElMapaCoordenada(Coordenada coord) {
 		int coorX = coord.obtenerX();
 		int coorY = coord.obtenerY();
-		if ((coorX>=0) & (coorX<tamanio) & (coorY>=0) & (coorY<tamanio))
+		if ((coorX >= 0) & (coorX < tamanio) & (coorY >= 0) & (coorY < tamanio))
 			return true;
 		else
 			return false;
 	}
 
+	public int obtenerTamanio() {
+		return this.tamanio;
+	}
+
+	public boolean conectar(Conexion conexion, Coordenada ubicacion) {
+		Hectarea hectarea = this.obtenerHectarea(ubicacion);
+		return hectarea.conectar(conexion);
+
+	}
+
+	public Coordenada obtenerEntradaALaCiudad() {
+		return this.entradaAlaCiudad;
+	}
+	
+	/*----- PROTOTIPO DE PROPAGAR DESDE MAPA ------*/
+
+	/*public boolean construir(PozoDeAgua pozo, Coordenada coordenada) {
+	if (!this.construir(pozo, coordenada)) {
+		return false;
+	}
+	this.pozos.add(coordenada);
+	return true;
+	}*/
+
+	public void propagarAgua() {
+	
+	ArrayList<Hectarea> superficie = this.obtenerSuperficiePropagable(pozos.get(0), new PozoDeAgua());
+
+	for (Hectarea hectarea : superficie) {
+		//hectarea.propagar();
+	}
+	
+}
+
+	private ArrayList<Hectarea> obtenerSuperficiePropagable(Coordenada origen,
+		IPropagable servicio) {
+
+	Set<Hectarea> visitadas = new HashSet<Hectarea>();
+	visitadas.add(this.obtenerHectarea(origen));
+	Coordenada posicion = origen.copiar();
+	return this.buscarHectareas(posicion, servicio, visitadas);
+
+}
+
+	private ArrayList<Hectarea> buscarHectareas(Coordenada posicion,
+		IPropagable servicio, Set<Hectarea> visitadas) {
+	
+		ArrayList<Hectarea> superficie = new ArrayList<Hectarea>();		
+	
+		if (this.estaEnElMapaCoordenada(posicion.moverArriba())) {
+			Hectarea h = this.obtenerHectarea(posicion);
+			if (!visitadas.contains(h)) {
+				visitadas.add(h);
+	
+				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
+					superficie.add(h);
+					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
+				}
+			}
+		}
+		posicion.moverAbajo();
+	
+		if (this.estaEnElMapaCoordenada(posicion.moverAbajo())) {
+			Hectarea h = this.obtenerHectarea(posicion);
+			if (!visitadas.contains(h)) {
+				visitadas.add(h);
+	
+				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
+					superficie.add(h);
+					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
+				}
+			}
+		}
+		posicion.moverArriba();
+	
+		if (this.estaEnElMapaCoordenada(posicion.moverDerecha())) {
+			Hectarea h = this.obtenerHectarea(posicion);
+			if (!visitadas.contains(h)) {
+				visitadas.add(h);
+	
+				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
+					superficie.add(h);
+					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
+				}
+			}
+		}
+		posicion.moverIzquierda();
+	
+		if (this.estaEnElMapaCoordenada(posicion.moverIzquierda())) {
+			Hectarea h = this.obtenerHectarea(posicion);
+			if (!visitadas.contains(h)) {
+				visitadas.add(h);
+	
+				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
+					superficie.add(h);
+					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
+				}
+			}
+		}
+		posicion.moverDerecha();
+	
+		return superficie;
+	}
+	
 }

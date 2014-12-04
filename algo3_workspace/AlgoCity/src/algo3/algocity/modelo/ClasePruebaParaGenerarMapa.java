@@ -4,32 +4,32 @@ package algo3.algocity.modelo;
 public class ClasePruebaParaGenerarMapa implements IGeneradorDeMapa {
 
 	private int tamanio;
-	
-	public ClasePruebaParaGenerarMapa(){
-		
-		tamanio=5;
+	private Coordenada entradaALaCiudad;
+
+	public ClasePruebaParaGenerarMapa() {
+		tamanio = 5;
+		entradaALaCiudad = new Coordenada(0,2);
 	}
-	
 
 	public void generarArea(Hectarea[][] area) {
-		
-		Terreno unTerreno = new Terreno();
-		
-		for(int x = 0; x< tamanio; x++ ){
-			
-			for(int y = 0; y< tamanio; y++ ){
-				
-				area[x][y] = unTerreno;
-					
+
+		for (int i = 0; i < tamanio; i++) {
+			for (int j = 0; j < tamanio; j++) {
+
+				area[i][j] = new Terreno();
 			}
 		}
-				
-		
-		
+
 	}
+
 	public int obtenerTamanio() {
-		
+
 		return tamanio;
+	}
+
+	@Override
+	public Coordenada obtenerEntradaALaCiudad() {
+		return entradaALaCiudad;
 	}
 
 }

@@ -2,32 +2,24 @@ package algo3.algocity.modelo;
 
 public class CentralNuclear extends CentralElectrica {
 
-	public CentralNuclear(){
+	public CentralNuclear() {
 		this.conectadaARedDeAgua = false;
-		this.capacidadDeAbastecimiento = 1000;
-		this.radioDeCovertura = 25;	
-		this.cargarCosto(10000);
-		this.cargarSalud(100);		
-		
+		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_NUCLEAR;
+		this.radioDeCovertura = Configuracion.RADIO_COVERT_CENTRAL_NUCLEAR;
+		this.costo = Configuracion.COSTO_CENTRAl_NUCLEAR;
+		this.salud = Configuracion.SALUD_INICIAL;
+
 	}
-	
-	//metodos publicos
+
+	// metodos publicos
 	public int darEnergia() {
-		
+
 		return 0;
 	}
 
-
-	@Override
-	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	public void brindarServicio(Hectarea hectarea) {
 		// TODO Auto-generated method stub
-		
-	}	
+
+	}
 
 }
