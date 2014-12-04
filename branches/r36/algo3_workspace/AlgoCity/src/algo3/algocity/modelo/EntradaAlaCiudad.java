@@ -17,11 +17,6 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 		return true;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {
@@ -46,7 +41,7 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 	}
 
 	@Override
-	public boolean consumirse(Hectarea hectarea) {
+	public boolean puedoBrindarleElServicio(Hectarea hectarea) {
 		return true;
 	}
 	

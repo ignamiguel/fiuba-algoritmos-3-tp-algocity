@@ -4,6 +4,6 @@ public interface IPropagable {
 
 	public TipoDeServicio obtenerServicioPropagable();
 	public TipoDeConexion obtenerConexionNecesaria();	
-	public boolean consumirse(Hectarea hectarea);
+	public boolean puedoBrindarleElServicio(Hectarea hectarea);
 
 }

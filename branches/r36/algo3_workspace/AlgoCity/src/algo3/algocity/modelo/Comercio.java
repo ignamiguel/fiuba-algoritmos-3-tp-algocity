@@ -33,9 +33,4 @@ public class Comercio extends Edificio {
 		return false;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// No brinda servicios
-
-	}
 }

@@ -50,11 +50,6 @@ public class EstacionDeBomberos extends Construccion {
 		return true;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// Falta ver que poner en esta parte
-
-	}
 
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {

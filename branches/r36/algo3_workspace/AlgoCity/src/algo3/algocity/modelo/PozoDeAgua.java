@@ -5,14 +5,7 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 	public String obtenerNombre(){
 		return "Pozo de Agua";
 	}
-
-	public void brindarServicio(Hectarea hectarea){
-        // TODO: re implementar 
-		// utilizando la nueva forma de conexiones y servicios
-		
-		// hectarea.agregarServicio(new Tuberia());
-	}
-
+	
 	public boolean puedoEn(Agua agua) {
 		return true;
 	}
@@ -44,7 +37,7 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 	}
 
 	@Override
-	public boolean consumirse(Hectarea hectarea) {
+	public boolean puedoBrindarleElServicio(Hectarea hectarea) {
 		return true;
 	}
 

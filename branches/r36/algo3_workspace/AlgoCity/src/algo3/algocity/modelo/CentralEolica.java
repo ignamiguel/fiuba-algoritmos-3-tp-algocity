@@ -17,12 +17,6 @@ public class CentralEolica extends CentralElectrica {
 		return 0;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// no brinda servicio
-
-	}
-
 	
 
 }

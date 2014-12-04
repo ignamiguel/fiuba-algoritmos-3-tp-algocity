@@ -34,7 +34,7 @@ public class LineaDeTension extends Conexion {
 			return;
 		}
 
-		int averia = (Configuracion.AVERIA_DE_GODZILLA_A_LINEA_DE_TENSION * this.salud) / 100;
+		int averia = Configuracion.AVERIA_DE_GODZILLA_A_LINEA_DE_TENSION;
 		this.salud -= averia;
 
 		if (this.salud < 0) {
@@ -69,11 +69,6 @@ public class LineaDeTension extends Conexion {
 		return Configuracion.COSTO_LINEA_DE_TENSION;
 	}
 
-	@Override
-	public void brindarServicio(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public TipoDeConexion obtenerTipo() {
