@@ -184,4 +184,5 @@ public class JuegoTest {
 		
 		assertEquals(98500, dinero);
 	}
+
 }

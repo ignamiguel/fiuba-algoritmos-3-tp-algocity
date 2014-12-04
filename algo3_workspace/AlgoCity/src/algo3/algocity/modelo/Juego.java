@@ -6,21 +6,36 @@ public class Juego {
 
 	private Mapa mapa;
 
-	private ArrayList<Edificio> edificios;
+	private ArrayList<Hectarea> hectareasConCentral;
 
-	private ArrayList<CentralElectrica> centrales;
+	private ArrayList<Hectarea> hectareasConPozo;
 
-	private ArrayList<PozoDeAgua> pozos;
+	private ArrayList<Hectarea> hectareasConBomberos;
+
+	private ArrayList<Hectarea> hectareasResidenciales; 
 	
-	private ArrayList<EstacionDeBomberos> bomberos;
-	
-	private int dinero; 
+	private ArrayList<Hectarea> hectareasIndustriales;
 
+	private ArrayList<Hectarea> hectareasComerciales;
+
+	private Hectarea hectareaEntradaALaCiudad;
+	
+	private int dinero;
+
+	
 	public Juego() {
 		this.mapa = new Mapa(new MapaConPlaya());
-		this.edificios = new ArrayList<Edificio>();
-		this.centrales = new ArrayList<CentralElectrica>();
-		this.pozos = new ArrayList<PozoDeAgua>();
+		
+		this.hectareasResidenciales = new ArrayList<Hectarea>();
+		this.hectareasIndustriales = new ArrayList<Hectarea>();
+		this.hectareasComerciales = new ArrayList<Hectarea>();
+		
+		this.hectareasConCentral = new ArrayList<Hectarea>();
+		this.hectareasConPozo = new ArrayList<Hectarea>();
+		this.hectareasConBomberos = new ArrayList<Hectarea>();
+		
+		this.hectareaEntradaALaCiudad = this.mapa.obtenerHectarea(mapa.obtenerEntradaALaCiudad());
+		
 		this.dinero = Configuracion.DINERO_INICIAL;
 	}
 
@@ -32,61 +47,55 @@ public class Juego {
 		return this.mapa.construir(construccion, coordenada);
 	}
 
-	public boolean insertar(Edificio edificio, Coordenada coordenada) {
-		if(this.dinero < edificio.obtenerCosto()){
-			return false;
-		}
-		
-		if (!this.construir(edificio, coordenada)) {
-			return false;
-		}
-		
-		this.dinero -= edificio.obtenerCosto();
-
-		// TODO: agregar la coordenada a la lista
-		this.edificios.add(edificio);
-		
+	public boolean insertar(Residencia residencia, Coordenada coordenada) {
+		if(!this.sePuedeInsertar(residencia, coordenada)) return false;
+		this.hectareasResidenciales.add(mapa.obtenerHectarea(coordenada));
 		return true;
 	}
 
 	public boolean insertar(CentralElectrica central, Coordenada coordenada) {
-		if(this.dinero < central.obtenerCosto()){
-			return false;
-		}
-		
-		if (!this.construir(central, coordenada)) {
-			return false;
-		}
-
-		this.dinero -= central.obtenerCosto();
-		this.centrales.add(central);
+		if(!this.sePuedeInsertar(central, coordenada)) return false;
+		this.hectareasConCentral.add(mapa.obtenerHectarea(coordenada));
 		return true;
-
 	}
 
 	public boolean insertar(PozoDeAgua pozo, Coordenada coordenada) {
-		if (!this.construir(pozo, coordenada)) {
-			return false;
-		}
-
-		this.pozos.add(pozo);
+		if(!this.sePuedeInsertar(pozo, coordenada)) return false;
+		this.hectareasConPozo.add(mapa.obtenerHectarea(coordenada));
 		return true;
 	}
 
 	
 	public boolean insertar(EstacionDeBomberos bomberos, Coordenada coordenada) {
-		if(this.dinero < bomberos.obtenerCosto()){
-			return false;
-		}
+		if(!this.sePuedeInsertar(bomberos, coordenada)) return false;
+		this.hectareasConBomberos.add(mapa.obtenerHectarea(coordenada));
+		return true;
+	}
+	
+	public boolean insertar(Industria industria, Coordenada coordenada) {
+		if(!this.sePuedeInsertar(industria, coordenada)) return false;
+		this.hectareasIndustriales.add(mapa.obtenerHectarea(coordenada));
+		return true;
 		
-		if (!this.construir(bomberos, coordenada)) {
-			return false;
-		}
-		
-		this.dinero -= bomberos.obtenerCosto();
+	}
 
-		// TODO: Ver que se hace con los bomberos		
+	public boolean insertar(Comercio comercio, Coordenada coordenada) {
+		if(!this.sePuedeInsertar(comercio, coordenada)) return false;
+		this.hectareasComerciales.add(mapa.obtenerHectarea(coordenada));
+		return true;
 		
+	}
+	
+	public boolean sePuedeInsertar(IConstruible construible, Coordenada coordenada){
+		if(this.dinero < construible.obtenerCosto()){
+			return false;
+		}
+		
+		if (!this.construir((Construccion)construible, coordenada)) {
+			return false;
+		}
+		
+		this.dinero -= construible.obtenerCosto();
 		return true;
 	}
 	
