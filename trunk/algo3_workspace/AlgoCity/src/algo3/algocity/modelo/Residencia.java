@@ -1,5 +1,7 @@
 package algo3.algocity.modelo;
 
+import java.util.ArrayList;
+
 public class Residencia extends Edificio {
 
 	private int capacidad;
@@ -26,6 +28,21 @@ public class Residencia extends Edificio {
 		if (this.salud < 0) {
 			this.salud = 0;
 		}
+	}
+
+	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
+		int capacidadADevolver = this.capacidad;
+		if(!servicios.contains(TipoDeServicio.Cloacas))
+			capacidadADevolver -= 25;
+		if(!servicios.contains(TipoDeServicio.Electrico))
+			capacidadADevolver -= 25;
+		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
+			capacidadADevolver -= 25;
+		if(salud != Configuracion.SALUD_INICIAL)
+			capacidadADevolver -= 25;
+		
+		return capacidadADevolver;
+		
 	}
 
 

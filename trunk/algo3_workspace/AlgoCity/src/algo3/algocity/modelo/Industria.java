@@ -1,5 +1,7 @@
 package algo3.algocity.modelo;
 
+import java.util.ArrayList;
+
 public class Industria extends Edificio {
 
 	private int puestosDeTrabajo;
@@ -44,6 +46,17 @@ public class Industria extends Edificio {
 	public void brindarServicio(Hectarea hectarea) {
 		// No brinda servicios
 
+	}
+
+	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
+		int puestosADevolver = this.puestosDeTrabajo;
+		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
+			puestosADevolver -= 25;
+		if(!servicios.contains(TipoDeServicio.Electrico))
+			puestosADevolver -= 25;
+		if(salud != Configuracion.SALUD_INICIAL)
+			puestosADevolver -= 25;
+		return puestosADevolver;
 	}
 
 }

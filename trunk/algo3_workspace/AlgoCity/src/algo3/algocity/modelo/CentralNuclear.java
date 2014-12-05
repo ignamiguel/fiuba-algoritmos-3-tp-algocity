@@ -21,5 +21,12 @@ public class CentralNuclear extends CentralElectrica {
 		// TODO Auto-generated method stub
 
 	}
+	
+
+	@Override
+	public void resetearAbastecimiento() {
+		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_NUCLEAR;
+		
+	}
 
 }
