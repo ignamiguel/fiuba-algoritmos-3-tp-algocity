@@ -43,19 +43,14 @@ public class Industria extends Edificio {
 		return true;
 	}
 
-	public void brindarServicio(Hectarea hectarea) {
-		// No brinda servicios
-
-	}
-
 	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
 		int puestosADevolver = this.puestosDeTrabajo;
 		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
-			puestosADevolver -= 25;
+			puestosADevolver -= 10;
 		if(!servicios.contains(TipoDeServicio.Electrico))
-			puestosADevolver -= 25;
+			puestosADevolver -= 10;
 		if(salud != Configuracion.SALUD_INICIAL)
-			puestosADevolver -= 25;
+			puestosADevolver -= 5;
 		return puestosADevolver;
 	}
 

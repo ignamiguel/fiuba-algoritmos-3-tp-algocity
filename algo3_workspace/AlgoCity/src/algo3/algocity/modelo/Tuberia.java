@@ -38,12 +38,6 @@ public class Tuberia extends Conexion {
 	}
 
 	@Override
-	public boolean estaActiva() {
-		// Siempre esta activa.
-		return true;
-	}
-
-	@Override
 	public boolean puedoEn(Agua agua) {
 		return true;
 	}

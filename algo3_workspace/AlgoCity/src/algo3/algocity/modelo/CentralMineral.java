@@ -11,9 +11,6 @@ public class CentralMineral extends CentralElectrica {
 	}
 
 	// metodos publicos
-	public int darEnergia() {
-		return 0;
-	}
 
 	@Override
 	public void cargarAbastecimiento() {

@@ -20,14 +20,12 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

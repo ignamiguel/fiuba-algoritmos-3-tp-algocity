@@ -17,9 +17,5 @@ public abstract class Construccion implements IConstruible {
 		this.salud += salud;
 	}
 
-	public boolean puedoEn(Hectarea hectarea) {
-		return false;
-	}
-
 	public abstract int obtenerConsumoElectrico();
 }
