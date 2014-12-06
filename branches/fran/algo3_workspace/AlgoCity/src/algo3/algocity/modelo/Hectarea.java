@@ -1,7 +1,6 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
-
 import java.util.Iterator;
 
 public abstract class Hectarea implements IAfectable {
@@ -126,6 +125,18 @@ public abstract class Hectarea implements IAfectable {
 
 	public int obtenerCapacidadDeTrabajo() {
 		return ((Industria) this.construccion).calcularPuestosDeTrabajo(this.servicios);
+	}
+
+	public void reparar() {
+		
+		if (!this.estaVacia()) {
+			(this.construccion).reparar();
+		}
+
+		Iterator<IConectable> i = conexiones.iterator();
+		while (i.hasNext()) {
+			i.next().reparar();
+		}
 	}
 
 }
