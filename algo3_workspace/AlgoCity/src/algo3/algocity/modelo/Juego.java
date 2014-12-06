@@ -231,31 +231,39 @@ public class Juego extends Observable {
 
 	private void mudarHabitantes() {
 
-		int capacidadDeAlojamiento = 0;
-		int capacidadDeTrabajo = 0;
-		int habitantesAMudar = 0;
+		int alojamientoBruto = 0;
+		int trabajoBruto = 0;
+		int deltaHabitantesTurno = 0;
 
 		Iterator<Coordenada> i = coordenadasResidenciales.iterator();
 		while (i.hasNext()) {
 			Hectarea hectarea = mapa.obtenerHectarea(i.next());
-			capacidadDeAlojamiento += hectarea.obtenerCapacidadDeAlojamiento();
+			alojamientoBruto += hectarea.obtenerCapacidadDeAlojamiento();
 		}
+		
+		int alojamientoNeto = alojamientoBruto - this.habitantes;
 
 		Iterator<Coordenada> j = coordenadasIndustriales.iterator();
 		while (j.hasNext()) {
 			Hectarea hectarea = mapa.obtenerHectarea(j.next());
-			capacidadDeTrabajo += hectarea.obtenerCapacidadDeTrabajo();
+			trabajoBruto += hectarea.obtenerCapacidadDeTrabajo();
 		}
-
-		habitantesAMudar = ((capacidadDeTrabajo - this.habitantes) * Configuracion.PORCENTAJE_DE_MUDANZA) / 100;
-		if(habitantesAMudar + this.habitantes > capacidadDeAlojamiento){
-			this.habitantes = capacidadDeAlojamiento;
-		}
-		if(habitantesAMudar + this.habitantes < 0){
-			this.habitantes = 0;
-		}
-		this.habitantes = habitantesAMudar + this.habitantes;
 		
+		int trabajoNeto = trabajoBruto - this.habitantes;
+		
+		deltaHabitantesTurno = calcularMinimo(alojamientoNeto , trabajoNeto);
+		
+		if(deltaHabitantesTurno <= 0){
+			this.habitantes += deltaHabitantesTurno;
+		}
+		else{
+			this.habitantes += Configuracion.HABITANTES_NUEVOS;
+		}
+	}
+
+	private int calcularMinimo(int a, int b) {
+		if(a < b) return a;
+		return b;
 	}
 
 	private void propagarServicioDeTransito() {

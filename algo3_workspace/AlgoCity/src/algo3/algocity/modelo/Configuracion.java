@@ -7,7 +7,7 @@ public class Configuracion {
 	static final int SALUD_INICIAL = 100;
 	
 	static final int TURNO_RECAUDADOR = 30;
-	static final int PORCENTAJE_DE_MUDANZA = 30;
+	static final int HABITANTES_NUEVOS = 100;
 	
 	// Costos de construccion
 	static final int COSTO_RESIDENCIA = 5;

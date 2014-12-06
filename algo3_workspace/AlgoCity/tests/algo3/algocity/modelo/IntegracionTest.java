@@ -171,11 +171,11 @@ public class IntegracionTest {
 		
 		juego.pasarTurno();
 		
-		assertEquals(7,juego.obtenerHabitantes());
+		assertEquals(100,juego.obtenerHabitantes());
 	}
 	
 	@Test
-	public void testMapaConTodosLosServiciosAumentanLosHabitantesConIndustriasYResidenciasPasandoDeTurnoSoloMientrasEsMenorAlaCapacidad(){
+	public void testMapaConTodosLosServiciosYUnaIndustriaYUnaResidenciaAumentanLosHabitantesHasta25(){
 		Juego juego = new Juego();
 		PozoDeAgua pozo = new PozoDeAgua();
 		
@@ -235,35 +235,19 @@ public class IntegracionTest {
 		
 		juego.pasarTurno();
 		
-		assertEquals(7,juego.obtenerHabitantes());
+		assertEquals(100,juego.obtenerHabitantes());
 		
 		juego.pasarTurno();
 		
-		assertEquals(12,juego.obtenerHabitantes());
+		assertEquals(25,juego.obtenerHabitantes());
 		
 		juego.pasarTurno();
 		
-		assertEquals(15,juego.obtenerHabitantes());
+		assertEquals(25,juego.obtenerHabitantes());
 		
 		juego.pasarTurno();
 		
-		assertEquals(18,juego.obtenerHabitantes());
+		assertEquals(25,juego.obtenerHabitantes());
 		
-	}
-	
-	@Test
-	public void testMapaConServiciosActivos5residenciasY20Industrias(){
-		Juego juego = new Juego();
-		juego.conectarServicios();
-		for(int i=0;i<5;i++){
-			juego.insertar(new Residencia(),new Coordenada(i,7));
-		}
-		for(int i=0;i<20;i++){
-			juego.insertar(new Industria(),new Coordenada(i,10));
-		}
-		
-		assertEquals(0,juego.obtenerHabitantes());
-		juego.pasarTurno();
-		assertEquals(30,juego.obtenerHabitantes());
 	}
 }

@@ -43,15 +43,18 @@ public class Industria extends Edificio {
 		return true;
 	}
 
-	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
-		int puestosADevolver = this.puestosDeTrabajo;
-		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
-			puestosADevolver -= 10;
-		if(!servicios.contains(TipoDeServicio.Electrico))
-			puestosADevolver -= 10;
-		if(salud != Configuracion.SALUD_INICIAL)
-			puestosADevolver -= 5;
-		return puestosADevolver;
+	public int calcularPuestosDeTrabajo(ArrayList<TipoDeServicio> servicios) {
+		if(salud == Configuracion.SALUD_INICIAL){
+			if(this.tieneLosServiciosRequeridos(servicios)){
+				return this.puestosDeTrabajo;
+			}
+		}
+		return 0;
+		
+	}
+	
+	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
+		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Electrico));
 	}
 
 }

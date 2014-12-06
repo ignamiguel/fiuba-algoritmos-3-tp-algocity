@@ -121,11 +121,11 @@ public abstract class Hectarea implements IAfectable {
 	}
 
 	public int obtenerCapacidadDeAlojamiento() {
-		return ((Residencia) this.construccion).calcularCapacidad(this.servicios);
+		return ((Residencia) this.construccion).calcularCapacidadDeAlojamiento(this.servicios);
 	}
 
 	public int obtenerCapacidadDeTrabajo() {
-		return ((Industria) this.construccion).calcularCapacidad(this.servicios);
+		return ((Industria) this.construccion).calcularPuestosDeTrabajo(this.servicios);
 	}
 
 }
