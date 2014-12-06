@@ -16,6 +16,12 @@ public class CentralEolica extends CentralElectrica {
 
 		return 0;
 	}
+	
+
+	@Override
+	public void resetearAbastecimiento() {
+		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_EOLICA;
+	}
 
 	
 

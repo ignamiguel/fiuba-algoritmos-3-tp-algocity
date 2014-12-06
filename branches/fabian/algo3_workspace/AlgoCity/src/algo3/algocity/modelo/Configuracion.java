@@ -6,6 +6,9 @@ public class Configuracion {
 	static final int DINERO_INICIAL = 100000;
 	static final int SALUD_INICIAL = 100;
 	
+	static final int TURNO_RECAUDADOR = 30;
+	static final int PORCENTAJE_DE_MUDANZA = 30;
+	
 	// Costos de construccion
 	static final int COSTO_RESIDENCIA = 5;
 	static final int COSTO_COMERCIO = 5;
@@ -58,4 +61,5 @@ public class Configuracion {
 	static final int REPACACION_A_CENTRAL_NUCELAR = 3;
 	static final int REPACACION_A_RUTA = 100;
 	static final int REPACACION_A_LINEA_DE_TENSION = 100;
+	
 }
