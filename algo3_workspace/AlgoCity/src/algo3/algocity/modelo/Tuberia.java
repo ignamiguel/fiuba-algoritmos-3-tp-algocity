@@ -3,7 +3,8 @@ package algo3.algocity.modelo;
 public class Tuberia extends Conexion {
 
 	public Tuberia() {
-
+		this.salud = Configuracion.SALUD_INICIAL;
+		this.costo = Configuracion.COSTO_TUBERIA;
 	}
 
 	public String obtenerServicio() {
@@ -59,8 +60,7 @@ public class Tuberia extends Conexion {
 
 	@Override
 	public int obtenerCosto() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.costo;
 	}
 
 

@@ -85,4 +85,6 @@ public abstract class CentralElectrica extends Construccion implements
 		return 0;
 	}
 
+	public abstract void resetearAbastecimiento();
+
 }
