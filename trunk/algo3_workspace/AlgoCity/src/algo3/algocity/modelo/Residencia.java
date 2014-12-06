@@ -30,20 +30,18 @@ public class Residencia extends Edificio {
 		}
 	}
 
-	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
-		int capacidadADevolver = this.capacidad;
-		if(!servicios.contains(TipoDeServicio.Cloacas))
-			capacidadADevolver -= 25;
-		if(!servicios.contains(TipoDeServicio.Electrico))
-			capacidadADevolver -= 25;
-		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
-			capacidadADevolver -= 25;
-		if(salud != Configuracion.SALUD_INICIAL)
-			capacidadADevolver -= 25;
-		
-		return capacidadADevolver;
+	public int calcularCapacidadDeAlojamiento(ArrayList<TipoDeServicio> servicios) {
+		if(salud == Configuracion.SALUD_INICIAL){
+			if(this.tieneLosServiciosRequeridos(servicios)){
+				return this.capacidad;
+			}
+		}
+		return 0;
 		
 	}
-
+	
+	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
+		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Cloacas) && servicios.contains(TipoDeServicio.Electrico));
+	}
 
 }
