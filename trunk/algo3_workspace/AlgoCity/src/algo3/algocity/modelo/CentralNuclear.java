@@ -12,21 +12,11 @@ public class CentralNuclear extends CentralElectrica {
 	}
 
 	// metodos publicos
-	public int darEnergia() {
-
-		return 0;
-	}
-
-	public void brindarServicio(Hectarea hectarea) {
-		// TODO Auto-generated method stub
-
-	}
 	
 
 	@Override
 	public void cargarAbastecimiento() {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_NUCLEAR;
-		
 	}
 
 }

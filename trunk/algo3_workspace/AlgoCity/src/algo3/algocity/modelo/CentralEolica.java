@@ -15,6 +15,4 @@ public class CentralEolica extends CentralElectrica {
 	public void cargarAbastecimiento() {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_EOLICA;
 	}
-
-
 }

@@ -9,21 +9,12 @@ public class Comercio extends Edificio {
 	}
 
 	public void afectarCon(Godzilla godzilla) {
-		if (this.salud == 0) {
-			return;
-		}
-
-		int averia = Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO;
-		this.salud -= averia;
-
+		this.salud -= Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO;
 		if (this.salud < 0) {
 			this.salud = 0;
 		}
 	}
 
-	public boolean puedoEn(Hectarea hectarea) {
-		return true;
-	}
 
 	public boolean puedoEn(Terreno terreno) {
 		return true;

@@ -4,6 +4,5 @@ public abstract class Conexion implements IConectable {
 	
 	protected int salud;
 	protected int costo;
-	
 
 }

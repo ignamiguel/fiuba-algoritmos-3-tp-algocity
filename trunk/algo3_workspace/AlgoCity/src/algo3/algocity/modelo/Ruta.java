@@ -38,18 +38,6 @@ public class Ruta extends Conexion {
 		this.salud = salud;
 	}
 
-	@Override
-	public boolean estaActiva() {
-
-		return true;
-	}
-
-	public String obtenerServicio() {
-		if (this.estaActiva())
-			return "transito";
-		return "Sin transito";
-	}
-
 	public boolean estaDaniada() {
 		return (this.salud < Configuracion.SALUD_INICIAL);
 	}

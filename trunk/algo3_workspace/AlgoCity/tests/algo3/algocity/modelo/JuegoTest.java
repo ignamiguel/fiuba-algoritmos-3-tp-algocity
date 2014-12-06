@@ -247,9 +247,8 @@ public class JuegoTest {
 		
 		juego.insertar(res,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
 		
-		assertEquals(true,juego.obtenerHectareasResidenciales().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -258,11 +257,11 @@ public class JuegoTest {
 		
 		Industria ind = new Industria();
 		
-		juego.insertar(ind,new Coordenada(5,5));
+		Coordenada c = new Coordenada(5,5);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
+		juego.insertar(ind,c);
 		
-		assertEquals(true,juego.obtenerHectareasIndustriales().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(c));
 	}
 	
 	@Test
@@ -273,9 +272,7 @@ public class JuegoTest {
 		
 		juego.insertar(comercio,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasComerciales().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -290,13 +287,10 @@ public class JuegoTest {
 		juego.insertar(res2,new Coordenada(8,5));
 		juego.insertar(res3,new Coordenada(10,5));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(8,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(10,5));
 		
-		assertEquals(true,juego.obtenerHectareasResidenciales().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasResidenciales().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasResidenciales().contains(hectarea3));
+		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(8,5)));
+		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(10,5)));
 	}
 	
 	@Test
@@ -311,13 +305,10 @@ public class JuegoTest {
 		juego.insertar(ind2,new Coordenada(8,5));
 		juego.insertar(ind3,new Coordenada(10,5));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(8,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(10,5));
 		
-		assertEquals(true,juego.obtenerHectareasIndustriales().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasIndustriales().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasIndustriales().contains(hectarea3));
+		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(8,5)));
+		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(10,5)));
 	}
 	
 	@Test
@@ -332,13 +323,9 @@ public class JuegoTest {
 		juego.insertar(com2,new Coordenada(8,5));
 		juego.insertar(com3,new Coordenada(10,5));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(8,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(10,5));
-		
-		assertEquals(true,juego.obtenerHectareasComerciales().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasComerciales().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasComerciales().contains(hectarea3));
+		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -349,17 +336,18 @@ public class JuegoTest {
 		Residencia res = new Residencia();
 		Industria ind = new Industria();
 		
+		Coordenada c1 = new Coordenada(5,5);
+		Coordenada c2 = new Coordenada(8,5);
+		Coordenada c3 = new Coordenada(10,5);
+		
 		juego.insertar(com,new Coordenada(5,5));
 		juego.insertar(res,new Coordenada(8,5));
 		juego.insertar(ind,new Coordenada(10,5));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(8,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(10,5));
 		
-		assertEquals(true,juego.obtenerHectareasComerciales().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasResidenciales().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasIndustriales().contains(hectarea3));
+		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(c1));
+		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(c2));
+		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(c3));
 	}
 	
 	@Test
@@ -367,12 +355,11 @@ public class JuegoTest {
 		Juego juego = new Juego();
 		
 		CentralEolica central = new CentralEolica();
+		Coordenada coord = new Coordenada(5,5);
 		
-		juego.insertar(central,new Coordenada(5,5));
+		juego.insertar(central,coord);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(coord));
 	}
 	
 	@Test
@@ -381,11 +368,11 @@ public class JuegoTest {
 		
 		CentralMineral central = new CentralMineral();
 		
-		juego.insertar(central,new Coordenada(5,5));
+		Coordenada c = new Coordenada(5,5);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
+		juego.insertar(central,c);
 		
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(c));
 	}
 	
 	@Test
@@ -394,32 +381,34 @@ public class JuegoTest {
 		
 		CentralNuclear central = new CentralNuclear();
 		
-		juego.insertar(central,new Coordenada(5,5));
+		Coordenada c = new Coordenada(5,5);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
+		juego.insertar(central,c);
 		
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(c));
 	}
 	
 	@Test
 	public void insertarTresCentralesAgregaLasHectareaALaListaDeCentrales(){
 		Juego juego = new Juego();
 		
-		CentralEolica ce = new CentralEolica();
-		CentralMineral cm = new CentralMineral();
-		CentralNuclear cn = new CentralNuclear();
+		CentralEolica eolica = new CentralEolica();
+		CentralMineral mineral = new CentralMineral();
+		CentralNuclear nuclear = new CentralNuclear();
 		
-		juego.insertar(ce,new Coordenada(5,5));
-		juego.insertar(cm,new Coordenada(8,5));
-		juego.insertar(cn,new Coordenada(10,5));
+		Coordenada cEolica = new Coordenada(5,5);
+		Coordenada cMineral = new Coordenada(8,5);
+		Coordenada cNuclear = new Coordenada(10,5);
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(8,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(10,5));
 		
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasConCentral().contains(hectarea3));
+		juego.insertar(eolica,cEolica);
+		juego.insertar(mineral,cMineral);
+		juego.insertar(nuclear,cNuclear);
+		
+		
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cEolica));
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cMineral));
+		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cNuclear));
 	}
 	
 	@Test
@@ -430,9 +419,7 @@ public class JuegoTest {
 		
 		juego.insertar(edb,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConBomberos().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConBomberos().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -442,14 +429,15 @@ public class JuegoTest {
 		EstacionDeBomberos edb = new EstacionDeBomberos();
 		EstacionDeBomberos edb2 = new EstacionDeBomberos();
 		
+		Coordenada c1 = new Coordenada(5,5);
+		Coordenada c2 = new Coordenada(10,5);
+		
 		juego.insertar(edb,new Coordenada(5,5));
 		juego.insertar(edb2,new Coordenada(10,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConBomberos().contains(hectarea));
-		assertEquals(true,juego.obtenerHectareasConBomberos().contains(hectarea2));
+	
+		assertEquals(true,juego.obtenerCoordenadasConBomberos().contains(c1));
+		assertEquals(true,juego.obtenerCoordenadasConBomberos().contains(c2));
 	}
 	
 	@Test
@@ -458,11 +446,12 @@ public class JuegoTest {
 		
 		PozoDeAgua pozo = new PozoDeAgua();
 		
-		juego.insertar(pozo,new Coordenada(23,23));
+		Coordenada c = new Coordenada(23,23);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(23,23));
+		juego.insertar(pozo,c);
 		
-		assertEquals(true,juego.obtenerHectareasConPozo().contains(hectarea));
+		
+		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c));
 	}
 	
 	@Test
@@ -472,14 +461,14 @@ public class JuegoTest {
 		PozoDeAgua pozo = new PozoDeAgua();
 		PozoDeAgua pozo2 = new PozoDeAgua();
 		
-		juego.insertar(pozo,new Coordenada(23,23));
-		juego.insertar(pozo2,new Coordenada(0,23));
+		Coordenada c1 = new Coordenada(23,23);
+		Coordenada c2 = new Coordenada(0,23);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(23,23));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(0,23));
+		juego.insertar(pozo,c1);
+		juego.insertar(pozo2,c2);
 		
-		assertEquals(true,juego.obtenerHectareasConPozo().contains(hectarea));
-		assertEquals(true,juego.obtenerHectareasConPozo().contains(hectarea2));
+		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c1));
+		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c2));
 	}
 	
 	@Test
@@ -488,11 +477,11 @@ public class JuegoTest {
 		
 		LineaDeTension ldt = new LineaDeTension();
 		
+		Coordenada c = new Coordenada(5,5);
+		
 		juego.insertar(ldt,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(c));
 	}
 	
 	@Test
@@ -503,9 +492,7 @@ public class JuegoTest {
 		
 		juego.insertar(tuberia,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -516,9 +503,7 @@ public class JuegoTest {
 		
 		juego.insertar(ruta,new Coordenada(5,5));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea));
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -529,14 +514,14 @@ public class JuegoTest {
 		Tuberia tuberia = new Tuberia();
 		LineaDeTension ldt = new LineaDeTension();
 		
-		juego.insertar(ruta,new Coordenada(5,5));
-		juego.insertar(tuberia,new Coordenada(5,5));
-		juego.insertar(ldt,new Coordenada(5,5));
+		Coordenada c = new Coordenada(5,5);
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
+		juego.insertar(ruta,c);
+		juego.insertar(tuberia,c);
+		juego.insertar(ldt,c);
 		
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea));
-		assertEquals(1,juego.obtenerHectareasConConexiones().size());
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(c));
+		assertEquals(1,juego.obtenerCoordenadasConConexiones().size());
 	}
 	
 	@Test
@@ -551,14 +536,10 @@ public class JuegoTest {
 		juego.insertar(tuberia,new Coordenada(2,5));
 		juego.insertar(ldt,new Coordenada(0,5));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(5,5));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(2,5));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(0,5));
-		
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea1));
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea2));
-		assertEquals(true,juego.obtenerHectareasConConexiones().contains(hectarea3));
-		assertEquals(3,juego.obtenerHectareasConConexiones().size());
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(2,5)));
+		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(0,5)));
+		assertEquals(3,juego.obtenerCoordenadasConConexiones().size());
 	}
 	
 	
@@ -577,7 +558,7 @@ public class JuegoTest {
 		assertEquals(2,juego.obtenerTurno());
 	}
 	
-	@Test
+	/*@Test
 	public void testPasarDeTurnoPropagaLosServiciosDeLasCentralesElectricasPeroSinAguaNoPropagaElectricidad(){
 		Juego juego = new Juego();
 		
@@ -595,7 +576,7 @@ public class JuegoTest {
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.LineaDeTension));
 		assertEquals(false, hectarea.estaActivo(TipoDeServicio.Electrico));
-	}
+	}*/
 	
 	@Test
 	public void testPasarDeTurnoPropagaLosServiciosDeLasLosPozosDeAgua(){
@@ -679,4 +660,37 @@ public class JuegoTest {
 		assertEquals(true, hectarea3.estaActivo(TipoDeServicio.AccesoAlTransito));
 	}
 	
+	@Test
+	public void metodoParaTestConecetarTodosLosServiciosATodoElMapa(){
+		Juego juego = new Juego();
+		juego.conectarServicios();
+		
+			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
+				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+					Coordenada c = new Coordenada(i,j);
+					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
+				}
+			}	
+		}
+	
+	@Test
+	public void testSePuedenDescontarTodosLosServiciosDelMapa(){
+		Juego juego = new Juego();
+		juego.conectarServicios();
+		
+			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
+				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+					Coordenada c = new Coordenada(i,j);
+					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
+					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
+				}
+			}	
+			
+		juego.desconectarServicios();
+		}
 }

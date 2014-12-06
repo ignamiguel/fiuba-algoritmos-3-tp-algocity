@@ -10,23 +10,23 @@ public class PozoDeAguaTest {
 	public void testPuedoConstruirUnPozoDeAguaEnUnMapa() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
-		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
+		Coordenada c = new Coordenada(22,22);
+		assertEquals(true, mapa.construir(pozo,c));
 	}
 
 	@Test
 	public void testPozoDeAguaPropagaAguaALaHectareaDeArribaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
-
+		Coordenada c = new Coordenada(22,22);
+		
 		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
 
 		Tuberia tuberia = new Tuberia();
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(21, 22)));
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectarea.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22))).estaActivo(pozo
@@ -37,6 +37,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaDeArribaYALaQueEStaArribaDeEsaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(22,22);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
 
@@ -46,9 +47,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(20, 22)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22))).estaActivo(pozo
@@ -63,15 +62,15 @@ public class PozoDeAguaTest {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
 
+		Coordenada c = new Coordenada(22,22);
+		
 		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
 
 		Tuberia tuberia = new Tuberia();
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(22, 23)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 23));
 
@@ -84,6 +83,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaDeLaDerechaYALaQueEstaAlaDerechaDeEsaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(21,21);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(21, 21)));
 
@@ -93,9 +93,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(21, 23)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22))).estaActivo(pozo
@@ -109,6 +107,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaQueEstaAbajoConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(22,22);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
 
@@ -116,9 +115,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(23, 22)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(23, 22));
 
@@ -131,6 +128,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaQueEstaAbajoYLaQueEstaAbajoDeEsaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(21,21);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(21, 21)));
 
@@ -142,9 +140,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia2, new Coordenada(23, 21)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(22, 21))).estaActivo(pozo
@@ -158,6 +154,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaQueEstaALaIzquierdaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(22,22);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(22, 22)));
 
@@ -165,9 +162,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(22, 21)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 21));
 
@@ -180,6 +175,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaALaHectareaQueEstaALaIzquierdaYLaQueEstaAlaIzquierdaDeEsaConUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(21,21);
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(21, 21)));
 
@@ -189,9 +185,7 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(21, 19)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 20))).estaActivo(pozo
@@ -206,6 +200,7 @@ public class PozoDeAguaTest {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
 		Tuberia tuberia = new Tuberia();
+		Coordenada c = new Coordenada(21,21);
 
 		Coordenada norte = new Coordenada(20, 21);
 		Coordenada este = new Coordenada(21, 22);
@@ -214,14 +209,12 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(21, 21)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
 		assertEquals(true, mapa.conectar(tuberia, norte));
 		assertEquals(true, mapa.conectar(tuberia, este));
 		assertEquals(true, mapa.conectar(tuberia, sur));
 		assertEquals(true, mapa.conectar(tuberia, oeste));
 
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(
 				true,
@@ -246,6 +239,7 @@ public class PozoDeAguaTest {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
 		Tuberia tuberia = new Tuberia();
+		Coordenada c = new Coordenada(21,21);
 
 		Coordenada norte = new Coordenada(20, 21);
 		Coordenada este = new Coordenada(21, 22);
@@ -259,8 +253,6 @@ public class PozoDeAguaTest {
 
 		assertEquals(true, mapa.construir(pozo, new Coordenada(21, 21)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
 		assertEquals(true, mapa.conectar(tuberia, norte));
 		assertEquals(true, mapa.conectar(tuberia, este));
 		assertEquals(true, mapa.conectar(tuberia, sur));
@@ -271,7 +263,7 @@ public class PozoDeAguaTest {
 		assertEquals(true, mapa.conectar(tuberia, esquina3));
 		assertEquals(true, mapa.conectar(tuberia, esquina4));
 
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		assertEquals(
 				true,
@@ -312,6 +304,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaDesdeCoordenada5_23hasta5_0() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(5,23);
 
 		for (int i = 0; i < 24; i++) {
 			Tuberia tuberia = new Tuberia();
@@ -319,9 +312,8 @@ public class PozoDeAguaTest {
 		}
 
 		mapa.construir(pozo, new Coordenada(5, 23));
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5, 23));
-
-		hectareaConPozo.propagar(pozo, mapa);
+	
+		mapa.propagarServicio(c);
 
 		for (int i = 0; i < 23; i++) {
 			assertEquals(true,
@@ -337,6 +329,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaDesdeCoordenada5_23hasta5_0YTambienLasHectareasDesde0_3Hasta24_3() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(5,23);
 
 		for (int i = 0; i < 24; i++) {
 			Tuberia tuberia = new Tuberia();
@@ -354,9 +347,8 @@ public class PozoDeAguaTest {
 		}
 
 		mapa.construir(pozo, new Coordenada(5, 23));
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5, 23));
-
-		hectareaConPozo.propagar(pozo, mapa);
+	
+		mapa.propagarServicio(c);
 
 		for (int i = 0; i < 23; i++) {
 			assertEquals(true,
@@ -381,6 +373,8 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaDesdeCoordenadaATodoElMapa() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		
+		Coordenada c = new Coordenada(5,23);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
@@ -390,9 +384,8 @@ public class PozoDeAguaTest {
 		}
 
 		mapa.construir(pozo, new Coordenada(5, 23));
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5, 23));
 
-		hectareaConPozo.propagar(pozo, mapa);
+		mapa.propagarServicio(c);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
@@ -410,6 +403,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaATodaHectareasConectadasAlPozoPeroNoAlasQueTieneTuberiaPeroNoEstanConectadas() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(5,23);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
@@ -422,9 +416,8 @@ public class PozoDeAguaTest {
 		}
 
 		mapa.construir(pozo, new Coordenada(5, 23));
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5, 23));
-
-		hectareaConPozo.propagar(pozo, mapa);
+	
+		mapa.propagarServicio(c);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			assertEquals(true,
@@ -449,6 +442,7 @@ public class PozoDeAguaTest {
 	public void testPozoDeAguaPropagaAguaATodaHectareasConectadasEnLaFilaDelPozoYAOtraFilaConTuberiasUnidasPorUnaTuberia() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		PozoDeAgua pozo = new PozoDeAgua();
+		Coordenada c = new Coordenada(5,23);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
@@ -464,9 +458,8 @@ public class PozoDeAguaTest {
 		assertEquals(true, mapa.conectar(tuberia, new Coordenada(6, 5)));
 
 		mapa.construir(pozo, new Coordenada(5, 23));
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(5, 23));
-
-		hectareaConPozo.propagar(pozo, mapa);
+		
+		mapa.propagarServicio(c);
 
 		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
 			assertEquals(true,

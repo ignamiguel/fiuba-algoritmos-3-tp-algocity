@@ -16,7 +16,6 @@ public abstract class Hectarea implements IAfectable {
 
 	public boolean estaVacia() {
 		return (construccion == null);
-
 	}
 
 	public boolean construir(Construccion construccion) {
@@ -56,7 +55,6 @@ public abstract class Hectarea implements IAfectable {
 	}
 
 	public void guardarUbicacion(Coordenada unaCoordenada) {
-
 		this.ubicacion = unaCoordenada;
 	}
 
@@ -102,59 +100,6 @@ public abstract class Hectarea implements IAfectable {
 
 	}
 
-	public void propagar(IPropagable propagable, Mapa mapa) {
-
-		Coordenada coordVecina = this.ubicacion.copiar();
-
-		coordVecina.moverIzquierda();
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaNorte = mapa.obtenerHectarea(coordVecina);
-			hectareaNorte.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverDerecha();
-		coordVecina.moverArriba();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaEste = mapa.obtenerHectarea(coordVecina);
-			hectareaEste.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverAbajo();
-		coordVecina.moverDerecha();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaSur = mapa.obtenerHectarea(coordVecina);
-			hectareaSur.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverIzquierda();
-		coordVecina.moverAbajo();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaOeste = mapa.obtenerHectarea(coordVecina);
-			hectareaOeste.activarServicioYPropagar(propagable, mapa);
-		}
-	}
-
-	private void activarServicioYPropagar(IPropagable servicio, Mapa mapa) {
-
-		if (this.estaActivo(servicio.obtenerServicioPropagable())) {
-			return;
-		}
-
-		if (!this.tieneConexion(servicio.obtenerConexionNecesaria())) {
-			return;
-		}
-
-		if (!servicio.puedoBrindarleElServicio(this)) {
-			return;
-		}
-
-		this.activar(servicio.obtenerServicioPropagable());
-		this.propagar(servicio, mapa);
-	}
-
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
 
@@ -177,7 +122,6 @@ public abstract class Hectarea implements IAfectable {
 
 	public int obtenerCapacidadDeAlojamiento() {
 		return ((Residencia) this.construccion).calcularCapacidad(this.servicios);
-		
 	}
 
 	public int obtenerCapacidadDeTrabajo() {
