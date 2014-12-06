@@ -107,7 +107,7 @@ public abstract class Hectarea implements IAfectable {
 		Coordenada coordVecina = this.ubicacion.copiar();
 
 		coordVecina.moverIzquierda();
-		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+		if ((mapa).coordenadaValida(coordVecina)) {
 			Hectarea hectareaNorte = mapa.obtenerHectarea(coordVecina);
 			hectareaNorte.activarServicioYPropagar(propagable, mapa);
 		}
@@ -115,7 +115,7 @@ public abstract class Hectarea implements IAfectable {
 		coordVecina.moverDerecha();
 		coordVecina.moverArriba();
 
-		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+		if ((mapa).coordenadaValida(coordVecina)) {
 			Hectarea hectareaEste = mapa.obtenerHectarea(coordVecina);
 			hectareaEste.activarServicioYPropagar(propagable, mapa);
 		}
@@ -123,7 +123,7 @@ public abstract class Hectarea implements IAfectable {
 		coordVecina.moverAbajo();
 		coordVecina.moverDerecha();
 
-		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+		if ((mapa).coordenadaValida(coordVecina)) {
 			Hectarea hectareaSur = mapa.obtenerHectarea(coordVecina);
 			hectareaSur.activarServicioYPropagar(propagable, mapa);
 		}
@@ -131,7 +131,7 @@ public abstract class Hectarea implements IAfectable {
 		coordVecina.moverIzquierda();
 		coordVecina.moverAbajo();
 
-		if ((mapa).estaEnElMapaCoordenada(coordVecina)) {
+		if ((mapa).coordenadaValida(coordVecina)) {
 			Hectarea hectareaOeste = mapa.obtenerHectarea(coordVecina);
 			hectareaOeste.activarServicioYPropagar(propagable, mapa);
 		}
@@ -160,20 +160,15 @@ public abstract class Hectarea implements IAfectable {
 
 	}
 
-	public boolean estaActivo(TipoDeServicio servicio) {
-		for (int i = 0; i < this.servicios.size(); i++) {
-			if (this.servicios.get(i) == servicio) {
-				return true;
-			}
-		}
-		return false;
+	public boolean estaActivo(TipoDeServicio servicio) {		
+		return this.servicios.contains(servicio);		
 	}
 
 	public int obtenerConsumo() {
-		if (this.construccion != null) {
-			return (this.construccion).obtenerConsumoElectrico();
+		if (this.estaVacia()) {
+			return 0;
 		}
-		return 0;
+		return (this.construccion).obtenerConsumoElectrico();
 	}
 
 	public void desconectarServicios() {

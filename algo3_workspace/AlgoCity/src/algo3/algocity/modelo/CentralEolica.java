@@ -11,18 +11,10 @@ public class CentralEolica extends CentralElectrica {
 
 	}
 
-	// metodos publicos
-	public int darEnergia() {
-
-		return 0;
-	}
-	
-
 	@Override
-	public void resetearAbastecimiento() {
+	public void cargarAbastecimiento() {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_EOLICA;
 	}
 
-	
 
 }

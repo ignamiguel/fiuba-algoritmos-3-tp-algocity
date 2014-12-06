@@ -268,7 +268,7 @@ public class Juego extends Observable {
 			Hectarea hectarea = j.next();
 			CentralElectrica central = (CentralElectrica) hectarea
 					.obtenerConstruccion();
-			central.resetearAbastecimiento();
+			central.cargarAbastecimiento();
 		}
 
 	}
