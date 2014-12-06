@@ -51,4 +51,10 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 	public int obtenerRadioDeCovertura() {
 		return Configuracion.RADIO_COVERT_ENTRADA_CIUDAD;
 	}
+
+	@Override
+	public void reparar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

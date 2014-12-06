@@ -61,7 +61,7 @@ public class Configuracion {
 	static final int REPARACION_A_INDUSTRIA = 3;
 	static final int REPARACION_A_CENTRAl_EOLICA = 15;
 	static final int REPACACION_A_CENTRAL_MINERAL = 10;
-	static final int REPACACION_A_CENTRAL_NUCELAR = 3;
+	static final int REPACACION_A_CENTRAL_NUCLEAR = 3;
 	static final int REPACACION_A_RUTA = 100;
 	static final int REPACACION_A_LINEA_DE_TENSION = 100;
 	

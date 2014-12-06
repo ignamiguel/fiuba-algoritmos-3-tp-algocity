@@ -33,4 +33,12 @@ public class Comercio extends Edificio {
 		return false;
 	}
 
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_COMERCIO;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
+
 }

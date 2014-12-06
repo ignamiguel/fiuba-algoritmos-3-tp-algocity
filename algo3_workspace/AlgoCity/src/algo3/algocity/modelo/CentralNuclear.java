@@ -19,4 +19,11 @@ public class CentralNuclear extends CentralElectrica {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_NUCLEAR;
 	}
 
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPACACION_A_CENTRAL_NUCLEAR;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
 }

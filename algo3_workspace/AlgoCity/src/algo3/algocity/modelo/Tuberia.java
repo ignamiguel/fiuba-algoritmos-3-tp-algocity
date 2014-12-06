@@ -13,27 +13,12 @@ public class Tuberia extends Conexion {
 
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {
-		if (this.salud == 0) {
-			return;
-		}
-
-		int averia = Configuracion.AVERIA_DE_GODZILLA_A_TUBERIA;
-		this.salud -= averia;
-
-		if (this.salud < 0) {
-			this.salud = 0;
-		}
+		
 	}
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
 		// Nunca es afectada por el Terremoto (por el momento)
-
-	}
-
-	@Override
-	public void reparar(int salud) {
-		// No es reparable porque no se afecta
 
 	}
 
@@ -55,6 +40,15 @@ public class Tuberia extends Conexion {
 	@Override
 	public int obtenerCosto() {
 		return this.costo;
+	}
+
+	public boolean estaDaniada() {
+		return false;
+	}
+	
+	@Override
+	public void reparar() {
+
 	}
 
 
