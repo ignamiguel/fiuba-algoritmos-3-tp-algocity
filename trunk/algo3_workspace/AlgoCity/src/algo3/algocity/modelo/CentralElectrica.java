@@ -7,29 +7,12 @@ public abstract class CentralElectrica extends Construccion implements
 
 	}
 
-	// atributos de clase
-
 	protected int capacidadDeAbastecimiento;
 	protected int radioDeCovertura;
 	protected boolean conectadaARedDeAgua;
 
-	// En la creacion de una centralElectrica necesito guardarme estos datos
-	// para despues propagar energia
-	// private Coordenada miUbicacion;
-	// private Mapa elMapa
-
-	// metodos publicos
-
-	public abstract int darEnergia();
-
 	public int obtenerRadioDeCovertura() {
-
 		return radioDeCovertura;
-	}
-
-	public int obtenerCapacidadDeAbastecimiento() {
-
-		return capacidadDeAbastecimiento;
 	}
 
 	public boolean estaConectada() {
@@ -81,10 +64,14 @@ public abstract class CentralElectrica extends Construccion implements
 		return false;
 	}
 
+	public abstract void cargarAbastecimiento();
+
 	public int obtenerConsumoElectrico() {
-		return 0;
+		return Configuracion.CONSUMO_ELECTRICO_CENTRAL_ELECTRICA;
 	}
 
-	public abstract void resetearAbastecimiento();
+	public int obtenerCapacidadDeAbastecimiento() {
+		return this.capacidadDeAbastecimiento;
+	}
 
 }

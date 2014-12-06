@@ -26,16 +26,19 @@ public class Configuracion {
 	static final int CONSUMO_ELECTRICO_RESIDENCIA = 1;
 	static final int CONSUMO_ELECTRICO_COMERCIO = 2;
 	static final int CONSUMO_ELECTRICO_INDUSTRIA = 5;
+	static final int CONSUMO_ELECTRICO_CENTRAL_ELECTRICA = 0;
 	
 	// Capacidad de abastecimiento
 	static final int CAPACIDAD_ABAS_CENTRAL_EOLICA = 100;
 	static final int CAPACIDAD_ABAS_CENTRAL_MINERAL = 400;
 	static final int CAPACIDAD_ABAS_CENTRAL_NUCLEAR = 1000;
 	
-	// Radios de covertura
-	static final int RADIO_COVERT_CENTRAL_EOLICA = 4;
-	static final int RADIO_COVERT_CENTRAL_MINERAL = 10;
+	// Radios de covertura sin conexion
+	static final int RADIO_COVERT_CENTRAL_EOLICA = 1;
+	static final int RADIO_COVERT_CENTRAL_MINERAL = 3;
 	static final int RADIO_COVERT_CENTRAL_NUCLEAR = 25;
+	static final int RADIO_COVERT_POZO_AGUA = 0;
+	static final int RADIO_COVERT_ENTRADA_CIUDAD = 0;
 	
 	// Alojamientos
 	static final int ALOJAMIENTO_RESIDENCIA = 100;

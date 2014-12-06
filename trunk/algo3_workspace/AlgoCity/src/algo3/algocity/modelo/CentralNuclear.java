@@ -24,7 +24,7 @@ public class CentralNuclear extends CentralElectrica {
 	
 
 	@Override
-	public void resetearAbastecimiento() {
+	public void cargarAbastecimiento() {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_NUCLEAR;
 		
 	}

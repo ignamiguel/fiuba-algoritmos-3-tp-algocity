@@ -4,7 +4,7 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 
 	public EntradaAlaCiudad(){
 		this.costo = 0;
-		this.salud = 100;
+		this.salud = Configuracion.SALUD_INICIAL;
 	}
 	
 	@Override
@@ -47,5 +47,10 @@ public class EntradaAlaCiudad extends Construccion implements IPropagable{
 	
 	public int obtenerConsumoElectrico(){
 		return 0;
+	}
+
+	@Override
+	public int obtenerRadioDeCovertura() {
+		return Configuracion.RADIO_COVERT_ENTRADA_CIUDAD;
 	}
 }

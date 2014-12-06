@@ -1,8 +1,15 @@
 package algo3.algocity.modelo;
 
 public class PozoDeAgua extends Construccion implements IPropagable{
+	
+	private int radioDeCovertura; 
+	
+	public PozoDeAgua(){
+		super();
+		this.radioDeCovertura = Configuracion.RADIO_COVERT_POZO_AGUA;
+	}
 
-	public String obtenerNombre(){
+ 	public String obtenerNombre(){
 		return "Pozo de Agua";
 	}
 	
@@ -43,5 +50,11 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 
 	public int obtenerConsumoElectrico(){
 		return 0;
+	}
+
+	
+	@Override
+	public int obtenerRadioDeCovertura() {		
+		return this.radioDeCovertura;
 	}
 }

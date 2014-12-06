@@ -1,7 +1,9 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 //import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class Mapa {
 	private int tamanio;
 	private Coordenada entradaAlaCiudad;
 
-	ArrayList<Coordenada> pozos;
+	ArrayList<Coordenada> propagables;
 
 	// para hacer el refresh de cada turno recorre la lista y le dice a cada
 	// linea actualizate,Pablo
@@ -27,7 +29,7 @@ public class Mapa {
 		this.area = new Hectarea[tamanio][tamanio];
 		this.entradaAlaCiudad = generadorDeMapa.obtenerEntradaALaCiudad();
 
-		this.pozos = new ArrayList<Coordenada>();
+		this.propagables = new ArrayList<Coordenada>();
 
 		generadorDeMapa.generarArea(this.area);
 
@@ -37,7 +39,7 @@ public class Mapa {
 	}
 
 	public Hectarea obtenerHectarea(Coordenada coordenada) {
-		if (!this.estaEnElMapaCoordenada(coordenada)) {
+		if (!this.coordenadaValida(coordenada)) {
 			throw new CoordenadaInvalidaExcepcion();
 		}
 		return area[coordenada.obtenerX()][coordenada.obtenerY()];
@@ -48,7 +50,7 @@ public class Mapa {
 		return hectarea.construir(construccion);
 	}
 
-	public boolean estaEnElMapaCoordenada(Coordenada coord) {
+	public boolean coordenadaValida(Coordenada coord) {
 		int coorX = coord.obtenerX();
 		int coorY = coord.obtenerY();
 		if ((coorX >= 0) & (coorX < tamanio) & (coorY >= 0) & (coorY < tamanio))
@@ -70,95 +72,90 @@ public class Mapa {
 	public Coordenada obtenerEntradaALaCiudad() {
 		return this.entradaAlaCiudad;
 	}
-	
+
 	/*----- PROTOTIPO DE PROPAGAR DESDE MAPA ------*/
 
-	/*public boolean construir(PozoDeAgua pozo, Coordenada coordenada) {
-	if (!this.construir(pozo, coordenada)) {
-		return false;
+	public void propagarServicio(Coordenada origen) {
+
+		// Declaro una cola de prioridad
+		// A menor distancia, mas prioridad
+		Comparator<Nodo> comparator = new NodeComparator();
+		PriorityQueue<Nodo> queue = new PriorityQueue<Nodo>(10, comparator);
+
+		IPropagable servicio = (IPropagable) this.obtenerHectarea(origen)
+				.obtenerConstruccion();
+		
+		int radio = servicio.obtenerRadioDeCovertura();
+		
+		queue.add(new Nodo(origen, 0));
+
+		this.procesar(servicio, queue, radio);
 	}
-	this.pozos.add(coordenada);
-	return true;
-	}*/
 
-	public void propagarAgua() {
-	
-	ArrayList<Hectarea> superficie = this.obtenerSuperficiePropagable(pozos.get(0), new PozoDeAgua());
+	private void procesar(IPropagable servicio, PriorityQueue<Nodo> queue,
+			int radio) {
 
-	for (Hectarea hectarea : superficie) {
-		//hectarea.propagar();
-	}
-	
-}
+		// Declaro un set
+		// para marcar las Hectareas visitadas
+		Set<Hectarea> visitadas = new HashSet<Hectarea>();
 
-	private ArrayList<Hectarea> obtenerSuperficiePropagable(Coordenada origen,
-		IPropagable servicio) {
+		int radioParcial = 0;
 
-	Set<Hectarea> visitadas = new HashSet<Hectarea>();
-	visitadas.add(this.obtenerHectarea(origen));
-	Coordenada posicion = origen.copiar();
-	return this.buscarHectareas(posicion, servicio, visitadas);
+		while (queue.size() > 0) {
 
-}
+			Nodo n = queue.remove();
+			Hectarea h = this.obtenerHectarea(n.getCoordenada());
 
-	private ArrayList<Hectarea> buscarHectareas(Coordenada posicion,
-		IPropagable servicio, Set<Hectarea> visitadas) {
-	
-		ArrayList<Hectarea> superficie = new ArrayList<Hectarea>();		
-	
-		if (this.estaEnElMapaCoordenada(posicion.moverArriba())) {
-			Hectarea h = this.obtenerHectarea(posicion);
 			if (!visitadas.contains(h)) {
 				visitadas.add(h);
-	
-				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
-					superficie.add(h);
-					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
+
+				if (radioParcial > radio) {
+					if (!h.tieneConexion(servicio.obtenerConexionNecesaria()))
+						continue;
 				}
+				this.procesarHectarea(h, servicio);
+
+				cargarVecinos(n.getCoordenada(), queue, n.getDistancia() + 1);				
 			}
+			
+			if(queue.size() > 0 ){
+				if(queue.peek().getDistancia() > n.getDistancia())
+					radioParcial++;
+			}				
 		}
+	}
+
+	private void procesarHectarea(Hectarea hectarea, IPropagable servicio) {
+		if (hectarea.estaActivo(servicio.obtenerServicioPropagable())) {
+			return;
+		}
+
+		if (!servicio.puedoBrindarleElServicio(hectarea)) {
+			return;
+		}
+
+		// El consumo fue descontado del metodo
+		// puedoBrindarleElServicio()
+		hectarea.activar(servicio.obtenerServicioPropagable());
+	}
+
+	private void cargarVecinos(Coordenada posicion, PriorityQueue<Nodo> queue,
+			int distancia) {
+		if (coordenadaValida(posicion.moverArriba()))
+			queue.add(new Nodo(posicion.copiar(), distancia));
 		posicion.moverAbajo();
-	
-		if (this.estaEnElMapaCoordenada(posicion.moverAbajo())) {
-			Hectarea h = this.obtenerHectarea(posicion);
-			if (!visitadas.contains(h)) {
-				visitadas.add(h);
-	
-				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
-					superficie.add(h);
-					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
-				}
-			}
-		}
-		posicion.moverArriba();
-	
-		if (this.estaEnElMapaCoordenada(posicion.moverDerecha())) {
-			Hectarea h = this.obtenerHectarea(posicion);
-			if (!visitadas.contains(h)) {
-				visitadas.add(h);
-	
-				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
-					superficie.add(h);
-					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
-				}
-			}
-		}
+
+		if (coordenadaValida(posicion.moverDerecha()))
+			queue.add(new Nodo(posicion.copiar(), distancia));
 		posicion.moverIzquierda();
-	
-		if (this.estaEnElMapaCoordenada(posicion.moverIzquierda())) {
-			Hectarea h = this.obtenerHectarea(posicion);
-			if (!visitadas.contains(h)) {
-				visitadas.add(h);
-	
-				if (h.tieneConexion(servicio.obtenerConexionNecesaria())) {
-					superficie.add(h);
-					superficie.addAll(this.buscarHectareas(posicion, servicio, visitadas));
-				}
-			}
-		}
+
+		if (coordenadaValida(posicion.moverAbajo()))
+			queue.add(new Nodo(posicion.copiar(), distancia));
+		posicion.moverArriba();
+
+		if (coordenadaValida(posicion.moverIzquierda()))
+			queue.add(new Nodo(posicion.copiar(), distancia));
 		posicion.moverDerecha();
-	
-		return superficie;
 	}
-	
+
 }
