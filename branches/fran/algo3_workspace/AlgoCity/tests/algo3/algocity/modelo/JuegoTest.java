@@ -683,7 +683,7 @@ public class JuegoTest {
 		
 		assertEquals(100, res.obtenerSalud());
 		
-		juego.despertarAGodzilla();
+		juego.despertarAGodzillaSinRandom();
 		
 		assertEquals(0, res.obtenerSalud());
 	}
