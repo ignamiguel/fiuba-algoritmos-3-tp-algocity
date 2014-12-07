@@ -1,13 +1,11 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-//import java.util.ArrayList;
-//import java.util.Iterator;
 
 public class Mapa {
 
@@ -15,13 +13,6 @@ public class Mapa {
 	private int tamanio;
 	private Coordenada entradaAlaCiudad;
 
-	ArrayList<Coordenada> propagables;
-
-	// para hacer el refresh de cada turno recorre la lista y le dice a cada
-	// linea actualizate,Pablo
-	// La linea de tension ahora esta en las hectareas en la lista de
-	// conecciones
-	// private ArrayList<LineaDeTension> lineasDelMapa;
 
 	public Mapa(IGeneradorDeMapa generadorDeMapa) {
 
@@ -29,7 +20,6 @@ public class Mapa {
 		this.area = new Hectarea[tamanio][tamanio];
 		this.entradaAlaCiudad = generadorDeMapa.obtenerEntradaALaCiudad();
 
-		this.propagables = new ArrayList<Coordenada>();
 
 		generadorDeMapa.generarArea(this.area);
 
@@ -156,6 +146,30 @@ public class Mapa {
 		if (coordenadaValida(posicion.moverIzquierda()))
 			queue.add(new Nodo(posicion.copiar(), distancia));
 		posicion.moverDerecha();
+	}
+
+	public void desconectarServicios() {
+		for(int i=0; i < this.tamanio; i++){
+			for(int j=0; j < this.tamanio; j++){
+				Coordenada c = new Coordenada(i,j);
+				Hectarea hectarea = this.obtenerHectarea(c);
+				hectarea.desconectarServicios();
+			}
+		}
+		
+	}
+
+	public void conectarServicios() {
+		for(int i=0; i < this.tamanio; i++){
+			for(int j=0; j < this.tamanio; j++){
+				Coordenada c = new Coordenada(i,j);
+				Hectarea hectarea = this.obtenerHectarea(c);
+				hectarea.activar(TipoDeServicio.AccesoAlTransito);
+				hectarea.activar(TipoDeServicio.Electrico);
+				hectarea.activar(TipoDeServicio.Cloacas);
+			}
+		}
+		
 	}
 
 }

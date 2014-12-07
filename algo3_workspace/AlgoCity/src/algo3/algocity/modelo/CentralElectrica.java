@@ -16,7 +16,6 @@ public abstract class CentralElectrica extends Construccion implements
 	}
 
 	public boolean estaConectada() {
-
 		return conectadaARedDeAgua;
 	}
 

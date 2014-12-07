@@ -8,44 +8,42 @@ public class Juego extends Observable {
 
 	private Mapa mapa;
 
-	private ArrayList<Hectarea> hectareasConCentral;
+	private ArrayList<Coordenada> coordenadasConCentral;
 
-	private ArrayList<Hectarea> hectareasConPozo;
+	private ArrayList<Coordenada> coordenadasConPozo;
 
-	private ArrayList<Hectarea> hectareasConBomberos;
+	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
 
-	private ArrayList<Hectarea> hectareasResidenciales;
+	private ArrayList<Coordenada> coordenadasResidenciales;
 
-	private ArrayList<Hectarea> hectareasIndustriales;
+	private ArrayList<Coordenada> coordenadasIndustriales;
 
-	private ArrayList<Hectarea> hectareasComerciales;
+	private ArrayList<Coordenada> coordenadasComerciales;
+	
+	private ArrayList<Coordenada> coordenadasConConexiones;
 
-	private Hectarea hectareaEntradaALaCiudad;
+	private Coordenada coordenadaEntradaALaCiudad;
 
 	private int dinero;
 
 	private int turno;
-
-	private ArrayList<Hectarea> hectareasConConexiones;
-	// Para no recorrer toda la matriz para desconctar
-	// Si hacemos el propagar por radio, esto ya no sirve
 
 	private int habitantes;
 
 	public Juego() {
 		this.mapa = new Mapa(new MapaConPlaya());
 
-		this.hectareasResidenciales = new ArrayList<Hectarea>();
-		this.hectareasIndustriales = new ArrayList<Hectarea>();
-		this.hectareasComerciales = new ArrayList<Hectarea>();
+		this.coordenadasResidenciales = new ArrayList<Coordenada>();
+		this.coordenadasIndustriales = new ArrayList<Coordenada>();
+		this.coordenadasComerciales = new ArrayList<Coordenada>();
 
-		this.hectareasConCentral = new ArrayList<Hectarea>();
-		this.hectareasConPozo = new ArrayList<Hectarea>();
-		this.hectareasConBomberos = new ArrayList<Hectarea>();
+		this.coordenadasConCentral = new ArrayList<Coordenada>();
+		this.coordenadasConPozo = new ArrayList<Coordenada>();
+		this.coordenadasConConexiones = new ArrayList<Coordenada>();
 
-		this.hectareasConConexiones = new ArrayList<Hectarea>();
-		this.hectareaEntradaALaCiudad = this.mapa.obtenerHectarea(mapa
-				.obtenerEntradaALaCiudad());
+		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
+		
+		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
 
 		this.dinero = Configuracion.DINERO_INICIAL;
 		this.turno = 1;
@@ -67,42 +65,42 @@ public class Juego extends Observable {
 	public boolean insertar(Residencia residencia, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(residencia, coordenada))
 			return false;
-		this.hectareasResidenciales.add(mapa.obtenerHectarea(coordenada));
+		this.coordenadasResidenciales.add(coordenada);
 		return true;
 	}
 
 	public boolean insertar(CentralElectrica central, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(central, coordenada))
 			return false;
-		this.hectareasConCentral.add(mapa.obtenerHectarea(coordenada));
+		this.coordenadasConCentral.add(coordenada);
 		return true;
 	}
 
 	public boolean insertar(PozoDeAgua pozo, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(pozo, coordenada))
 			return false;
-		this.hectareasConPozo.add(mapa.obtenerHectarea(coordenada));
+		this.coordenadasConPozo.add(coordenada);
 		return true;
 	}
 
 	public boolean insertar(EstacionDeBomberos bomberos, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(bomberos, coordenada))
 			return false;
-		this.hectareasConBomberos.add(mapa.obtenerHectarea(coordenada));
+		this.estacionesDeBomberos.add(bomberos);
 		return true;
 	}
 
 	public boolean insertar(Industria industria, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(industria, coordenada))
 			return false;
-		this.hectareasIndustriales.add(mapa.obtenerHectarea(coordenada));
+		this.coordenadasIndustriales.add(coordenada);
 		return true;
 	}
 
 	public boolean insertar(Comercio comercio, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(comercio, coordenada))
 			return false;
-		this.hectareasComerciales.add(mapa.obtenerHectarea(coordenada));
+		this.coordenadasComerciales.add(coordenada);
 		return true;
 
 	}
@@ -110,9 +108,8 @@ public class Juego extends Observable {
 	public boolean insertar(IConectable conectable, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(conectable, coordenada))
 			return false;
-		Hectarea hectarea = mapa.obtenerHectarea(coordenada);
-		if (!this.hectareasConConexiones.contains(hectarea)) {
-			this.hectareasConConexiones.add(hectarea);
+		if (!this.coordenadasConConexiones.contains(coordenada)) {
+			this.coordenadasConConexiones.add(coordenada);
 		}
 		return true;
 	}
@@ -178,32 +175,25 @@ public class Juego extends Observable {
 		return this.mapa;
 	}
 
-	public ArrayList<Hectarea> obtenerHectareasResidenciales() {
-		return this.hectareasResidenciales;
+	public ArrayList<Coordenada> obtenerCoordenadasResidenciales() {
+		return this.coordenadasResidenciales;
 	}
 
-	public ArrayList<Hectarea> obtenerHectareasIndustriales() {
-		return this.hectareasIndustriales;
+	public ArrayList<Coordenada> obtenerCoordenadasIndustriales() {
+		return this.coordenadasIndustriales;
 	}
 
-	public ArrayList<Hectarea> obtenerHectareasComerciales() {
-		return this.hectareasComerciales;
+	public ArrayList<Coordenada> obtenerCoordenadasComerciales() {
+		return this.coordenadasComerciales;
 	}
 
-	public ArrayList<Hectarea> obtenerHectareasConCentral() {
-		return this.hectareasConCentral;
+	public ArrayList<Coordenada> obtenerCoordenadasConCentral() {
+		return this.coordenadasConCentral;
 	}
 
-	public ArrayList<Hectarea> obtenerHectareasConBomberos() {
-		return this.hectareasConBomberos;
-	}
 
-	public ArrayList<Hectarea> obtenerHectareasConPozo() {
-		return this.hectareasConPozo;
-	}
-
-	public ArrayList<Hectarea> obtenerHectareasConConexiones() {
-		return this.hectareasConConexiones;
+	public ArrayList<Coordenada> obtenerCoordenadasConPozo() {
+		return this.coordenadasConPozo;
 	}
 
 	public int obtenerTurno() {
@@ -221,7 +211,9 @@ public class Juego extends Observable {
 		this.desconectarServicios();
 
 		// Ataque de godilla o terremoto - ALEATORIO
-
+		
+		// Reparacion de bomberos
+		
 		this.propagarServicioDeAgua();
 		this.propagarServicioElectrico();
 		this.propagarServicioDeTransito();
@@ -230,69 +222,96 @@ public class Juego extends Observable {
 
 	}
 
-	private int mudarHabitantes() {
-
-		int capacidadDeAlojamiento = 0;
-		int capacidadDeTrabajo = 0;
-		int habitantesAMudar = 0;
-
-		Iterator<Hectarea> i = hectareasResidenciales.iterator();
-		while (i.hasNext()) {
-			Hectarea hectarea = i.next();
-			capacidadDeAlojamiento += hectarea.obtenerCapacidadDeAlojamiento();
-		}
-
-		Iterator<Hectarea> j = hectareasIndustriales.iterator();
-		while (j.hasNext()) {
-			Hectarea hectarea = j.next();
-			capacidadDeTrabajo += hectarea.obtenerCapacidadDeTrabajo();
-		}
-
-		habitantesAMudar = ((capacidadDeTrabajo - capacidadDeAlojamiento) * Configuracion.PORCENTAJE_DE_MUDANZA) / 100;
-		return habitantesAMudar;
+	public void desconectarServicios() {
+		mapa.desconectarServicios();
 	}
 
-	private void desconectarServicios() {
-		Iterator<Hectarea> i = hectareasConConexiones.iterator();
+	private void mudarHabitantes() {
+
+		int alojamientoBruto = 0;
+		int trabajoBruto = 0;
+		int deltaHabitantesTurno = 0;
+
+		Iterator<Coordenada> i = coordenadasResidenciales.iterator();
 		while (i.hasNext()) {
-			Hectarea hectarea = i.next();
-			hectarea.desconectarServicios();
+			Hectarea hectarea = mapa.obtenerHectarea(i.next());
+			alojamientoBruto += hectarea.obtenerCapacidadDeAlojamiento();
 		}
+		
+		int alojamientoNeto = alojamientoBruto - this.habitantes;
 
-		Iterator<Hectarea> j = hectareasConCentral.iterator();
+		Iterator<Coordenada> j = coordenadasIndustriales.iterator();
 		while (j.hasNext()) {
-			Hectarea hectarea = j.next();
-			CentralElectrica central = (CentralElectrica) hectarea
-					.obtenerConstruccion();
-			central.cargarAbastecimiento();
+			Hectarea hectarea = mapa.obtenerHectarea(j.next());
+			trabajoBruto += hectarea.obtenerCapacidadDeTrabajo();
 		}
+		
+		int trabajoNeto = trabajoBruto - this.habitantes;
+		
+		deltaHabitantesTurno = calcularMinimo(alojamientoNeto , trabajoNeto);
+		
+		if(deltaHabitantesTurno <= 0){
+			this.habitantes += deltaHabitantesTurno;
+		}
+		else{
+			this.habitantes += Configuracion.HABITANTES_NUEVOS;
+		}
+	}
 
+	private int calcularMinimo(int a, int b) {
+		if(a < b) return a;
+		return b;
 	}
 
 	private void propagarServicioDeTransito() {
-		Construccion entrada = hectareaEntradaALaCiudad.obtenerConstruccion();
-		this.hectareaEntradaALaCiudad.propagar((IPropagable) entrada, mapa);
-
+		this.mapa.propagarServicio(coordenadaEntradaALaCiudad);
 	}
 
 	private void propagarServicioDeAgua() {
-		Iterator<Hectarea> i = hectareasConPozo.iterator();
+		Iterator<Coordenada> i = coordenadasConPozo.iterator();
 		while (i.hasNext()) {
-			Hectarea hectarea = i.next();
-			hectarea.propagar((IPropagable) hectarea.obtenerConstruccion(),
-					mapa);
+			Coordenada c = i.next();
+			mapa.propagarServicio(c);
 		}
 
 	}
 
 	private void propagarServicioElectrico() {
-		Iterator<Hectarea> i = hectareasConCentral.iterator();
+		Iterator<Coordenada> i = coordenadasConCentral.iterator();
 		while (i.hasNext()) {
-			Hectarea hectarea = i.next();
-			if (hectarea.estaActivo(TipoDeServicio.Cloacas))
-				hectarea.propagar((IPropagable) hectarea.obtenerConstruccion(),
-						mapa);
+			Coordenada c = i.next();
+			mapa.propagarServicio(c);
 		}
+	}
+
+	public int obtenerHabitantes() {
+		return this.habitantes;
+	}
+
+	public void conectarServicios() {
+		this.mapa.conectarServicios();
+	}
+
+	public ArrayList<EstacionDeBomberos> obtenerEstacionesDeBomberos() {
+		return this.estacionesDeBomberos;
+	}
+
+	public ArrayList<Coordenada> obtenerCoordenadasConConexiones() {
+		return this.coordenadasConConexiones;
+	}
+
+	public void despertarAGodzilla() {
+		Godzilla godzilla = new Godzilla();
+		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10,0), new CaminarDerecho());
+	}
+
+	public void repararDanios() {
+		Iterator<EstacionDeBomberos> i = estacionesDeBomberos.iterator();
+		while (i.hasNext()) {
+			EstacionDeBomberos bomberos = i.next();
+			bomberos.repararDanios(this.mapa);
+		}
+		
 	}
 
 }
