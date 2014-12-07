@@ -28,6 +28,7 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		}
 
 		this.construccion = construccion;
+		notificarCambio();
 		return true;
 
 	}
@@ -42,6 +43,7 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		}
 
 		this.conexiones.add(conexion);
+		notificarCambio();
 		return true;
 
 	}
@@ -84,7 +86,8 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		while (i.hasNext()) {
 			i.next().afectarCon(godzilla);
 		}
-
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void afectarCon(Terremoto unTerremoto) {
@@ -97,12 +100,13 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		while (i.hasNext()) {
 			i.next().afectarCon(unTerremoto);
 		}
-
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
-
+		notificarCambio();
 	}
 
 	public boolean estaActivo(TipoDeServicio servicio) {		
@@ -118,6 +122,7 @@ public abstract class Hectarea extends Observable implements IAfectable {
 
 	public void desconectarServicios() {
 		this.servicios.clear();	
+		notificarCambio();
 	}
 
 	public int obtenerCapacidadDeAlojamiento() {
@@ -138,11 +143,10 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		while (i.hasNext()) {
 			i.next().reparar();
 		}
+		notificarCambio();
 	}
 
-	public void cambiar() {
-		// TODO Auto-generated method stub
-		this.construccion = new Residencia();
+	protected void notificarCambio() {
 		this.setChanged();
 		this.notifyObservers();
 	}

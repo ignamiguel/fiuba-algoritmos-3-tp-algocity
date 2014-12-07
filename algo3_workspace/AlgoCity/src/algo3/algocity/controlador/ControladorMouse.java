@@ -1,10 +1,7 @@
 package algo3.algocity.controlador;
 
 import java.awt.Component;
-import java.awt.MenuItem;
 import java.awt.PopupMenu;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -31,30 +28,17 @@ public class ControladorMouse extends MouseAdapter {
 		// mouseEvent.getY()));
 
 		if (MouseEvent.BUTTON3 == mouseEvent.getButton()) {
-			System.out.println("Abriendo menu!");
 			// Mostrar menu
-			PopupMenu editMenu = new PopupMenu("Menu Juego");
-			MenuItem cutMenuItem = new MenuItem("Construir Residencia");
-			//cutMenuItem.setEnabled(true);
-			cutMenuItem.addActionListener(new ActionListener(){
+			PopupMenu editMenu = new MenuManager()
+					.popularMenu(ControladorMouse.this.hectarea);
 
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					ControladorMouse.this.hectarea.cambiar();
-				}
-				
-			});
-			editMenu.add(cutMenuItem);
 			Component component = mouseEvent.getComponent();
 			component.add(editMenu);
 			if (component != null) {
 				editMenu.show(component, mouseEvent.getX(), mouseEvent.getY());
 			}
 		} else {
-
-			// modelo.inicializarModeloDato(vista.posicion);
-			System.out.println("Mouse aprateado!");
-			this.hectarea.cambiar();
+			// Selecciono la hectaria, actualizar panel de info
 		}
 	}
 }
