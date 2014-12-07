@@ -429,9 +429,6 @@ public class JuegoTest {
 		EstacionDeBomberos edb = new EstacionDeBomberos();
 		EstacionDeBomberos edb2 = new EstacionDeBomberos();
 		
-		Coordenada c1 = new Coordenada(5,5);
-		Coordenada c2 = new Coordenada(10,5);
-		
 		juego.insertar(edb,new Coordenada(5,5));
 		juego.insertar(edb2,new Coordenada(10,5));
 		
@@ -712,7 +709,7 @@ public class JuegoTest {
 		assertEquals(100, ruta.obtenerSalud());
 		assertEquals(100, tuberia.obtenerSalud());
 		
-		juego.despertarAGodzilla();
+		juego.despertarAGodzillaSinRandom();
 		
 		assertEquals(0, res.obtenerSalud());
 		assertEquals(0, ldt.obtenerSalud());
@@ -736,7 +733,7 @@ public class JuegoTest {
 		assertEquals(100, ind.obtenerSalud());
 		assertEquals(100, com.obtenerSalud());
 		
-		juego.despertarAGodzilla();
+		juego.despertarAGodzillaSinRandom();
 		
 		assertEquals(0, res.obtenerSalud());
 		assertEquals(60, ind.obtenerSalud());
@@ -760,7 +757,7 @@ public class JuegoTest {
 		assertEquals(100, ind.obtenerSalud());
 		assertEquals(100, com.obtenerSalud());
 		
-		juego.despertarAGodzilla();
+		juego.despertarAGodzillaSinRandom();
 		
 		assertEquals(0, res.obtenerSalud());
 		assertEquals(60, ind.obtenerSalud());
@@ -771,6 +768,122 @@ public class JuegoTest {
 		assertEquals(10, res.obtenerSalud());
 		assertEquals(63, ind.obtenerSalud());
 		assertEquals(32, com.obtenerSalud());
+		
+	}
+	
+	@Test
+	public void testGodillaAtacaUnaResidenciaUnaIndustriaYUnComercioAlineadosYNoSonReparadosPorqueNoHayBomberos(){
+		Juego juego = new Juego();
+		
+		Residencia res = new Residencia();
+		Industria ind = new Industria();
+		Comercio com = new Comercio();
+		
+		juego.insertar(res,new Coordenada(10,10));
+		juego.insertar(ind,new Coordenada(10,17));
+		juego.insertar(com,new Coordenada(10,0));
+		
+		assertEquals(100, res.obtenerSalud());
+		assertEquals(100, ind.obtenerSalud());
+		assertEquals(100, com.obtenerSalud());
+		
+		juego.despertarAGodzillaSinRandom();
+		
+		assertEquals(0, res.obtenerSalud());
+		assertEquals(60, ind.obtenerSalud());
+		assertEquals(25, com.obtenerSalud());
+		
+		juego.repararDanios();
+		
+		assertEquals(0, res.obtenerSalud());
+		assertEquals(60, ind.obtenerSalud());
+		assertEquals(25, com.obtenerSalud());
+		
+	}
+	
+	@Test
+	public void testGodillaAtacaUnaResidenciaUnaIndustriaYUnComercioAlineadosYSonReparadosPorDosEstacionDeBomberos(){
+		Juego juego = new Juego();
+		
+		Residencia res = new Residencia();
+		Industria ind = new Industria();
+		Comercio com = new Comercio();
+		
+		juego.insertar(res,new Coordenada(10,10));
+		juego.insertar(ind,new Coordenada(10,17));
+		juego.insertar(com,new Coordenada(10,0));
+		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,4));
+		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,7));
+		
+		assertEquals(100, res.obtenerSalud());
+		assertEquals(100, ind.obtenerSalud());
+		assertEquals(100, com.obtenerSalud());
+		
+		juego.despertarAGodzillaSinRandom();
+		
+		assertEquals(0, res.obtenerSalud());
+		assertEquals(60, ind.obtenerSalud());
+		assertEquals(25, com.obtenerSalud());
+		
+		juego.repararDanios();
+		
+		assertEquals(20, res.obtenerSalud());
+		assertEquals(66, ind.obtenerSalud());
+		assertEquals(39, com.obtenerSalud());
+		
+	}
+	
+	@Test
+	public void testGodillaAtacaUnaResidenciaUnaIndustriaYUnComercioAlineadosYLasTresConexionesYSonReparadosPorUnaEstacionDeBomberos(){
+		Juego juego = new Juego();
+		
+		Residencia res = new Residencia();
+		Industria ind = new Industria();
+		Comercio com = new Comercio();
+		
+		juego.insertar(res,new Coordenada(10,10));
+		juego.insertar(ind,new Coordenada(10,17));
+		juego.insertar(com,new Coordenada(10,0));
+		
+		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,4));
+		
+		LineaDeTension ldt = new LineaDeTension();
+		Ruta ruta = new Ruta();
+		Tuberia tuberia = new Tuberia();
+		
+		Coordenada c = new Coordenada(10,10);
+		
+		juego.insertar(ldt,c);
+		juego.insertar(ruta,c);
+		juego.insertar(tuberia,c);
+		
+		assertEquals(100, res.obtenerSalud());
+		assertEquals(100, ind.obtenerSalud());
+		assertEquals(100, com.obtenerSalud());
+		
+		assertEquals(100, ldt.obtenerSalud());
+		assertEquals(100, ruta.obtenerSalud());
+		assertEquals(100, tuberia.obtenerSalud());
+		
+		juego.despertarAGodzillaSinRandom();
+		
+		assertEquals(0, res.obtenerSalud());
+		assertEquals(60, ind.obtenerSalud());
+		assertEquals(25, com.obtenerSalud());
+		
+		assertEquals(0, ldt.obtenerSalud());
+		assertEquals(20, ruta.obtenerSalud());
+		assertEquals(100, tuberia.obtenerSalud());
+		
+		juego.repararDanios();
+		
+		assertEquals(10, res.obtenerSalud());
+		assertEquals(63, ind.obtenerSalud());
+		assertEquals(32, com.obtenerSalud());
+		
+		assertEquals(100, ldt.obtenerSalud());
+		assertEquals(100, ruta.obtenerSalud());
+		assertEquals(100, tuberia.obtenerSalud());
 		
 	}
 }
