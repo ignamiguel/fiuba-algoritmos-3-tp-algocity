@@ -1,8 +1,4 @@
-import algo3.algocity.modelo.*;
-import algo3.algocity.vista.*;
-
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import algo3.algocity.modelo.AlgoCity;
 
 public class Aplicacion {
 	public static void main(String args[]) {
