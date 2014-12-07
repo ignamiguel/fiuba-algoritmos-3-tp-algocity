@@ -1,10 +1,10 @@
 package algo3.algocity.modelo;
 
 import java.util.ArrayList;
-
 import java.util.Iterator;
+import java.util.Observable;
 
-public abstract class Hectarea implements IAfectable {
+public abstract class Hectarea extends Observable implements IAfectable {
 
 	// Atributos de la clase
 	protected ArrayList<IConectable> conexiones;
@@ -187,6 +187,19 @@ public abstract class Hectarea implements IAfectable {
 
 	public int obtenerCapacidadDeTrabajo() {
 		return ((Industria) this.construccion).calcularCapacidad(this.servicios);
+	}
+	
+	public void cambiar() {
+		// TODO Auto-generated method stub
+		this.construccion = new Residencia();
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+	public void construirResidencia(){
+		construir(new Residencia());
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 }

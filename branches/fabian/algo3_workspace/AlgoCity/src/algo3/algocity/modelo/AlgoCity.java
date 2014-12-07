@@ -13,8 +13,8 @@ public class AlgoCity {
 	}
 
 	private void crearVentana() {
-		VistaJuego vJuego = new VistaJuego(this.juego);
-		vJuego.update();
+		VentanaInicio vJuego = new VentanaInicio(this.juego);
+		vJuego.setVisible(true);
 	}
 
 	private void inicializarModelo() {
