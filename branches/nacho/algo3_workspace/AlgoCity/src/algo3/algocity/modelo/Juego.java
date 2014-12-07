@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 
-import javax.swing.JFrame;
-
-import algo3.algocity.vista.VistaJuego;
-
 public class Juego extends Observable {
 
 	private Mapa mapa;
