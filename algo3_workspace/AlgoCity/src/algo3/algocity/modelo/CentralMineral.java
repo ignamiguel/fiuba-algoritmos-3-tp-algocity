@@ -10,7 +10,6 @@ public class CentralMineral extends CentralElectrica {
 		this.salud = Configuracion.SALUD_INICIAL;
 	}
 
-	// metodos publicos
 
 	@Override
 	public void cargarAbastecimiento() {
@@ -18,5 +17,12 @@ public class CentralMineral extends CentralElectrica {
 		
 	}
 
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPACACION_A_CENTRAL_MINERAL;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
 
 }

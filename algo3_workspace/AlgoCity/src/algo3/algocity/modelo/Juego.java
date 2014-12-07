@@ -16,7 +16,7 @@ public class Juego extends Observable {
 
 	private ArrayList<Coordenada> coordenadasConPozo;
 
-	private ArrayList<Coordenada> coordenadasConBomberos;
+	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
 
 	private ArrayList<Coordenada> coordenadasResidenciales;
 
@@ -43,10 +43,11 @@ public class Juego extends Observable {
 
 		this.coordenadasConCentral = new ArrayList<Coordenada>();
 		this.coordenadasConPozo = new ArrayList<Coordenada>();
-		this.coordenadasConBomberos = new ArrayList<Coordenada>();
 		this.coordenadasConConexiones = new ArrayList<Coordenada>();
 
 		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
+		
+		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
 
 		this.dinero = Configuracion.DINERO_INICIAL;
 		this.turno = 1;
@@ -89,7 +90,7 @@ public class Juego extends Observable {
 	public boolean insertar(EstacionDeBomberos bomberos, Coordenada coordenada) {
 		if (!this.sePuedeInsertar(bomberos, coordenada))
 			return false;
-		this.coordenadasConBomberos.add(coordenada);
+		this.estacionesDeBomberos.add(bomberos);
 		return true;
 	}
 
@@ -295,12 +296,26 @@ public class Juego extends Observable {
 		this.mapa.conectarServicios();
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasConBomberos() {
-		return this.coordenadasConBomberos;
+	public ArrayList<EstacionDeBomberos> obtenerEstacionesDeBomberos() {
+		return this.estacionesDeBomberos;
 	}
 
 	public ArrayList<Coordenada> obtenerCoordenadasConConexiones() {
 		return this.coordenadasConConexiones;
+	}
+
+	public void despertarAGodzilla() {
+		Godzilla godzilla = new Godzilla();
+		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10,0), new CaminarDerecho());
+	}
+
+	public void repararDanios() {
+		Iterator<EstacionDeBomberos> i = estacionesDeBomberos.iterator();
+		while (i.hasNext()) {
+			EstacionDeBomberos bomberos = i.next();
+			bomberos.repararDanios(this.mapa);
+		}
+		
 	}
 
 }

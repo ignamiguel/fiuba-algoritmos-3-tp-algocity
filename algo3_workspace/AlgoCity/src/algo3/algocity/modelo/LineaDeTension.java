@@ -2,21 +2,12 @@ package algo3.algocity.modelo;
 
 public class LineaDeTension extends Conexion {
 
-	private boolean daniada;
-
 	public LineaDeTension() {
-		daniada = false;
-	}
-
-	public boolean estaDaniada() {
-		return daniada;
+		this.salud = Configuracion.SALUD_INICIAL;
 	}
 
 	// las lineas de tension o estan rotas o funcionan no sirve el parametro
 	// salud,Pablo
-	public void reparar(int salud) {
-		daniada = false;
-	}
 
 	public void afectarCon(Godzilla unGodzilla) {
 		if (this.salud == 0) {
@@ -51,6 +42,14 @@ public class LineaDeTension extends Conexion {
 	@Override
 	public TipoDeConexion obtenerTipo() {
 		return TipoDeConexion.LineaDeTension;
+	}
+
+	@Override
+	public void reparar() {
+		this.salud =+ Configuracion.REPACACION_A_LINEA_DE_TENSION;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
 	}
 
 }

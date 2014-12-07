@@ -43,5 +43,13 @@ public class Residencia extends Edificio {
 	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
 		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Cloacas) && servicios.contains(TipoDeServicio.Electrico));
 	}
+	
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_RESIDENCIA;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
 
 }
