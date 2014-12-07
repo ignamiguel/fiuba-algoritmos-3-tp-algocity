@@ -169,9 +169,7 @@ public class CentrealesTest {
 
 		assertEquals(true, mapa.conectar(ldt, new Coordenada(21, 22)));
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectarea.propagar(central, mapa);
+		mapa.propagarServicio(new Coordenada(22,22));
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22)))
@@ -196,8 +194,6 @@ public class CentrealesTest {
 
 		assertEquals(true, mapa.construir(central, new Coordenada(21, 21)));
 
-		Hectarea hectareaConPozo = mapa.obtenerHectarea(new Coordenada(21, 21));
-
 		assertEquals(true, mapa.conectar(ldt, norte));
 		assertEquals(true, mapa.conectar(ldt, este));
 		assertEquals(true, mapa.conectar(ldt, sur));
@@ -208,7 +204,7 @@ public class CentrealesTest {
 		assertEquals(true, mapa.conectar(ldt, esquina3));
 		assertEquals(true, mapa.conectar(ldt, esquina4));
 
-		hectareaConPozo.propagar(central, mapa);
+		mapa.propagarServicio(new Coordenada(21,21));
 
 		assertEquals(
 				true,
@@ -258,9 +254,7 @@ public class CentrealesTest {
 
 		assertEquals(true, mapa.conectar(ldt, new Coordenada(21, 22)));
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectarea.propagar(central, mapa);
+		mapa.propagarServicio(new Coordenada(22, 22));
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22)))
@@ -291,9 +285,7 @@ public class CentrealesTest {
 		assertEquals(true,
 				mapa.conectar(new LineaDeTension(), new Coordenada(19, 22)));
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectarea.propagar(central, mapa);
+		mapa.propagarServicio(new Coordenada(22, 22));
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22)))
@@ -330,9 +322,7 @@ public class CentrealesTest {
 		assertEquals(true,
 				mapa.conectar(new LineaDeTension(), new Coordenada(19, 22)));
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(22, 22));
-
-		hectarea.propagar(central, mapa);
+		mapa.propagarServicio (new Coordenada(22, 22));
 
 		assertEquals(true,
 				(mapa.obtenerHectarea(new Coordenada(21, 22)))
@@ -361,8 +351,7 @@ public class CentrealesTest {
 
 		assertEquals(400, central.obtenerCapacidadDeAbastecimiento());
 
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0, 15));
-		hectarea.propagar((IPropagable) hectarea.obtenerConstruccion(), mapa);
+		mapa.propagarServicio(new Coordenada(0, 15));
 
 		for (int i = 1; i < mapa.obtenerTamanio(); i++) {
 			assertEquals(true,

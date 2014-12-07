@@ -43,20 +43,25 @@ public class Industria extends Edificio {
 		return true;
 	}
 
-	public void brindarServicio(Hectarea hectarea) {
-		// No brinda servicios
-
+	public int calcularPuestosDeTrabajo(ArrayList<TipoDeServicio> servicios) {
+		if(salud == Configuracion.SALUD_INICIAL){
+			if(this.tieneLosServiciosRequeridos(servicios)){
+				return this.puestosDeTrabajo;
+			}
+		}
+		return 0;
+		
+	}
+	
+	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
+		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Electrico));
 	}
 
-	public int calcularCapacidad(ArrayList<TipoDeServicio> servicios) {
-		int puestosADevolver = this.puestosDeTrabajo;
-		if(!servicios.contains(TipoDeServicio.AccesoAlTransito))
-			puestosADevolver -= 25;
-		if(!servicios.contains(TipoDeServicio.Electrico))
-			puestosADevolver -= 25;
-		if(salud != Configuracion.SALUD_INICIAL)
-			puestosADevolver -= 25;
-		return puestosADevolver;
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_INDUSTRIA;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
 	}
-
 }

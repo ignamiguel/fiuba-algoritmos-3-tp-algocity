@@ -5,14 +5,6 @@ public class Coordenada {
 	int y;
 
 	public Coordenada(int x, int y) {
-		/*if (x < 0) {
-			throw new CoordenadaInvalidaExcepcion();
-		}
-
-		if (y < 0) {
-			throw new CoordenadaInvalidaExcepcion();
-		}*/
-
 		this.x = x;
 		this.y = y;
 	}

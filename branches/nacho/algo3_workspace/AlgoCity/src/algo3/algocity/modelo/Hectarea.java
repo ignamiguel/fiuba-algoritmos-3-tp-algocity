@@ -16,7 +16,6 @@ public abstract class Hectarea extends Observable implements IAfectable {
 
 	public boolean estaVacia() {
 		return (construccion == null);
-
 	}
 
 	public boolean construir(Construccion construccion) {
@@ -56,7 +55,6 @@ public abstract class Hectarea extends Observable implements IAfectable {
 	}
 
 	public void guardarUbicacion(Coordenada unaCoordenada) {
-
 		this.ubicacion = unaCoordenada;
 	}
 
@@ -102,59 +100,6 @@ public abstract class Hectarea extends Observable implements IAfectable {
 
 	}
 
-	public void propagar(IPropagable propagable, Mapa mapa) {
-
-		Coordenada coordVecina = this.ubicacion.copiar();
-
-		coordVecina.moverIzquierda();
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaNorte = mapa.obtenerHectarea(coordVecina);
-			hectareaNorte.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverDerecha();
-		coordVecina.moverArriba();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaEste = mapa.obtenerHectarea(coordVecina);
-			hectareaEste.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverAbajo();
-		coordVecina.moverDerecha();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaSur = mapa.obtenerHectarea(coordVecina);
-			hectareaSur.activarServicioYPropagar(propagable, mapa);
-		}
-
-		coordVecina.moverIzquierda();
-		coordVecina.moverAbajo();
-
-		if ((mapa).coordenadaValida(coordVecina)) {
-			Hectarea hectareaOeste = mapa.obtenerHectarea(coordVecina);
-			hectareaOeste.activarServicioYPropagar(propagable, mapa);
-		}
-	}
-
-	private void activarServicioYPropagar(IPropagable servicio, Mapa mapa) {
-
-		if (this.estaActivo(servicio.obtenerServicioPropagable())) {
-			return;
-		}
-
-		if (!this.tieneConexion(servicio.obtenerConexionNecesaria())) {
-			return;
-		}
-
-		if (!servicio.puedoBrindarleElServicio(this)) {
-			return;
-		}
-
-		this.activar(servicio.obtenerServicioPropagable());
-		this.propagar(servicio, mapa);
-	}
-
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
 
@@ -176,14 +121,26 @@ public abstract class Hectarea extends Observable implements IAfectable {
 	}
 
 	public int obtenerCapacidadDeAlojamiento() {
-		return ((Residencia) this.construccion).calcularCapacidad(this.servicios);
-		
+		return ((Residencia) this.construccion).calcularCapacidadDeAlojamiento(this.servicios);
 	}
 
 	public int obtenerCapacidadDeTrabajo() {
-		return ((Industria) this.construccion).calcularCapacidad(this.servicios);
+		return ((Industria) this.construccion).calcularPuestosDeTrabajo(this.servicios);
 	}
 
+	public void reparar() {
+		
+		if (!this.estaVacia()) {
+			(this.construccion).reparar();
+		}
+
+		Iterator<IConectable> i = conexiones.iterator();
+		while (i.hasNext()) {
+			i.next().reparar();
+		}
+	}
+
+}
 	public void cambiar() {
 		// TODO Auto-generated method stub
 		this.construccion = new Residencia();

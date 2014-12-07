@@ -1,5 +1,7 @@
 package algo3.algocity.modelo;
 
+import java.util.ArrayList;
+
 public class Comercio extends Edificio {
 
 	public Comercio() {
@@ -9,21 +11,12 @@ public class Comercio extends Edificio {
 	}
 
 	public void afectarCon(Godzilla godzilla) {
-		if (this.salud == 0) {
-			return;
-		}
-
-		int averia = Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO;
-		this.salud -= averia;
-
+		this.salud -= Configuracion.AVERIA_DE_GODZILLA_A_COMERCIO;
 		if (this.salud < 0) {
 			this.salud = 0;
 		}
 	}
 
-	public boolean puedoEn(Hectarea hectarea) {
-		return true;
-	}
 
 	public boolean puedoEn(Terreno terreno) {
 		return true;
@@ -31,6 +24,21 @@ public class Comercio extends Edificio {
 
 	public boolean puedoEn(Agua agua) {
 		return false;
+	}
+
+	@Override
+	public boolean tieneLosServiciosRequeridos(
+			ArrayList<TipoDeServicio> servicios) {
+		// //Servicios que requiera comercio
+		return false;
+	}
+
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_COMERCIO;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
 	}
 
 }

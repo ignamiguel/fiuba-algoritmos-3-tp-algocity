@@ -16,5 +16,13 @@ public class CentralEolica extends CentralElectrica {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_EOLICA;
 	}
 
-
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_CENTRAl_EOLICA;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
+	
+	
 }
