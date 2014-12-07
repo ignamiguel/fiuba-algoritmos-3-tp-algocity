@@ -220,6 +220,8 @@ public class Juego extends Observable {
 
 		this.mudarHabitantes();
 
+		setChanged();
+		notifyObservers();
 	}
 
 	public void desconectarServicios() {
@@ -284,10 +286,6 @@ public class Juego extends Observable {
 		}
 	}
 
-	public int obtenerHabitantes() {
-		return this.habitantes;
-	}
-
 	public void conectarServicios() {
 		this.mapa.conectarServicios();
 	}
@@ -313,5 +311,8 @@ public class Juego extends Observable {
 		}
 		
 	}
-
+	
+	public int obtenerHabitantes() {
+		return habitantes;
+	}
 }

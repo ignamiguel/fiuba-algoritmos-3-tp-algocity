@@ -140,7 +140,6 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		}
 	}
 
-}
 	public void cambiar() {
 		// TODO Auto-generated method stub
 		this.construccion = new Residencia();

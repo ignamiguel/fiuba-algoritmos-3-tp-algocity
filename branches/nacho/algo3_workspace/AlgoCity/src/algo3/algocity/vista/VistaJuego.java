@@ -1,5 +1,6 @@
 package algo3.algocity.vista;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Menu;
@@ -11,9 +12,13 @@ import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import algo3.algocity.controlador.ControladorEstadoJuego;
 import algo3.algocity.controlador.PasarTurno;
 import algo3.algocity.modelo.Coordenada;
 import algo3.algocity.modelo.Juego;
@@ -24,31 +29,57 @@ public class VistaJuego extends JFrame implements Observer {
 	private Container contenedor;
 	private PasarTurno pasarTurno;
 	private static final long serialVersionUID = 6156376075508293279L;
+	private JPanel panelMapa;
+	private EstadoJuego estadoJuego;
+	private ControladorEstadoJuego controladorEstado;
 
 	public VistaJuego(Juego juego) {
 		this.juego = juego;
 		this.juego.addObserver(this);
 		this.setTitle("AlgoCity");
 		contenedor = getContentPane();
+
+		inicializarMapa();
+		inicializarBarraDeEstado();
+		inicializarBarraLateral();
+		inicializarMenu();
+		inicializarVentana();
+	}
+
+	private void inicializarBarraLateral() {
+		JPanel panelLateral = new JPanel();
+		panelLateral
+				.setLayout(new BoxLayout(panelLateral, BoxLayout.PAGE_AXIS));
+		panelLateral.add(new JButton("Guardar"));
+		panelLateral.add(new JButton("Salir"));
+		contenedor.add(panelLateral, BorderLayout.LINE_START);
+	}
+
+	private void inicializarBarraDeEstado() {
+		estadoJuego = new EstadoJuego();
+		controladorEstado = new ControladorEstadoJuego(estadoJuego);
+		contenedor.add(estadoJuego, BorderLayout.PAGE_START);
+		juego.addObserver(controladorEstado);
+	}
+
+	private void inicializarMapa() {
 		GridLayout layoutMapa = new GridLayout(
-				juego.getMapa().obtenerTamanio(), juego.getMapa()
+				juego.getMapa().obtenerTamanio() + 1, juego.getMapa()
 						.obtenerTamanio());
-		contenedor.setLayout(layoutMapa);
+		panelMapa = new JPanel();
+		panelMapa.setLayout(layoutMapa);
 
 		int at = 0;
-
 		for (int x = 0; x < juego.getMapa().obtenerTamanio(); x++) {
 
 			for (int y = 0; y < juego.getMapa().obtenerTamanio(); y++) {
 
-				contenedor.add(new VistaHectarea(juego.getMapa()
+				panelMapa.add(new VistaHectarea(juego.getMapa()
 						.obtenerHectarea(new Coordenada(x, y))), at);
 				at++;
 			}
 		}
-
-		this.inicializarMenu();
-		this.inicializarVentana();
+		contenedor.add(panelMapa, BorderLayout.CENTER);
 	}
 
 	private void inicializarMenu() {
@@ -146,7 +177,7 @@ public class VistaJuego extends JFrame implements Observer {
 		for (int x = 0; x < juego.getMapa().obtenerTamanio(); x++) {
 
 			for (int y = 0; y < juego.getMapa().obtenerTamanio(); y++) {
-				((VistaHectarea) contenedor.getComponent(at)).updateVista();
+				((VistaHectarea) panelMapa.getComponent(at)).updateVista();
 				at++;
 			}
 		}
