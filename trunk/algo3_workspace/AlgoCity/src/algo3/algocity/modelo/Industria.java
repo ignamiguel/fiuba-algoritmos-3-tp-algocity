@@ -57,4 +57,11 @@ public class Industria extends Edificio {
 		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Electrico));
 	}
 
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPARACION_A_INDUSTRIA;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
+	}
 }

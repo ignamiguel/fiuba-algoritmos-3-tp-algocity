@@ -147,4 +147,58 @@ public class EstacionDeBomberosTest {
 		Assert.assertEquals(68, salud);	
 		
 	}
+	
+	@Test
+	public void repararUnaCentralNuclearAfectadaPorGodzillaEnUnaHectarea(){		
+		
+		Terreno terreno = new Terreno();
+		
+		CentralNuclear cNuclear = new CentralNuclear();
+
+		Godzilla godzilla = new Godzilla();		
+			
+		terreno.construir(cNuclear);
+		
+		terreno.afectarCon(godzilla);
+		
+		int salud = cNuclear.obtenerSalud();	
+		
+		Assert.assertEquals(65, salud);
+		
+		EstacionDeBomberos estacion = new EstacionDeBomberos();
+		
+		estacion.reparar(terreno);
+		
+		salud = cNuclear.obtenerSalud();	
+		
+		Assert.assertEquals(68, salud);	
+		
+	}
+	
+	@Test
+	public void repararUnaCentralNuclearAfectadaPorGodzillaEnUnaMapa(){		
+		Mapa mapa = new Mapa(new MapaConPlaya());
+		
+		CentralNuclear cNuclear = new CentralNuclear();
+
+		Godzilla godzilla = new Godzilla();		
+			
+		mapa.construir(cNuclear,new Coordenada(2,2));
+		
+		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(2,0), new CaminarDerecho());
+		
+		int salud = cNuclear.obtenerSalud();	
+		
+		Assert.assertEquals(65, salud);
+		
+		EstacionDeBomberos estacion = new EstacionDeBomberos();
+		
+		estacion.repararDanios(mapa);
+		
+		salud = cNuclear.obtenerSalud();	
+		
+		Assert.assertEquals(68, salud);	
+		
+	}
+	
 }

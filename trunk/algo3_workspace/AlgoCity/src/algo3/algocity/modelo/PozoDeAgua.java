@@ -57,4 +57,9 @@ public class PozoDeAgua extends Construccion implements IPropagable{
 	public int obtenerRadioDeCovertura() {		
 		return this.radioDeCovertura;
 	}
+	
+	@Override
+	public void reparar() {
+	
+	}
 }

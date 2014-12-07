@@ -13,9 +13,5 @@ public abstract class Construccion implements IConstruible {
 		return this.salud;
 	}
 
-	public void reparar(int salud) {
-		this.salud += salud;
-	}
-
 	public abstract int obtenerConsumoElectrico();
 }

@@ -34,7 +34,6 @@ public class Ruta extends Conexion {
 	}
 
 	public void reparar(int salud) {
-		// Asumimos que la reparacion es completa.
 		this.salud = salud;
 	}
 
@@ -50,6 +49,14 @@ public class Ruta extends Conexion {
 	@Override
 	public int obtenerCosto() {
 		return this.costo;
+	}
+	
+	@Override
+	public void reparar() {
+		this.salud += Configuracion.REPACACION_A_RUTA;
+		if(this.salud > 100){
+			this.salud = 100;
+		}
 	}
 
 }
