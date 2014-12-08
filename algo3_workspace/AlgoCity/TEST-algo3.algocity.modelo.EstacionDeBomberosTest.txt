@@ -1,0 +1,12 @@
+Testsuite: algo3.algocity.modelo.EstacionDeBomberosTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,05 sec
+
+Testcase: repararUnaCentralNuclearAfectadaPorGodzillaEnUnaHectarea took 0,01 sec
+Testcase: crearUnaEstacionDeBomberos took 0 sec
+Testcase: repararUnComercioAfectadoPorGodzilla took 0 sec
+Testcase: repararUnaResidenciaAfectadaPorGodzilla took 0 sec
+Testcase: repararUnaIndustriaAfectadaPorGodzilla took 0 sec
+Testcase: repararUnaCentralEolicaAfectadaPorGodzilla took 0 sec
+Testcase: repararUnaCentralMineraAfectadaPorGodzilla took 0 sec
+Testcase: repararUnaCentralNuclearAfectadaPorGodzilla took 0 sec
+Testcase: repararUnaCentralNuclearAfectadaPorGodzillaEnUnaMapa took 0 sec

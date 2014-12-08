@@ -1,0 +1,8 @@
+Testsuite: algo3.algocity.modelo.AguaTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,073 sec
+
+Testcase: ConstruirUnPozoDeAguaEnAguaVacia took 0 sec
+Testcase: ConstruirUnaEstacionDeBomberosEnAgua took 0 sec
+Testcase: ConstruirUnPozoDeAguaEnAguaQueYaTieneUnPozoDeAgua took 0 sec
+Testcase: ConstruirUnaCentralElectricaEnAguaVacia took 0 sec
+Testcase: ConstruirUnEdificioEnAgua took 0 sec

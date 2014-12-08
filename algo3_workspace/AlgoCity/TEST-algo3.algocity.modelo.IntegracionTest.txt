@@ -1,0 +1,9 @@
+Testsuite: algo3.algocity.modelo.IntegracionTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,122 sec
+
+Testcase: testInicioUnJuegoPropagoLosTresServiciosALaTotalidadDelMapaEnLaMedidaQueSePuedeCrearLaconexion took 0,052 sec
+Testcase: testUnaCiudadSinIndustriasNoVarianLosHabitantesPasandoTurno took 0 sec
+Testcase: testMapaConTodosLosServiciosAumentanLosHabitantesConIndustriasYResidencias took 0,02 sec
+Testcase: testInicioUnJuegoInsertoPozoDeAguaYTuberiasHorizontalAlMapaPasaElTurnoYTienenAguaLasHectareas took 0 sec
+Testcase: testUnaCiudadSinConstruccionesNoVariaLosHabitantesPasandoTurno took 0 sec
+Testcase: testMapaConTodosLosServiciosYUnaIndustriaYUnaResidenciaAumentanLosHabitantesHasta25 took 0,02 sec
