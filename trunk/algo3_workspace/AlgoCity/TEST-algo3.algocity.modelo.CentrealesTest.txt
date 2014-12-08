@@ -1,0 +1,25 @@
+Testsuite: algo3.algocity.modelo.CentrealesTest
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,161 sec
+
+Testcase: testCentralEolicaPropagaEnergiaATravezDeLosCableDeTensionArribaDelaCentralAUnaResidenciaUnaIndustriaYUnComercioQueLeConsumeCapacidad took 0,111 sec
+Testcase: testCentralMineralPropagaEnergiaATravezDeLosCableDeTensionArribaDelaCentralAUnaResidenciaUnaIndustriaYUnComercioQueLeConsumeCapacidad took 0 sec
+Testcase: testRadioDeCoverturaCentralNuclear took 0 sec
+Testcase: testCentralEolicaPropagaEnergiaATravezDeLosCableDeTensionArribaDelaCentralAUnaResidenciaQueLeConsumeCapacidad took 0 sec
+Testcase: testCentralEolicaPropagaEnergiaATravezDeLosCableDeTensionArribaDelaCentral took 0,01 sec
+Testcase: testCentralEolicaPropagaAguaATodasLasHectareasQueLaRodeanYLasQueEstanEnLasEsquinasConTuberias took 0 sec
+Testcase: testCapacidadDeAbastecimientoCentralEolica took 0 sec
+Testcase: testCapacidadDeAbastecimientoCentralMineral took 0 sec
+Testcase: testCapacidadDeAbastecimientoCentralNuclear took 0 sec
+Testcase: testPuedeConstruirseEnAguaCentralEolica took 0 sec
+Testcase: testPuedeConstruirseEnTerrenoCentralEolica took 0 sec
+Testcase: testPuedeConstruirseEnAguaCentralMineral took 0 sec
+Testcase: testPuedeConstruirseEnTerrenoCentralMineral took 0 sec
+Testcase: testPuedeConstruirseEnAguaCentralNuclear took 0 sec
+Testcase: testPuedeConstruirseEnTerrenoCentralNuclear took 0 sec
+Testcase: testCostoNuevaCentralMineral took 0 sec
+Testcase: testCostoNuevaCentralNuclear took 0 sec
+Testcase: testCostoNuevaCentralEolica took 0 sec
+Testcase: testEstaActivaCentralEolica took 0 sec
+Testcase: testEstaActivaCentralMineral took 0 sec
+Testcase: testEstaActivaCentralNuclear took 0 sec
+Testcase: testCentalElectricaPropagaElectricidadATodasLasHectareasQueEstanAlineadasAlSurConRutaYConsumenSuAbastecimiento took 0 sec
