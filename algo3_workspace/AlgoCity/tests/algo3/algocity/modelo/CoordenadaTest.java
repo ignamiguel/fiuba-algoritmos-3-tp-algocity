@@ -1,6 +1,8 @@
 package algo3.algocity.modelo;
 
-//import org.junit.Test;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 public class CoordenadaTest {
 
@@ -9,5 +11,15 @@ public class CoordenadaTest {
 		new Coordenada(-1, 0);
 
 	}*/
+	
+	@Test
+	public void aumentarEnX(){
+		
+		Coordenada una = new Coordenada(1,1);
+		una.aumentarX(1);
+		assertEquals(una.obtenerX(),2);
+		
+		
+	}
 
 }
