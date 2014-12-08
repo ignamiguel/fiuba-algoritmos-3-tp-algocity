@@ -12,7 +12,7 @@ public class Terremoto {
 	
 		this.danio = 100;
 		this.disminucionDeDanioPorHectarea =  1.5; // ~1.5%
-		this.radioDePropagacion = 4;//provisorio
+		this.radioDePropagacion = 8;//provisorio
 
 		
 	}
@@ -41,7 +41,7 @@ public class Terremoto {
 	//solo para testeo, la clase que se usara es la de arriba
 	private Coordenada generarPosicionAleatoria(Mapa mapa) {
 	
-		Coordenada unaCoordenada = new Coordenada(5,5);
+		Coordenada unaCoordenada = new Coordenada(10,10);
 		
 		return unaCoordenada;
 		
@@ -72,12 +72,13 @@ public class Terremoto {
 					if((mapa.coordenadaValida(coordenadaAux))&&(!(mapa.obtenerHectarea(coordenadaAux).estaVacia()))){
 						
 					
-						this.recalcularDanio(coordenadaAux,nucleo);
-						mapa.obtenerHectarea(coordenadaAux).afectarCon(this);
-						
-					}
-					coordenadaAux.disminuirX(j+1);
-					coordenadaAux.disminuirY(i);
+						this.recalcularDanio(coordenadaAux,nucleo);					//afecta en forma de rombo
+						mapa.obtenerHectarea(coordenadaAux).afectarCon(this);		//         0
+																					//        000
+					}																//       00000
+																					//       00000
+					coordenadaAux.disminuirX(j+1);									//        000
+					coordenadaAux.disminuirY(i);									//         0
 					
 					
 					coordenadaAux2.disminuirX(j);
