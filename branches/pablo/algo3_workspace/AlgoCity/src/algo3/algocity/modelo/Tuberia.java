@@ -27,7 +27,12 @@ public class Tuberia extends Conexion {
 
 	@Override
 	public void afectarCon(Terremoto unTerremoto) {
-		// Nunca es afectada por el Terremoto (por el momento)
+
+		this.salud -= unTerremoto.obtenerDanio();
+
+		if (this.salud < 0) {
+			this.salud = 0;
+		}
 
 	}
 

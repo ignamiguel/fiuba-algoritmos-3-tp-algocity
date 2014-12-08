@@ -49,37 +49,47 @@ public class Terremoto {
 	public void atacarConRandom(Mapa mapa){
 		
 		this.ubicacion = this.generarPosicionAleatoria(mapa);
+
 		this.atacar(ubicacion,mapa);
 		
 		
 	}
 	private void atacar(Coordenada nucleo,Mapa mapa) {
 		
-		//mapa.obtenerHectarea(ubicacion2).afectarCon(this);
-		Coordenada coordenadaAux = nucleo.copiar();
-		Coordenada coordenadaAux2 = nucleo.copiar();
-		
+
+			Coordenada coordenadaAux = nucleo.copiar();
+			Coordenada coordenadaAux2 = nucleo.copiar();
 		
 			
+			
 			for(int j =0;j<=(radioDePropagacion/2);j++){
-				for(int i =-(radioDePropagacion/2)+j;i<=(radioDePropagacion/2)-j;i++){
+				
+				for(int i =((-radioDePropagacion/2)+j);i<=((radioDePropagacion/2)-j);i++){
 					
-					coordenadaAux.aumentarX(j);
+					coordenadaAux.aumentarX(j+1);
 					coordenadaAux.aumentarY(i);
-					//System.out.println(coordenadaAux.obtenerX()+" "+coordenadaAux.obtenerY());
+					
 					if((mapa.coordenadaValida(coordenadaAux))&&(!(mapa.obtenerHectarea(coordenadaAux).estaVacia()))){
-						//System.out.println(coordenadaAux.obtenerX()+" "+coordenadaAux.obtenerY());
+						
+					
 						this.recalcularDanio(coordenadaAux,nucleo);
 						mapa.obtenerHectarea(coordenadaAux).afectarCon(this);
 						
 					}
-					coordenadaAux2.disminuirX(j);;
-					coordenadaAux2.disminuirY(i);;
+					coordenadaAux.disminuirX(j+1);
+					coordenadaAux.disminuirY(i);
+					
+					
+					coordenadaAux2.disminuirX(j);
+					coordenadaAux2.disminuirY(i);
+					
 					if((mapa.coordenadaValida(coordenadaAux2))&&(!(mapa.obtenerHectarea(coordenadaAux2).estaVacia()))){
 						
 						this.recalcularDanio(coordenadaAux2,nucleo);
 						mapa.obtenerHectarea(coordenadaAux2).afectarCon(this);
 					}
+					coordenadaAux2.aumentarX(j);
+					coordenadaAux2.aumentarY(i);
 					
 					
 					
@@ -102,11 +112,7 @@ public class Terremoto {
 		double norma = Math.sqrt(cuadrados);
 		
 		this.cargarDanio((100 - (norma*this.disminucionDeDanioPorHectarea))); 
-		//System.out.println(norma);
-		//System.out.println(cAux.obtenerX()+" "+nucleo.obtenerX());
-		//System.out.println(cAux.obtenerY()+" "+nucleo.obtenerY());
-		
-		
+
 	}
 	//Solo para Tests previos a la propagacion del terremoto
 	public void cargarDanio(double danio){

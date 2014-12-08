@@ -30,7 +30,11 @@ public class Ruta extends Conexion {
 	}
 
 	public void afectarCon(Terremoto unTerremoto) {
-		// TODO: implementar
+		this.salud -= unTerremoto.obtenerDanio();
+
+		if (this.salud < 0) {
+			this.salud = 0;
+		}
 	}
 
 	public void reparar(int salud) {
