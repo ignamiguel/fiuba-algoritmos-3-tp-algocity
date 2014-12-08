@@ -24,4 +24,29 @@ public class TerremotoTest {
 		terremoto.cargarDanio(10);
 		assertEquals(terremoto.obtenerDanio(),10);
 	}
+	@Test
+	public void testTerremotoGeneraDanioPorArea(){
+		
+		Residencia residencia = new Residencia ();
+		CentralEolica unaCentral = new CentralEolica();
+		Comercio comercio = new Comercio();
+
+		
+		
+		
+		Mapa mapa = new Mapa(new MapaLlano());
+		mapa.construir(unaCentral, new Coordenada(2,5));
+		mapa.construir(residencia, new Coordenada(5,5));
+		mapa.construir(comercio, new Coordenada(5,3));
+		
+		
+		Terremoto terremoto = new Terremoto();
+		terremoto.atacarConRandom(mapa);
+		
+		
+		assertEquals(residencia.obtenerSalud(),0);
+		assertEquals(comercio.obtenerSalud(),0);//deberia ser 3
+		assertEquals(unaCentral.obtenerSalud(),5);
+		//System.out.println(terremoto.obtenerDanio());
+	}
 }

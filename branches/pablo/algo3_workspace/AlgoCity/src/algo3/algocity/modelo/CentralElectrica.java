@@ -33,7 +33,10 @@ public abstract class CentralElectrica extends Construccion implements
 	}
 
 	public void afectarCon(Terremoto unTerremoto) {
-		// TODO Auto-generated method stub
+		this.salud = this.salud - unTerremoto.obtenerDanio();
+		if (this.salud < 0) {
+			this.salud = 0;
+		}
 
 	}
 
