@@ -1,6 +1,0 @@
-Testsuite: algo3.algocity.modelo.TerremotoTest
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,05 sec
-
-Testcase: testTerremotoCreadoConExito took 0,003 sec
-Testcase: testTerremotoCreadoTieneDanio100 took 0 sec
-Testcase: testTerremotoCargadoCon10DeDanio took 0 sec

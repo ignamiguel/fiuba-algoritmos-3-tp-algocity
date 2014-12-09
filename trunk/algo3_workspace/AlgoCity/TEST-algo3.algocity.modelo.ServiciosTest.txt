@@ -1,9 +1,0 @@
-Testsuite: algo3.algocity.modelo.ServiciosTest
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,02 sec
-
-Testcase: desactivarElectricidadEnTerrenoQuitaElServicioElectrico took 0,01 sec
-Testcase: activarAccesoAlTransitoEnTerrenoAgregaElServicioAccesoAlTransito took 0 sec
-Testcase: desactivarAccesoAlTransitoEnTerrenoQuitaElServicioAccesoAlTransito took 0 sec
-Testcase: desactivarCloacasEnTerrenoQuitaElServicioCloacal took 0 sec
-Testcase: activarElectricidadEnTerrenoAgregaElServicioElectrico took 0 sec
-Testcase: activarCloacasEnTerrenoAgregaElServicioCloacal took 0 sec
