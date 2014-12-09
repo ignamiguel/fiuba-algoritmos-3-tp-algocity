@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-
 import javax.swing.JPanel;
 
 import algo3.algocity.controlador.*;
@@ -20,7 +19,7 @@ public class VistaHectarea extends JPanel implements Observer {
 	private Hectarea hectarea;
 	private Color color;
 
-	// public Coordenada coordenada;
+	private Coordenada coordenada;
 
 	public void update(Observable o, Object arg) {
 		this.updateVista();
@@ -29,20 +28,26 @@ public class VistaHectarea extends JPanel implements Observer {
 	public VistaHectarea(Hectarea hectarea) {
 		this.hectarea = hectarea;
 		hectarea.addObserver(this);
-		this.addMouseListener(new ControladorMouse(hectarea, this));
+		this.addMouseListener(new ControladorMouse(hectarea));
+	}
+	
+	public VistaHectarea(Hectarea hectarea, Coordenada coordenada) {
+		this.hectarea = hectarea;
+		hectarea.addObserver(this);
+		this.coordenada = coordenada;
+		this.addMouseListener(new ControladorMouse(hectarea, this.coordenada));
 	}
 
 	protected void updateVista() {
-		if (hectarea.obtenerNombre().equals("Terreno")) {
-			if(hectarea.estaVacia())
+		if (this.hectarea.getClass().equals(Terreno.class)) {
+			if (hectarea.estaVacia())
 				this.color = new Color(122, 186, 122);
 			else
-				this.color = new Color(255,228,196);
+				this.color = new Color(255, 228, 196);
 		} else {
 			this.color = new Color(51, 102, 153);
 		}
-		
-		
+
 		repaint();
 		return;
 	}

@@ -138,6 +138,8 @@ public class Juego extends Observable {
 		}
 
 		this.dinero -= construible.obtenerCosto();
+		setChanged();
+		notifyObservers();
 		return true;
 	}
 

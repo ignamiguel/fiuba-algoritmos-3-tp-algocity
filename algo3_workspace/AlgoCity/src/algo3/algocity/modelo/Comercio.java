@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Comercio extends Edificio {
 
@@ -17,7 +17,6 @@ public class Comercio extends Edificio {
 		}
 	}
 
-
 	public boolean puedoEn(Terreno terreno) {
 		return true;
 	}
@@ -27,8 +26,7 @@ public class Comercio extends Edificio {
 	}
 
 	@Override
-	public boolean tieneLosServiciosRequeridos(
-			ArrayList<TipoDeServicio> servicios) {
+	public boolean tieneLosServiciosRequeridos(List<TipoDeServicio> servicios) {
 		// //Servicios que requiera comercio
 		return false;
 	}
@@ -36,7 +34,7 @@ public class Comercio extends Edificio {
 	@Override
 	public void reparar() {
 		this.salud += Configuracion.REPARACION_A_COMERCIO;
-		if(this.salud > 100){
+		if (this.salud > 100) {
 			this.salud = 100;
 		}
 	}

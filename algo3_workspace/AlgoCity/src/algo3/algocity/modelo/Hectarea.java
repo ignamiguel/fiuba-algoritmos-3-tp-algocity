@@ -2,13 +2,14 @@ package algo3.algocity.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 
 public abstract class Hectarea extends Observable implements IAfectable {
 
 	// Atributos de la clase
-	protected ArrayList<IConectable> conexiones;
-	protected ArrayList<TipoDeServicio> servicios;
+	protected List<IConectable> conexiones = new ArrayList<IConectable>();
+	protected List<TipoDeServicio> servicios = new ArrayList<TipoDeServicio>();
 	protected Construccion construccion;
 	protected Coordenada ubicacion;
 
@@ -109,8 +110,8 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		notificarCambio();
 	}
 
-	public boolean estaActivo(TipoDeServicio servicio) {		
-		return this.servicios.contains(servicio);		
+	public boolean estaActivo(TipoDeServicio servicio) {
+		return this.servicios.contains(servicio);
 	}
 
 	public int obtenerConsumo() {
@@ -121,20 +122,26 @@ public abstract class Hectarea extends Observable implements IAfectable {
 	}
 
 	public void desconectarServicios() {
-		this.servicios.clear();	
+		this.servicios.clear();
 		notificarCambio();
 	}
 
 	public int obtenerCapacidadDeAlojamiento() {
-		return ((Residencia) this.construccion).calcularCapacidadDeAlojamiento(this.servicios);
+		if (this.estaVacia()) {
+			return 0;
+		}
+		return this.construccion.calcularCapacidadDeAlojamiento(this.servicios);
 	}
 
 	public int obtenerCapacidadDeTrabajo() {
-		return ((Industria) this.construccion).calcularPuestosDeTrabajo(this.servicios);
+		if (this.estaVacia()) {
+			return 0;
+		}
+		return this.construccion.calcularPuestosDeTrabajo(this.servicios);
 	}
 
 	public void reparar() {
-		
+
 		if (!this.estaVacia()) {
 			(this.construccion).reparar();
 		}

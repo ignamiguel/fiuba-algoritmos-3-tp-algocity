@@ -5,32 +5,38 @@ import java.awt.PopupMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import algo3.algocity.modelo.Coordenada;
 import algo3.algocity.modelo.Hectarea;
-import algo3.algocity.vista.VistaHectarea;
+import algo3.algocity.vista.InformacionHectarea;
 
 public class ControladorMouse extends MouseAdapter {
 
 	private Hectarea hectarea;
+	private Coordenada coordenada;
 
-	private VistaHectarea vista;
+	// private VistaHectarea vista;
 
-	public ControladorMouse(Hectarea h, VistaHectarea vista) {
+	// public ControladorMouse(Hectarea h, VistaHectarea vista) {
+	// this.hectarea = h;
+	// this.vista = vista;
+	// }
+
+	public ControladorMouse(Hectarea h) {
 		this.hectarea = h;
-		this.vista = vista;
+	}
+
+	public ControladorMouse(Hectarea h, Coordenada c) {
+		this.hectarea = h;
+		this.coordenada = c;
 	}
 
 	public void mousePressed(MouseEvent mouseEvent) {
 
-		// Ojo al piojo.
-		// El manejo de las coordenadas del mouse debe ser encapsulado por la
-		// clase Posicion
-		// modelo.inicializarModeloDato(new Posicion(mouseEvent.getX(),
-		// mouseEvent.getY()));
+		InformacionHectarea.getInstance().actualizarInformacion(hectarea);
 
 		if (MouseEvent.BUTTON3 == mouseEvent.getButton()) {
 			// Mostrar menu
-			PopupMenu editMenu = new MenuManager()
-					.popularMenu(ControladorMouse.this.hectarea);
+			PopupMenu editMenu = new MenuManager().popularMenu(this.hectarea);
 
 			Component component = mouseEvent.getComponent();
 			component.add(editMenu);
@@ -38,7 +44,11 @@ public class ControladorMouse extends MouseAdapter {
 				editMenu.show(component, mouseEvent.getX(), mouseEvent.getY());
 			}
 		} else {
-			// Selecciono la hectaria, actualizar panel de info
+			// Muestro las coordenadas
+			System.out.println("x="
+					+ Integer.toString(this.coordenada.obtenerX()) + " y="
+					+ Integer.toString(this.coordenada.obtenerY()));
+
 		}
 	}
 }

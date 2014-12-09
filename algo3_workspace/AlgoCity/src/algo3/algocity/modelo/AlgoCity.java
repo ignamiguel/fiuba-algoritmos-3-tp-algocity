@@ -8,7 +8,6 @@ public class AlgoCity {
 	
 	public void iniciar() {
 		this.inicializarModelo();
-
 		this.crearVentana();
 	}
 

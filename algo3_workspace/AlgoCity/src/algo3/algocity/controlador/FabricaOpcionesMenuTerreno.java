@@ -5,23 +5,17 @@ import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import algo3.algocity.modelo.Comercio;
-import algo3.algocity.modelo.Hectarea;
-import algo3.algocity.modelo.Industria;
-import algo3.algocity.modelo.LineaDeTension;
-import algo3.algocity.modelo.Residencia;
-import algo3.algocity.modelo.Ruta;
-import algo3.algocity.modelo.Tuberia;
+import algo3.algocity.modelo.*;
 
 public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 
 	@Override
 	public void popularMenu(final Hectarea current, PopupMenu editMenu) {
-		MenuItem cutMenuItem = null;
+		MenuItem menuItem = null;
 		if (current.estaVacia()) {
-			cutMenuItem = new MenuItem("Construir Residencia");
-			cutMenuItem.setEnabled(true);
-			cutMenuItem.addActionListener(new ActionListener() {
+			menuItem = new MenuItem("Construir Residencia");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -30,11 +24,11 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 				}
 
 			});
-			editMenu.add(cutMenuItem);
+			editMenu.add(menuItem);
 
-			cutMenuItem = new MenuItem("Construir Comercio");
-			cutMenuItem.setEnabled(true);
-			cutMenuItem.addActionListener(new ActionListener() {
+			menuItem = new MenuItem("Construir Comercio");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -43,10 +37,10 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 				}
 
 			});
-			editMenu.add(cutMenuItem);
-			cutMenuItem = new MenuItem("Construir Industria");
-			cutMenuItem.setEnabled(true);
-			cutMenuItem.addActionListener(new ActionListener() {
+			editMenu.add(menuItem);
+			menuItem = new MenuItem("Construir Industria");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -55,13 +49,52 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 				}
 
 			});
-			editMenu.add(cutMenuItem);
+			editMenu.add(menuItem);
+			
+			menuItem = new MenuItem("Construir Central Eolica");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					CentralEolica ce = new CentralEolica();
+					current.construir(ce);
+				}
+
+			});
+			editMenu.add(menuItem);
+			
+			menuItem = new MenuItem("Construir Central Mineal");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					CentralMineral cm = new CentralMineral();
+					current.construir(cm);
+				}
+
+			});
+			editMenu.add(menuItem);
+			
+			menuItem = new MenuItem("Construir Central Nucelar");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					CentralNuclear cn = new CentralNuclear();
+					current.construir(cn);
+				}
+
+			});
+			editMenu.add(menuItem);			
 			editMenu.addSeparator();
 		}
 
-		cutMenuItem = new MenuItem("Conectar Ruta");
-		cutMenuItem.setEnabled(true);
-		cutMenuItem.addActionListener(new ActionListener() {
+		menuItem = new MenuItem("Conectar Ruta");
+		menuItem.setEnabled(true);
+		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -70,10 +103,10 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			}
 
 		});
-		editMenu.add(cutMenuItem);
-		cutMenuItem = new MenuItem("Conectar Tuberia");
-		cutMenuItem.setEnabled(true);
-		cutMenuItem.addActionListener(new ActionListener() {
+		editMenu.add(menuItem);
+		menuItem = new MenuItem("Conectar Tuberia");
+		menuItem.setEnabled(true);
+		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -82,11 +115,11 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			}
 
 		});
-		editMenu.add(cutMenuItem);
+		editMenu.add(menuItem);
 
-		cutMenuItem = new MenuItem("Conectar Linea De Tension");
-		cutMenuItem.setEnabled(true);
-		cutMenuItem.addActionListener(new ActionListener() {
+		menuItem = new MenuItem("Conectar Linea De Tension");
+		menuItem.setEnabled(true);
+		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -95,7 +128,7 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			}
 
 		});
-		editMenu.add(cutMenuItem);
+		editMenu.add(menuItem);
 	}
 
 }

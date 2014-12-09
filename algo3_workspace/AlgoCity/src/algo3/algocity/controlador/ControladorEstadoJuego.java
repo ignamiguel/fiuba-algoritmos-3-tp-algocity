@@ -19,7 +19,7 @@ public class ControladorEstadoJuego implements Observer {
 		Juego juego = (Juego) observable;
 		estadoJuego.actualizarDia(juego.obtenerTurno());
 		estadoJuego.actualizarDinero(juego.verDinero());
-		estadoJuego.actualizarJugador("Pepito");
+		//estadoJuego.actualizarJugador("Pepito");
 		estadoJuego.actualizarPoblacion(juego.obtenerHabitantes());
 	}
 
