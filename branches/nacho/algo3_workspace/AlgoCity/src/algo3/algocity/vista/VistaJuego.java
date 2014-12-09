@@ -2,6 +2,7 @@ package algo3.algocity.vista;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Menu;
 import java.awt.MenuBar;
@@ -13,7 +14,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,10 +25,11 @@ import algo3.algocity.modelo.Juego;
 
 public class VistaJuego extends JFrame implements Observer {
 
+	private static final long serialVersionUID = 6156376075508293279L;
+
 	private Juego juego;
 	private Container contenedor;
 	private PasarTurno pasarTurno;
-	private static final long serialVersionUID = 6156376075508293279L;
 	private JPanel panelMapa;
 	private EstadoJuego estadoJuego;
 	private ControladorEstadoJuego controladorEstado;
@@ -37,49 +38,49 @@ public class VistaJuego extends JFrame implements Observer {
 		this.juego = juego;
 		this.juego.addObserver(this);
 		this.setTitle("AlgoCity");
-		contenedor = getContentPane();
-
-		inicializarMapa();
-		inicializarBarraDeEstado();
-		inicializarBarraLateral();
-		inicializarMenu();
-		inicializarVentana();
+		this.contenedor = getContentPane();
+		this.inicializarMapa();
+		this.inicializarBarraDeEstado();
+		this.inicializarBarraLateral();
+		this.inicializarMenu();
+		this.inicializarVentana();
 	}
 
 	private void inicializarBarraLateral() {
 		JPanel panelLateral = new JPanel();
 		panelLateral
 				.setLayout(new BoxLayout(panelLateral, BoxLayout.PAGE_AXIS));
-		panelLateral.add(new JButton("Guardar"));
-		panelLateral.add(new JButton("Salir"));
+		panelLateral.add(InformacionHectarea.getInstance());
+		// panelLateral.add(new JButton("Guardar"));
+		// panelLateral.add(new JButton("Salir"));
+		panelLateral.setPreferredSize(new Dimension(250, 480));
 		contenedor.add(panelLateral, BorderLayout.LINE_START);
 	}
 
 	private void inicializarBarraDeEstado() {
-		estadoJuego = new EstadoJuego();
-		controladorEstado = new ControladorEstadoJuego(estadoJuego);
-		contenedor.add(estadoJuego, BorderLayout.PAGE_START);
-		juego.addObserver(controladorEstado);
+		this.estadoJuego = new EstadoJuego();
+		this.controladorEstado = new ControladorEstadoJuego(estadoJuego);
+		this.contenedor.add(estadoJuego, BorderLayout.PAGE_START);
+		this.juego.addObserver(this.controladorEstado);
 	}
 
 	private void inicializarMapa() {
-		GridLayout layoutMapa = new GridLayout(
-				juego.getMapa().obtenerTamanio() + 1, juego.getMapa()
-						.obtenerTamanio());
+		int dimension = this.juego.getMapa().obtenerTamanio();
+
+		GridLayout layoutMapa = new GridLayout(dimension + 1, dimension + 1);
 		panelMapa = new JPanel();
 		panelMapa.setLayout(layoutMapa);
 
 		int at = 0;
-		for (int x = 0; x < juego.getMapa().obtenerTamanio(); x++) {
-
-			for (int y = 0; y < juego.getMapa().obtenerTamanio(); y++) {
-
+		for (int x = 0; x < dimension; x++) {
+			for (int y = 0; y < dimension; y++) {
+				Coordenada c = new Coordenada(x, y);
 				panelMapa.add(new VistaHectarea(juego.getMapa()
-						.obtenerHectarea(new Coordenada(x, y))), at);
+						.obtenerHectarea(c), c), at);
 				at++;
 			}
 		}
-		contenedor.add(panelMapa, BorderLayout.CENTER);
+		this.contenedor.add(panelMapa, BorderLayout.CENTER);
 	}
 
 	private void inicializarMenu() {
@@ -157,9 +158,13 @@ public class VistaJuego extends JFrame implements Observer {
 
 	private void inicializarVentana() {
 
-		this.setSize(800, 700);
+		// Maximizar la ventana
+		//this.setSize(800, 700);
+		this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
-		this.setLocation(8, 0);
+		// Si la ventana esta maximizada
+		// no tiene sentido un location
+		// this.setLocation(8, 0);
 
 		this.setVisible(true);
 
@@ -172,16 +177,16 @@ public class VistaJuego extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		int dimension = this.juego.getMapa().obtenerTamanio();
 
 		int at = 0;
-		for (int x = 0; x < juego.getMapa().obtenerTamanio(); x++) {
+		for (int x = 0; x < dimension; x++) {
 
-			for (int y = 0; y < juego.getMapa().obtenerTamanio(); y++) {
+			for (int y = 0; y < dimension; y++) {
 				((VistaHectarea) panelMapa.getComponent(at)).updateVista();
 				at++;
 			}
 		}
-
 	}
 
 }

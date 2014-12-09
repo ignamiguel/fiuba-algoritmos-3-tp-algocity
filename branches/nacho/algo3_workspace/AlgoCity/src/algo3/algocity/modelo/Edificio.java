@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Edificio extends Construccion {
 
@@ -29,6 +29,6 @@ public abstract class Edificio extends Construccion {
 		}
 	}
 	
-	public abstract boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios);
+	public abstract boolean tieneLosServiciosRequeridos(List<TipoDeServicio> servicios);
 
 }

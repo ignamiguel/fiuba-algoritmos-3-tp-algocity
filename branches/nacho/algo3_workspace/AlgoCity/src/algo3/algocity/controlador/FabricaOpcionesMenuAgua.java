@@ -5,7 +5,7 @@ import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import algo3.algocity.modelo.Hectarea;	
+import algo3.algocity.modelo.Hectarea;
 import algo3.algocity.modelo.PozoDeAgua;
 import algo3.algocity.modelo.Tuberia;
 
@@ -13,21 +13,27 @@ public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 
 	@Override
 	public void popularMenu(final Hectarea current, PopupMenu editMenu) {
-		MenuItem cutMenuItem = new MenuItem("Construir Pozo de Agua");
-		cutMenuItem.setEnabled(true);
-		cutMenuItem.addActionListener(new ActionListener() {
+		MenuItem menuItem = null;
+		if (current.estaVacia()) {
+			menuItem = new MenuItem("Construir Pozo de Agua");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				PozoDeAgua industria = new PozoDeAgua();
-				current.construir(industria);
-			}
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					PozoDeAgua industria = new PozoDeAgua();
+					current.construir(industria);
+				}
 
-		});
-		editMenu.add(cutMenuItem);
-		cutMenuItem = new MenuItem("Conectar Tuberia");
-		cutMenuItem.setEnabled(true);
-		cutMenuItem.addActionListener(new ActionListener() {
+			});
+			editMenu.add(menuItem);
+			editMenu.addSeparator();
+		}
+
+		
+		menuItem = new MenuItem("Conectar Tuberia");
+		menuItem.setEnabled(true);
+		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -36,7 +42,7 @@ public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 			}
 
 		});
-		editMenu.add(cutMenuItem);
+		editMenu.add(menuItem);
 	}
 
 }

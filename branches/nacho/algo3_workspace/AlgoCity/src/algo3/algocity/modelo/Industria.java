@@ -1,6 +1,6 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Industria extends Edificio {
 
@@ -43,7 +43,8 @@ public class Industria extends Edificio {
 		return true;
 	}
 
-	public int calcularPuestosDeTrabajo(ArrayList<TipoDeServicio> servicios) {
+	
+	public int calcularPuestosDeTrabajo(List<TipoDeServicio> servicios) {
 		if(salud == Configuracion.SALUD_INICIAL){
 			if(this.tieneLosServiciosRequeridos(servicios)){
 				return this.puestosDeTrabajo;
@@ -53,7 +54,7 @@ public class Industria extends Edificio {
 		
 	}
 	
-	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
+	public boolean tieneLosServiciosRequeridos(List<TipoDeServicio> servicios) {
 		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Electrico));
 	}
 
