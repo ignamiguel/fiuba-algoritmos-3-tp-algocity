@@ -1,8 +1,0 @@
-Testsuite: algo3.algocity.modelo.TerrenoTest
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,08 sec
-
-Testcase: ConstruirUnaCentralElectricaEnTerrenoVacio took 0 sec
-Testcase: ConstruirUnaEstacionDeBomberosEnTerrenoVacio took 0 sec
-Testcase: ConstruirUnEdificioEnTerenoQueYaTieneUnEdificio took 0 sec
-Testcase: ConstruirUnPozoDeAguaEnTerrenoVacio took 0 sec
-Testcase: ConstruirUnEdificioEnTerrenoVacio took 0 sec
