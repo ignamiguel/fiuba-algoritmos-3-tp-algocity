@@ -5,8 +5,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 
-
 import javax.swing.JPanel;
+
+import algo3.algocity.modelo.Juego;
 
 public class EstadoJuego extends JPanel{
 
@@ -19,18 +20,20 @@ public class EstadoJuego extends JPanel{
 	private Label dinero;
 	private Label dia;
 	private Label jugador;
-
-	public EstadoJuego() {
+	
+	public EstadoJuego(Juego juego) {
 		setLayout(new FlowLayout());
 		Dimension tamanio = new Dimension(120, 20);
-		this.poblacion = new Label(POBLACION + "0");
+		
+		this.poblacion = new Label(POBLACION + Integer.toString(juego.getCiudadanos()));
 		this.poblacion.setPreferredSize(tamanio);
-		this.dinero = new Label(DINERO + "100000");
+		this.dinero = new Label(DINERO + Integer.toString(juego.getDinero()));
 		this.dinero.setPreferredSize(tamanio);
-		this.dia = new Label(DIA + "1");
+		this.dia = new Label(DIA + Integer.toString(juego.getTurno()));
 		this.dia.setPreferredSize(tamanio);
-		this.jugador = new Label("Jugador1");
+		this.jugador = new Label(juego.getJugador());
 		this.jugador.setPreferredSize(tamanio);
+		
 		this.add(poblacion);
 		this.add(dinero);
 		this.add(dia);

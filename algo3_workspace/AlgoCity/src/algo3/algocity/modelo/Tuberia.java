@@ -7,7 +7,7 @@ public class Tuberia extends Conexion {
 		this.costo = Configuracion.COSTO_TUBERIA;
 	}
 
-	public String obtenerServicio() {
+	public String getServicio() {
 		return "Tuberia";
 	}
 
@@ -33,22 +33,29 @@ public class Tuberia extends Conexion {
 	}
 
 	@Override
-	public TipoDeConexion obtenerTipo() {
+	public TipoDeConexion getTipo() {
 		return TipoDeConexion.Tuberia;
 	}
 
 	@Override
-	public int obtenerCosto() {
+	public int getCosto() {
 		return this.costo;
 	}
 
-	public boolean estaDaniada() {
+	@Override
+	public boolean estaAveriada() {
+		// Asumimos que las tuberias no se averian
 		return false;
 	}
 	
 	@Override
 	public void reparar() {
 
+	}
+
+	@Override
+	public String getEtiqueta() {
+		return Configuracion.ETIQUETA_TUBERIA;
 	}
 
 

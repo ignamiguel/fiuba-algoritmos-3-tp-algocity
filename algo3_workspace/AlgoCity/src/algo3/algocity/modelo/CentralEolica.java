@@ -19,10 +19,14 @@ public class CentralEolica extends CentralElectrica {
 	@Override
 	public void reparar() {
 		this.salud += Configuracion.REPARACION_A_CENTRAl_EOLICA;
-		if(this.salud > 100){
+		if (this.salud > 100) {
 			this.salud = 100;
 		}
 	}
-	
-	
+
+	@Override
+	public String getEtiqueta() {
+		return Configuracion.ETIQUETA_CENTRAL_EOLICA;
+	}
+
 }

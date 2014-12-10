@@ -8,7 +8,7 @@ public class CaminarDerecho implements ICaminable {
 	public void caminarMapa(Godzilla godzilla, Mapa mapa) {
 
 		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
-			Hectarea hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
+			Hectarea hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
 			hectarea.afectarCon(godzilla);
 			godzilla.avanzarEnY();
 		}

@@ -3,10 +3,11 @@ package algo3.algocity.modelo;
 public class EstacionDeBomberos extends Construccion {
 
 	public EstacionDeBomberos() {
-		this.costo = Configuracion.COSTO_ESTACION_DE_BOMBEROS;
+		super();
+		this.costo = Configuracion.COSTO_ESTACION_DE_BOMBEROS;		
 	}
 
-	public String obtenerNombre() {
+	public String getEtiqueta() {
 		return "Estacion de Bomberos";
 	}
 
@@ -22,7 +23,6 @@ public class EstacionDeBomberos extends Construccion {
 		return true;
 	}
 
-
 	@Override
 	public void afectarCon(Godzilla unGodzilla) {
 		// No es un edificio que sea daniable
@@ -34,27 +34,41 @@ public class EstacionDeBomberos extends Construccion {
 		// No es un edificio que sea daniable
 
 	}
-	
-	public int obtenerConsumoElectrico(){
+
+	public int getConsumoElectrico() {
 		return 0;
 	}
 
-	public void repararDanios(Mapa mapa) {
-		
-		for(int i=0; i < mapa.getTamanio();i++ ){
-			for(int j=0; j < mapa.getTamanio(); j++){
-				Coordenada coordenada = new Coordenada(i,j);
-				Hectarea hectarea = mapa.obtenerHectarea(coordenada);
+	public void repararAverias(Mapa mapa) {
+
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
+				Coordenada coordenada = new Coordenada(i, j);
+				Hectarea hectarea = mapa.getHectarea(coordenada);
 				hectarea.reparar();
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void reparar() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public int getPuestosDeTrabajo() {
+		// La estacion de bomberos
+		// no ofrece puestos de trabajo
+		return 0;
+	}
+
+	@Override
+	public int getCapacidadDeAlojamiento() {
+		// La estacion de bomberos
+		// no tiene capacidad de alojamiento
+		return 0;
 	}
 
 }

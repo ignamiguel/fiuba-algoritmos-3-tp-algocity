@@ -10,19 +10,23 @@ public class CentralMineral extends CentralElectrica {
 		this.salud = Configuracion.SALUD_INICIAL;
 	}
 
-
 	@Override
 	public void cargarAbastecimiento() {
 		this.capacidadDeAbastecimiento = Configuracion.CAPACIDAD_ABAS_CENTRAL_MINERAL;
-		
+
 	}
 
 	@Override
 	public void reparar() {
 		this.salud += Configuracion.REPACACION_A_CENTRAL_MINERAL;
-		if(this.salud > 100){
+		if (this.salud > 100) {
 			this.salud = 100;
 		}
+	}
+
+	@Override
+	public String getEtiqueta() {
+		return Configuracion.ETIQUETA_CENTRAL_MINERAL;
 	}
 
 }

@@ -9,14 +9,14 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testMapaLlanoTieneConstruidaUnaEntradaALaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.obtenerHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
 		assertEquals(true,hectarea.tieneConexion(TipoDeConexion.Ruta));
 	}
 	
 	@Test
 	public void testSeLePuedenConstruirConexionesALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.obtenerHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
 		
 		hectarea.conectar(new Tuberia());
 		hectarea.conectar(new LineaDeTension());
@@ -30,7 +30,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testNoSeLePuedeConstruirUnaRutaALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.obtenerHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
 		
 		assertEquals(false,hectarea.conectar(new Ruta()));
 	}
@@ -38,7 +38,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testNoSeLePuedeConstruirOtraContruccionALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.obtenerHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
 		
 		assertEquals(false,hectarea.construir(new Residencia()));
 	}
@@ -52,15 +52,15 @@ public class EntradaALaCiudadTest {
 		
 		Coordenada vecina = entrada;
 		vecina.aumentarX(1);
-		assertEquals(false, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 		vecina = entrada;
 		vecina.disminuirY(1);
-		assertEquals(false, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 		vecina = entrada;
 		vecina.aumentarY(1);
-		assertEquals(false, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class EntradaALaCiudadTest {
 		
 		mapa.propagarServicio(entrada);
 		
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 	}
 	
@@ -86,18 +86,18 @@ public class EntradaALaCiudadTest {
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarX(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		vecina.aumentarX(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		
 		mapa.propagarServicio(entrada);
 		
 		vecina = entrada.copiar();
 		vecina.aumentarX(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		vecina.aumentarX(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 	}
 	
@@ -112,7 +112,7 @@ public class EntradaALaCiudadTest {
 		
 		mapa.propagarServicio(entrada);
 		
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 	}
 	
@@ -124,18 +124,18 @@ public class EntradaALaCiudadTest {
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarY(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		vecina.aumentarY(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		
 		mapa.propagarServicio(entrada);
 		
 		vecina = entrada.copiar();
 		vecina.aumentarY(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		vecina.aumentarY(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 	}
 	
@@ -150,7 +150,7 @@ public class EntradaALaCiudadTest {
 		
 		mapa.propagarServicio(entrada);
 		
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		
 	}
 	
@@ -162,18 +162,18 @@ public class EntradaALaCiudadTest {
 		Coordenada vecina = entrada.copiar();
 		vecina.disminuirY(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		vecina.disminuirY(1);
 		assertEquals(true, mapa.conectar(new Ruta(), vecina));
-		assertEquals(true, mapa.obtenerHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
+		assertEquals(true, mapa.getHectarea(vecina).tieneConexion(TipoDeConexion.Ruta));
 		
 		mapa.propagarServicio(entrada);
 		
 		vecina = entrada.copiar();
 		vecina.disminuirY(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));
 		vecina.disminuirY(1);
-		assertEquals(true, mapa.obtenerHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));	
+		assertEquals(true, mapa.getHectarea(vecina).estaActivo(TipoDeServicio.AccesoAlTransito));	
 	}
 	
 	@Test
@@ -185,7 +185,7 @@ public class EntradaALaCiudadTest {
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
 			assertEquals(true, mapa.conectar(new Ruta(), entrada));
-			assertEquals(true, mapa.obtenerHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
 			entrada.aumentarX(1);
 		}
 		
@@ -193,7 +193,7 @@ public class EntradaALaCiudadTest {
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
-			assertEquals(true, mapa.obtenerHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
 			entrada.aumentarX(1);
 		}
 	}
@@ -207,7 +207,7 @@ public class EntradaALaCiudadTest {
 		
 		while(entrada.obtenerY() < mapa.getTamanio()){
 			assertEquals(true, mapa.conectar(new Ruta(), entrada));
-			assertEquals(true, mapa.obtenerHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
 			entrada.aumentarY(1);
 		}
 		
@@ -215,7 +215,7 @@ public class EntradaALaCiudadTest {
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerY() < mapa.getTamanio()){
-			assertEquals(true, mapa.obtenerHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
 			entrada.aumentarY(1);
 		}
 	}
@@ -229,7 +229,7 @@ public class EntradaALaCiudadTest {
 		
 		while(entrada.obtenerY() >= 0){
 			assertEquals(true, mapa.conectar(new Ruta(), entrada));
-			assertEquals(true, mapa.obtenerHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
 			entrada.disminuirY(1);
 		}
 		
@@ -237,7 +237,7 @@ public class EntradaALaCiudadTest {
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerY() >= 0){
-			assertEquals(true, mapa.obtenerHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
 			entrada.disminuirY(1);
 		}
 	}
@@ -251,7 +251,7 @@ public class EntradaALaCiudadTest {
 			for(int j=0; j< mapa.getTamanio(); j++){
 				Coordenada coord = new Coordenada(i,j);
 				mapa.conectar(new Ruta(), coord);
-				assertEquals(true, mapa.obtenerHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
+				assertEquals(true, mapa.getHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
 			}
 		}
 		
@@ -261,7 +261,7 @@ public class EntradaALaCiudadTest {
 		for(int i=0; i < mapa.getTamanio();i++){
 			for(int j=0; j< mapa.getTamanio(); j++){
 				Coordenada coord2 = new Coordenada(i,j);
-				assertEquals(true, mapa.obtenerHectarea(coord2).estaActivo(TipoDeServicio.AccesoAlTransito));
+				assertEquals(true, mapa.getHectarea(coord2).estaActivo(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 	}
@@ -275,7 +275,7 @@ public class EntradaALaCiudadTest {
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
 			assertEquals(true, mapa.conectar(new Ruta(), entrada));
-			assertEquals(true, mapa.obtenerHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
 			entrada.aumentarX(1);
 		}
 		
@@ -283,20 +283,20 @@ public class EntradaALaCiudadTest {
 		for(int i=0; i < mapa.getTamanio();i++){
 			Coordenada coord = new Coordenada(i,10);
 			assertEquals(true, mapa.conectar(new Ruta(), coord));
-			assertEquals(true, mapa.obtenerHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
 		}
 		
 		entrada = mapa.obtenerEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
-			assertEquals(true, mapa.obtenerHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
 			entrada.aumentarX(1);
 		}
 		
 		for(int i=0; i < mapa.getTamanio();i++){
 			Coordenada coord = new Coordenada(i,10);
-			assertEquals(false, mapa.obtenerHectarea(coord).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(false, mapa.getHectarea(coord).estaActivo(TipoDeServicio.AccesoAlTransito));
 		}
 		
 	}
@@ -310,7 +310,7 @@ public class EntradaALaCiudadTest {
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
 			assertEquals(true, mapa.conectar(new Ruta(), entrada));
-			assertEquals(true, mapa.obtenerHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(entrada).tieneConexion(TipoDeConexion.Ruta));
 			entrada.aumentarX(1);
 		}
 		
@@ -318,7 +318,7 @@ public class EntradaALaCiudadTest {
 		for(int i=0; i < mapa.getTamanio();i++){
 			Coordenada coord = new Coordenada(i,10);
 			assertEquals(true, mapa.conectar(new Ruta(), coord));
-			assertEquals(true, mapa.obtenerHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
+			assertEquals(true, mapa.getHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
 		}
 		
 		mapa.conectar(new Ruta(), new Coordenada(19,11));
@@ -327,13 +327,13 @@ public class EntradaALaCiudadTest {
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
-			assertEquals(true, mapa.obtenerHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(entrada).estaActivo(TipoDeServicio.AccesoAlTransito));
 			entrada.aumentarX(1);
 		}
 		
 		for(int i=0; i < mapa.getTamanio();i++){
 			Coordenada coord = new Coordenada(i,10);
-			assertEquals(true, mapa.obtenerHectarea(coord).estaActivo(TipoDeServicio.AccesoAlTransito));
+			assertEquals(true, mapa.getHectarea(coord).estaActivo(TipoDeServicio.AccesoAlTransito));
 		}
 		
 	}

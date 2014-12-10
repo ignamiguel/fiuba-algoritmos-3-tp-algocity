@@ -58,7 +58,7 @@ public class VistaJuego extends JFrame implements Observer {
 	}
 
 	private void inicializarBarraDeEstado() {
-		this.estadoJuego = new EstadoJuego();
+		this.estadoJuego = new EstadoJuego(this.juego);
 		this.controladorEstado = new ControladorEstadoJuego(estadoJuego);
 		this.contenedor.add(estadoJuego, BorderLayout.PAGE_START);
 		this.juego.addObserver(this.controladorEstado);

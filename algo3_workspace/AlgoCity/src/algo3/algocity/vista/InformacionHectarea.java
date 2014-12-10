@@ -1,9 +1,13 @@
 package algo3.algocity.vista;
 
 import java.awt.TextArea;
+import java.util.Iterator;
+
 import javax.swing.JPanel;
 
 import algo3.algocity.modelo.Hectarea;
+import algo3.algocity.modelo.IConectable;
+import algo3.algocity.modelo.TipoDeServicio;
 
 public class InformacionHectarea extends JPanel {
 
@@ -13,23 +17,53 @@ public class InformacionHectarea extends JPanel {
 
 	private InformacionHectarea() {
 		area = new TextArea("Click en una hectarea...", 20, 30);
-		area.setEditable(false);		
+		area.setEditable(false);
 		this.add(area);
 	}
 
 	public void actualizarInformacion(Hectarea hectarea) {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Tipo:").append(hectarea.obtenerNombre())
-				.append('\n');
-		builder.append("Esta construida: ").append(!hectarea.estaVacia()).append('\n');
+		builder.append("INFO HECTÁREA").append("\n");
+		builder.append("Tipo: ").append(hectarea.getNombre()).append('\n');
+		if (hectarea.estaVacia()) {
+			builder.append("Construcción: ").append("No").append('\n');
+		} else {
+			builder.append("Construcción: ")
+					.append(hectarea.getConstruccion().getEtiqueta())
+					.append('\n');
+		}
 		builder.append("Habitantes: ")
-				.append(hectarea.obtenerCapacidadDeAlojamiento()).append('\n');
+				.append(hectarea.getCapacidadDeAlojamiento()).append('\n');
 		builder.append("Puestos de Trabajo: ")
-				.append(hectarea.obtenerCapacidadDeTrabajo()).append('\n');
-		builder.append("Consumo electrico: ").append(hectarea.obtenerConsumo())
+				.append(hectarea.getCapacidadDeTrabajo()).append('\n');
+		builder.append("Consumo electrico: ").append(hectarea.getConsumo())
 				.append('\n');
+
+		if (hectarea.getConexiones().isEmpty()) {
+			builder.append("Conexiones: ").append("ninguna").append('\n');
+		} else {
+			builder.append("Conexiones: ").append('\n');
+			Iterator<IConectable> it = hectarea.getConexiones().iterator();
+			while (it.hasNext()) {
+				IConectable conexion = it.next();
+				builder.append("\t").append(conexion.getEtiqueta())
+						.append('\n');
+			}
+		}
 		
+		if(hectarea.getServicios().isEmpty()){
+			builder.append("Servicios: ").append("ninguno").append("\n");
+		}else{
+			builder.append("Servicios: ").append('\n');
+			Iterator<TipoDeServicio> it = hectarea.getServicios().iterator();
+			while (it.hasNext()) {
+				TipoDeServicio servicio = it.next();
+				builder.append("\t").append(TipoDeServicio.getEtiqueta(servicio))
+						.append('\n');
+			}
+		}
+
 		area.setText(builder.toString());
 	}
 
