@@ -2,25 +2,26 @@ package algo3.algocity.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 
 public class Juego extends Observable {
 
 	private Mapa mapa;
 
-	private ArrayList<Coordenada> coordenadasConCentral;
+	private List<Coordenada> coordenadasConCentral;
 
-	private ArrayList<Coordenada> coordenadasConPozo;
+	private List<Coordenada> coordenadasConPozo;
 
-	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
+	private List<EstacionDeBomberos> estacionesDeBomberos;
 
-	private ArrayList<Coordenada> coordenadasResidenciales;
+	private List<Coordenada> coordenadasResidenciales;
 
-	private ArrayList<Coordenada> coordenadasIndustriales;
+	private List<Coordenada> coordenadasIndustriales;
 
-	private ArrayList<Coordenada> coordenadasComerciales;
+	private List<Coordenada> coordenadasComerciales;
 	
-	private ArrayList<Coordenada> coordenadasConConexiones;
+	private List<Coordenada> coordenadasConConexiones;
 
 	private Coordenada coordenadaEntradaALaCiudad;
 
@@ -28,7 +29,7 @@ public class Juego extends Observable {
 
 	private int turno;
 
-	private int habitantes;
+	private int ciudadanos;
 
 	public Juego() {
 		this.mapa = new Mapa(new MapaConPlaya());
@@ -47,7 +48,7 @@ public class Juego extends Observable {
 
 		this.dinero = Configuracion.DINERO_INICIAL;
 		this.turno = 1;
-		this.habitantes = 0;
+		this.ciudadanos = 0;
 	}
 
 	public String verMapa(Coordenada coordenada) {
@@ -177,37 +178,37 @@ public class Juego extends Observable {
 		return this.mapa;
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasResidenciales() {
+	public List<Coordenada> obtenerCoordenadasResidenciales() {
 		return this.coordenadasResidenciales;
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasIndustriales() {
+	public List<Coordenada> obtenerCoordenadasIndustriales() {
 		return this.coordenadasIndustriales;
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasComerciales() {
+	public List<Coordenada> obtenerCoordenadasComerciales() {
 		return this.coordenadasComerciales;
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasConCentral() {
+	public List<Coordenada> obtenerCoordenadasConCentral() {
 		return this.coordenadasConCentral;
 	}
 
 
-	public ArrayList<Coordenada> obtenerCoordenadasConPozo() {
+	public List<Coordenada> obtenerCoordenadasConPozo() {
 		return this.coordenadasConPozo;
 	}
 
-	public int obtenerTurno() {
+	public int getTurno() {
 		return this.turno;
 	}
 
-	public void pasarTurno() {
+	public void turnoAvanzar() {
 
 		this.turno++;
 
 		if (turno % Configuracion.TURNO_RECAUDADOR == 0) {
-			dinero += this.habitantes * 10;
+			dinero += this.ciudadanos * 10;
 		}
 
 		this.desconectarServicios();
@@ -220,7 +221,7 @@ public class Juego extends Observable {
 		this.propagarServicioElectrico();
 		this.propagarServicioDeTransito();
 
-		this.mudarHabitantes();
+		this.procesarHabitantes();
 
 		setChanged();
 		notifyObservers();
@@ -230,7 +231,7 @@ public class Juego extends Observable {
 		mapa.desconectarServicios();
 	}
 
-	private void mudarHabitantes() {
+	private void procesarHabitantes() {
 
 		int alojamientoBruto = 0;
 		int trabajoBruto = 0;
@@ -242,7 +243,7 @@ public class Juego extends Observable {
 			alojamientoBruto += hectarea.obtenerCapacidadDeAlojamiento();
 		}
 		
-		int alojamientoNeto = alojamientoBruto - this.habitantes;
+		int alojamientoNeto = alojamientoBruto - this.ciudadanos;
 
 		Iterator<Coordenada> j = coordenadasIndustriales.iterator();
 		while (j.hasNext()) {
@@ -250,15 +251,15 @@ public class Juego extends Observable {
 			trabajoBruto += hectarea.obtenerCapacidadDeTrabajo();
 		}
 		
-		int trabajoNeto = trabajoBruto - this.habitantes;
+		int trabajoNeto = trabajoBruto - this.ciudadanos;
 		
 		deltaHabitantesTurno = calcularMinimo(alojamientoNeto , trabajoNeto);
 		
 		if(deltaHabitantesTurno <= 0){
-			this.habitantes += deltaHabitantesTurno;
+			this.ciudadanos += deltaHabitantesTurno;
 		}
 		else{
-			this.habitantes += Configuracion.HABITANTES_NUEVOS;
+			this.ciudadanos += Configuracion.HABITANTES_NUEVOS;
 		}
 	}
 
@@ -292,11 +293,11 @@ public class Juego extends Observable {
 		this.mapa.conectarServicios();
 	}
 
-	public ArrayList<EstacionDeBomberos> obtenerEstacionesDeBomberos() {
+	public List<EstacionDeBomberos> obtenerEstacionesDeBomberos() {
 		return this.estacionesDeBomberos;
 	}
 
-	public ArrayList<Coordenada> obtenerCoordenadasConConexiones() {
+	public List<Coordenada> obtenerCoordenadasConConexiones() {
 		return this.coordenadasConConexiones;
 	}
 
@@ -314,7 +315,7 @@ public class Juego extends Observable {
 		
 	}
 	
-	public int obtenerHabitantes() {
-		return habitantes;
+	public int getCiudadanos() {
+		return this.ciudadanos;
 	}
 }

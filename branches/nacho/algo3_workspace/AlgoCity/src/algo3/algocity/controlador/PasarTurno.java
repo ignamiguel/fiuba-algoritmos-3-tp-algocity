@@ -17,7 +17,7 @@ public class PasarTurno implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Pasando turno");
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 	}
 
 	public Juego getJuego() {

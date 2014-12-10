@@ -7,7 +7,7 @@ public class CaminarZigZag implements ICaminable {
 	@Override
 	public void caminarMapa(Godzilla godzilla, Mapa mapa) {
 		Hectarea hectarea;
-		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.obtenerTamanio()) {
+		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
 			
 			hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
 			hectarea.afectarCon(godzilla);
@@ -15,14 +15,14 @@ public class CaminarZigZag implements ICaminable {
 			godzilla.retrocederEnX();
 			
 			
-			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.obtenerTamanio()){
+			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
 				hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
 				godzilla.avanzarEnX();
 			}
 			
-			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.obtenerTamanio()){
+			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
 				hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
@@ -34,7 +34,7 @@ public class CaminarZigZag implements ICaminable {
 
 	public Coordenada generarCoordenadaAleatoria(Mapa mapa) {
 		Random aleatorio = new Random();
-		int coordX = 2 + aleatorio.nextInt(mapa.obtenerTamanio() - 2);
+		int coordX = 2 + aleatorio.nextInt(mapa.getTamanio() - 2);
 		return new Coordenada(coordX,0);
 	}
 	

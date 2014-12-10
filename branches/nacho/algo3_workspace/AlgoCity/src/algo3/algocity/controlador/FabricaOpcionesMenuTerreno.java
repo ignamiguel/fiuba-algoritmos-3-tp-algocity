@@ -10,17 +10,21 @@ import algo3.algocity.modelo.*;
 public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 
 	@Override
-	public void popularMenu(final Hectarea current, PopupMenu editMenu) {
+	public void popularMenu(final Hectarea current, PopupMenu editMenu, final Juego juego, final Coordenada coordenada) {
 		MenuItem menuItem = null;
 		if (current.estaVacia()) {
 			menuItem = new MenuItem("Construir Residencia");
 			menuItem.setEnabled(true);
 			menuItem.addActionListener(new ActionListener() {
 
+//				@Override
+//				public void actionPerformed(ActionEvent arg0) {
+//					Residencia residencia = new Residencia();
+//					current.construir(residencia);
+//				}
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					Residencia residencia = new Residencia();
-					current.construir(residencia);
+					juego.insertar(new Residencia(), coordenada);					
 				}
 
 			});
@@ -29,11 +33,10 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			menuItem = new MenuItem("Construir Comercio");
 			menuItem.setEnabled(true);
 			menuItem.addActionListener(new ActionListener() {
-
+				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					Comercio comercio = new Comercio();
-					current.construir(comercio);
+					juego.insertar(new Comercio(), coordenada);
 				}
 
 			});
@@ -43,9 +46,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			menuItem.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					Industria industria = new Industria();
-					current.construir(industria);
+				public void actionPerformed(ActionEvent arg0) {					
+					juego.insertar(new Industria(), coordenada);
 				}
 
 			});
@@ -56,9 +58,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			menuItem.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					CentralEolica ce = new CentralEolica();
-					current.construir(ce);
+				public void actionPerformed(ActionEvent arg0) {					
+					juego.insertar(new CentralEolica(), coordenada);
 				}
 
 			});
@@ -69,9 +70,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			menuItem.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					CentralMineral cm = new CentralMineral();
-					current.construir(cm);
+				public void actionPerformed(ActionEvent arg0) {					
+					juego.insertar(new CentralMineral(),coordenada);
 				}
 
 			});
@@ -82,9 +82,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 			menuItem.addActionListener(new ActionListener() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					CentralNuclear cn = new CentralNuclear();
-					current.construir(cn);
+				public void actionPerformed(ActionEvent arg0) {					
+					juego.insertar(new CentralNuclear(), coordenada);
 				}
 
 			});
@@ -97,9 +96,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 		menuItem.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Ruta ruta = new Ruta();
-				current.conectar(ruta);
+			public void actionPerformed(ActionEvent arg0) {				
+				juego.insertar(new Ruta(), coordenada);
 			}
 
 		});
@@ -109,9 +107,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 		menuItem.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Tuberia tuberia = new Tuberia();
-				current.conectar(tuberia);
+			public void actionPerformed(ActionEvent arg0) {				
+				juego.insertar(new Tuberia(), coordenada);
 			}
 
 		});
@@ -122,9 +119,8 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 		menuItem.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				LineaDeTension lineaDeTension = new LineaDeTension();
-				current.conectar(lineaDeTension);
+			public void actionPerformed(ActionEvent arg0) {				
+				juego.insertar(new LineaDeTension(), coordenada);
 			}
 
 		});

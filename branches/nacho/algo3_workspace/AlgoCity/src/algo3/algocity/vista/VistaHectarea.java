@@ -15,7 +15,7 @@ public class VistaHectarea extends JPanel implements Observer {
 
 	private static final long serialVersionUID = -973667959098244571L;
 
-	// protected Juego juego;
+	private Juego juego;
 	private Hectarea hectarea;
 	private Color color;
 
@@ -25,17 +25,19 @@ public class VistaHectarea extends JPanel implements Observer {
 		this.updateVista();
 	}
 
+	// Old Constructor
 	public VistaHectarea(Hectarea hectarea) {
 		this.hectarea = hectarea;
 		hectarea.addObserver(this);
 		this.addMouseListener(new ControladorMouse(hectarea));
 	}
 	
-	public VistaHectarea(Hectarea hectarea, Coordenada coordenada) {
-		this.hectarea = hectarea;
-		hectarea.addObserver(this);
+	public VistaHectarea(Juego juego, Coordenada coordenada) {
+		this.juego = juego;
+		this.hectarea = this.juego.getMapa().obtenerHectarea(coordenada);
+		this.hectarea.addObserver(this);
 		this.coordenada = coordenada;
-		this.addMouseListener(new ControladorMouse(hectarea, this.coordenada));
+		this.addMouseListener(new ControladorMouse(juego, this.coordenada));
 	}
 
 	protected void updateVista() {

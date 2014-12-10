@@ -546,15 +546,15 @@ public class JuegoTest {
 	@Test
 	public void testJuegoComienzaEnElTurno1(){
 		Juego juego = new Juego();
-		assertEquals(1,juego.obtenerTurno());
+		assertEquals(1,juego.getTurno());
 	}
 	
 	@Test
 	public void testJuegoPasaDeTurnoATurno2(){
 		Juego juego = new Juego();
-		assertEquals(1,juego.obtenerTurno());
-		juego.pasarTurno();
-		assertEquals(2,juego.obtenerTurno());
+		assertEquals(1,juego.getTurno());
+		juego.turnoAvanzar();
+		assertEquals(2,juego.getTurno());
 	}
 	
 	@Test
@@ -571,7 +571,7 @@ public class JuegoTest {
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
@@ -599,7 +599,7 @@ public class JuegoTest {
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.Cloacas));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.Cloacas));
@@ -629,7 +629,7 @@ public class JuegoTest {
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Ruta));
 		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.AccesoAlTransito));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Ruta));
 		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.AccesoAlTransito));
@@ -644,8 +644,8 @@ public class JuegoTest {
 		Juego juego = new Juego();
 		juego.conectarServicios();
 		
-			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
-				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+			for(int i=0; i < juego.getMapa().getTamanio(); i++){
+				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
 					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
@@ -660,8 +660,8 @@ public class JuegoTest {
 		Juego juego = new Juego();
 		juego.conectarServicios();
 		
-			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
-				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+			for(int i=0; i < juego.getMapa().getTamanio(); i++){
+				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
 					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));

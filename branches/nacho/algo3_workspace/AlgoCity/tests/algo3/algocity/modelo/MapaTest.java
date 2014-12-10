@@ -152,8 +152,8 @@ public class MapaTest {
 		Coordenada izquierda = new Coordenada(9, 10);
 
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 
 				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
@@ -188,8 +188,8 @@ public class MapaTest {
 		assertEquals(100, ce.obtenerCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))
@@ -231,8 +231,8 @@ public class MapaTest {
 		mapa.conectar(new LineaDeTension(), izquierdaIzquierda);
 
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 
 				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
@@ -293,8 +293,8 @@ public class MapaTest {
 		coordsConServicio.add(origen);
 		
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordsConServicio.contains(c))
@@ -378,8 +378,8 @@ public class MapaTest {
 		
 		
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
@@ -406,8 +406,8 @@ public class MapaTest {
 		assertEquals(400, cm.obtenerCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))
@@ -499,8 +499,8 @@ public class MapaTest {
 		coordenadasConServicio.add(extraDerecha);		
 		
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
@@ -527,8 +527,8 @@ public class MapaTest {
 		assertEquals(400, cm.obtenerCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))

@@ -37,7 +37,7 @@ public class VistaJuego extends JFrame implements Observer {
 	public VistaJuego(Juego juego) {
 		this.juego = juego;
 		this.juego.addObserver(this);
-		this.setTitle("AlgoCity");
+		this.setTitle("Algo City");
 		this.contenedor = getContentPane();
 		this.inicializarMapa();
 		this.inicializarBarraDeEstado();
@@ -65,7 +65,7 @@ public class VistaJuego extends JFrame implements Observer {
 	}
 
 	private void inicializarMapa() {
-		int dimension = this.juego.getMapa().obtenerTamanio();
+		int dimension = this.juego.getMapa().getTamanio();
 
 		GridLayout layoutMapa = new GridLayout(dimension + 1, dimension + 1);
 		panelMapa = new JPanel();
@@ -75,8 +75,7 @@ public class VistaJuego extends JFrame implements Observer {
 		for (int x = 0; x < dimension; x++) {
 			for (int y = 0; y < dimension; y++) {
 				Coordenada c = new Coordenada(x, y);
-				panelMapa.add(new VistaHectarea(juego.getMapa()
-						.obtenerHectarea(c), c), at);
+				panelMapa.add(new VistaHectarea(this.juego, c), at);
 				at++;
 			}
 		}
@@ -177,7 +176,7 @@ public class VistaJuego extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		int dimension = this.juego.getMapa().obtenerTamanio();
+		int dimension = this.juego.getMapa().getTamanio();
 
 		int at = 0;
 		for (int x = 0; x < dimension; x++) {

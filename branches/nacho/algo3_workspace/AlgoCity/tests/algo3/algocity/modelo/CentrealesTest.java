@@ -342,7 +342,7 @@ public class CentrealesTest {
 		CentralMineral central = new CentralMineral();
 		mapa.construir(central, new Coordenada(0, 15));
 
-		for (int i = 1; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 1; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					mapa.construir(new Industria(), new Coordenada(i, 15)));
 			assertEquals(true,
@@ -353,7 +353,7 @@ public class CentrealesTest {
 
 		mapa.propagarServicio(new Coordenada(0, 15));
 
-		for (int i = 1; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 1; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.obtenerHectarea(new Coordenada(i, 15)))
 							.estaActivo(central.obtenerServicioPropagable()));
