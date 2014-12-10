@@ -17,10 +17,10 @@ public class ControladorEstadoJuego implements Observer {
 	@Override
 	public void update(Observable observable, Object arg) {
 		Juego juego = (Juego) observable;
-		estadoJuego.actualizarDia(juego.obtenerTurno());
+		estadoJuego.actualizarDia(juego.getTurno());
 		estadoJuego.actualizarDinero(juego.verDinero());
 		//estadoJuego.actualizarJugador("Pepito");
-		estadoJuego.actualizarPoblacion(juego.obtenerHabitantes());
+		estadoJuego.actualizarPoblacion(juego.getCiudadanos());
 	}
 
 	public EstadoJuego getEstadoJuego() {

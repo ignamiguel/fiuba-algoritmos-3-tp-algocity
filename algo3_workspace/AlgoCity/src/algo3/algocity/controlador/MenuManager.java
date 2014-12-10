@@ -4,9 +4,8 @@ import java.awt.PopupMenu;
 import java.util.HashMap;
 import java.util.Map;
 
-import algo3.algocity.modelo.Agua;
-import algo3.algocity.modelo.Hectarea;
-import algo3.algocity.modelo.Terreno;
+import algo3.algocity.modelo.*;
+
 
 public class MenuManager {
 
@@ -17,12 +16,12 @@ public class MenuManager {
 		menuBuilders.put(Terreno.class, new FabricaOpcionesMenuTerreno());
 	}
 
-	public PopupMenu popularMenu(final Hectarea current) {
+	public PopupMenu popularMenu(final Hectarea current, final Juego juego, final Coordenada coordenada) {
 		final Hectarea hectaria = current;
 		PopupMenu editMenu = new PopupMenu("Menu Juego");
 
 		Class<?> type = hectaria.getClass();
-		menuBuilders.get(type).popularMenu(current, editMenu);
+		menuBuilders.get(type).popularMenu(current, editMenu, juego, coordenada);
 
 		return editMenu;
 	}

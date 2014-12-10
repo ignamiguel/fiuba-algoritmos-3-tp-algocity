@@ -9,13 +9,13 @@ public class IntegracionTest {
 	@Test
 	public void testUnaCiudadSinConstruccionesNoVariaLosHabitantesPasandoTurno(){
 		Juego juego = new Juego();
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 		
-		juego.pasarTurno();
-		juego.pasarTurno();
-		juego.pasarTurno();
+		juego.turnoAvanzar();
+		juego.turnoAvanzar();
+		juego.turnoAvanzar();
 		
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 	}
 	
 	@Test
@@ -25,11 +25,11 @@ public class IntegracionTest {
 		Residencia residencia = new Residencia();
 		assertEquals(true,juego.insertar(residencia, new Coordenada(0,0)));
 		
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 	}
 	
 	@Test
@@ -39,16 +39,16 @@ public class IntegracionTest {
 		Coordenada c = new Coordenada(5,24);
 		
 		juego.insertar(pozo, c);
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			Coordenada coordenada = new Coordenada(5,i);
 			Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
 			assertEquals(true,juego.insertar(new Tuberia(), coordenada));
 			assertEquals(false,hectarea.estaActivo(TipoDeServicio.Cloacas));
 		}
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			Coordenada coordenada = new Coordenada(5,i);
 			Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
 			assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
@@ -69,8 +69,8 @@ public class IntegracionTest {
 		
 		juego.insertar(central, c);
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
-			for(int j=0; j < (juego.getMapa()).obtenerTamanio();j++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
+			for(int j=0; j < (juego.getMapa()).getTamanio();j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				juego.insertar(new Tuberia(), coordenada);
 				juego.insertar(new Ruta(), coordenada);
@@ -78,7 +78,7 @@ public class IntegracionTest {
 			}
 		}
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -92,9 +92,9 @@ public class IntegracionTest {
 			}
 		}
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -124,8 +124,8 @@ public class IntegracionTest {
 		
 		juego.insertar(central, c);
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
-			for(int j=0; j < (juego.getMapa()).obtenerTamanio();j++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
+			for(int j=0; j < (juego.getMapa()).getTamanio();j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				juego.insertar(new Tuberia(), coordenada);
 				juego.insertar(new Ruta(), coordenada);
@@ -133,7 +133,7 @@ public class IntegracionTest {
 			}
 		}
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -147,9 +147,9 @@ public class IntegracionTest {
 			}
 		}
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -167,11 +167,11 @@ public class IntegracionTest {
 		juego.insertar(new Residencia(),new Coordenada(5,5));
 		juego.insertar(new Industria(),new Coordenada(5,19));
 		
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(100,juego.obtenerHabitantes());
+		assertEquals(100,juego.getCiudadanos());
 	}
 	
 	@Test
@@ -188,8 +188,8 @@ public class IntegracionTest {
 		
 		juego.insertar(central, c);
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
-			for(int j=0; j < (juego.getMapa()).obtenerTamanio();j++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
+			for(int j=0; j < (juego.getMapa()).getTamanio();j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				juego.insertar(new Tuberia(), coordenada);
 				juego.insertar(new Ruta(), coordenada);
@@ -197,7 +197,7 @@ public class IntegracionTest {
 			}
 		}
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -211,9 +211,9 @@ public class IntegracionTest {
 			}
 		}
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		for(int i=0; i < (juego.getMapa()).obtenerTamanio(); i++){
+		for(int i=0; i < (juego.getMapa()).getTamanio(); i++){
 			for(int j=0; j < 20;j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = juego.getMapa().obtenerHectarea(coordenada);
@@ -231,23 +231,23 @@ public class IntegracionTest {
 		juego.insertar(new Residencia(),new Coordenada(5,5));
 		juego.insertar(new Industria(),new Coordenada(5,19));
 		
-		assertEquals(0,juego.obtenerHabitantes());
+		assertEquals(0,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(100,juego.obtenerHabitantes());
+		assertEquals(100,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(25,juego.obtenerHabitantes());
+		assertEquals(25,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(25,juego.obtenerHabitantes());
+		assertEquals(25,juego.getCiudadanos());
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
-		assertEquals(25,juego.obtenerHabitantes());
+		assertEquals(25,juego.getCiudadanos());
 		
 	}
 }

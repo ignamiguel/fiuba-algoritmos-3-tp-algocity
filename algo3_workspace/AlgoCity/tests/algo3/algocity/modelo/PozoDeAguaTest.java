@@ -376,8 +376,8 @@ public class PozoDeAguaTest {
 		
 		Coordenada c = new Coordenada(5,23);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Tuberia tuberia = new Tuberia();
 				assertEquals(true, mapa.conectar(tuberia, new Coordenada(i, j)));
 			}
@@ -387,8 +387,8 @@ public class PozoDeAguaTest {
 
 		mapa.propagarServicio(c);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				assertEquals(true,
 						(mapa.obtenerHectarea(new Coordenada(i, j)))
 								.tieneConexion(pozo.obtenerConexionNecesaria()));
@@ -405,12 +405,12 @@ public class PozoDeAguaTest {
 		PozoDeAgua pozo = new PozoDeAgua();
 		Coordenada c = new Coordenada(5,23);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
 			assertEquals(true, mapa.conectar(tuberia, new Coordenada(5, i)));
 		}
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
 			assertEquals(true, mapa.conectar(tuberia, new Coordenada(7, i)));
 		}
@@ -419,7 +419,7 @@ public class PozoDeAguaTest {
 	
 		mapa.propagarServicio(c);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.obtenerHectarea(new Coordenada(5, i)))
 							.tieneConexion(pozo.obtenerConexionNecesaria()));
@@ -428,7 +428,7 @@ public class PozoDeAguaTest {
 							.estaActivo(pozo.obtenerServicioPropagable()));
 		}
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.obtenerHectarea(new Coordenada(7, i)))
 							.tieneConexion(pozo.obtenerConexionNecesaria()));
@@ -444,12 +444,12 @@ public class PozoDeAguaTest {
 		PozoDeAgua pozo = new PozoDeAgua();
 		Coordenada c = new Coordenada(5,23);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
 			assertEquals(true, mapa.conectar(tuberia, new Coordenada(5, i)));
 		}
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			Tuberia tuberia = new Tuberia();
 			assertEquals(true, mapa.conectar(tuberia, new Coordenada(7, i)));
 		}
@@ -461,7 +461,7 @@ public class PozoDeAguaTest {
 		
 		mapa.propagarServicio(c);
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.obtenerHectarea(new Coordenada(5, i)))
 							.tieneConexion(pozo.obtenerConexionNecesaria()));
@@ -470,7 +470,7 @@ public class PozoDeAguaTest {
 							.estaActivo(pozo.obtenerServicioPropagable()));
 		}
 
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.obtenerHectarea(new Coordenada(7, i)))
 							.tieneConexion(pozo.obtenerConexionNecesaria()));

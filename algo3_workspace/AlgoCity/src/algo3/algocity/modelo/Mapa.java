@@ -49,7 +49,7 @@ public class Mapa {
 			return false;
 	}
 
-	public int obtenerTamanio() {
+	public int getTamanio() {
 		return this.tamanio;
 	}
 

@@ -5,14 +5,12 @@ import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import algo3.algocity.modelo.Hectarea;
-import algo3.algocity.modelo.PozoDeAgua;
-import algo3.algocity.modelo.Tuberia;
+import algo3.algocity.modelo.*;
 
 public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 
 	@Override
-	public void popularMenu(final Hectarea current, PopupMenu editMenu) {
+	public void popularMenu(final Hectarea current, PopupMenu editMenu, Juego juego, Coordenada coordenada) {
 		MenuItem menuItem = null;
 		if (current.estaVacia()) {
 			menuItem = new MenuItem("Construir Pozo de Agua");

@@ -41,8 +41,8 @@ public class EstacionDeBomberos extends Construccion {
 
 	public void repararDanios(Mapa mapa) {
 		
-		for(int i=0; i < mapa.obtenerTamanio();i++ ){
-			for(int j=0; j < mapa.obtenerTamanio(); j++){
+		for(int i=0; i < mapa.getTamanio();i++ ){
+			for(int j=0; j < mapa.getTamanio(); j++){
 				Coordenada coordenada = new Coordenada(i,j);
 				Hectarea hectarea = mapa.obtenerHectarea(coordenada);
 				hectarea.reparar();
