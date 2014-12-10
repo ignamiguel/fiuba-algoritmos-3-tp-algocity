@@ -3,6 +3,7 @@ package algo3.algocity.modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -214,16 +215,28 @@ public class Juego extends Observable {
 
 		this.desconectarServicios();
 
-		// Ataque de godilla o terremoto - ALEATORIO
-		
-		// Reparacion de bomberos
+		this.generarCatastrofeAleatoria();
 		
 		this.propagarServicioDeAgua();
 		this.propagarServicioElectrico();
 		this.propagarServicioDeTransito();
 
 		this.mudarHabitantes();
+		
+		this.repararDanios();
 
+	}
+
+	private void generarCatastrofeAleatoria() {
+		Random aleatorio = new Random();
+		int numeroAleatorio = aleatorio.nextInt(Configuracion.PROBABILIDAD_DE_CATASTROFE);
+		if(numeroAleatorio == 0){
+			this.despertarAGodzilla();
+		}
+		if(numeroAleatorio == 1){
+			//terremoto
+		}
+		
 	}
 
 	public void desconectarServicios() {
@@ -304,9 +317,14 @@ public class Juego extends Observable {
 		return this.coordenadasConConexiones;
 	}
 
-	public void despertarAGodzilla() {
+	public void despertarAGodzillaSinRandom() {
 		Godzilla godzilla = new Godzilla();
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10,0), new CaminarDerecho());
+	}
+	
+	public void despertarAGodzilla() {
+		Godzilla godzilla = new Godzilla();
+		godzilla.atacarConRandom(mapa);
 	}
 
 	public void repararDanios() {
