@@ -19,7 +19,7 @@ public class GodzillaTest {
 		Terreno terreno = new Terreno();
 		assertEquals(terreno.construir(residencia), true);
 		terreno.afectarCon(godzilla);
-		assertEquals(residencia.obtenerSalud(), 0);
+		assertEquals(residencia.getSalud(), 0);
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class GodzillaTest {
 		Terreno terreno = new Terreno();
 		assertEquals(terreno.construir(industria), true);
 		terreno.afectarCon(godzilla);
-		assertEquals(industria.obtenerSalud(), 60);
+		assertEquals(industria.getSalud(), 60);
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class GodzillaTest {
 		Terreno terreno = new Terreno();
 		assertEquals(terreno.construir(bomberos), true);
 		terreno.afectarCon(godzilla);
-		assertEquals(bomberos.obtenerSalud(), 0);
+		assertEquals(bomberos.getSalud(), 0);
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class GodzillaTest {
 		Agua agua = new Agua();
 		assertEquals(agua.construir(pozo), true);
 		agua.afectarCon(godzilla);
-		assertEquals(pozo.obtenerSalud(), 0);
+		assertEquals(pozo.getSalud(), 0);
 	}
 
 	/*
@@ -157,12 +157,12 @@ public class GodzillaTest {
 		mapa.construir(ind, new Coordenada(3,2));
 		
 		
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
 
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
 		
-		ind = (Industria) mapa.obtenerHectarea(new Coordenada(3,2)).obtenerConstruccion();
-		assertEquals(ind.obtenerSalud(), 60);
+		ind = (Industria) mapa.getHectarea(new Coordenada(3,2)).getConstruccion();
+		assertEquals(ind.getSalud(), 60);
 		
 	}
 	
@@ -183,19 +183,19 @@ public class GodzillaTest {
 		mapa.construir(res5, new Coordenada(3,4));
 		
 		
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,3))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
 
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 0);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 0);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 0);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,3))).obtenerConstruccion()).obtenerSalud(), 0);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 0);
 	}
 	
 	@Test
@@ -213,17 +213,17 @@ public class GodzillaTest {
 		mapa.construir(centralMineral, new Coordenada(3,4));
 		
 		
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
 
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 0);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 25);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 60);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 65);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 0);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 25);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 60);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 65);
 	}
 	
 	@Test
@@ -243,19 +243,19 @@ public class GodzillaTest {
 		mapa.construir(res5, new Coordenada(3,4));
 		
 
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(2,1))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(4,3))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(2,1))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(4,3))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 		
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarZigZag());
 	
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(2,1))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(4,3))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(2,1))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(4,3))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 00);
 	}
 	
 	@Test
@@ -275,19 +275,19 @@ public class GodzillaTest {
 		mapa.construir(res5, new Coordenada(3,4));
 		
 
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,3))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 		
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarZigZag());
 	
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,0))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,1))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,2))).obtenerConstruccion()).obtenerSalud(), 00);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,3))).obtenerConstruccion()).obtenerSalud(), 100);
-		assertEquals(((mapa.obtenerHectarea(new Coordenada(3,4))).obtenerConstruccion()).obtenerSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 00);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 100);
+		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 00);
 	}
 
 }

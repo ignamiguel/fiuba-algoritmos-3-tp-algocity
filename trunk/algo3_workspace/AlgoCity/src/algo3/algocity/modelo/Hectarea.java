@@ -2,16 +2,19 @@ package algo3.algocity.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Observable;
 
-public abstract class Hectarea implements IAfectable {
+public abstract class Hectarea extends Observable implements IAfectable {
 
 	// Atributos de la clase
-	protected ArrayList<IConectable> conexiones;
-	protected ArrayList<TipoDeServicio> servicios;
+	protected List<IConectable> conexiones = new ArrayList<IConectable>();
+	protected List<TipoDeServicio> servicios = new ArrayList<TipoDeServicio>();
 	protected Construccion construccion;
 	protected Coordenada ubicacion;
 
-	public abstract String obtenerNombre();
+	/* METODOS PUBLICOS */
+	public abstract String getNombre();
 
 	public boolean estaVacia() {
 		return (construccion == null);
@@ -27,12 +30,12 @@ public abstract class Hectarea implements IAfectable {
 		}
 
 		this.construccion = construccion;
+		notificarCambio();
 		return true;
-
 	}
 
 	public boolean conectar(Conexion conexion) {
-		if (this.tieneConexion(conexion.obtenerTipo())) {
+		if (this.tieneConexion(conexion.getTipo())) {
 			return false;
 		}
 
@@ -41,6 +44,7 @@ public abstract class Hectarea implements IAfectable {
 		}
 
 		this.conexiones.add(conexion);
+		notificarCambio();
 		return true;
 
 	}
@@ -49,21 +53,21 @@ public abstract class Hectarea implements IAfectable {
 
 	public abstract boolean permite(Conexion conexion);
 
-	public Construccion obtenerConstruccion() {
+	public Construccion getConstruccion() {
 		return this.construccion;
 	}
 
-	public void guardarUbicacion(Coordenada unaCoordenada) {
+	public void setUbicacion(Coordenada unaCoordenada) {
 		this.ubicacion = unaCoordenada;
 	}
 
-	public Coordenada obtenerUbicacion() {
+	public Coordenada getUbicacion() {
 		return this.ubicacion;
 	}
 
 	public boolean tieneConexion(TipoDeConexion servicio) {
 		for (int i = 0; i < this.conexiones.size(); i++) {
-			if (this.conexiones.get(i).obtenerTipo() == servicio) {
+			if (this.conexiones.get(i).getTipo() == servicio) {
 				return true;
 			}
 		}
@@ -83,7 +87,8 @@ public abstract class Hectarea implements IAfectable {
 		while (i.hasNext()) {
 			i.next().afectarCon(godzilla);
 		}
-
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void afectarCon(Terremoto unTerremoto) {
@@ -96,39 +101,67 @@ public abstract class Hectarea implements IAfectable {
 		while (i.hasNext()) {
 			i.next().afectarCon(unTerremoto);
 		}
-
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void activar(TipoDeServicio servicio) {
 		this.servicios.add(servicio);
-
+		notificarCambio();
 	}
 
-	public boolean estaActivo(TipoDeServicio servicio) {		
-		return this.servicios.contains(servicio);		
+	public boolean estaActivo(TipoDeServicio servicio) {
+		return this.servicios.contains(servicio);
 	}
 
-	public int obtenerConsumo() {
+	public int getConsumo() {
 		if (this.estaVacia()) {
 			return 0;
 		}
-		return (this.construccion).obtenerConsumoElectrico();
+		return (this.construccion).getConsumoElectrico();
 	}
 
 	public void desconectarServicios() {
-		this.servicios.clear();	
+		this.servicios.clear();
+		notificarCambio();
 	}
 
-	public int obtenerCapacidadDeAlojamiento() {
-		return ((Residencia) this.construccion).calcularCapacidadDeAlojamiento(this.servicios);
+	public int getCapacidadDeAlojamiento() {
+		if (this.estaVacia()) {
+			return 0;
+		}
+
+		// Consulto si la hectarea tiene los servicios
+		// que requiere la construccion
+		if (!this.estanActivosLosServiciosRequeridosPorLaConstruccion()) {
+			return 0;
+		}
+
+		return this.construccion.getCapacidadDeAlojamiento();
 	}
 
-	public int obtenerCapacidadDeTrabajo() {
-		return ((Industria) this.construccion).calcularPuestosDeTrabajo(this.servicios);
+	public boolean estanActivosLosServiciosRequeridosPorLaConstruccion() {
+		if(this.estaVacia()){
+			return true;
+		}
+		
+		return (this.servicios.containsAll(this.construccion
+				.getServiciosRequeridos()));
+	}
+
+	public int getCapacidadDeTrabajo() {
+		if (this.estaVacia()) {
+			return 0;
+		}
+
+		if (!this.estanActivosLosServiciosRequeridosPorLaConstruccion()) {
+			return 0;
+		}
+		return this.construccion.getPuestosDeTrabajo();
 	}
 
 	public void reparar() {
-		
+
 		if (!this.estaVacia()) {
 			(this.construccion).reparar();
 		}
@@ -137,6 +170,20 @@ public abstract class Hectarea implements IAfectable {
 		while (i.hasNext()) {
 			i.next().reparar();
 		}
+		notificarCambio();
+	}
+
+	protected void notificarCambio() {
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	public List<IConectable> getConexiones() {
+		return this.conexiones;
+	}
+	
+	public List<TipoDeServicio> getServicios(){
+		return this.servicios;
 	}
 
 }

@@ -5,9 +5,13 @@ public class Configuracion {
 	// General
 	static final int DINERO_INICIAL = 100000;
 	static final int SALUD_INICIAL = 100;
+	static final int TURNO_INICIAL = 1;
+	static final int CIUDADANOS_INICIALES = 0;
+	static final String JUGADOR_DEFAULT = "JugadorDefault";
 	
-	static final int TURNO_RECAUDADOR = 30;
-	static final int HABITANTES_NUEVOS = 100;
+	static final int TURNO_RECAUDADOR = 5;
+	static final int VISITANTES_POR_TURNO = 100;
+	static final int IMPUESTOS_POR_CIUDADANO = 10;
 	
 	static final int PROBABILIDAD_DE_CATASTROFE = 20;
 	
@@ -29,6 +33,7 @@ public class Configuracion {
 	static final int CONSUMO_ELECTRICO_COMERCIO = 2;
 	static final int CONSUMO_ELECTRICO_INDUSTRIA = 5;
 	static final int CONSUMO_ELECTRICO_CENTRAL_ELECTRICA = 0;
+	static final int CONSUMO_ELECTRICO_POZO = 0;
 	
 	// Capacidad de abastecimiento
 	static final int CAPACIDAD_ABAS_CENTRAL_EOLICA = 100;
@@ -38,7 +43,7 @@ public class Configuracion {
 	// Radios de covertura sin conexion
 	static final int RADIO_COVERT_CENTRAL_EOLICA = 1;
 	static final int RADIO_COVERT_CENTRAL_MINERAL = 3;
-	static final int RADIO_COVERT_CENTRAL_NUCLEAR = 25;
+	static final int RADIO_COVERT_CENTRAL_NUCLEAR = 5;
 	static final int RADIO_COVERT_POZO_AGUA = 0;
 	static final int RADIO_COVERT_ENTRADA_CIUDAD = 0;
 	
@@ -66,5 +71,24 @@ public class Configuracion {
 	static final int REPACACION_A_CENTRAL_NUCLEAR = 3;
 	static final int REPACACION_A_RUTA = 100;
 	static final int REPACACION_A_LINEA_DE_TENSION = 100;
+	
+	// Etiquetas para los elementos del juego
+	static final String ETIQUETA_RESIDENCIA = "Residencia";
+	static final String ETIQUETA_COMERCIO = "Comercio";
+	static final String ETIQUETA_INDUSTRIA = "Industria";
+	static final String ETIQUETA_CENTRAL_EOLICA = "Central Eolica";
+	static final String ETIQUETA_CENTRAL_MINERAL = "Central Mineral";
+	static final String ETIQUETA_CENTRAL_NUCLEAR = "Central Nuclear";
+	static final String ETIQUETA_ENTRADA_A_LA_CIUDAD = "Entrada a la Ciudad";
+	static final String ETIQUETA_POZO_DE_AGUA = "Pozo de Agua";
+	static final String ETIQUETA_ESTACION_DE_BOMBEROS = "Estacion de Bomberos";
+	static final String ETIQUETA_AGUA = "Agua";
+	static final String ETIQUETA_TERRENO = "Terreno";
+	static final String ETIQUETA_TUBERIA = "Tuberia";
+	static final String ETIQUETA_RUTA = "Ruta";
+	static final String ETIQUETA_LINEA_DE_TENSION = "Linea de Tension";
+	static final String ETIQUETA_ACCESO_AL_TRANSITO = "Acceso al Tránsito";
+	static final String ETIQUETA_CLOACAS = "Cloacas";
+	static final String ETIQUETA_ELECTRICO = "Eléctrico";
 	
 }

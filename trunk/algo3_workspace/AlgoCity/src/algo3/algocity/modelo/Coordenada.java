@@ -60,7 +60,7 @@ public class Coordenada {
 	public boolean validarCoordenada(Mapa mapa) {
 		if (this.x < 0 || this.y < 0)
 			return false;
-		if (this.x > mapa.obtenerTamanio() || this.y > mapa.obtenerTamanio())
+		if (this.x > mapa.getTamanio() || this.y > mapa.getTamanio())
 			return false;
 		return true;
 	}

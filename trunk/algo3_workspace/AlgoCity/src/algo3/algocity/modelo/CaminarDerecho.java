@@ -7,8 +7,8 @@ public class CaminarDerecho implements ICaminable {
 	@Override
 	public void caminarMapa(Godzilla godzilla, Mapa mapa) {
 
-		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.obtenerTamanio()) {
-			Hectarea hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
+		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
+			Hectarea hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
 			hectarea.afectarCon(godzilla);
 			godzilla.avanzarEnY();
 		}
@@ -17,7 +17,7 @@ public class CaminarDerecho implements ICaminable {
 
 	public Coordenada generarCoordenadaAleatoria(Mapa mapa) {
 		Random aleatorio = new Random();
-		int coordX = aleatorio.nextInt(mapa.obtenerTamanio());
+		int coordX = aleatorio.nextInt(mapa.getTamanio());
 		return new Coordenada(coordX,0);
 	}
 

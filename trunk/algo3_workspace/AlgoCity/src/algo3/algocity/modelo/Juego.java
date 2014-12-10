@@ -2,30 +2,27 @@ package algo3.algocity.modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.Random;
-
-import javax.swing.JFrame;
-
-import algo3.algocity.vista.VistaJuego;
 
 public class Juego extends Observable {
 
 	private Mapa mapa;
 
-	private ArrayList<Coordenada> coordenadasConCentral;
+	private List<Coordenada> coordenadasConCentral;
 
-	private ArrayList<Coordenada> coordenadasConPozo;
+	private List<Coordenada> coordenadasConPozos;
 
-	private ArrayList<EstacionDeBomberos> estacionesDeBomberos;
+	private List<EstacionDeBomberos> estacionesDeBomberos;
 
-	private ArrayList<Coordenada> coordenadasResidenciales;
+	private List<Coordenada> coordenadasResidenciales;
 
-	private ArrayList<Coordenada> coordenadasIndustriales;
+	private List<Coordenada> coordenadasIndustriales;
 
-	private ArrayList<Coordenada> coordenadasComerciales;
-	
-	private ArrayList<Coordenada> coordenadasConConexiones;
+	private List<Coordenada> coordenadasComerciales;
+
+	private List<Coordenada> coordenadasConConexiones;
 
 	private Coordenada coordenadaEntradaALaCiudad;
 
@@ -33,8 +30,12 @@ public class Juego extends Observable {
 
 	private int turno;
 
-	private int habitantes;
-
+	private int ciudadanos;
+	
+	private String jugador; 
+	 
+	/* CONSTRUCTORES */
+	
 	public Juego() {
 		this.mapa = new Mapa(new MapaConPlaya());
 
@@ -43,117 +44,277 @@ public class Juego extends Observable {
 		this.coordenadasComerciales = new ArrayList<Coordenada>();
 
 		this.coordenadasConCentral = new ArrayList<Coordenada>();
-		this.coordenadasConPozo = new ArrayList<Coordenada>();
+		this.coordenadasConPozos = new ArrayList<Coordenada>();
 		this.coordenadasConConexiones = new ArrayList<Coordenada>();
 
 		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
-		
+
 		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
 
 		this.dinero = Configuracion.DINERO_INICIAL;
-		this.turno = 1;
-		this.habitantes = 0;
+		this.turno = Configuracion.TURNO_INICIAL;
+		this.ciudadanos = Configuracion.CIUDADANOS_INICIALES;
+		this.jugador = Configuracion.JUGADOR_DEFAULT;
+	}
+	
+	public Juego(String jugador) {
+		this.mapa = new Mapa(new MapaConPlaya());
+
+		this.coordenadasResidenciales = new ArrayList<Coordenada>();
+		this.coordenadasIndustriales = new ArrayList<Coordenada>();
+		this.coordenadasComerciales = new ArrayList<Coordenada>();
+
+		this.coordenadasConCentral = new ArrayList<Coordenada>();
+		this.coordenadasConPozos = new ArrayList<Coordenada>();
+		this.coordenadasConConexiones = new ArrayList<Coordenada>();
+
+		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
+
+		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
+
+		this.dinero = Configuracion.DINERO_INICIAL;
+		this.turno = Configuracion.TURNO_INICIAL;
+		this.ciudadanos = Configuracion.CIUDADANOS_INICIALES;
+		this.jugador = jugador;
 	}
 
-	public String verMapa(Coordenada coordenada) {
-		return this.mapa.obtenerHectarea(coordenada).obtenerNombre();
+	/* METODOS PUBLICOS */
+
+	public void iniciar() {
+		this.inicializarModeloDato();
 	}
 
-	private boolean construir(Construccion construccion, Coordenada coordenada) {
-		return this.mapa.construir(construccion, coordenada);
+	public int getDinero() {
+		return this.dinero;
 	}
 
-	private boolean conectar(Conexion conexion, Coordenada coordenada) {
-		return this.mapa.conectar(conexion, coordenada);
+	public int getCiudadanos() {
+		return this.ciudadanos;
+	}
+
+	public int getTurno() {
+		return this.turno;
+	}
+
+	public Mapa getMapa() {
+		return this.mapa;
+	}
+
+	public void turnoAvanzar() {
+		this.turno++;
+		
+		if (this.seDebePagarImpuestosEnEsteTurno()) {
+			this.cobrarImpuestos();
+		}
+
+		// Desconectamos los servicios temporalmente para luego
+		// volver a propagarlos y asi, impactar las averias 
+		// de las catastrofes
+		this.desconectarServicios();
+
+		this.generarCatastrofeAleatoria();
+
+		this.propagarServicioDeAgua();
+		this.propagarServicioElectrico();
+		this.propagarServicioDeTransito();
+
+		this.procesarCiudadanos();
+
+		this.repararAverias();
+
+		this.notificarCambio();
 	}
 
 	public boolean insertar(Residencia residencia, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(residencia, coordenada))
+		if (!this.hayDineroSuficiente(residencia)) {
 			return false;
+		}
+
+		if (!this.construir(residencia, coordenada)) {
+			return false;
+		}
+
 		this.coordenadasResidenciales.add(coordenada);
 		return true;
 	}
 
-	public boolean insertar(CentralElectrica central, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(central, coordenada))
-			return false;
-		this.coordenadasConCentral.add(coordenada);
-		return true;
-	}
-
-	public boolean insertar(PozoDeAgua pozo, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(pozo, coordenada))
-			return false;
-		this.coordenadasConPozo.add(coordenada);
-		return true;
-	}
-
-	public boolean insertar(EstacionDeBomberos bomberos, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(bomberos, coordenada))
-			return false;
-		this.estacionesDeBomberos.add(bomberos);
-		return true;
-	}
-
-	public boolean insertar(Industria industria, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(industria, coordenada))
-			return false;
-		this.coordenadasIndustriales.add(coordenada);
-		return true;
-	}
-
 	public boolean insertar(Comercio comercio, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(comercio, coordenada))
+		if (!this.hayDineroSuficiente(comercio)) {
 			return false;
+		}
+
+		if (!this.construir(comercio, coordenada)) {
+			return false;
+		}
+
 		this.coordenadasComerciales.add(coordenada);
 		return true;
 
 	}
 
-	public boolean insertar(IConectable conectable, Coordenada coordenada) {
-		if (!this.sePuedeInsertar(conectable, coordenada))
+	public boolean insertar(Industria industria, Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(industria)) {
 			return false;
+		}
+
+		if (!this.construir(industria, coordenada)) {
+			return false;
+		}
+		this.coordenadasIndustriales.add(coordenada);
+		return true;
+	}
+
+	public boolean insertar(CentralElectrica central, Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(central)) {
+			return false;
+		}
+
+		if (!this.construir(central, coordenada)) {
+			return false;
+		}
+
+		this.coordenadasConCentral.add(coordenada);
+		return true;
+	}
+
+	public boolean insertar(PozoDeAgua pozo, Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(pozo)) {
+			return false;
+		}
+
+		if (!this.construir(pozo, coordenada)) {
+			return false;
+		}
+
+		this.coordenadasConPozos.add(coordenada);
+		return true;
+	}
+
+	public boolean insertar(EstacionDeBomberos bomberos, Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(bomberos)) {
+			return false;
+		}
+
+		if (!this.construir(bomberos, coordenada)) {
+			return false;
+		}
+
+		this.estacionesDeBomberos.add(bomberos);
+		return true;
+	}
+
+	public boolean insertar(Conexion conexion, Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(conexion)) {
+			return false;
+		}
+
+		if (!this.conectar(conexion, coordenada)) {
+			return false;
+		}
+
 		if (!this.coordenadasConConexiones.contains(coordenada)) {
 			this.coordenadasConConexiones.add(coordenada);
 		}
 		return true;
 	}
 
-	public boolean sePuedeInsertar(IConectable conectable, Coordenada coordenada) {
-		if (this.dinero < conectable.obtenerCosto()) {
-			return false;
+	public void repararAverias() {
+		Iterator<EstacionDeBomberos> i = estacionesDeBomberos.iterator();
+		while (i.hasNext()) {
+			EstacionDeBomberos bomberos = i.next();
+			bomberos.repararAverias(this.mapa);
 		}
 
-		if (!this.conectar((Conexion) conectable, coordenada)) {
+	}
+
+	public List<Coordenada> getCoordenadasResidenciales() {
+		return this.coordenadasResidenciales;
+	}
+
+	public List<Coordenada> getCoordenadasIndustriales() {
+		return this.coordenadasIndustriales;
+	}
+
+	public List<Coordenada> getCoordenadasComerciales() {
+		return this.coordenadasComerciales;
+	}
+
+	public List<Coordenada> getCoordenadasConCentral() {
+		return this.coordenadasConCentral;
+	}
+
+	public List<Coordenada> getCoordenadasConPozo() {
+		return this.coordenadasConPozos;
+	}
+
+	public List<EstacionDeBomberos> getEstacionesDeBomberos() {
+		return this.estacionesDeBomberos;
+	}
+
+	public List<Coordenada> getCoordenadasConConexiones() {
+		return this.coordenadasConConexiones;
+	}
+
+	public void conectarServicios() {
+		this.mapa.conectarServicios();
+	}
+
+	public void desconectarServicios() {
+		mapa.desconectarServicios();
+	}
+
+	public void despertarAGodzillaSinRandom() {
+		Godzilla godzilla = new Godzilla();
+		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10, 0),
+				new CaminarDerecho());
+	}
+
+	public void despertarAGodzilla() {
+		Godzilla godzilla = new Godzilla();
+		godzilla.atacarConRandom(mapa);
+	}
+
+	public String getJugador() {
+		return this.jugador;
+	}
+	
+	/* METODOS PRIVADOS */
+	
+	private boolean seDebePagarImpuestosEnEsteTurno(){
+		return ((this.turno % Configuracion.TURNO_RECAUDADOR) == 0);
+	}
+	
+	private void cobrarImpuestos(){
+		this.dinero += (this.ciudadanos * Configuracion.IMPUESTOS_POR_CIUDADANO);
+	}
+	
+	private boolean construir(Construccion construccion, Coordenada coordenada) {
+		if (!this.mapa.construir(construccion, coordenada)) {
 			return false;
 		}
-
-		this.dinero -= conectable.obtenerCosto();
+		this.dinero -= construccion.getCosto();
+		this.notificarCambio();
 		return true;
 	}
 
-	public boolean sePuedeInsertar(IConstruible construible,
-			Coordenada coordenada) {
-		if (this.dinero < construible.obtenerCosto()) {
+	private boolean conectar(Conexion conexion, Coordenada coordenada) {
+		if (!this.mapa.conectar(conexion, coordenada)) {
 			return false;
 		}
 
-		if (!this.construir((Construccion) construible, coordenada)) {
-			return false;
-		}
-
-		this.dinero -= construible.obtenerCosto();
+		this.dinero -= conexion.getCosto();
+		this.notificarCambio();
 		return true;
 	}
 
-	public int verDinero() {
-		return this.dinero;
+	private boolean hayDineroSuficiente(IConstruible construible) {
+		if (this.dinero < construible.getCosto()) {
+			return false;
+		}
+		return true;
 	}
-
-	public void iniciar() {
-
-		this.inicializarModeloDato();
-	}
+		
+		this.repararDanios();
 
 	public void setModeloDato(Coordenada coordenada, int dato) {
 		// modeloDatos[posicion.x][posicion.y] = dato;
@@ -162,88 +323,24 @@ public class Juego extends Observable {
 	}
 
 	public void inicializarModeloDato() {
-
 		setChanged();
-
 		this.notifyObservers();
-	}
-
-	public boolean esTerreno(Coordenada coordenada) {
-		Hectarea h = mapa.obtenerHectarea(coordenada);
-		if (h.obtenerNombre() == "Terreno") {
-			return true;
-		}
-		return false;
-	}
-
-	public Mapa getMapa() {
-		return this.mapa;
-	}
-
-	public ArrayList<Coordenada> obtenerCoordenadasResidenciales() {
-		return this.coordenadasResidenciales;
-	}
-
-	public ArrayList<Coordenada> obtenerCoordenadasIndustriales() {
-		return this.coordenadasIndustriales;
-	}
-
-	public ArrayList<Coordenada> obtenerCoordenadasComerciales() {
-		return this.coordenadasComerciales;
-	}
-
-	public ArrayList<Coordenada> obtenerCoordenadasConCentral() {
-		return this.coordenadasConCentral;
-	}
-
-
-	public ArrayList<Coordenada> obtenerCoordenadasConPozo() {
-		return this.coordenadasConPozo;
-	}
-
-	public int obtenerTurno() {
-		return this.turno;
-	}
-
-	public void pasarTurno() {
-
-		this.turno++;
-
-		if (turno % Configuracion.TURNO_RECAUDADOR == 0) {
-			dinero += this.habitantes * 10;
-		}
-
-		this.desconectarServicios();
-
-		this.generarCatastrofeAleatoria();
-		
-		this.propagarServicioDeAgua();
-		this.propagarServicioElectrico();
-		this.propagarServicioDeTransito();
-
-		this.mudarHabitantes();
-		
-		this.repararDanios();
-
 	}
 
 	private void generarCatastrofeAleatoria() {
 		Random aleatorio = new Random();
-		int numeroAleatorio = aleatorio.nextInt(Configuracion.PROBABILIDAD_DE_CATASTROFE);
-		if(numeroAleatorio == 0){
+		int numeroAleatorio = aleatorio
+				.nextInt(Configuracion.PROBABILIDAD_DE_CATASTROFE);
+		if (numeroAleatorio == 0) {
 			this.despertarAGodzilla();
 		}
-		if(numeroAleatorio == 1){
-			//terremoto
+		if (numeroAleatorio == 1) {
+			// terremoto
 		}
-		
+
 	}
 
-	public void desconectarServicios() {
-		mapa.desconectarServicios();
-	}
-
-	private void mudarHabitantes() {
+	private void procesarCiudadanos() {
 
 		int alojamientoBruto = 0;
 		int trabajoBruto = 0;
@@ -251,33 +348,28 @@ public class Juego extends Observable {
 
 		Iterator<Coordenada> i = coordenadasResidenciales.iterator();
 		while (i.hasNext()) {
-			Hectarea hectarea = mapa.obtenerHectarea(i.next());
-			alojamientoBruto += hectarea.obtenerCapacidadDeAlojamiento();
+			Hectarea hectarea = mapa.getHectarea(i.next());
+			alojamientoBruto += hectarea.getCapacidadDeAlojamiento();
 		}
-		
-		int alojamientoNeto = alojamientoBruto - this.habitantes;
+
+		int alojamientoNeto = (alojamientoBruto - this.ciudadanos);
 
 		Iterator<Coordenada> j = coordenadasIndustriales.iterator();
 		while (j.hasNext()) {
-			Hectarea hectarea = mapa.obtenerHectarea(j.next());
-			trabajoBruto += hectarea.obtenerCapacidadDeTrabajo();
+			Hectarea hectarea = mapa.getHectarea(j.next());
+			trabajoBruto += hectarea.getCapacidadDeTrabajo();
 		}
-		
-		int trabajoNeto = trabajoBruto - this.habitantes;
-		
-		deltaHabitantesTurno = calcularMinimo(alojamientoNeto , trabajoNeto);
-		
-		if(deltaHabitantesTurno <= 0){
-			this.habitantes += deltaHabitantesTurno;
-		}
-		else{
-			this.habitantes += Configuracion.HABITANTES_NUEVOS;
-		}
-	}
 
-	private int calcularMinimo(int a, int b) {
-		if(a < b) return a;
-		return b;
+		int trabajoNeto = (trabajoBruto - this.ciudadanos);
+
+		// Calculamos el cuello de botella
+		// entre alojamiento y trabajo
+		deltaHabitantesTurno = Math.min(alojamientoNeto, trabajoNeto);
+
+		// Comparamos el delta con los visitantes
+		// y actualizamos los ciudadanos
+		this.ciudadanos += Math.min(deltaHabitantesTurno, Configuracion.VISITANTES_POR_TURNO);		
+		
 	}
 
 	private void propagarServicioDeTransito() {
@@ -285,7 +377,7 @@ public class Juego extends Observable {
 	}
 
 	private void propagarServicioDeAgua() {
-		Iterator<Coordenada> i = coordenadasConPozo.iterator();
+		Iterator<Coordenada> i = coordenadasConPozos.iterator();
 		while (i.hasNext()) {
 			Coordenada c = i.next();
 			mapa.propagarServicio(c);
@@ -297,43 +389,22 @@ public class Juego extends Observable {
 		Iterator<Coordenada> i = coordenadasConCentral.iterator();
 		while (i.hasNext()) {
 			Coordenada c = i.next();
+			
 			mapa.propagarServicio(c);
 		}
 	}
 
-	public int obtenerHabitantes() {
-		return this.habitantes;
+	private void notificarCambio() {
+		setChanged();
+		notifyObservers();
 	}
 
-	public void conectarServicios() {
-		this.mapa.conectarServicios();
+	/* BORRAR */
+
+	public String verMapa(Coordenada coordenada) {
+		return this.mapa.getHectarea(coordenada).getNombre();
 	}
 
-	public ArrayList<EstacionDeBomberos> obtenerEstacionesDeBomberos() {
-		return this.estacionesDeBomberos;
-	}
-
-	public ArrayList<Coordenada> obtenerCoordenadasConConexiones() {
-		return this.coordenadasConConexiones;
-	}
-
-	public void despertarAGodzillaSinRandom() {
-		Godzilla godzilla = new Godzilla();
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10,0), new CaminarDerecho());
-	}
 	
-	public void despertarAGodzilla() {
-		Godzilla godzilla = new Godzilla();
-		godzilla.atacarConRandom(mapa);
-	}
-
-	public void repararDanios() {
-		Iterator<EstacionDeBomberos> i = estacionesDeBomberos.iterator();
-		while (i.hasNext()) {
-			EstacionDeBomberos bomberos = i.next();
-			bomberos.repararDanios(this.mapa);
-		}
-		
-	}
-
+	
 }

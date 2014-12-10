@@ -82,7 +82,7 @@ public class JuegoTest {
 	public void crearUnJuegoConValoresIniciales(){
 		Juego juego = new Juego();
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(100000, dinero);
 		
@@ -96,7 +96,7 @@ public class JuegoTest {
 		
 		juego.insertar(casa, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99995, dinero);		
 		
@@ -110,7 +110,7 @@ public class JuegoTest {
 		
 		juego.insertar(comercio, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99995, dinero);		
 		
@@ -124,7 +124,7 @@ public class JuegoTest {
 		
 		juego.insertar(industria, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99990, dinero);		
 		
@@ -138,7 +138,7 @@ public class JuegoTest {
 		
 		juego.insertar(ce, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99000, dinero);		
 		
@@ -152,7 +152,7 @@ public class JuegoTest {
 		
 		juego.insertar(cm, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(97000, dinero);		
 		
@@ -166,7 +166,7 @@ public class JuegoTest {
 		
 		juego.insertar(cn, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(90000, dinero);		
 		
@@ -180,7 +180,7 @@ public class JuegoTest {
 		
 		juego.insertar(edb, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(98500, dinero);
 	}
@@ -193,7 +193,7 @@ public class JuegoTest {
 		
 		juego.insertar(ruta, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99990, dinero);
 	}
@@ -206,7 +206,7 @@ public class JuegoTest {
 		
 		assertEquals(true,juego.insertar(tuberia, new Coordenada(0, 0)));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99995, dinero);
 	}
@@ -219,7 +219,7 @@ public class JuegoTest {
 		
 		assertEquals(true,juego.insertar(ldt, new Coordenada(0, 0)));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(99995, dinero);
 	}
@@ -232,7 +232,7 @@ public class JuegoTest {
 		
 		juego.insertar(edb, new Coordenada(0, 0));
 		
-		int dinero = juego.verDinero();
+		int dinero = juego.getDinero();
 		
 		assertEquals(98500, dinero);
 		
@@ -248,7 +248,7 @@ public class JuegoTest {
 		juego.insertar(res,new Coordenada(5,5));
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasResidenciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -261,7 +261,7 @@ public class JuegoTest {
 		
 		juego.insertar(ind,c);
 		
-		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(c));
+		assertEquals(true,juego.getCoordenadasIndustriales().contains(c));
 	}
 	
 	@Test
@@ -272,7 +272,7 @@ public class JuegoTest {
 		
 		juego.insertar(comercio,new Coordenada(5,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasComerciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -288,9 +288,9 @@ public class JuegoTest {
 		juego.insertar(res3,new Coordenada(10,5));
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(5,5)));
-		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(8,5)));
-		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(new Coordenada(10,5)));
+		assertEquals(true,juego.getCoordenadasResidenciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasResidenciales().contains(new Coordenada(8,5)));
+		assertEquals(true,juego.getCoordenadasResidenciales().contains(new Coordenada(10,5)));
 	}
 	
 	@Test
@@ -306,9 +306,9 @@ public class JuegoTest {
 		juego.insertar(ind3,new Coordenada(10,5));
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(5,5)));
-		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(8,5)));
-		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(new Coordenada(10,5)));
+		assertEquals(true,juego.getCoordenadasIndustriales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasIndustriales().contains(new Coordenada(8,5)));
+		assertEquals(true,juego.getCoordenadasIndustriales().contains(new Coordenada(10,5)));
 	}
 	
 	@Test
@@ -323,9 +323,9 @@ public class JuegoTest {
 		juego.insertar(com2,new Coordenada(8,5));
 		juego.insertar(com3,new Coordenada(10,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
-		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
-		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasComerciales().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasComerciales().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -345,9 +345,9 @@ public class JuegoTest {
 		juego.insertar(ind,new Coordenada(10,5));
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasComerciales().contains(c1));
-		assertEquals(true,juego.obtenerCoordenadasResidenciales().contains(c2));
-		assertEquals(true,juego.obtenerCoordenadasIndustriales().contains(c3));
+		assertEquals(true,juego.getCoordenadasComerciales().contains(c1));
+		assertEquals(true,juego.getCoordenadasResidenciales().contains(c2));
+		assertEquals(true,juego.getCoordenadasIndustriales().contains(c3));
 	}
 	
 	@Test
@@ -359,7 +359,7 @@ public class JuegoTest {
 		
 		juego.insertar(central,coord);
 		
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(coord));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(coord));
 	}
 	
 	@Test
@@ -372,7 +372,7 @@ public class JuegoTest {
 		
 		juego.insertar(central,c);
 		
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(c));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(c));
 	}
 	
 	@Test
@@ -385,7 +385,7 @@ public class JuegoTest {
 		
 		juego.insertar(central,c);
 		
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(c));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(c));
 	}
 	
 	@Test
@@ -406,9 +406,9 @@ public class JuegoTest {
 		juego.insertar(nuclear,cNuclear);
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cEolica));
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cMineral));
-		assertEquals(true,juego.obtenerCoordenadasConCentral().contains(cNuclear));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(cEolica));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(cMineral));
+		assertEquals(true,juego.getCoordenadasConCentral().contains(cNuclear));
 	}
 	
 	@Test
@@ -419,7 +419,7 @@ public class JuegoTest {
 		
 		juego.insertar(edb, new Coordenada(3,3));
 		
-		assertEquals(true,juego.obtenerEstacionesDeBomberos().contains(edb));
+		assertEquals(true,juego.getEstacionesDeBomberos().contains(edb));
 	}
 	
 	@Test
@@ -433,8 +433,8 @@ public class JuegoTest {
 		juego.insertar(edb2,new Coordenada(10,5));
 		
 	
-		assertEquals(true,juego.obtenerEstacionesDeBomberos().contains(edb));
-		assertEquals(true,juego.obtenerEstacionesDeBomberos().contains(edb2));
+		assertEquals(true,juego.getEstacionesDeBomberos().contains(edb));
+		assertEquals(true,juego.getEstacionesDeBomberos().contains(edb2));
 	}
 	
 	@Test
@@ -448,7 +448,7 @@ public class JuegoTest {
 		juego.insertar(pozo,c);
 		
 		
-		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c));
+		assertEquals(true,juego.getCoordenadasConPozo().contains(c));
 	}
 	
 	@Test
@@ -464,8 +464,8 @@ public class JuegoTest {
 		juego.insertar(pozo,c1);
 		juego.insertar(pozo2,c2);
 		
-		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c1));
-		assertEquals(true,juego.obtenerCoordenadasConPozo().contains(c2));
+		assertEquals(true,juego.getCoordenadasConPozo().contains(c1));
+		assertEquals(true,juego.getCoordenadasConPozo().contains(c2));
 	}
 	
 	@Test
@@ -478,7 +478,7 @@ public class JuegoTest {
 		
 		juego.insertar(ldt,new Coordenada(5,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(c));
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(c));
 	}
 	
 	@Test
@@ -489,7 +489,7 @@ public class JuegoTest {
 		
 		juego.insertar(tuberia,new Coordenada(5,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -500,7 +500,7 @@ public class JuegoTest {
 		
 		juego.insertar(ruta,new Coordenada(5,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(new Coordenada(5,5)));
 	}
 	
 	@Test
@@ -517,8 +517,8 @@ public class JuegoTest {
 		juego.insertar(tuberia,c);
 		juego.insertar(ldt,c);
 		
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(c));
-		assertEquals(1,juego.obtenerCoordenadasConConexiones().size());
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(c));
+		assertEquals(1,juego.getCoordenadasConConexiones().size());
 	}
 	
 	@Test
@@ -533,26 +533,25 @@ public class JuegoTest {
 		juego.insertar(tuberia,new Coordenada(2,5));
 		juego.insertar(ldt,new Coordenada(0,5));
 		
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(5,5)));
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(2,5)));
-		assertEquals(true,juego.obtenerCoordenadasConConexiones().contains(new Coordenada(0,5)));
-		assertEquals(3,juego.obtenerCoordenadasConConexiones().size());
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(new Coordenada(5,5)));
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(new Coordenada(2,5)));
+		assertEquals(true,juego.getCoordenadasConConexiones().contains(new Coordenada(0,5)));
+		assertEquals(3,juego.getCoordenadasConConexiones().size());
 	}
 	
 	
-
 	@Test
 	public void testJuegoComienzaEnElTurno1(){
 		Juego juego = new Juego();
-		assertEquals(1,juego.obtenerTurno());
+		assertEquals(1,juego.getTurno());
 	}
 	
 	@Test
 	public void testJuegoPasaDeTurnoATurno2(){
 		Juego juego = new Juego();
-		assertEquals(1,juego.obtenerTurno());
-		juego.pasarTurno();
-		assertEquals(2,juego.obtenerTurno());
+		assertEquals(1,juego.getTurno());
+		juego.turnoAvanzar();
+		assertEquals(2,juego.getTurno());
 	}
 	
 	@Test
@@ -564,12 +563,12 @@ public class JuegoTest {
 		juego.insertar(pozo, new Coordenada(23,23));
 		juego.insertar(new Tuberia(), new Coordenada(23,24));
 		
-		Hectarea hectarea = juego.getMapa().obtenerHectarea(new Coordenada(23,24));
+		Hectarea hectarea = juego.getMapa().getHectarea(new Coordenada(23,24));
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
@@ -586,9 +585,9 @@ public class JuegoTest {
 		juego.insertar(new Tuberia(), new Coordenada(23,21));
 		juego.insertar(new Tuberia(), new Coordenada(23,20));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(23,22));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(23,21));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(23,20));
+		Hectarea hectarea1 = juego.getMapa().getHectarea(new Coordenada(23,22));
+		Hectarea hectarea2 = juego.getMapa().getHectarea(new Coordenada(23,21));
+		Hectarea hectarea3 = juego.getMapa().getHectarea(new Coordenada(23,20));
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(false, hectarea1.estaActivo(TipoDeServicio.Cloacas));
@@ -597,7 +596,7 @@ public class JuegoTest {
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.Cloacas));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Tuberia));
 		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.Cloacas));
@@ -616,9 +615,9 @@ public class JuegoTest {
 		juego.insertar(new Ruta(), new Coordenada(2,12));
 		juego.insertar(new Ruta(), new Coordenada(3,12));
 		
-		Hectarea hectarea1 = juego.getMapa().obtenerHectarea(new Coordenada(1,12));
-		Hectarea hectarea2 = juego.getMapa().obtenerHectarea(new Coordenada(2,12));
-		Hectarea hectarea3 = juego.getMapa().obtenerHectarea(new Coordenada(3,12));
+		Hectarea hectarea1 = juego.getMapa().getHectarea(new Coordenada(1,12));
+		Hectarea hectarea2 = juego.getMapa().getHectarea(new Coordenada(2,12));
+		Hectarea hectarea3 = juego.getMapa().getHectarea(new Coordenada(3,12));
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Ruta));
 		assertEquals(false, hectarea1.estaActivo(TipoDeServicio.AccesoAlTransito));
@@ -627,7 +626,7 @@ public class JuegoTest {
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Ruta));
 		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.AccesoAlTransito));
 		
-		juego.pasarTurno();
+		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Ruta));
 		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.AccesoAlTransito));
@@ -642,10 +641,10 @@ public class JuegoTest {
 		Juego juego = new Juego();
 		juego.conectarServicios();
 		
-			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
-				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+			for(int i=0; i < juego.getMapa().getTamanio(); i++){
+				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
-					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
+					Hectarea hectarea = juego.getMapa().getHectarea(c);
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
@@ -658,10 +657,10 @@ public class JuegoTest {
 		Juego juego = new Juego();
 		juego.conectarServicios();
 		
-			for(int i=0; i < juego.getMapa().obtenerTamanio(); i++){
-				for(int j=0; j < juego.getMapa().obtenerTamanio(); j++){
+			for(int i=0; i < juego.getMapa().getTamanio(); i++){
+				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
-					Hectarea hectarea = juego.getMapa().obtenerHectarea(c);
+					Hectarea hectarea = juego.getMapa().getHectarea(c);
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
 					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
@@ -681,11 +680,11 @@ public class JuegoTest {
 		
 		juego.insertar(res,c);
 		
-		assertEquals(100, res.obtenerSalud());
+		assertEquals(100, res.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
+		assertEquals(0, res.getSalud());
 	}
 	
 	@Test
@@ -704,17 +703,17 @@ public class JuegoTest {
 		juego.insertar(ruta,c);
 		juego.insertar(tuberia,c);
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ldt.obtenerSalud());
-		assertEquals(100, ruta.obtenerSalud());
-		assertEquals(100, tuberia.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ldt.getSalud());
+		assertEquals(100, ruta.getSalud());
+		assertEquals(100, tuberia.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(0, ldt.obtenerSalud());
-		assertEquals(20, ruta.obtenerSalud());
-		assertEquals(100, tuberia.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(0, ldt.getSalud());
+		assertEquals(20, ruta.getSalud());
+		assertEquals(100, tuberia.getSalud());
 	}
 	
 	@Test
@@ -729,15 +728,15 @@ public class JuegoTest {
 		juego.insertar(ind,new Coordenada(10,17));
 		juego.insertar(com,new Coordenada(10,0));
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ind.obtenerSalud());
-		assertEquals(100, com.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ind.getSalud());
+		assertEquals(100, com.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 	}
 	
 	@Test
@@ -753,21 +752,21 @@ public class JuegoTest {
 		juego.insertar(com,new Coordenada(10,0));
 		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,4));
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ind.obtenerSalud());
-		assertEquals(100, com.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ind.getSalud());
+		assertEquals(100, com.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 		
-		juego.repararDanios();
+		juego.repararAverias();
 		
-		assertEquals(10, res.obtenerSalud());
-		assertEquals(63, ind.obtenerSalud());
-		assertEquals(32, com.obtenerSalud());
+		assertEquals(10, res.getSalud());
+		assertEquals(63, ind.getSalud());
+		assertEquals(32, com.getSalud());
 		
 	}
 	
@@ -783,21 +782,21 @@ public class JuegoTest {
 		juego.insertar(ind,new Coordenada(10,17));
 		juego.insertar(com,new Coordenada(10,0));
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ind.obtenerSalud());
-		assertEquals(100, com.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ind.getSalud());
+		assertEquals(100, com.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 		
-		juego.repararDanios();
+		juego.repararAverias();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 		
 	}
 	
@@ -815,21 +814,21 @@ public class JuegoTest {
 		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,4));
 		juego.insertar(new EstacionDeBomberos(),new Coordenada(10,7));
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ind.obtenerSalud());
-		assertEquals(100, com.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ind.getSalud());
+		assertEquals(100, com.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 		
-		juego.repararDanios();
+		juego.repararAverias();
 		
-		assertEquals(20, res.obtenerSalud());
-		assertEquals(66, ind.obtenerSalud());
-		assertEquals(39, com.obtenerSalud());
+		assertEquals(20, res.getSalud());
+		assertEquals(66, ind.getSalud());
+		assertEquals(39, com.getSalud());
 		
 	}
 	
@@ -857,33 +856,33 @@ public class JuegoTest {
 		juego.insertar(ruta,c);
 		juego.insertar(tuberia,c);
 		
-		assertEquals(100, res.obtenerSalud());
-		assertEquals(100, ind.obtenerSalud());
-		assertEquals(100, com.obtenerSalud());
+		assertEquals(100, res.getSalud());
+		assertEquals(100, ind.getSalud());
+		assertEquals(100, com.getSalud());
 		
-		assertEquals(100, ldt.obtenerSalud());
-		assertEquals(100, ruta.obtenerSalud());
-		assertEquals(100, tuberia.obtenerSalud());
+		assertEquals(100, ldt.getSalud());
+		assertEquals(100, ruta.getSalud());
+		assertEquals(100, tuberia.getSalud());
 		
 		juego.despertarAGodzillaSinRandom();
 		
-		assertEquals(0, res.obtenerSalud());
-		assertEquals(60, ind.obtenerSalud());
-		assertEquals(25, com.obtenerSalud());
+		assertEquals(0, res.getSalud());
+		assertEquals(60, ind.getSalud());
+		assertEquals(25, com.getSalud());
 		
-		assertEquals(0, ldt.obtenerSalud());
-		assertEquals(20, ruta.obtenerSalud());
-		assertEquals(100, tuberia.obtenerSalud());
+		assertEquals(0, ldt.getSalud());
+		assertEquals(20, ruta.getSalud());
+		assertEquals(100, tuberia.getSalud());
 		
-		juego.repararDanios();
+		juego.repararAverias();
 		
-		assertEquals(10, res.obtenerSalud());
-		assertEquals(63, ind.obtenerSalud());
-		assertEquals(32, com.obtenerSalud());
+		assertEquals(10, res.getSalud());
+		assertEquals(63, ind.getSalud());
+		assertEquals(32, com.getSalud());
 		
-		assertEquals(100, ldt.obtenerSalud());
-		assertEquals(100, ruta.obtenerSalud());
-		assertEquals(100, tuberia.obtenerSalud());
+		assertEquals(100, ldt.getSalud());
+		assertEquals(100, ruta.getSalud());
+		assertEquals(100, tuberia.getSalud());
 		
 	}
 }

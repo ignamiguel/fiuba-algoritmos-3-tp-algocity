@@ -17,7 +17,7 @@ public class TerrenoTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(terreno.obtenerConstruccion(), null);
+		assertEquals(terreno.getConstruccion(), null);
 	}
 	
 	@Test	
@@ -33,7 +33,7 @@ public class TerrenoTest {
 		
 		assertEquals(true, resultado);
 		
-		assertEquals(terreno.obtenerConstruccion(), ce);
+		assertEquals(terreno.getConstruccion(), ce);
 	}
 	
 	@Test	
@@ -47,7 +47,7 @@ public class TerrenoTest {
 		
 		assertEquals(true, resultado);
 		
-		assertEquals(terreno.obtenerConstruccion(), edb);
+		assertEquals(terreno.getConstruccion(), edb);
 	}
 	
 	@Test	
@@ -61,7 +61,7 @@ public class TerrenoTest {
 		
 	    assertEquals(true, resultado);
 	    
-		assertEquals(terreno.obtenerConstruccion(), e);
+		assertEquals(terreno.getConstruccion(), e);
 	}
 	
 	@Test	
@@ -83,7 +83,7 @@ public class TerrenoTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(terreno.obtenerConstruccion(), edificio);
+		assertEquals(terreno.getConstruccion(), edificio);
 		
 	}
 	
