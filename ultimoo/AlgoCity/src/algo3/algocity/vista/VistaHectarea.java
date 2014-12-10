@@ -3,8 +3,6 @@ package algo3.algocity.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,7 +19,7 @@ public class VistaHectarea extends JPanel implements Observer {
 	// protected Juego juego;
 	private Hectarea hectarea;
 	private Color color;
-	//private ImageIcon image;
+	private ImageIcon image;
 
 	private Coordenada coordenada;
 
@@ -44,25 +42,34 @@ public class VistaHectarea extends JPanel implements Observer {
 	}
 
 	protected void updateVista() {
-		if (this.hectarea.getClass().equals(Terreno.class)) {
-			if (hectarea.estaVacia())
-				this.color = new Color(122, 186, 122);
-			else
-				this.color = new Color(255, 228, 196);
-		} else {
-			this.color = new Color(51, 102, 153);
+		if(!(this.hectarea.estaVacia())){
+			image= new ImageIcon(getClass().getResource("/imagenes/edificio.gif"));
 		}
-
+		else{
+			if (this.hectarea.getClass().equals(Terreno.class))
+			{	this.color = new Color(122, 186, 122);
+				
+			}
+			else{
+				this.color = new Color(51, 102, 153);
+			}
+		}
 		repaint();
 		return;
 	}
 
 	public void paintComponent(Graphics grafico) {
-		super.paintComponent(grafico);
-		grafico.setColor(color);
-		
 		Dimension dimension = getSize();
-
-		grafico.fill3DRect(0, 0, dimension.width, dimension.height, true);
+		if(!(this.hectarea.estaVacia())){
+			grafico.drawImage(image.getImage(), 0, 0, dimension.width, dimension.height, null);
+	        setOpaque(false);
+		}
+		else{
+			super.paintComponent(grafico);
+			grafico.setColor(color);
+			grafico.fill3DRect(0, 0, dimension.width, dimension.height, true);
+			
+		}
+	
 	}
 }
