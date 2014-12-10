@@ -5,8 +5,10 @@ public abstract class Conexion implements IConectable {
 	protected int salud;
 	protected int costo;
 	
-	public Object obtenerSalud() {
+	public int getSalud() {
 		return this.salud;
 	}
+	
+	public abstract boolean estaAveriada();
 
 }

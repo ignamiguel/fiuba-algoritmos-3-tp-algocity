@@ -41,6 +41,7 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 
 			});
 			editMenu.add(menuItem);
+			
 			menuItem = new MenuItem("Construir Industria");
 			menuItem.setEnabled(true);
 			menuItem.addActionListener(new ActionListener() {
@@ -50,7 +51,7 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 					juego.insertar(new Industria(), coordenada);
 				}
 
-			});
+			});			
 			editMenu.add(menuItem);
 			
 			menuItem = new MenuItem("Construir Central Eolica");
@@ -87,7 +88,20 @@ public class FabricaOpcionesMenuTerreno implements IFabricaOpcionesMenu {
 				}
 
 			});
-			editMenu.add(menuItem);			
+			editMenu.add(menuItem);
+			
+			menuItem = new MenuItem("Construir Estacion de Bomberos");
+			menuItem.setEnabled(true);
+			menuItem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {					
+					juego.insertar(new EstacionDeBomberos(), coordenada);
+				}
+
+			});
+			editMenu.add(menuItem);
+			
 			editMenu.addSeparator();
 		}
 

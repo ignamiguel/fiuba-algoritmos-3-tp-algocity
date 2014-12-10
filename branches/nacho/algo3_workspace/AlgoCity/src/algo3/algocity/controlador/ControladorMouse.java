@@ -12,20 +12,9 @@ import algo3.algocity.vista.InformacionHectarea;
 
 public class ControladorMouse extends MouseAdapter {
 
-	private Hectarea hectarea;
 	private Coordenada coordenada;
 
 	private Juego juego;
-
-	// public ControladorMouse(Hectarea h, VistaHectarea vista) {
-	// this.hectarea = h;
-	// this.vista = vista;
-	// }
-
-	// Old Constructor
-	public ControladorMouse(Hectarea h) {
-		this.hectarea = h;
-	}
 
 	public ControladorMouse(Juego juego, Coordenada c) {
 		this.juego = juego;
@@ -34,7 +23,7 @@ public class ControladorMouse extends MouseAdapter {
 
 	public void mousePressed(MouseEvent mouseEvent) {
 
-		Hectarea hectarea = this.juego.getMapa().obtenerHectarea(this.coordenada);
+		Hectarea hectarea = this.juego.getMapa().getHectarea(this.coordenada);
 		
 		InformacionHectarea.getInstance().actualizarInformacion(hectarea);
 
@@ -49,9 +38,9 @@ public class ControladorMouse extends MouseAdapter {
 			}
 		} else {
 			// Muestro las coordenadas
-			System.out.println("x="
-					+ Integer.toString(this.coordenada.obtenerX()) + " y="
-					+ Integer.toString(this.coordenada.obtenerY()));
+//			System.out.println("x="
+//					+ Integer.toString(this.coordenada.obtenerX()) + " y="
+//					+ Integer.toString(this.coordenada.obtenerY()));
 
 		}
 	}

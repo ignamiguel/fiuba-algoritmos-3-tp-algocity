@@ -18,8 +18,8 @@ public class ControladorEstadoJuego implements Observer {
 	public void update(Observable observable, Object arg) {
 		Juego juego = (Juego) observable;
 		estadoJuego.actualizarDia(juego.getTurno());
-		estadoJuego.actualizarDinero(juego.verDinero());
-		//estadoJuego.actualizarJugador("Pepito");
+		estadoJuego.actualizarDinero(juego.getDinero());
+		estadoJuego.actualizarJugador(juego.getJugador());
 		estadoJuego.actualizarPoblacion(juego.getCiudadanos());
 	}
 

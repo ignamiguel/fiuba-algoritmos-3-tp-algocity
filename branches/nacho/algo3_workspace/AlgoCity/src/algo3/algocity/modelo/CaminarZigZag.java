@@ -9,21 +9,21 @@ public class CaminarZigZag implements ICaminable {
 		Hectarea hectarea;
 		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
 			
-			hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
+			hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
 			hectarea.afectarCon(godzilla);
 			godzilla.avanzarEnY();
 			godzilla.retrocederEnX();
 			
 			
 			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
-				hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
+				hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
 				godzilla.avanzarEnX();
 			}
 			
 			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
-				hectarea = mapa.obtenerHectarea(godzilla.obtenerCoordenada());
+				hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
 				godzilla.avanzarEnX();

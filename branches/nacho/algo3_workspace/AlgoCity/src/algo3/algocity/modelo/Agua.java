@@ -10,8 +10,8 @@ public class Agua extends Hectarea {
 		this.construccion = null;
 	}
 
-	public String obtenerNombre() {
-		return "Agua";
+	public String getNombre() {
+		return Configuracion.ETIQUETA_AGUA;
 	}
 
 	@Override

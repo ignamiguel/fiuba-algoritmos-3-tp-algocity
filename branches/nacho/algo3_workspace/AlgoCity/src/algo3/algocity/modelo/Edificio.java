@@ -1,12 +1,10 @@
 package algo3.algocity.modelo;
 
-import java.util.List;
-
 public abstract class Edificio extends Construccion {
 
 	protected int consumoElectrico;
 
-	public int obtenerConsumoElectrico() {
+	public int getConsumoElectrico() {
 		return consumoElectrico;
 	}
 
@@ -28,7 +26,5 @@ public abstract class Edificio extends Construccion {
 			this.salud = 0;
 		}
 	}
-	
-	public abstract boolean tieneLosServiciosRequeridos(List<TipoDeServicio> servicios);
 
 }

@@ -10,7 +10,8 @@ import algo3.algocity.modelo.*;
 public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 
 	@Override
-	public void popularMenu(final Hectarea current, PopupMenu editMenu, Juego juego, Coordenada coordenada) {
+	public void popularMenu(final Hectarea current, PopupMenu editMenu,
+			final Juego juego, final Coordenada coordenada) {
 		MenuItem menuItem = null;
 		if (current.estaVacia()) {
 			menuItem = new MenuItem("Construir Pozo de Agua");
@@ -19,8 +20,7 @@ public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					PozoDeAgua industria = new PozoDeAgua();
-					current.construir(industria);
+					juego.insertar(new PozoDeAgua(), coordenada);
 				}
 
 			});
@@ -28,15 +28,13 @@ public class FabricaOpcionesMenuAgua implements IFabricaOpcionesMenu {
 			editMenu.addSeparator();
 		}
 
-		
 		menuItem = new MenuItem("Conectar Tuberia");
 		menuItem.setEnabled(true);
 		menuItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Tuberia tuberia = new Tuberia();
-				current.conectar(tuberia);
+				juego.insertar(new Tuberia(), coordenada);
 			}
 
 		});
