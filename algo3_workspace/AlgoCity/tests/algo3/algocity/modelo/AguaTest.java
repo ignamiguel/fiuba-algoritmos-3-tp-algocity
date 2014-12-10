@@ -16,7 +16,7 @@ public class AguaTest {
 		
 		assertEquals(true, resultado);
 		
-		assertEquals(agua.obtenerConstruccion(), pda );
+		assertEquals(agua.getConstruccion(), pda );
 	}
 	
 	@Test	
@@ -32,7 +32,7 @@ public class AguaTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(agua.obtenerConstruccion(), null);
+		assertEquals(agua.getConstruccion(), null);
 	}
 	
 	@Test	
@@ -46,7 +46,7 @@ public class AguaTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(agua.obtenerConstruccion(), null);
+		assertEquals(agua.getConstruccion(), null);
 	}
 	
 	@Test	
@@ -61,7 +61,7 @@ public class AguaTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(agua.obtenerConstruccion(), null);
+		assertEquals(agua.getConstruccion(), null);
 	}
 	
 	@Test	
@@ -81,7 +81,7 @@ public class AguaTest {
 		
 		assertEquals(false, resultado);
 		
-		assertEquals(agua.obtenerConstruccion(), pda);	
+		assertEquals(agua.getConstruccion(), pda);	
 		
 	}	
 	

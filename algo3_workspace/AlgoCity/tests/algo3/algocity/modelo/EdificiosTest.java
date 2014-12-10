@@ -10,7 +10,7 @@ public class EdificiosTest {
 	@Test
 	public void testConusmoDeResidenciaEs1(){
 		Residencia residencia = new Residencia ();
-		assertEquals(residencia.obtenerConsumoElectrico(),1);
+		assertEquals(residencia.getConsumoElectrico(),1);
 	}
 	
 	@Test
@@ -23,14 +23,14 @@ public class EdificiosTest {
 	@Test
 	public void testConusmoDeComercioEs2(){
 		Comercio comercio = new Comercio ();
-		assertEquals(comercio.obtenerConsumoElectrico(),2);
+		assertEquals(comercio.getConsumoElectrico(),2);
 	}
 	
 	
 	@Test
 	public void testConusmoDeIndustriaEs5(){
 		Industria industria = new Industria();
-		assertEquals(industria.obtenerConsumoElectrico(),5);
+		assertEquals(industria.getConsumoElectrico(),5);
 	}
 	
 	@Test
@@ -42,19 +42,19 @@ public class EdificiosTest {
 	@Test
 	public void testCostoDeResidenciaEs5(){
 		Residencia residencia = new Residencia();
-		assertEquals(residencia.obtenerCosto(),5);
+		assertEquals(residencia.getCosto(),5);
 	}
 	
 	@Test
 	public void testCostoDeComercioEs5(){
 		Comercio comercio = new Comercio();
-		assertEquals(comercio.obtenerCosto(),5);
+		assertEquals(comercio.getCosto(),5);
 	}
 	
 	@Test
 	public void testCostoDeIndustriaEs10(){
 		Industria industria = new Industria();
-		assertEquals(industria.obtenerCosto(),10);
+		assertEquals(industria.getCosto(),10);
 	}
 	
 	@Test
@@ -88,19 +88,19 @@ public class EdificiosTest {
 	@Test
 	public void testResidenciaCreadaTieneSalud100(){
 		Residencia residencia = new Residencia();
-		assertEquals(residencia.obtenerSalud(),100);
+		assertEquals(residencia.getSalud(),100);
 	}
 	
 	@Test
 	public void testComercioCreadoTieneSalud100(){
 		Comercio comercio = new Comercio();
-		assertEquals(comercio.obtenerSalud(),100);
+		assertEquals(comercio.getSalud(),100);
 	}
 	
 	@Test
 	public void testIndustriaCreadaTieneSalud100(){
 		Industria industria = new Industria();
-		assertEquals(industria.obtenerSalud(),100);
+		assertEquals(industria.getSalud(),100);
 	}
 	
 	@Test
@@ -108,7 +108,7 @@ public class EdificiosTest {
 		Residencia residencia = new Residencia();
 		Godzilla godzilla = new Godzilla();
 		residencia.afectarCon(godzilla);
-		assertEquals(residencia.obtenerSalud(),0);
+		assertEquals(residencia.getSalud(),0);
 	}
 	
 	@Test
@@ -117,7 +117,7 @@ public class EdificiosTest {
 		Godzilla godzilla = new Godzilla();
 		residencia.afectarCon(godzilla);
 		residencia.afectarCon(godzilla);
-		assertEquals(residencia.obtenerSalud(),0);
+		assertEquals(residencia.getSalud(),0);
 	}
 	
 
@@ -126,7 +126,7 @@ public class EdificiosTest {
 		Industria industria = new Industria();
 		Godzilla godzilla = new Godzilla();
 		industria.afectarCon(godzilla);
-		assertEquals(industria.obtenerSalud(),60);
+		assertEquals(industria.getSalud(),60);
 	}
 	
 	@Test
@@ -135,7 +135,7 @@ public class EdificiosTest {
 		Godzilla godzilla = new Godzilla();
 		industria.afectarCon(godzilla);
 		industria.afectarCon(godzilla);
-		assertEquals(industria.obtenerSalud(),20);
+		assertEquals(industria.getSalud(),20);
 	}
 	
 	@Test
@@ -145,7 +145,7 @@ public class EdificiosTest {
 		industria.afectarCon(godzilla);
 		industria.afectarCon(godzilla);
 		industria.afectarCon(godzilla);
-		assertEquals(industria.obtenerSalud(),0);
+		assertEquals(industria.getSalud(),0);
 	}
 	
 	@Test
@@ -153,7 +153,7 @@ public class EdificiosTest {
 		Comercio comercio = new Comercio();
 		Godzilla godzilla = new Godzilla();
 		comercio.afectarCon(godzilla);
-		assertEquals(comercio.obtenerSalud(),25);
+		assertEquals(comercio.getSalud(),25);
 	}
 	
 	
@@ -163,28 +163,28 @@ public class EdificiosTest {
 		Godzilla godzilla = new Godzilla();
 		comercio.afectarCon(godzilla);
 		comercio.afectarCon(godzilla);
-		assertEquals(comercio.obtenerSalud(),0);
+		assertEquals(comercio.getSalud(),0);
 	}
 	
 	@Test
 	public void testResidenciaDanadaPorTerremotoDeDanio100QuedaConSalud0(){
 		Residencia residencia = new Residencia();
 		residencia.afectarCon(new Terremoto());
-		assertEquals(residencia.obtenerSalud(),0);
+		assertEquals(residencia.getSalud(),0);
 	}
 	
 	@Test
 	public void testIndustriaDanadaPorTerremotoDeDanio100QuedaConSalud0(){
 		Industria industria = new Industria();
 		industria.afectarCon(new Terremoto());
-		assertEquals(industria.obtenerSalud(),0);
+		assertEquals(industria.getSalud(),0);
 	}
 	
 	@Test
 	public void testComercioDanadoPorTerremotoDeDanio100QuedaConSalud0(){
 		Comercio comercio = new Comercio();
 		comercio.afectarCon(new Terremoto());
-		assertEquals(comercio.obtenerSalud(),0);
+		assertEquals(comercio.getSalud(),0);
 	}
 	
 	@Test
@@ -193,7 +193,7 @@ public class EdificiosTest {
 		Terremoto terremoto = new Terremoto();
 		terremoto.cargarDanio(25);
 		residencia.afectarCon(terremoto);
-		assertEquals(residencia.obtenerSalud(),75);
+		assertEquals(residencia.getSalud(),75);
 	}
 	
 	@Test
@@ -202,7 +202,7 @@ public class EdificiosTest {
 		Terremoto terremoto = new Terremoto();
 		terremoto.cargarDanio(25);
 		industria.afectarCon(terremoto);
-		assertEquals(industria.obtenerSalud(),75);
+		assertEquals(industria.getSalud(),75);
 	}
 	
 	@Test
@@ -211,7 +211,7 @@ public class EdificiosTest {
 		Terremoto terremoto = new Terremoto();
 		terremoto.cargarDanio(99);
 		comercio.afectarCon(terremoto);
-		assertEquals(comercio.obtenerSalud(),1);
+		assertEquals(comercio.getSalud(),1);
 	}
 	
 	@Test
@@ -220,9 +220,9 @@ public class EdificiosTest {
 		Terremoto terremoto = new Terremoto();
 		terremoto.cargarDanio(20);
 		industria.afectarCon(terremoto);
-		assertEquals(industria.obtenerSalud(),80);
+		assertEquals(industria.getSalud(),80);
 		industria.afectarCon(new Godzilla());
-		assertEquals(industria.obtenerSalud(),40);
+		assertEquals(industria.getSalud(),40);
 	}
 	
 }

@@ -2,9 +2,6 @@ package algo3.algocity.modelo;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Test;
 
 //import org.junit.Test;

@@ -1,16 +1,18 @@
 package algo3.algocity.modelo;
 
-import java.util.ArrayList;
-
 public class Industria extends Edificio {
 
 	private int puestosDeTrabajo;
 
 	public Industria() {
+		super();
 		this.consumoElectrico = Configuracion.CONSUMO_ELECTRICO_INDUSTRIA;
 		this.puestosDeTrabajo = Configuracion.EMPLEOS_INDUSTRIA;
 		this.costo = Configuracion.COSTO_INDUSTRIA;
 		this.salud = Configuracion.SALUD_INICIAL;
+
+		this.serviciosNecesarios.add(TipoDeServicio.AccesoAlTransito);
+		this.serviciosNecesarios.add(TipoDeServicio.Electrico);
 	}
 
 	public int obtenerPuestosDeTrabajo() {
@@ -43,25 +45,34 @@ public class Industria extends Edificio {
 		return true;
 	}
 
-	public int calcularPuestosDeTrabajo(ArrayList<TipoDeServicio> servicios) {
-		if(salud == Configuracion.SALUD_INICIAL){
-			if(this.tieneLosServiciosRequeridos(servicios)){
-				return this.puestosDeTrabajo;
-			}
+	@Override
+	public int getPuestosDeTrabajo() {
+		// Asumimos que si la Industria esta averiada
+		// no puede generar puestos de trabajo
+		if (this.estaAveriada()) {
+			return 0;
 		}
-		return 0;
-		
-	}
-	
-	public boolean tieneLosServiciosRequeridos(ArrayList<TipoDeServicio> servicios) {
-		return (servicios.contains(TipoDeServicio.AccesoAlTransito) && servicios.contains(TipoDeServicio.Electrico));
+
+		return this.puestosDeTrabajo;
+
 	}
 
 	@Override
 	public void reparar() {
 		this.salud += Configuracion.REPARACION_A_INDUSTRIA;
-		if(this.salud > 100){
+		if (this.salud > 100) {
 			this.salud = 100;
 		}
+	}
+
+	@Override
+	public int getCapacidadDeAlojamiento() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getEtiqueta() {
+		return Configuracion.ETIQUETA_INDUSTRIA;
 	}
 }
