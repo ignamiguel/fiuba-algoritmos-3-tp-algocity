@@ -9,6 +9,8 @@ public class Configuracion {
 	static final int TURNO_RECAUDADOR = 30;
 	static final int HABITANTES_NUEVOS = 100;
 	
+	static final int PROBABILIDAD_DE_CATASTROFE = 20;
+	
 	// Costos de construccion
 	static final int COSTO_RESIDENCIA = 5;
 	static final int COSTO_COMERCIO = 5;
