@@ -313,8 +313,6 @@ public class Juego extends Observable {
 		}
 		return true;
 	}
-		
-		this.repararDanios();
 
 	public void setModeloDato(Coordenada coordenada, int dato) {
 		// modeloDatos[posicion.x][posicion.y] = dato;
