@@ -3,6 +3,7 @@ package algo3.algocity.modelo;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -17,39 +18,39 @@ public class MapaTest {
 	@Test
 	public void testMapaContieneTerrenoEn0_0ConMapaLlano() {
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0, 0));
-		assertEquals(hectarea.obtenerNombre(), "Terreno");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(0, 0));
+		assertEquals(hectarea.getNombre(), "Terreno");
 	}
 
 	@Test
 	public void testMapaContieneTerrenoEn10_10ConMapaLlano() {
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(10, 10));
-		assertEquals(hectarea.obtenerNombre(), "Terreno");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(10, 10));
+		assertEquals(hectarea.getNombre(), "Terreno");
 
 	}
 
 	@Test
 	public void testMapaContieneTerrenoEn10_10ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(10, 10));
-		assertEquals(hectarea.obtenerNombre(), "Terreno");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(10, 10));
+		assertEquals(hectarea.getNombre(), "Terreno");
 
 	}
 
 	@Test
 	public void testMapaContieneAguaEn0_20ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(0, 20));
-		assertEquals(hectarea.obtenerNombre(), "Agua");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(0, 20));
+		assertEquals(hectarea.getNombre(), "Agua");
 
 	}
 
 	@Test
 	public void testMapaContieneAguaEn24_24ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(24, 24));
-		assertEquals(hectarea.obtenerNombre(), "Agua");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(24, 24));
+		assertEquals(hectarea.getNombre(), "Agua");
 
 	}
 
@@ -57,8 +58,8 @@ public class MapaTest {
 	public void testMapaContieneTerrenoEn19_19ConMapaConPlaya() {
 
 		Mapa mapa = new Mapa(new MapaConPlaya());
-		Hectarea hectarea = mapa.obtenerHectarea(new Coordenada(19, 19));
-		assertEquals(hectarea.obtenerNombre(), "Terreno");
+		Hectarea hectarea = mapa.getHectarea(new Coordenada(19, 19));
+		assertEquals(hectarea.getNombre(), "Terreno");
 
 	}
 
@@ -126,12 +127,10 @@ public class MapaTest {
 		Coordenada unaCoordenada = new Coordenada(19, 19);
 
 		assertEquals(
-				(mapa.obtenerHectarea(unaCoordenada).obtenerUbicacion()
-						.obtenerX()),
+				(mapa.getHectarea(unaCoordenada).getUbicacion().obtenerX()),
 				unaCoordenada.obtenerX());
 		assertEquals(
-				(mapa.obtenerHectarea(unaCoordenada).obtenerUbicacion()
-						.obtenerY()),
+				(mapa.getHectarea(unaCoordenada).getUbicacion().obtenerY()),
 				unaCoordenada.obtenerY());
 	}
 
@@ -143,8 +142,18 @@ public class MapaTest {
 
 		Coordenada origen = new Coordenada(10, 10);
 
-		//mapa.construirX(ce, origen);
 		mapa.construir(ce, origen);
+
+		// Las centrales necesitan agua para propagar
+		mapa.conectar(new Tuberia(), origen);
+
+		// Construyo un PozoDeAgua
+		Coordenada coorPozo = new Coordenada(10, 20);
+		mapa.construir(new PozoDeAgua(), coorPozo);
+
+		for (int j = 10; j <= 20; j++) {
+			mapa.conectar(new Tuberia(), new Coordenada(10, j));
+		}
 
 		Coordenada arriba = new Coordenada(10, 9);
 		Coordenada derecha = new Coordenada(11, 10);
@@ -152,53 +161,53 @@ public class MapaTest {
 		Coordenada izquierda = new Coordenada(9, 10);
 
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 
-				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
+				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
+		// Primero propago el servicio de agua
+		mapa.propagarServicio(coorPozo);
+
+		// Segundo propago el servicio electrico
 		mapa.propagarServicio(origen);
-		
-		
+
 		ArrayList<Coordenada> coordenadasConServicio = new ArrayList<Coordenada>();
-		
+
 		coordenadasConServicio.add(arriba);
 		coordenadasConServicio.add(abajo);
 		coordenadasConServicio.add(izquierda);
 		coordenadasConServicio.add(derecha);
-		
+
 		// El algoritmo tambien activa
 		// el servicio en la hectarea origen
 		coordenadasConServicio.add(origen);
 
 		// Ahora estas hectareas
-		// tienen servicio		
+		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
-			assertEquals(
-					true,
-					mapa.obtenerHectarea(c).estaActivo(
-							TipoDeServicio.Electrico));
-		}	
+			assertEquals(true,
+					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+		}
 
 		// No se modifica la capacidad de abastecimiento
 		// porque las hectareas no tienen construcciones
-		assertEquals(100, ce.obtenerCapacidadDeAbastecimiento());
+		assertEquals(100, ce.getCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))
 					continue;
 
-				assertEquals(
-						false,
-						mapa.obtenerHectarea(c).estaActivo(
-								TipoDeServicio.Electrico));
+				assertEquals(false,
+						mapa.getHectarea(c)
+								.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -213,6 +222,17 @@ public class MapaTest {
 		Coordenada origen = new Coordenada(10, 10);
 
 		mapa.construir(ce, origen);
+
+		// Las centrales necesitan agua para propagar
+		mapa.conectar(new Tuberia(), origen);
+
+		// Construyo un PozoDeAgua
+		Coordenada coorPozo = new Coordenada(10, 20);
+		mapa.construir(new PozoDeAgua(), coorPozo);
+
+		for (int j = 10; j <= 20; j++) {
+			mapa.conectar(new Tuberia(), new Coordenada(10, j));
+		}
 
 		Coordenada arriba = new Coordenada(10, 9);
 		Coordenada arribaArriba = new Coordenada(10, 8);
@@ -231,57 +251,55 @@ public class MapaTest {
 		mapa.conectar(new LineaDeTension(), izquierdaIzquierda);
 
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 
-				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
+				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
+		// Primero propago el servicio de agua
+		mapa.propagarServicio(coorPozo);
+
+		// Segundo propago el servicio electrico
 		mapa.propagarServicio(origen);
 
 		// Ahora tienen servicio las del radio = 1
-		assertEquals(
-				true,
-				mapa.obtenerHectarea(arriba).estaActivo(
-						TipoDeServicio.Electrico));
-		assertEquals(
-				true,
-				mapa.obtenerHectarea(derecha).estaActivo(
-						TipoDeServicio.Electrico));
 		assertEquals(true,
-				mapa.obtenerHectarea(abajo)
+				mapa.getHectarea(arriba).estaActivo(TipoDeServicio.Electrico));
+		assertEquals(true,
+				mapa.getHectarea(derecha).estaActivo(TipoDeServicio.Electrico));
+		assertEquals(true,
+				mapa.getHectarea(abajo).estaActivo(TipoDeServicio.Electrico));
+		assertEquals(true,
+				mapa.getHectarea(izquierda)
 						.estaActivo(TipoDeServicio.Electrico));
-		assertEquals(
-				true,
-				mapa.obtenerHectarea(izquierda).estaActivo(
-						TipoDeServicio.Electrico));
 
 		// Tambien algunas de radio = 2 con lineas de tension
 		assertEquals(
 				true,
-				mapa.obtenerHectarea(arribaArriba).estaActivo(
+				mapa.getHectarea(arribaArriba).estaActivo(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.obtenerHectarea(derechaDerecha).estaActivo(
+				mapa.getHectarea(derechaDerecha).estaActivo(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.obtenerHectarea(abajoAbajo).estaActivo(
+				mapa.getHectarea(abajoAbajo).estaActivo(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.obtenerHectarea(izquierdaIzquierda).estaActivo(
+				mapa.getHectarea(izquierdaIzquierda).estaActivo(
 						TipoDeServicio.Electrico));
 
 		// No se modifica la capacidad de abastecimiento
 		// porque las hectareas no tienen construcciones
-		assertEquals(100, ce.obtenerCapacidadDeAbastecimiento());
+		assertEquals(100, ce.getCapacidadDeAbastecimiento());
 
 		ArrayList<Coordenada> coordsConServicio = new ArrayList<Coordenada>();
-		
+
 		coordsConServicio.add(abajo);
 		coordsConServicio.add(abajoAbajo);
 		coordsConServicio.add(derecha);
@@ -291,19 +309,18 @@ public class MapaTest {
 		coordsConServicio.add(izquierda);
 		coordsConServicio.add(izquierdaIzquierda);
 		coordsConServicio.add(origen);
-		
+
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordsConServicio.contains(c))
 					continue;
 
-				assertEquals(
-						false,
-						mapa.obtenerHectarea(c).estaActivo(
-								TipoDeServicio.Electrico));
+				assertEquals(false,
+						mapa.getHectarea(c)
+								.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -318,8 +335,19 @@ public class MapaTest {
 		Coordenada origen = new Coordenada(10, 10);
 
 		mapa.construir(cm, origen);
-		
-		ArrayList<Coordenada> coordenadasConServicio = new ArrayList<Coordenada>();
+
+		// Las centrales necesitan agua para propagar
+		mapa.conectar(new Tuberia(), origen);
+
+		// Construyo un PozoDeAgua
+		Coordenada coorPozo = new Coordenada(10, 20);
+		mapa.construir(new PozoDeAgua(), coorPozo);
+
+		for (int j = 10; j <= 20; j++) {
+			mapa.conectar(new Tuberia(), new Coordenada(10, j));
+		}
+
+		List<Coordenada> coordenadasConServicio = new ArrayList<Coordenada>();
 
 		// radio = 1
 		Coordenada a1 = new Coordenada(10, 9);
@@ -348,7 +376,7 @@ public class MapaTest {
 		coordenadasConServicio.add(b7);
 		Coordenada b8 = new Coordenada(12, 10);
 		coordenadasConServicio.add(b8);
-		
+
 		// radio = 3
 		Coordenada c1 = new Coordenada(10, 7);
 		coordenadasConServicio.add(c1);
@@ -357,7 +385,7 @@ public class MapaTest {
 		Coordenada c3 = new Coordenada(8, 9);
 		coordenadasConServicio.add(c3);
 		Coordenada c4 = new Coordenada(7, 10);
-		coordenadasConServicio.add(c4);		
+		coordenadasConServicio.add(c4);
 		Coordenada c5 = new Coordenada(8, 11);
 		coordenadasConServicio.add(c5);
 		Coordenada c6 = new Coordenada(9, 12);
@@ -374,49 +402,47 @@ public class MapaTest {
 		coordenadasConServicio.add(c11);
 		Coordenada c12 = new Coordenada(11, 8);
 		coordenadasConServicio.add(c12);
-		
-		
-		
+
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
-				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
+				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
-		mapa.propagarServicio(origen);			
-		
-		
+		// Primero propago el servicio de agua
+		mapa.propagarServicio(coorPozo);
+
+		// Segundo propago el servicio electrico
+		mapa.propagarServicio(origen);
+
 		// El algoritmo tambien activa
 		// el servicio en la hectarea origen
 		coordenadasConServicio.add(origen);
 
 		// Ahora estas hectareas
-		// tienen servicio		
+		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
-			assertEquals(
-					true,
-					mapa.obtenerHectarea(c).estaActivo(
-							TipoDeServicio.Electrico));
-		}	
+			assertEquals(true,
+					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+		}
 
 		// No se modifica la capacidad de abastecimiento
 		// porque las hectareas no tienen construcciones
-		assertEquals(400, cm.obtenerCapacidadDeAbastecimiento());
+		assertEquals(400, cm.getCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))
 					continue;
 
-				assertEquals(
-						false,
-						mapa.obtenerHectarea(c).estaActivo(
-								TipoDeServicio.Electrico));
+				assertEquals(false,
+						mapa.getHectarea(c)
+								.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 	}
@@ -430,8 +456,19 @@ public class MapaTest {
 		Coordenada origen = new Coordenada(10, 10);
 
 		mapa.construir(cm, origen);
-		
-		ArrayList<Coordenada> coordenadasConServicio = new ArrayList<Coordenada>();
+
+		// Las centrales necesitan agua para propagar
+		mapa.conectar(new Tuberia(), origen);
+
+		// Construyo un PozoDeAgua
+		Coordenada coorPozo = new Coordenada(10, 20);
+		mapa.construir(new PozoDeAgua(), coorPozo);
+
+		for (int j = 10; j <= 20; j++) {
+			mapa.conectar(new Tuberia(), new Coordenada(10, j));
+		}
+
+		List<Coordenada> coordenadasConServicio = new ArrayList<Coordenada>();
 
 		// radio = 1
 		Coordenada a1 = new Coordenada(10, 9);
@@ -460,7 +497,7 @@ public class MapaTest {
 		coordenadasConServicio.add(b7);
 		Coordenada b8 = new Coordenada(12, 10);
 		coordenadasConServicio.add(b8);
-		
+
 		// radio = 3
 		Coordenada c1 = new Coordenada(10, 7);
 		coordenadasConServicio.add(c1);
@@ -469,7 +506,7 @@ public class MapaTest {
 		Coordenada c3 = new Coordenada(8, 9);
 		coordenadasConServicio.add(c3);
 		Coordenada c4 = new Coordenada(7, 10);
-		coordenadasConServicio.add(c4);		
+		coordenadasConServicio.add(c4);
 		Coordenada c5 = new Coordenada(8, 11);
 		coordenadasConServicio.add(c5);
 		Coordenada c6 = new Coordenada(9, 12);
@@ -486,61 +523,60 @@ public class MapaTest {
 		coordenadasConServicio.add(c11);
 		Coordenada c12 = new Coordenada(11, 8);
 		coordenadasConServicio.add(c12);
-		
-		// Agrego dos hectareas 
+
+		// Agrego dos hectareas
 		// con conexion fuera del radio
 		// para propagar el servicio
 		Coordenada extraArriba = new Coordenada(10, 6);
-		mapa.conectar(new LineaDeTension(), extraArriba);		
+		mapa.conectar(new LineaDeTension(), extraArriba);
 		coordenadasConServicio.add(extraArriba);
-		
+
 		Coordenada extraDerecha = new Coordenada(10, 6);
 		mapa.conectar(new LineaDeTension(), extraDerecha);
-		coordenadasConServicio.add(extraDerecha);		
-		
+		coordenadasConServicio.add(extraDerecha);
+
 		// Pruebo que "todo" el MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
-				assertEquals(false, mapa.obtenerHectarea(new Coordenada(i, j))
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
+				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
 						.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 
-		mapa.propagarServicio(origen);			
-		
-		
+		// Primero propago el servicio de agua
+		mapa.propagarServicio(coorPozo);
+
+		// Segundo propago el servicio electrico
+		mapa.propagarServicio(origen);
+
 		// El algoritmo tambien activa
 		// el servicio en la hectarea origen
 		coordenadasConServicio.add(origen);
 
 		// Ahora estas hectareas
-		// tienen servicio		
+		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
-			assertEquals(
-					true,
-					mapa.obtenerHectarea(c).estaActivo(
-							TipoDeServicio.Electrico));
-		}	
+			assertEquals(true,
+					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+		}
 
 		// No se modifica la capacidad de abastecimiento
 		// porque las hectareas no tienen construcciones
-		assertEquals(400, cm.obtenerCapacidadDeAbastecimiento());
+		assertEquals(400, cm.getCapacidadDeAbastecimiento());
 
 		// Pruebo que el resto del MAPA no tiene servicio electrico
-		for (int i = 0; i < mapa.obtenerTamanio(); i++) {
-			for (int j = 0; j < mapa.obtenerTamanio(); j++) {
+		for (int i = 0; i < mapa.getTamanio(); i++) {
+			for (int j = 0; j < mapa.getTamanio(); j++) {
 				Coordenada c = new Coordenada(i, j);
 
 				if (coordenadasConServicio.contains(c))
 					continue;
 
-				assertEquals(
-						false,
-						mapa.obtenerHectarea(c).estaActivo(
-								TipoDeServicio.Electrico));
+				assertEquals(false,
+						mapa.getHectarea(c)
+								.estaActivo(TipoDeServicio.Electrico));
 			}
 		}
 	}
-	
-	
+
 }

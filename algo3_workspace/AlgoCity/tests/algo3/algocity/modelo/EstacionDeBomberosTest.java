@@ -9,7 +9,7 @@ public class EstacionDeBomberosTest {
 	public void crearUnaEstacionDeBomberos(){
 		
 		EstacionDeBomberos e = new EstacionDeBomberos();
-		String resultado = e.obtenerNombre();
+		String resultado = e.getEtiqueta();
 		Assert.assertTrue(resultado.equals("Estacion de Bomberos"));
 		
 	}
@@ -23,7 +23,7 @@ public class EstacionDeBomberosTest {
 				
 		casa.afectarCon(godzilla);
 		
-		int salud = casa.obtenerSalud();
+		int salud = casa.getSalud();
 		
 		Assert.assertEquals(0, salud);
 		
@@ -31,7 +31,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(casa);
 		
-		salud = casa.obtenerSalud();	
+		salud = casa.getSalud();	
 		
 		Assert.assertEquals(10, salud);		
 		
@@ -50,7 +50,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(comercio);
 		
-		int salud = comercio.obtenerSalud();	
+		int salud = comercio.getSalud();	
 		
 		Assert.assertEquals(32, salud);		
 		
@@ -65,7 +65,7 @@ public class EstacionDeBomberosTest {
 				
 		industria.afectarCon(godzilla);
 		
-		int salud = industria.obtenerSalud();	
+		int salud = industria.getSalud();	
 		
 		Assert.assertEquals(60, salud);
 		
@@ -73,7 +73,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(industria);
 		
-		salud = industria.obtenerSalud();	
+		salud = industria.getSalud();	
 		
 		Assert.assertEquals(63, salud);		
 		
@@ -88,7 +88,7 @@ public class EstacionDeBomberosTest {
 				
 		cEolica.afectarCon(godzilla);
 		
-		int salud = cEolica.obtenerSalud();	
+		int salud = cEolica.getSalud();	
 		
 		Assert.assertEquals(65, salud);
 		
@@ -96,7 +96,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(cEolica);
 		
-		salud = cEolica.obtenerSalud();	
+		salud = cEolica.getSalud();	
 		
 		Assert.assertEquals(80, salud);		
 		
@@ -111,7 +111,7 @@ public class EstacionDeBomberosTest {
 				
 		cMinera.afectarCon(godzilla);
 		
-		int salud = cMinera.obtenerSalud();	
+		int salud = cMinera.getSalud();	
 		
 		Assert.assertEquals(65, salud);
 		
@@ -119,7 +119,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(cMinera);
 		
-		salud = cMinera.obtenerSalud();	
+		salud = cMinera.getSalud();	
 		
 		Assert.assertEquals(75, salud);	
 		
@@ -134,7 +134,7 @@ public class EstacionDeBomberosTest {
 				
 		cNuclear.afectarCon(godzilla);
 		
-		int salud = cNuclear.obtenerSalud();	
+		int salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(65, salud);
 		
@@ -142,7 +142,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(cNuclear);
 		
-		salud = cNuclear.obtenerSalud();	
+		salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(68, salud);	
 		
@@ -161,7 +161,7 @@ public class EstacionDeBomberosTest {
 		
 		terreno.afectarCon(godzilla);
 		
-		int salud = cNuclear.obtenerSalud();	
+		int salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(65, salud);
 		
@@ -169,7 +169,7 @@ public class EstacionDeBomberosTest {
 		
 		estacion.reparar(terreno);
 		
-		salud = cNuclear.obtenerSalud();	
+		salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(68, salud);	
 		
@@ -187,15 +187,15 @@ public class EstacionDeBomberosTest {
 		
 		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(2,0), new CaminarDerecho());
 		
-		int salud = cNuclear.obtenerSalud();	
+		int salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(65, salud);
 		
 		EstacionDeBomberos estacion = new EstacionDeBomberos();
 		
-		estacion.repararDanios(mapa);
+		estacion.repararAverias(mapa);
 		
-		salud = cNuclear.obtenerSalud();	
+		salud = cNuclear.getSalud();	
 		
 		Assert.assertEquals(68, salud);	
 		

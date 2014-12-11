@@ -10,8 +10,8 @@ public class Terreno extends Hectarea {
 		this.construccion = null;
 	}
 
-	public String obtenerNombre() {
-		return "Terreno";
+	public String getNombre() {
+		return Configuracion.ETIQUETA_TERRENO;
 	}
 
 	public boolean permite(Construccion construccion) {
