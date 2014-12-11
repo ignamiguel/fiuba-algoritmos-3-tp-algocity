@@ -2,20 +2,31 @@ package algo3.algocity.modelo;
 
 public class Terremoto {
 
-	private int danio;
-	
-	public Terremoto(){
-	
-		this.danio = 100;
-		
+	private int averia;
+	private Coordenada epicentro;
+
+	public Terremoto() {
+		super();
+		this.averia = Configuracion.TERREMOTO_AVERIA_EPICENTRO;
+		this.epicentro = new Coordenada(0, 0);
 	}
 	
-	//Solo para Tests previos a la propagacion del terremoto
-	public void cargarDanio(int danio){
-		this.danio = danio;
+	public Terremoto(IGeneradorEpicentro ge) {
+		super();
+		this.averia = Configuracion.TERREMOTO_AVERIA_EPICENTRO;
+		this.epicentro = ge.getEpicentro();
 	}
-	
-	public int obtenerDanio(){
-		return this.danio;
+
+	public int getAveria() {
+		return this.averia;
 	}
+
+	public void disminuirAveria() {
+		this.averia -= Configuracion.TERREMOTO_DECRECIMENTO_AVERIA_POR_RADIO;
+	}
+
+	public Coordenada getEpicentro() {
+		return this.epicentro;
+	}
+
 }
