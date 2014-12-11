@@ -18,7 +18,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import algo3.algocity.controlador.CargarJuego;
 import algo3.algocity.controlador.ControladorEstadoJuego;
+import algo3.algocity.controlador.GuardarJuego;
+import algo3.algocity.controlador.NuevoJuego;
 import algo3.algocity.controlador.PasarTurno;
 import algo3.algocity.modelo.Coordenada;
 import algo3.algocity.modelo.Juego;
@@ -29,7 +32,10 @@ public class VistaJuego extends JFrame implements Observer {
 
 	private Juego juego;
 	private Container contenedor;
+	private NuevoJuego nuevoJuego;
 	private PasarTurno pasarTurno;
+	private GuardarJuego guardarJuego;
+	private CargarJuego cargarJuego;
 	private JPanel panelMapa;
 	private EstadoJuego estadoJuego;
 	private ControladorEstadoJuego controladorEstado;
@@ -51,8 +57,7 @@ public class VistaJuego extends JFrame implements Observer {
 		panelLateral
 				.setLayout(new BoxLayout(panelLateral, BoxLayout.PAGE_AXIS));
 		panelLateral.add(InformacionHectarea.getInstance());
-		// panelLateral.add(new JButton("Guardar"));
-		// panelLateral.add(new JButton("Salir"));
+		
 		panelLateral.setPreferredSize(new Dimension(250, 480));
 		contenedor.add(panelLateral, BorderLayout.LINE_START);
 	}
@@ -64,7 +69,7 @@ public class VistaJuego extends JFrame implements Observer {
 		this.juego.addObserver(this.controladorEstado);
 	}
 
-	private void inicializarMapa() {
+	public void inicializarMapa() {
 		int dimension = this.juego.getMapa().getTamanio();
 
 		GridLayout layoutMapa = new GridLayout(dimension + 1, dimension + 1);
@@ -91,15 +96,23 @@ public class VistaJuego extends JFrame implements Observer {
 		Menu turnoMenu = new Menu("Turno");
 		final Menu acercaDeMenu = new Menu("Acerca de");
 
-		// create menu items
+		// Nuevo juego
 		MenuItem nuevoMenuItem = new MenuItem("Nuevo");
 		nuevoMenuItem.setActionCommand("Nuevo");
+		this.nuevoJuego = new NuevoJuego(juego, this);
+		nuevoMenuItem.addActionListener(this.nuevoJuego);
 
+		// Abrir una partida
 		MenuItem abrirMenuItem = new MenuItem("Abrir");
 		abrirMenuItem.setActionCommand("Abrir");
+		this.cargarJuego = new CargarJuego(this.juego);
+		abrirMenuItem.addActionListener(this.cargarJuego);
 
+		// Guardar una partida	
 		MenuItem guardarMenuItem = new MenuItem("Guardar");
 		guardarMenuItem.setActionCommand("Guardar");
+		this.guardarJuego = new GuardarJuego(juego);
+		guardarMenuItem.addActionListener(guardarJuego);
 
 		MenuItem salirMenuItem = new MenuItem("Salir");
 		salirMenuItem.setActionCommand("Salir");
@@ -125,6 +138,7 @@ public class VistaJuego extends JFrame implements Observer {
 			}
 
 		});
+		
 		// Guardamos instancia para poder setear el juego actual al cargar uno
 		// nuevo
 		pasarTurno = new PasarTurno(juego);
@@ -188,4 +202,8 @@ public class VistaJuego extends JFrame implements Observer {
 		}
 	}
 
+	public void resetVista(){
+		this.contenedor.remove(this.panelMapa);
+		this.contenedor.repaint();
+	}
 }

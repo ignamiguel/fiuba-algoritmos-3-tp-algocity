@@ -55,11 +55,9 @@ public class Mapa {
 
 	}
 
-	public Coordenada obtenerEntradaALaCiudad() {
+	public Coordenada getEntradaALaCiudad() {
 		return this.entradaAlaCiudad;
 	}
-
-	/*----- PROPAGAR SERVICIOS DESDE MAPA ------*/
 
 	public void propagarServicio(Coordenada origen) {
 

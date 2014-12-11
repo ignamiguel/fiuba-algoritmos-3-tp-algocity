@@ -1,5 +1,6 @@
 package algo3.algocity.modelo;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +48,7 @@ public class Juego extends Observable {
 		this.coordenadasConPozos = new ArrayList<Coordenada>();
 		this.coordenadasConConexiones = new ArrayList<Coordenada>();
 
-		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
+		this.coordenadaEntradaALaCiudad = this.mapa.getEntradaALaCiudad();
 
 		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
 
@@ -68,7 +69,7 @@ public class Juego extends Observable {
 		this.coordenadasConPozos = new ArrayList<Coordenada>();
 		this.coordenadasConConexiones = new ArrayList<Coordenada>();
 
-		this.coordenadaEntradaALaCiudad = this.mapa.obtenerEntradaALaCiudad();
+		this.coordenadaEntradaALaCiudad = this.mapa.getEntradaALaCiudad();
 
 		this.estacionesDeBomberos = new ArrayList<EstacionDeBomberos>();
 
@@ -218,6 +219,20 @@ public class Juego extends Observable {
 		return true;
 	}
 
+	public boolean insertar(EntradaAlaCiudad entradaAlaCiudad,
+			Coordenada coordenada) {
+		if (!this.hayDineroSuficiente(entradaAlaCiudad)) {
+			return false;
+		}
+
+		if (!this.construir(entradaAlaCiudad, coordenada)) {
+			return false;
+		}
+		
+		this.coordenadaEntradaALaCiudad = coordenada;
+		return true;
+	}
+
 	public void repararAverias() {
 		Iterator<EstacionDeBomberos> i = estacionesDeBomberos.iterator();
 		while (i.hasNext()) {
@@ -278,6 +293,57 @@ public class Juego extends Observable {
 		return this.jugador;
 	}
 
+	public void guardarPartida(File file) {
+		TraductorXML.generarArchivoPartida(this, file);
+	}
+
+	public void cargarPartida(File file) {
+		TraductorXML.cargarPartida(file, this);
+	}
+
+	public void setJugador(String jugador) {
+		this.jugador = jugador;
+		notificarCambio();
+	}
+
+	public void setDinero(int dinero) {
+		this.dinero = dinero;
+		notificarCambio();
+	}
+
+	public void setTurno(int turno) {
+		this.turno = turno;
+		notificarCambio();
+	}
+
+	public void setCiudadanos(int ciudadanos) {
+		this.ciudadanos = ciudadanos;
+		notificarCambio();
+
+	}
+
+	public void reiniciar() {
+		this.mapa = new Mapa(new MapaConPlaya());
+		
+		this.coordenadasResidenciales.clear();
+		this.coordenadasIndustriales.clear();
+		this.coordenadasComerciales.clear();
+
+		this.coordenadasConCentral.clear();
+		this.coordenadasConPozos.clear();
+		this.coordenadasConConexiones.clear();
+
+		this.coordenadaEntradaALaCiudad = this.mapa.getEntradaALaCiudad();
+
+		this.estacionesDeBomberos.clear();
+
+		this.dinero = Configuracion.DINERO_INICIAL;
+		this.turno = Configuracion.TURNO_INICIAL;
+		this.ciudadanos = Configuracion.CIUDADANOS_INICIALES;
+		
+		notificarCambio();
+	}
+	
 	/* METODOS PRIVADOS */
 
 	private boolean seDebePagarImpuestosEnEsteTurno() {
@@ -400,12 +466,6 @@ public class Juego extends Observable {
 	private void notificarCambio() {
 		setChanged();
 		notifyObservers();
-	}
-
-	/* BORRAR */
-
-	public String verMapa(Coordenada coordenada) {
-		return this.mapa.getHectarea(coordenada).getNombre();
 	}
 
 }
