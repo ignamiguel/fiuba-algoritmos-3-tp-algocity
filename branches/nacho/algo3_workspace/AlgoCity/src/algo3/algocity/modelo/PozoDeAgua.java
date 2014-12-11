@@ -8,6 +8,7 @@ public class PozoDeAgua extends Construccion implements IPropagable {
 		super();
 		this.radioDeCovertura = Configuracion.RADIO_COVERT_POZO_AGUA;	
 		this.costo = Configuracion.COSTO_POZO_DE_AGUA;
+		this.salud = Configuracion.SALUD_INICIAL;
 	}
 
 	public String getEtiqueta() {

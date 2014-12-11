@@ -95,4 +95,21 @@ public class Configuracion {
 	static final String ETIQUETA_CLOACAS = "Cloacas";
 	static final String ETIQUETA_ELECTRICO = "Eléctrico";
 	
+	// Labels para archivos XML
+	static final String XML_ROOT = "algoCity";
+	static final String XML_NODO_JUGADOR = "jugador";
+	static final String XML_NODO_DINERO = "dinero";
+	static final String XML_NODO_TURNO = "turno";
+	static final String XML_NODO_CIUDADANOS = "ciudadanos";
+	static final String XML_NODO_MAPA = "mapa";
+	static final String XML_NODO_HECTAREA = "hectarea";
+	static final String XML_NODO_HECTAREA_TIPO = "tipo";
+	static final String XML_NODO_HECTAREA_CONSTRUCCION = "construccion";
+	static final String XML_NODO_HECTAREA_CONSTRUCCION_TIPO = "tipo";
+	static final String XML_NODO_HECTAREA_CONSTRUCCION_SALUD = "salud";
+	static final String XML_NODO_HECTAREA_CONEXIONES = "conexiones";
+	static final String XML_NODO_HECTAREA_CONEXION = "conexion";
+	static final String XML_NODO_HECTAREA_SERVICIOS = "servicios";
+	static final String XML_NODO_HECTAREA_SERVICIO = "servicio";	
+	
 }

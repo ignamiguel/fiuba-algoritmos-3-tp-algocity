@@ -25,13 +25,16 @@ public class InformacionHectarea extends JPanel {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append("INFO HECTÁREA").append("\n");
-		builder.append("Tipo: ").append(hectarea.getNombre()).append('\n');
+		builder.append("Tipo: ").append(hectarea.getEtiqueta()).append('\n');
 		if (hectarea.estaVacia()) {
 			builder.append("Construcción: ").append("No").append('\n');
 		} else {
 			builder.append("Construcción: ")
 					.append(hectarea.getConstruccion().getEtiqueta())
 					.append('\n');
+			builder.append("\tSalud: ")
+			.append(hectarea.getConstruccion().getSalud())
+			.append('\n');
 		}
 		builder.append("Habitantes: ")
 				.append(hectarea.getCapacidadDeAlojamiento()).append('\n');
