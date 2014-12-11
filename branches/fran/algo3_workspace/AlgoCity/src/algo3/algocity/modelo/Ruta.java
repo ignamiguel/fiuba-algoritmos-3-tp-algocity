@@ -37,17 +37,18 @@ public class Ruta extends Conexion {
 		this.salud = salud;
 	}
 
-	public boolean estaDaniada() {
+	@Override
+	public boolean estaAveriada() {
 		return (this.salud < Configuracion.SALUD_INICIAL);
 	}
 
 	@Override
-	public TipoDeConexion obtenerTipo() {
+	public TipoDeConexion getTipo() {
 		return TipoDeConexion.Ruta;
 	}
 
 	@Override
-	public int obtenerCosto() {
+	public int getCosto() {
 		return this.costo;
 	}
 	
@@ -57,6 +58,11 @@ public class Ruta extends Conexion {
 		if(this.salud > 100){
 			this.salud = 100;
 		}
+	}
+
+	@Override
+	public String getEtiqueta() {
+		return Configuracion.ETIQUETA_RUTA;
 	}
 
 }
