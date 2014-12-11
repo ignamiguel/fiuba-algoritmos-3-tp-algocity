@@ -32,7 +32,6 @@ public class InformacionHectarea extends JPanel {
 		else {
 		builder.append("Construccion: ").append(hectarea.obtenerConstruccion().obtenerNombre()).append('\n');
 		}
-		//builder.append("Esta construida: ").append(!hectarea.estaVacia()).append('\n');
 		builder.append("Habitantes: ")
 				.append(hectarea.obtenerCapacidadDeAlojamiento()).append('\n');
 		builder.append("Puestos de Trabajo: ")

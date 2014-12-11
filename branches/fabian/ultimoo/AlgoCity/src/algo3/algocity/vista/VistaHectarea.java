@@ -43,7 +43,8 @@ public class VistaHectarea extends JPanel implements Observer {
 
 	protected void updateVista() {
 		if(!(this.hectarea.estaVacia())){
-			image= new ImageIcon(getClass().getResource("/imagenes/edificio.gif"));
+			ImagenConstruccion imagen= new ImagenConstruccion(this.hectarea.obtenerConstruccion());
+			image = imagen.getImage();
 		}
 		else{
 			if (this.hectarea.getClass().equals(Terreno.class))
