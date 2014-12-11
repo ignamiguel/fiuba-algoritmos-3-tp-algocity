@@ -10,7 +10,7 @@ public class IntegracionTest {
 	public void testUnaCiudadSinConstruccionesNoVariaLosHabitantesPasandoTurno() {
 		Juego juego = new Juego();
 		assertEquals(0, juego.getCiudadanos());
-
+		
 		juego.turnoAvanzar();
 		juego.turnoAvanzar();
 		juego.turnoAvanzar();
@@ -43,7 +43,7 @@ public class IntegracionTest {
 			Coordenada coordenada = new Coordenada(5, i);
 			Hectarea hectarea = juego.getMapa().getHectarea(coordenada);
 			assertEquals(true, juego.insertar(new Tuberia(), coordenada));
-			assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
+			assertEquals(false, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 		}
 
 		juego.turnoAvanzar();
@@ -51,7 +51,7 @@ public class IntegracionTest {
 		for (int i = 0; i < (juego.getMapa()).getTamanio(); i++) {
 			Coordenada coordenada = new Coordenada(5, i);
 			Hectarea hectarea = juego.getMapa().getHectarea(coordenada);
-			assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
+			assertEquals(true, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 		}
 	}
 
@@ -89,10 +89,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(false, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 
@@ -110,10 +110,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(true, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 	}
@@ -154,10 +154,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(false, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 
@@ -175,10 +175,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(true, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 
@@ -226,10 +226,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(false, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(false,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 
@@ -247,10 +247,10 @@ public class IntegracionTest {
 				assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Ruta));
 
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.Electrico));
-				assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
+						hectarea.tieneConexion(TipoDeServicio.Electrico));
+				assertEquals(true, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				assertEquals(true,
-						hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
+						hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
 			}
 		}
 
@@ -258,18 +258,6 @@ public class IntegracionTest {
 		juego.insertar(new Industria(), new Coordenada(5, 19));
 
 		assertEquals(0, juego.getCiudadanos());
-
-		juego.turnoAvanzar();
-
-		assertEquals(25, juego.getCiudadanos());
-
-		juego.turnoAvanzar();
-
-		assertEquals(25, juego.getCiudadanos());
-
-		juego.turnoAvanzar();
-
-		assertEquals(25, juego.getCiudadanos());
 
 		juego.turnoAvanzar();
 

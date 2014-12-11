@@ -187,7 +187,7 @@ public class CentrealesTest {
 		for (int i = 1; i < mapa.getTamanio(); i++) {
 			assertEquals(true,
 					(mapa.getHectarea(new Coordenada(i, 19)))
-							.estaActivo(central.getServicioPropagable()));
+							.tieneConexion(central.getServicioPropagable()));
 		}
 		assertEquals(280, central.getCapacidadDeAbastecimiento());
 

@@ -263,15 +263,9 @@ public class Juego extends Observable {
 		mapa.desconectarServicios();
 	}
 
-	public void despertarAGodzillaSinRandom() {
+	public void despertarAGodzilla(IAtaqueGodzilla generadorGodzilla) {
 		Godzilla godzilla = new Godzilla();
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(10, 0),
-				new CaminarDerecho());
-	}
-
-	public void despertarAGodzilla() {
-		Godzilla godzilla = new Godzilla();
-		godzilla.atacarConRandom(mapa);
+		godzilla.atacar(mapa, generadorGodzilla);
 	}
 
 	public String getJugador() {
@@ -331,7 +325,7 @@ public class Juego extends Observable {
 				.nextInt(Configuracion.PROBABILIDAD_DE_CATASTROFE);
 
 		if (numeroAleatorio == 0) {
-			this.despertarAGodzilla();
+			this.despertarAGodzilla(new AtaqueGodzillaAleatorio(mapa));
 		}
 
 		if (numeroAleatorio == 1) {

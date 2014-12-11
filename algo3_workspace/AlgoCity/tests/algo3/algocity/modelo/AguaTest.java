@@ -1,7 +1,9 @@
 package algo3.algocity.modelo;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
+
 
 public class AguaTest {
 

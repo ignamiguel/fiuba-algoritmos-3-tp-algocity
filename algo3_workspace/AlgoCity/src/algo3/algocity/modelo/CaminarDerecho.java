@@ -7,8 +7,8 @@ public class CaminarDerecho implements ICaminable {
 	@Override
 	public void caminarMapa(Godzilla godzilla, Mapa mapa) {
 
-		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
-			Hectarea hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
+		while ((godzilla.getCoordenada()).obtenerY() < mapa.getTamanio()) {
+			Hectarea hectarea = mapa.getHectarea(godzilla.getCoordenada());
 			hectarea.afectarCon(godzilla);
 			godzilla.avanzarEnY();
 		}

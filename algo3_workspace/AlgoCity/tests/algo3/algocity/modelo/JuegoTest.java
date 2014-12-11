@@ -566,12 +566,12 @@ public class JuegoTest {
 		Hectarea hectarea = juego.getMapa().getHectarea(new Coordenada(23,24));
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(false, hectarea.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(false, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 		
 		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(true, hectarea.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(true, hectarea.tieneConexion(TipoDeServicio.Cloacas));
 	}
 	
 	@Test
@@ -590,20 +590,20 @@ public class JuegoTest {
 		Hectarea hectarea3 = juego.getMapa().getHectarea(new Coordenada(23,20));
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(false, hectarea1.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(false, hectarea1.tieneConexion(TipoDeServicio.Cloacas));
 		assertEquals(true, hectarea2.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(false, hectarea2.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(false, hectarea2.tieneConexion(TipoDeServicio.Cloacas));
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(false, hectarea3.tieneConexion(TipoDeServicio.Cloacas));
 		
 		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(true, hectarea1.tieneConexion(TipoDeServicio.Cloacas));
 		assertEquals(true, hectarea2.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(true, hectarea2.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(true, hectarea2.tieneConexion(TipoDeServicio.Cloacas));
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Tuberia));
-		assertEquals(true, hectarea3.estaActivo(TipoDeServicio.Cloacas));
+		assertEquals(true, hectarea3.tieneConexion(TipoDeServicio.Cloacas));
 	}
 	
 	@Test
@@ -620,20 +620,20 @@ public class JuegoTest {
 		Hectarea hectarea3 = juego.getMapa().getHectarea(new Coordenada(3,12));
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(false, hectarea1.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, hectarea1.tieneConexion(TipoDeServicio.AccesoAlTransito));
 		assertEquals(true, hectarea2.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(false, hectarea2.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, hectarea2.tieneConexion(TipoDeServicio.AccesoAlTransito));
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(false, hectarea3.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(false, hectarea3.tieneConexion(TipoDeServicio.AccesoAlTransito));
 		
 		juego.turnoAvanzar();
 		
 		assertEquals(true, hectarea1.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(true, hectarea1.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, hectarea1.tieneConexion(TipoDeServicio.AccesoAlTransito));
 		assertEquals(true, hectarea2.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(true, hectarea2.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, hectarea2.tieneConexion(TipoDeServicio.AccesoAlTransito));
 		assertEquals(true, hectarea3.tieneConexion(TipoDeConexion.Ruta));
-		assertEquals(true, hectarea3.estaActivo(TipoDeServicio.AccesoAlTransito));
+		assertEquals(true, hectarea3.tieneConexion(TipoDeServicio.AccesoAlTransito));
 	}
 	
 	@Test
@@ -645,9 +645,9 @@ public class JuegoTest {
 				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
 					Hectarea hectarea = juego.getMapa().getHectarea(c);
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.Electrico));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				}
 			}	
 		}
@@ -661,9 +661,9 @@ public class JuegoTest {
 				for(int j=0; j < juego.getMapa().getTamanio(); j++){
 					Coordenada c = new Coordenada(i,j);
 					Hectarea hectarea = juego.getMapa().getHectarea(c);
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.AccesoAlTransito));
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Electrico));
-					assertEquals(true,hectarea.estaActivo(TipoDeServicio.Cloacas));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.AccesoAlTransito));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.Electrico));
+					assertEquals(true,hectarea.tieneConexion(TipoDeServicio.Cloacas));
 				}
 			}	
 			
@@ -682,7 +682,8 @@ public class JuegoTest {
 		
 		assertEquals(100, res.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 	}
@@ -708,7 +709,8 @@ public class JuegoTest {
 		assertEquals(100, ruta.getSalud());
 		assertEquals(100, tuberia.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(0, ldt.getSalud());
@@ -732,7 +734,7 @@ public class JuegoTest {
 		assertEquals(100, ind.getSalud());
 		assertEquals(100, com.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(60, ind.getSalud());
@@ -756,7 +758,8 @@ public class JuegoTest {
 		assertEquals(100, ind.getSalud());
 		assertEquals(100, com.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(60, ind.getSalud());
@@ -786,7 +789,8 @@ public class JuegoTest {
 		assertEquals(100, ind.getSalud());
 		assertEquals(100, com.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(60, ind.getSalud());
@@ -818,7 +822,8 @@ public class JuegoTest {
 		assertEquals(100, ind.getSalud());
 		assertEquals(100, com.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(60, ind.getSalud());
@@ -864,7 +869,8 @@ public class JuegoTest {
 		assertEquals(100, ruta.getSalud());
 		assertEquals(100, tuberia.getSalud());
 		
-		juego.despertarAGodzillaSinRandom();
+		juego.despertarAGodzilla(new AtaqueGodzillaMock(new Coordenada(10,0), new CaminarDerecho()));
+		
 		
 		assertEquals(0, res.getSalud());
 		assertEquals(60, ind.getSalud());
