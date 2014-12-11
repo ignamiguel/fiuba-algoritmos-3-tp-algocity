@@ -21,7 +21,7 @@ public abstract class Edificio extends Construccion {
 	}
 
 	public void afectarCon(Terremoto terremoto) {
-		this.salud -= terremoto.obtenerDanio();
+		this.salud -= terremoto.getAveria();
 		if (this.salud < 0) {
 			this.salud = 0;
 		}
