@@ -180,4 +180,52 @@ public class Mapa {
 
 	}
 
+	public void afectarConTerremoto(Terremoto t) {
+		Coordenada epicentro = t.getEpicentro();
+
+		// Declaro una cola de prioridad
+		// A menor distancia, mas prioridad
+		Comparator<Nodo> comparator = new NodeComparator();
+		PriorityQueue<Nodo> queue = new PriorityQueue<Nodo>(10, comparator);
+
+		queue.add(new Nodo(epicentro, 0));
+
+		this.propagarTerremoto(queue, t);
+	}
+
+	private void propagarTerremoto(PriorityQueue<Nodo> queue, Terremoto terremoto) {
+		// Declaro un set
+		// para marcar las Hectareas visitadas
+		Set<Hectarea> visitadas = new HashSet<Hectarea>();
+
+		while (queue.size() > 0) {
+
+			Nodo n = queue.remove();
+			Hectarea h = this.getHectarea(n.getCoordenada());
+
+			if (!visitadas.contains(h)) {
+				visitadas.add(h);
+
+				h.afectarCon(terremoto);
+
+				cargarVecinos(n.getCoordenada(), queue, n.getDistancia() + 1);
+			}
+
+			// Si el proximo elemento de la cola
+			// tiene una distancia mayor al anterior
+			// quiere decir que incrementamos el radio y
+			// entonces el daño del terremoto decrece
+			if (queue.size() > 0) {
+				if (queue.peek().getDistancia() > n.getDistancia())
+					terremoto.disminuirAveria();
+			}
+			
+			// Si las averia del terremoto llegaron a 0
+			// dejamos de propagar
+			if(terremoto.getAveria() <= 0){
+				return;
+			}
+		}
+
+	}
 }

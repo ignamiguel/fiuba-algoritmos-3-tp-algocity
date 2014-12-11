@@ -31,11 +31,11 @@ public class Juego extends Observable {
 	private int turno;
 
 	private int ciudadanos;
-	
-	private String jugador; 
-	 
+
+	private String jugador;
+
 	/* CONSTRUCTORES */
-	
+
 	public Juego() {
 		this.mapa = new Mapa(new MapaConPlaya());
 
@@ -56,7 +56,7 @@ public class Juego extends Observable {
 		this.ciudadanos = Configuracion.CIUDADANOS_INICIALES;
 		this.jugador = Configuracion.JUGADOR_DEFAULT;
 	}
-	
+
 	public Juego(String jugador) {
 		this.mapa = new Mapa(new MapaConPlaya());
 
@@ -102,13 +102,13 @@ public class Juego extends Observable {
 
 	public void turnoAvanzar() {
 		this.turno++;
-		
+
 		if (this.seDebePagarImpuestosEnEsteTurno()) {
 			this.cobrarImpuestos();
 		}
 
 		// Desconectamos los servicios temporalmente para luego
-		// volver a propagarlos y asi, impactar las averias 
+		// volver a propagarlos y asi, impactar las averias
 		// de las catastrofes
 		this.desconectarServicios();
 
@@ -277,17 +277,17 @@ public class Juego extends Observable {
 	public String getJugador() {
 		return this.jugador;
 	}
-	
+
 	/* METODOS PRIVADOS */
-	
-	private boolean seDebePagarImpuestosEnEsteTurno(){
+
+	private boolean seDebePagarImpuestosEnEsteTurno() {
 		return ((this.turno % Configuracion.TURNO_RECAUDADOR) == 0);
 	}
-	
-	private void cobrarImpuestos(){
+
+	private void cobrarImpuestos() {
 		this.dinero += (this.ciudadanos * Configuracion.IMPUESTOS_POR_CIUDADANO);
 	}
-	
+
 	private boolean construir(Construccion construccion, Coordenada coordenada) {
 		if (!this.mapa.construir(construccion, coordenada)) {
 			return false;
@@ -329,11 +329,15 @@ public class Juego extends Observable {
 		Random aleatorio = new Random();
 		int numeroAleatorio = aleatorio
 				.nextInt(Configuracion.PROBABILIDAD_DE_CATASTROFE);
+
 		if (numeroAleatorio == 0) {
 			this.despertarAGodzilla();
 		}
+
 		if (numeroAleatorio == 1) {
-			// terremoto
+			Terremoto t = new Terremoto(new GeneradorEpicentro(
+					this.mapa.getTamanio()));
+			mapa.afectarConTerremoto(t);
 		}
 
 	}
@@ -366,8 +370,9 @@ public class Juego extends Observable {
 
 		// Comparamos el delta con los visitantes
 		// y actualizamos los ciudadanos
-		this.ciudadanos += Math.min(deltaHabitantesTurno, Configuracion.VISITANTES_POR_TURNO);		
-		
+		this.ciudadanos += Math.min(deltaHabitantesTurno,
+				Configuracion.VISITANTES_POR_TURNO);
+
 	}
 
 	private void propagarServicioDeTransito() {
@@ -387,7 +392,7 @@ public class Juego extends Observable {
 		Iterator<Coordenada> i = coordenadasConCentral.iterator();
 		while (i.hasNext()) {
 			Coordenada c = i.next();
-			
+
 			mapa.propagarServicio(c);
 		}
 	}
@@ -403,6 +408,4 @@ public class Juego extends Observable {
 		return this.mapa.getHectarea(coordenada).getNombre();
 	}
 
-	
-	
 }

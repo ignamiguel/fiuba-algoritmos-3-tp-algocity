@@ -62,6 +62,10 @@ public class Configuracion {
 	static final int AVERIA_DE_GODZILLA_A_RUTA = 80;	
 	static final int AVERIA_DE_GODZILLA_A_TUBERIA = 0;
 	
+	// Averia de Terremoto
+	static final int TERREMOTO_AVERIA_EPICENTRO = 100;
+	static final int TERREMOTO_DECRECIMENTO_AVERIA_POR_RADIO = 10;
+	
 	// Capacidad de reparacion de bomberos
 	static final int REPARACION_A_RESIDENCIA = 10;
 	static final int REPARACION_A_COMERCIO = 7;
