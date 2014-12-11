@@ -19,14 +19,14 @@ public class MapaTest {
 	public void testMapaContieneTerrenoEn0_0ConMapaLlano() {
 		Mapa mapa = new Mapa(new MapaLlano());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(0, 0));
-		assertEquals(hectarea.getNombre(), "Terreno");
+		assertEquals(hectarea.getEtiqueta(), "Terreno");
 	}
 
 	@Test
 	public void testMapaContieneTerrenoEn10_10ConMapaLlano() {
 		Mapa mapa = new Mapa(new MapaLlano());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(10, 10));
-		assertEquals(hectarea.getNombre(), "Terreno");
+		assertEquals(hectarea.getEtiqueta(), "Terreno");
 
 	}
 
@@ -34,7 +34,7 @@ public class MapaTest {
 	public void testMapaContieneTerrenoEn10_10ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaLlano());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(10, 10));
-		assertEquals(hectarea.getNombre(), "Terreno");
+		assertEquals(hectarea.getEtiqueta(), "Terreno");
 
 	}
 
@@ -42,7 +42,7 @@ public class MapaTest {
 	public void testMapaContieneAguaEn0_20ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(0, 20));
-		assertEquals(hectarea.getNombre(), "Agua");
+		assertEquals(hectarea.getEtiqueta(), "Agua");
 
 	}
 
@@ -50,7 +50,7 @@ public class MapaTest {
 	public void testMapaContieneAguaEn24_24ConMapaConPlaya() {
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(24, 24));
-		assertEquals(hectarea.getNombre(), "Agua");
+		assertEquals(hectarea.getEtiqueta(), "Agua");
 
 	}
 
@@ -59,7 +59,7 @@ public class MapaTest {
 
 		Mapa mapa = new Mapa(new MapaConPlaya());
 		Hectarea hectarea = mapa.getHectarea(new Coordenada(19, 19));
-		assertEquals(hectarea.getNombre(), "Terreno");
+		assertEquals(hectarea.getEtiqueta(), "Terreno");
 
 	}
 
