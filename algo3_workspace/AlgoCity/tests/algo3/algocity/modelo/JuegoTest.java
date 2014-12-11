@@ -17,7 +17,7 @@ public class JuegoTest {
 	public void crearUnJuegoConMapaPlayaParaVerTerreno(){
 		Juego juego = new Juego();
 		
-		String resultado = juego.verMapa(new Coordenada(0,0));		
+		String resultado = juego.getMapa().getHectarea(new Coordenada(0,0)).getEtiqueta();		
 		
 		assertEquals("Terreno", resultado);
 	}
@@ -26,7 +26,7 @@ public class JuegoTest {
 	public void crearUnJuegoConMapaPlayaParaVerAgua(){
 		Juego juego = new Juego();
 		
-		String resultado = juego.verMapa(new Coordenada(0,20));		
+		String resultado = juego.getMapa().getHectarea(new Coordenada(0,20)).getEtiqueta();		
 		
 		assertEquals("Agua", resultado);
 	}

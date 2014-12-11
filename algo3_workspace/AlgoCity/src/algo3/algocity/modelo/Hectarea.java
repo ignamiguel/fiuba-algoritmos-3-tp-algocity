@@ -7,14 +7,13 @@ import java.util.Observable;
 
 public abstract class Hectarea extends Observable implements IAfectable {
 
-	// Atributos de la clase
 	protected List<IConectable> conexiones = new ArrayList<IConectable>();
 	protected List<TipoDeServicio> servicios = new ArrayList<TipoDeServicio>();
 	protected Construccion construccion;
 	protected Coordenada ubicacion;
 
 	/* METODOS PUBLICOS */
-	public abstract String getNombre();
+	public abstract String getEtiqueta();
 
 	public boolean estaVacia() {
 		return (construccion == null);
@@ -184,6 +183,12 @@ public abstract class Hectarea extends Observable implements IAfectable {
 	
 	public List<TipoDeServicio> getServicios(){
 		return this.servicios;
+	}
+	
+	public void reset(){
+		this.construccion = null;
+		this.servicios.clear();
+		this.conexiones.clear();
 	}
 
 }

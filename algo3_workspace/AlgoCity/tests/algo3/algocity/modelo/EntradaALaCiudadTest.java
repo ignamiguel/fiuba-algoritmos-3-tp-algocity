@@ -9,14 +9,14 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testMapaLlanoTieneConstruidaUnaEntradaALaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.getEntradaALaCiudad());
 		assertEquals(true,hectarea.tieneConexion(TipoDeConexion.Ruta));
 	}
 	
 	@Test
 	public void testSeLePuedenConstruirConexionesALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.getEntradaALaCiudad());
 		
 		hectarea.conectar(new Tuberia());
 		hectarea.conectar(new LineaDeTension());
@@ -30,7 +30,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testNoSeLePuedeConstruirUnaRutaALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.getEntradaALaCiudad());
 		
 		assertEquals(false,hectarea.conectar(new Ruta()));
 	}
@@ -38,7 +38,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testNoSeLePuedeConstruirOtraContruccionALaEntradaDeLaCiudad(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Hectarea hectarea =  mapa.getHectarea(mapa.obtenerEntradaALaCiudad());
+		Hectarea hectarea =  mapa.getHectarea(mapa.getEntradaALaCiudad());
 		
 		assertEquals(false,hectarea.construir(new Residencia()));
 	}
@@ -46,7 +46,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testNoSePuedePropagaTransitoALasHectareaVecinasSinRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 
 		mapa.propagarServicio(entrada);
 		
@@ -66,7 +66,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelSurConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarX(1);
@@ -81,7 +81,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelSurYAlaQueEstaAlSurDeEsaConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarX(1);
@@ -104,7 +104,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelEsteConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarY(1);
@@ -119,7 +119,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelEsteYAlaQueEstaAlEsteDeEsaConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.aumentarY(1);
@@ -142,7 +142,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelOesteConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.disminuirY(1);
@@ -157,7 +157,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoALaHectareaVecinaDelOesteYAlaQueEstaAlOesteDeEsaConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad();
+		Coordenada entrada = mapa.getEntradaALaCiudad();
 		
 		Coordenada vecina = entrada.copiar();
 		vecina.disminuirY(1);
@@ -179,7 +179,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoATodasLasHectareasQueEstanAlineadasAlSurConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		entrada.aumentarX(1);
 		
@@ -189,7 +189,7 @@ public class EntradaALaCiudadTest {
 			entrada.aumentarX(1);
 		}
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
@@ -201,7 +201,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoATodasLasHectareasQueEstanAlineadasAlesteConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		entrada.aumentarY(1);
 		
@@ -211,7 +211,7 @@ public class EntradaALaCiudadTest {
 			entrada.aumentarY(1);
 		}
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerY() < mapa.getTamanio()){
@@ -223,7 +223,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlTransitoPropagaTransitoATodasLasHectareasQueEstanAlineadasAlOesteConRuta(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		entrada.disminuirY(1);
 		
@@ -233,7 +233,7 @@ public class EntradaALaCiudadTest {
 			entrada.disminuirY(1);
 		}
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerY() >= 0){
@@ -245,7 +245,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaAlaCiudadPropagaTransitoATodoElMapaConectadoConRuta(){
 		Mapa mapa = new Mapa( new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		for(int i=0; i < mapa.getTamanio();i++){
 			for(int j=0; j< mapa.getTamanio(); j++){
@@ -255,7 +255,7 @@ public class EntradaALaCiudadTest {
 			}
 		}
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		for(int i=0; i < mapa.getTamanio();i++){
@@ -269,7 +269,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaPropagaTransitoALaRutaConectadaPeroNoPropagaALaRutaQueNoEstaConectada(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		entrada.aumentarX(1);
 		
@@ -286,7 +286,7 @@ public class EntradaALaCiudadTest {
 			assertEquals(true, mapa.getHectarea(coord).tieneConexion(TipoDeConexion.Ruta));
 		}
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
@@ -304,7 +304,7 @@ public class EntradaALaCiudadTest {
 	@Test
 	public void testEntradaPropagaTransitoALaRutaConectadaPeroYPropagaALaRutaEnOtraColumnaUnidaPorUnRutaEnElMedio(){
 		Mapa mapa = new Mapa(new MapaLlano());
-		Coordenada entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		Coordenada entrada = mapa.getEntradaALaCiudad().copiar();
 		
 		entrada.aumentarX(1);
 		
@@ -323,7 +323,7 @@ public class EntradaALaCiudadTest {
 		
 		mapa.conectar(new Ruta(), new Coordenada(19,11));
 		
-		entrada = mapa.obtenerEntradaALaCiudad().copiar();
+		entrada = mapa.getEntradaALaCiudad().copiar();
 		mapa.propagarServicio(entrada);
 		
 		while(entrada.obtenerX() < mapa.getTamanio()){
