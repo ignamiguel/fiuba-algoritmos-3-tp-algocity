@@ -110,7 +110,7 @@ public abstract class Hectarea extends Observable implements IAfectable {
 		notificarCambio();
 	}
 
-	public boolean estaActivo(TipoDeServicio servicio) {
+	public boolean tieneConexion(TipoDeServicio servicio) {
 		return this.servicios.contains(servicio);
 	}
 

@@ -7,26 +7,33 @@ public class CaminarZigZag implements ICaminable {
 	@Override
 	public void caminarMapa(Godzilla godzilla, Mapa mapa) {
 		Hectarea hectarea;
-		while ((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()) {
+		while ((godzilla.getCoordenada()).obtenerY() < mapa.getTamanio()) {
 			
-			hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
+			hectarea = mapa.getHectarea(godzilla.getCoordenada());
 			hectarea.afectarCon(godzilla);
 			godzilla.avanzarEnY();
 			godzilla.retrocederEnX();
 			
 			
-			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
-				hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
+			if((godzilla.getCoordenada()).obtenerY() < mapa.getTamanio()){
+				hectarea = mapa.getHectarea(godzilla.getCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
 				godzilla.avanzarEnX();
 			}
 			
-			if((godzilla.obtenerCoordenada()).obtenerY() < mapa.getTamanio()){
-				hectarea = mapa.getHectarea(godzilla.obtenerCoordenada());
+			if((godzilla.getCoordenada()).obtenerY() < mapa.getTamanio()){
+				hectarea = mapa.getHectarea(godzilla.getCoordenada());
 				hectarea.afectarCon(godzilla);
 				godzilla.avanzarEnY();
 				godzilla.avanzarEnX();
+			}
+			
+			if((godzilla.getCoordenada()).obtenerY() < mapa.getTamanio()){
+				hectarea = mapa.getHectarea(godzilla.getCoordenada());
+				hectarea.afectarCon(godzilla);
+				godzilla.avanzarEnY();
+				godzilla.retrocederEnX();
 			}
 		}
 

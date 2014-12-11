@@ -165,7 +165,7 @@ public class MapaTest {
 			for (int j = 0; j < mapa.getTamanio(); j++) {
 
 				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
-						.estaActivo(TipoDeServicio.Electrico));
+						.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -190,7 +190,7 @@ public class MapaTest {
 		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
 			assertEquals(true,
-					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+					mapa.getHectarea(c).tieneConexion(TipoDeServicio.Electrico));
 		}
 
 		// No se modifica la capacidad de abastecimiento
@@ -207,7 +207,7 @@ public class MapaTest {
 
 				assertEquals(false,
 						mapa.getHectarea(c)
-								.estaActivo(TipoDeServicio.Electrico));
+								.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -255,7 +255,7 @@ public class MapaTest {
 			for (int j = 0; j < mapa.getTamanio(); j++) {
 
 				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
-						.estaActivo(TipoDeServicio.Electrico));
+						.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -267,31 +267,31 @@ public class MapaTest {
 
 		// Ahora tienen servicio las del radio = 1
 		assertEquals(true,
-				mapa.getHectarea(arriba).estaActivo(TipoDeServicio.Electrico));
+				mapa.getHectarea(arriba).tieneConexion(TipoDeServicio.Electrico));
 		assertEquals(true,
-				mapa.getHectarea(derecha).estaActivo(TipoDeServicio.Electrico));
+				mapa.getHectarea(derecha).tieneConexion(TipoDeServicio.Electrico));
 		assertEquals(true,
-				mapa.getHectarea(abajo).estaActivo(TipoDeServicio.Electrico));
+				mapa.getHectarea(abajo).tieneConexion(TipoDeServicio.Electrico));
 		assertEquals(true,
 				mapa.getHectarea(izquierda)
-						.estaActivo(TipoDeServicio.Electrico));
+						.tieneConexion(TipoDeServicio.Electrico));
 
 		// Tambien algunas de radio = 2 con lineas de tension
 		assertEquals(
 				true,
-				mapa.getHectarea(arribaArriba).estaActivo(
+				mapa.getHectarea(arribaArriba).tieneConexion(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.getHectarea(derechaDerecha).estaActivo(
+				mapa.getHectarea(derechaDerecha).tieneConexion(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.getHectarea(abajoAbajo).estaActivo(
+				mapa.getHectarea(abajoAbajo).tieneConexion(
 						TipoDeServicio.Electrico));
 		assertEquals(
 				true,
-				mapa.getHectarea(izquierdaIzquierda).estaActivo(
+				mapa.getHectarea(izquierdaIzquierda).tieneConexion(
 						TipoDeServicio.Electrico));
 
 		// No se modifica la capacidad de abastecimiento
@@ -320,7 +320,7 @@ public class MapaTest {
 
 				assertEquals(false,
 						mapa.getHectarea(c)
-								.estaActivo(TipoDeServicio.Electrico));
+								.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -407,7 +407,7 @@ public class MapaTest {
 		for (int i = 0; i < mapa.getTamanio(); i++) {
 			for (int j = 0; j < mapa.getTamanio(); j++) {
 				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
-						.estaActivo(TipoDeServicio.Electrico));
+						.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -425,7 +425,7 @@ public class MapaTest {
 		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
 			assertEquals(true,
-					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+					mapa.getHectarea(c).tieneConexion(TipoDeServicio.Electrico));
 		}
 
 		// No se modifica la capacidad de abastecimiento
@@ -442,7 +442,7 @@ public class MapaTest {
 
 				assertEquals(false,
 						mapa.getHectarea(c)
-								.estaActivo(TipoDeServicio.Electrico));
+								.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 	}
@@ -539,7 +539,7 @@ public class MapaTest {
 		for (int i = 0; i < mapa.getTamanio(); i++) {
 			for (int j = 0; j < mapa.getTamanio(); j++) {
 				assertEquals(false, mapa.getHectarea(new Coordenada(i, j))
-						.estaActivo(TipoDeServicio.Electrico));
+						.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 
@@ -557,7 +557,7 @@ public class MapaTest {
 		// tienen servicio
 		for (Coordenada c : coordenadasConServicio) {
 			assertEquals(true,
-					mapa.getHectarea(c).estaActivo(TipoDeServicio.Electrico));
+					mapa.getHectarea(c).tieneConexion(TipoDeServicio.Electrico));
 		}
 
 		// No se modifica la capacidad de abastecimiento
@@ -574,7 +574,7 @@ public class MapaTest {
 
 				assertEquals(false,
 						mapa.getHectarea(c)
-								.estaActivo(TipoDeServicio.Electrico));
+								.tieneConexion(TipoDeServicio.Electrico));
 			}
 		}
 	}

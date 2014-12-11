@@ -185,7 +185,8 @@ public class EstacionDeBomberosTest {
 			
 		mapa.construir(cNuclear,new Coordenada(2,2));
 		
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(2,0), new CaminarDerecho());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(2,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 		
 		int salud = cNuclear.getSalud();	
 		

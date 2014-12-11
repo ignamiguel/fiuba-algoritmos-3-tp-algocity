@@ -124,7 +124,7 @@ public class Mapa {
 	}
 
 	private void procesarHectarea(Hectarea hectarea, IPropagable servicio) {
-		if (hectarea.estaActivo(servicio.getServicioPropagable())) {
+		if (hectarea.tieneConexion(servicio.getServicioPropagable())) {
 			return;
 		}
 

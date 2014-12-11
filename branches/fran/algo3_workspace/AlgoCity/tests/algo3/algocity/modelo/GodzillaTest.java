@@ -52,21 +52,21 @@ public class GodzillaTest {
 		assertEquals(pozo.getSalud(), 0);
 	}
 
-	/*
+	
 	@Test
 	public void testGodzillaAtacaUnTerrenoConUnaRutaYLaRutaQuedaDaniada() {
 
 		Godzilla godzilla = new Godzilla();
 		Ruta unaRuta = new Ruta();
 		Terreno unTerreno = new Terreno();
-		unTerreno.agregarServicio(unaRuta);
+		unTerreno.conectar(unaRuta);
 
-		assertEquals(unTerreno.estaConectada(unaRuta), true);
-		assertEquals(unaRuta.estaDaniada(), false);
+		assertEquals(unTerreno.tieneConexion(TipoDeConexion.Ruta), true);
+		assertEquals(unaRuta.getSalud(), 100);
 
 		unTerreno.afectarCon(godzilla);
 
-		assertEquals(unaRuta.estaDaniada(), true);
+		assertEquals(unaRuta.getSalud(), 20);
 	}
 
 	@Test
@@ -75,28 +75,15 @@ public class GodzillaTest {
 		Terreno unTerreno = new Terreno();
 		LineaDeTension unaLinea = new LineaDeTension();
 
-		unTerreno.agregarServicio(unaLinea);
-		assertEquals(unTerreno.estaConectada(unaLinea), true);
-		assertEquals(unaLinea.estaDaniada(), false);
+		unTerreno.conectar(unaLinea);
+		assertEquals(unTerreno.tieneConexion(TipoDeConexion.LineaDeTension), true);
+		assertEquals(unaLinea.getSalud(), 100);
 
 		unTerreno.afectarCon(new Godzilla());
 
-		assertEquals(unaLinea.estaDaniada(), true);
+		assertEquals(unaLinea.getSalud(), 0);
 	}
 
-	@Test
-	public void testGodzillaAtacaUnTerrenoConUnaTuberiaYNoPierdeElServicio() {
-
-		Terreno unTerreno = new Terreno();
-		Tuberia unaTuberia = new Tuberia();
-
-		unTerreno.agregarServicio(unaTuberia);
-		assertEquals(unTerreno.estaConectada(unaTuberia), true);
-
-		unTerreno.afectarCon(new Godzilla());
-
-		assertEquals(unTerreno.estaConectada(unaTuberia), true);
-	}
 
 	@Test
 	public void testGodzillaAtacaUnTerrenoConLosTresServiciosYRutaYLineasQuedanDaniadasTuberiasNo() {
@@ -106,35 +93,33 @@ public class GodzillaTest {
 		Ruta unaRuta = new Ruta();
 		Tuberia unaTuberia = new Tuberia();
 
-		unTerreno.agregarServicio(unaRuta);
-		unTerreno.agregarServicio(unaLinea);
-		unTerreno.agregarServicio(unaTuberia);
+		unTerreno.conectar(unaRuta);
+		unTerreno.conectar(unaLinea);
+		unTerreno.conectar(unaTuberia);
 
-		assertEquals(unTerreno.estaConectada(unaTuberia), true);
-		assertEquals(unTerreno.estaConectada(unaLinea), true);
-		assertEquals(unTerreno.estaConectada(unaRuta), true);
+		assertEquals(unTerreno.tieneConexion(TipoDeConexion.Tuberia), true);
+		assertEquals(unTerreno.tieneConexion(TipoDeConexion.LineaDeTension), true);
+		assertEquals(unTerreno.tieneConexion(TipoDeConexion.Ruta), true);
 
-		assertEquals(unaLinea.estaDaniada(), false);
-		assertEquals(unaRuta.estaDaniada(), false);
+		assertEquals(unaLinea.getSalud(), 100);
+		assertEquals(unaRuta.getSalud(), 100);
 
 		unTerreno.afectarCon(new Godzilla());
 
-		assertEquals(unaLinea.estaDaniada(), true);
-		assertEquals(unaRuta.estaDaniada(), true);
-		assertEquals(unaTuberia.estaActiva(), true);
+		assertEquals(unaLinea.getSalud(), 0);
+		assertEquals(unaRuta.getSalud(), 20);
+		assertEquals(unaTuberia.getSalud(), 100);
 	}
-
-	*/
 	
 	@Test
 	public void testGodzillaAtacaAUnMapaLLanoYComienzaEnLaCoordenada3_0YTerminaEnLa3_25() {
 		Godzilla godzilla = new Godzilla();
 		Mapa mapa = new Mapa(new MapaLlano());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
-
-		assertEquals((godzilla.obtenerCoordenada()).obtenerX(), 3);
-		assertEquals((godzilla.obtenerCoordenada()).obtenerY(), 25);
+		assertEquals((godzilla.getCoordenada()).obtenerX(), 3);
+		assertEquals((godzilla.getCoordenada()).obtenerY(), 25);
 	}
 	
 	@Test
@@ -142,10 +127,11 @@ public class GodzillaTest {
 		Godzilla godzilla = new Godzilla();
 		Mapa mapa = new Mapa(new ClasePruebaParaGenerarMapa());
 
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 
-		assertEquals((godzilla.obtenerCoordenada()).obtenerX(), 3);
-		assertEquals((godzilla.obtenerCoordenada()).obtenerY(), 5);
+		assertEquals((godzilla.getCoordenada()).obtenerX(), 3);
+		assertEquals((godzilla.getCoordenada()).obtenerY(), 5);
 	}
 	
 	@Test
@@ -159,7 +145,8 @@ public class GodzillaTest {
 		
 		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
 
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 		
 		ind = (Industria) mapa.getHectarea(new Coordenada(3,2)).getConstruccion();
 		assertEquals(ind.getSalud(), 60);
@@ -189,7 +176,8 @@ public class GodzillaTest {
 		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 100);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 
 		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 0);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 0);
@@ -218,7 +206,8 @@ public class GodzillaTest {
 		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 100);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarDerecho());
+		IAtaqueGodzilla generadorGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarDerecho());
+		godzilla.atacar(mapa, generadorGodzilla);
 
 		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 0);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 25);
@@ -249,8 +238,9 @@ public class GodzillaTest {
 		assertEquals(((mapa.getHectarea(new Coordenada(4,3))).getConstruccion()).getSalud(), 100);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 		
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarZigZag());
-	
+		IAtaqueGodzilla ataqueGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarZigZag());
+		godzilla.atacar(mapa, ataqueGodzilla);
+		
 		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 00);
 		assertEquals(((mapa.getHectarea(new Coordenada(2,1))).getConstruccion()).getSalud(), 00);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,2))).getConstruccion()).getSalud(), 00);
@@ -281,7 +271,8 @@ public class GodzillaTest {
 		assertEquals(((mapa.getHectarea(new Coordenada(3,3))).getConstruccion()).getSalud(), 100);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,4))).getConstruccion()).getSalud(), 100);
 		
-		godzilla.atacarSinRandomParaTest(mapa, new Coordenada(3,0), new CaminarZigZag());
+		IAtaqueGodzilla ataqueGodzilla = new AtaqueGodzillaMock(new Coordenada(3,0), new CaminarZigZag());
+		godzilla.atacar(mapa, ataqueGodzilla);
 	
 		assertEquals(((mapa.getHectarea(new Coordenada(3,0))).getConstruccion()).getSalud(), 00);
 		assertEquals(((mapa.getHectarea(new Coordenada(3,1))).getConstruccion()).getSalud(), 100);
